@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "@/lib/cart-context";
+import { WishlistButton } from "@/components/wishlist-button";
 import { formatMoney } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -117,10 +118,12 @@ export function ProductDetail({ product }: { product: Product }) {
           <button
             type="button"
             onClick={() => add(product, variant, quantity)}
-            className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+            disabled={!variant.available}
+            className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:bg-ink/30 disabled:cursor-not-allowed"
           >
-            Aggiungi al carrello
+            {variant.available ? "Aggiungi al carrello" : "Esaurito"}
           </button>
+          <WishlistButton handle={product.handle} />
         </div>
 
         <ul className="mt-10 space-y-3 text-sm text-ink/80">

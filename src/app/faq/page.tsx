@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Script from "next/script";
+import { faqJsonLd } from "@/lib/json-ld";
 
 export const metadata: Metadata = {
   title: "Domande frequenti",
@@ -33,7 +35,10 @@ const QUESTIONS = [
 ];
 
 export default function FaqPage() {
+  const ldFaq = faqJsonLd(QUESTIONS.map((q) => ({ question: q.q, answer: q.a })));
   return (
+    <>
+    <Script id="ld-faq" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ldFaq) }} />
     <div className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">FAQ</p>
       <h1 className="mt-4 font-serif text-5xl leading-[1.05]">
@@ -56,5 +61,6 @@ export default function FaqPage() {
         ))}
       </div>
     </div>
+    </>
   );
 }

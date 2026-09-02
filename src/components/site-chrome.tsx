@@ -5,6 +5,7 @@ import { useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { MobileMenu } from "./mobile-menu";
+import { NewsletterForm } from "./newsletter-form";
 
 const ANNOUNCEMENT =
   "Spedizione gratuita in Italia oltre 60 euro · Resi gratuiti entro 30 giorni";
@@ -53,6 +54,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             </Link>
 
             <div className="justify-self-end flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
+              <Link href="/wishlist" className="nav-link hidden sm:inline">
+                Preferiti
+              </Link>
               <Link href="/account" className="nav-link hidden sm:inline">
                 Account
               </Link>
@@ -108,20 +112,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             <p className="mt-3 text-sm text-cream/70">
               Iscriviti per ricevere lanci, rifornimenti e consigli di stile.
             </p>
-            <form className="mt-4 flex border-b border-mist/60 pb-2">
-              <input
-                type="email"
-                required
-                placeholder="email@esempio.com"
-                className="flex-1 bg-transparent text-sm placeholder:text-cream/40 focus:outline-none"
-              />
-              <button
-                type="submit"
-                className="text-xs uppercase tracking-[0.18em] text-cream/80 hover:text-cream"
-              >
-                Iscriviti
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
         <div className="border-t border-cream/10 py-6 text-xs text-cream/60">

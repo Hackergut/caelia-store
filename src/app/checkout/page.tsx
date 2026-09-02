@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
+import { LockIcon, PaymentIcons } from "@/components/trust-icons";
 import { formatMoney } from "@/lib/format";
 
 export default function CheckoutPage() {
@@ -201,10 +202,12 @@ export default function CheckoutPage() {
               </button>
             ))}
           </div>
-          <p className="mt-4 text-xs text-ink/60">
+          <p className="mt-4 text-xs text-ink/60 inline-flex items-center gap-2">
+            <LockIcon className="h-4 w-4" />
             Pagamento elaborato in modo sicuro. I dati della carta non vengono
             mai salvati sui nostri server.
           </p>
+          <PaymentIcons className="mt-4" />
         </Section>
 
         <button

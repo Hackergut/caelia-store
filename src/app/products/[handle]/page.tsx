@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { getProductByHandle, products } from "@/lib/products";
 import { ProductDetail } from "@/components/product-detail";
 import { ProductCard } from "@/components/product-card";
+import { productJsonLd, breadcrumbJsonLd } from "@/lib/json-ld";
 
 type Params = { handle: string };
 
@@ -34,9 +36,25 @@ export default async function ProductPage({
   if (!product) notFound();
 
   const related = products.filter((p) => p.handle !== handle).slice(0, 3);
+  const ldProduct = productJsonLd(product);
+  const ldBreadcrumb = breadcrumbJsonLd([
+    { name: "Home", href: "/" },
+    { name: "Collezione", href: "/products" },
+    { name: product.title, href: `/products/${handle}` },
+  ]);
 
   return (
     <>
+      <Script
+        id="ld-product"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ldProduct) }}
+      />
+      <Script
+        id="ld-breadcrumb"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ldBreadcrumb) }}
+      />
       <ProductDetail product={product} />
 
       <section className="bg-cream-deep relative grain">

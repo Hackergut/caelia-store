@@ -1,7 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Fraunces, Inter } from "next/font/google";
 import { CartProvider } from "@/lib/cart-context";
+import { WishlistProvider } from "@/lib/wishlist-context";
 import { SiteChrome } from "@/components/site-chrome";
+import { CookieBanner } from "@/components/cookie-banner";
+import { Analytics } from "@/components/analytics";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -73,8 +78,27 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-cream text-ink font-sans">
         <CartProvider>
-          <SiteChrome>{children}</SiteChrome>
+          <WishlistProvider>
+            <SiteChrome>{children}</SiteChrome>
+            <CookieBanner />
+            <Analytics />
+          </WishlistProvider>
         </CartProvider>
+
+        <Script
+          id="ld-org"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationJsonLd()),
+          }}
+        />
+        <Script
+          id="ld-site"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd()),
+          }}
+        />
       </body>
     </html>
   );
