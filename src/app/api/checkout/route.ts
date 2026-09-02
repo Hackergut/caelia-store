@@ -6,6 +6,8 @@ function buildOrderEmail(args: {
   total: number;
   currencyCode: "EUR" | "USD" | "GBP";
   lines: Array<{ variantId: string; quantity: number; price: { amount: string; currencyCode: "EUR" } }>;
+  giftWrap: boolean;
+  giftMessage: string;
 }): string {
   const lineRows = args.lines
     .map(
@@ -20,6 +22,8 @@ function buildOrderEmail(args: {
       <p style="margin-top:16px">Il tuo ordine <strong>${args.orderId}</strong> è in preparazione. Ti abbiamo inviato questa email come conferma.</p>
       <table style="width:100%;border-collapse:collapse;margin-top:24px">${lineRows}</table>
       <p style="text-align:right;font-size:24px;margin-top:16px"><strong>€${args.total.toFixed(2)}</strong></p>
+      ${args.giftWrap ? '<p style="margin-top:8px;color:#b8655f">Confezione regalo inclusa.</p>' : ''}
+      ${args.giftMessage ? '<p style="margin-top:12px;font-style:italic">"' + args.giftMessage + '"</p>' : ''}
       <p style="margin-top:24px;font-size:14px;color:#7a716a">Riceverai il numero di tracciamento non appena il pacco lascera il nostro magazzino. Per qualsiasi cosa, scrivici a ciao@caelia.com.</p>
       <p style="margin-top:32px;font-style:italic">Aprire. Ritoccare. Ripartire.</p>
     </div>
@@ -37,6 +41,9 @@ type CheckoutPayload = {
   shipping?: "standard" | "express";
   payment?: "card" | "paypal" | "klarna";
   discountCode?: string;
+  giftWrap?: boolean;
+  giftMessage?: string;
+  notes?: string;
   lines?: Array<{
     variantId: string;
     quantity: number;
@@ -75,7 +82,10 @@ export async function POST(req: Request) {
     ? DISCOUNT_CODES[payload.discountCode.toUpperCase()] ?? 0
     : 0;
   const discountAmount = Number((subtotal * discountPct / 100).toFixed(2));
-  const total = Number((subtotal + shipping - discountAmount).toFixed(2));
+  const giftWrapCost = payload.giftWrap ? 4.9 : 0;
+  const total = Number(
+    (subtotal + shipping - discountAmount + giftWrapCost).toFixed(2),
+  );
 
   // In produzione: crea un ordine su Shopify tramite Storefront API o una
   // sessione Stripe Checkout, poi invia l evento a Meta CAPI.
@@ -101,6 +111,8 @@ export async function POST(req: Request) {
         total,
         currencyCode: payload.lines[0].price.currencyCode,
         lines: payload.lines,
+        giftWrap: payload.giftWrap === true,
+        giftMessage: payload.giftMessage ?? "",
       });
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
@@ -130,5 +142,6 @@ export async function POST(req: Request) {
     currencyCode: payload.lines[0].price.currencyCode,
     discountCode: discountPct > 0 ? payload.discountCode : undefined,
     discountAmount: discountPct > 0 ? discountAmount : undefined,
+    giftWrap: payload.giftWrap === true,
   });
 }

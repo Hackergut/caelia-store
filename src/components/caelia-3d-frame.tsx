@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import { CAELIA_VARIANTS, type CaeliaVariant } from "@/lib/caelia/variants";
 import type { Product, ProductVariant } from "@/lib/types";
 
@@ -16,23 +17,16 @@ const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
   ),
 });
 
-/**
- * Map the active product variant to the closest matching 3D material.
- * Falls back to the first variant (Cognac) when the swatch doesn&apos;t match.
- */
 function variantFor(swatch: string | undefined): CaeliaVariant {
   if (!swatch) return CAELIA_VARIANTS[0];
   const hex = swatch.toLowerCase();
   if (hex === "#d49b96" || hex === "#e9c9c4") {
-    // Pink family -> Blush
     return CAELIA_VARIANTS.find((v) => v.id === "blush") ?? CAELIA_VARIANTS[0];
   }
   if (hex === "#1f1d1c") {
-    // Noir -> Bordeaux (closest dark)
     return CAELIA_VARIANTS.find((v) => v.id === "bordeaux") ?? CAELIA_VARIANTS[0];
   }
   if (hex === "#efe5d8") {
-    // Ivory -> Cognac (warm light)
     return CAELIA_VARIANTS[0];
   }
   return CAELIA_VARIANTS[0];
@@ -46,20 +40,51 @@ export function Caelia3DFrame({
   variant: ProductVariant;
 }) {
   const modelVariant = variantFor(variant.swatch);
+  const [allow3D, setAllow3D] = useState(true);
+
+  // Respect prefers-reduced-motion: fall back to the static 2D image
+  // rather than render a continuously rotating canvas.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    function apply() { setAllow3D(!mql.matches); }
+    apply();
+    mql.addEventListener("change", apply);
+    return () => mql.removeEventListener("change", apply);
+  }, []);
+
+  // Poster image shown beneath the canvas so users see the product even
+  // before WebGL finishes loading, and as the static fallback for the
+  // reduced-motion case.
+  const poster = product.images[0]?.src ?? "/products/beauty-case-rose-front.png";
+
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md bg-gradient-to-br from-cream-deep to-blush/20 group">
-      <CaeliaViewer
-        variant={modelVariant}
-        view="mirror"
-        autoRotate={true}
-        onSnapshotReady={() => undefined}
+      {/* Static poster: always present, visible underneath / behind the
+          canvas. The canvas fades in once Three.js is ready. */}
+      <img
+        src={poster}
+        alt={product.images[0]?.alt ?? product.title}
+        className="absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+        decoding="async"
       />
+      {allow3D && (
+        <div className="absolute inset-0 img-fade-in">
+          <CaeliaViewer
+            variant={modelVariant}
+            view="mirror"
+            autoRotate={true}
+            onSnapshotReady={() => undefined}
+          />
+        </div>
+      )}
       <div className="pointer-events-none absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-cream/90 px-3 py-1 text-xs uppercase tracking-[0.22em] text-ink">
         <span className="h-1.5 w-1.5 rounded-full bg-rose" />
-        Live 3D · {product.variants.length} colori
+        {allow3D ? "Live 3D" : "Immagine"} · {product.variants.length} colori
       </div>
       <p className="pointer-events-none absolute bottom-4 left-4 z-10 text-xs uppercase tracking-[0.22em] text-ink/70">
-        Trascina per ruotare
+        {allow3D ? "Trascina per ruotare" : "Scegli un colore qui sotto"}
       </p>
     </div>
   );

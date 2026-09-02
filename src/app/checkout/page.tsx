@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
 import { LockIcon, PaymentIcons } from "@/components/trust-icons";
 import { DiscountField, type AppliedDiscount } from "@/components/discount-field";
+import { CheckoutExtrasForm, type CheckoutExtras } from "@/components/checkout-extras";
 import { events } from "@/lib/track";
 import { recordOrder } from "@/lib/orders-history";
 import { formatMoney } from "@/lib/format";
@@ -15,6 +16,11 @@ export default function CheckoutPage() {
   const [hydrated, setHydrated] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [discount, setDiscount] = useState<AppliedDiscount | null>(null);
+  const [extras, setExtras] = useState<CheckoutExtras>({
+    giftWrap: false,
+    giftMessage: "",
+    notes: "",
+  });
   
   const [form, setForm] = useState({
     email: "",
@@ -46,8 +52,9 @@ export default function CheckoutPage() {
         ? 0
         : 4.9;
   const discountAmount = discount?.amount ?? 0;
+  const giftWrapCost = extras.giftWrap ? 4.9 : 0;
   const total =
-    Number(subtotal.amount || "0") + shippingCost - discountAmount;
+    Number(subtotal.amount || "0") + shippingCost - discountAmount + giftWrapCost;
 
 
   
@@ -94,6 +101,9 @@ export default function CheckoutPage() {
           country: form.country,
           shipping: form.shipping,
           payment: form.payment,
+          giftWrap: extras.giftWrap,
+          giftMessage: extras.giftMessage,
+          notes: extras.notes,
           lines: lines.map((l) => ({
             variantId: l.variantId,
             quantity: l.quantity,
@@ -213,6 +223,10 @@ export default function CheckoutPage() {
           </div>
         </Section>
 
+<Section title="Regalo e note">
+          <CheckoutExtrasForm value={extras} onChange={setExtras} />
+        </Section>
+
         <Section title="Codice sconto">
           <DiscountField
             subtotal={Number(subtotal.amount || "0")}
@@ -286,7 +300,13 @@ export default function CheckoutPage() {
         </ul>
         <hr className="my-6 border-mist/60" />
         <SummaryRow label="Subtotale" value={formatMoney(subtotal)} />
-        <SummaryRow
+        {giftWrapCost > 0 && (
+            <SummaryRow
+              label="Confezione regalo"
+              value={formatMoney({ amount: giftWrapCost.toFixed(2), currencyCode: "EUR" })}
+            />
+          )}
+          <SummaryRow
           label="Spedizione"
           value={shippingCost === 0 ? "Gratuita" : formatMoney({ amount: shippingCost.toFixed(2), currencyCode: "EUR" })}
         />
