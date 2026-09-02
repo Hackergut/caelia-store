@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Product } from "@/lib/types";
-import { formatMoney } from "@/lib/format";
 import { Price } from "@/lib/currency";
 
 export function ProductCard({ product }: { product: Product }) {
@@ -42,9 +41,7 @@ export function ProductCard({ product }: { product: Product }) {
             {variant.title}
           </p>
         </div>
-        <p className="text-sm font-medium">
-          {formatMoney(variant.price)}
-        </p>
+        <Price amountEUR={Number(variant.price.amount)} className="text-sm font-medium" />
       </div>
     </Link>
   );

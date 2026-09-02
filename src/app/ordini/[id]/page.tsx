@@ -44,6 +44,44 @@ export default async function OrderPage({
       <p className="mt-2 text-sm text-ink/60">
         Stato aggiornato al {new Date().toLocaleDateString("it-IT", { day: "numeric", month: "long", year: "numeric" })}.
       </p>
+      <div className="mt-4">
+        <span
+          className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs uppercase tracking-[0.22em] ${
+            stage === 3
+              ? "bg-emerald-700/10 text-emerald-700"
+              : stage === 2
+                ? "bg-rose/10 text-rose"
+                : "bg-charcoal/5 text-charcoal"
+          }`}
+        >
+          <span
+            className={`h-1.5 w-1.5 rounded-full ${
+              stage === 3
+                ? "bg-emerald-700"
+                : stage === 2
+                  ? "bg-rose"
+                  : "bg-charcoal"
+            } animate-pulse`}
+            aria-hidden
+          />
+          {STAGES[stage].label}
+        </span>
+      </div>
+      {stage >= 2 && (
+        <div className="mt-6 rounded-md border border-mist p-5">
+          <p className="text-xs uppercase tracking-[0.22em] text-ink/60">
+            Tracking
+          </p>
+          <p className="mt-2 font-serif text-lg">
+            CAELIA-TRK-{id.replace("CAELIA-", "")}
+          </p>
+          <p className="text-sm text-ink/70">
+            {stage === 3
+              ? "Consegnato. Firma ricevuta."
+              : "In transito · consegna stimata 24-48 ore."}
+          </p>
+        </div>
+      )}
 
       <ol className="mt-12 space-y-6">
         {STAGES.map((s, i) => {

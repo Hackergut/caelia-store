@@ -107,6 +107,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               { href: "/faq", label: "Domande frequenti" },
               { href: "/contact", label: "Contatti" },
               { href: "/press", label: "Press & media" },
+              { href: "/sostenibilita", label: "Sostenibilità" },
             ]}
           />
           <div>
