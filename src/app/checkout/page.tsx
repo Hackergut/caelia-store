@@ -7,6 +7,7 @@ import { useCart } from "@/lib/cart-context";
 import { LockIcon, PaymentIcons } from "@/components/trust-icons";
 import { DiscountField, type AppliedDiscount } from "@/components/discount-field";
 import { events } from "@/lib/track";
+import { recordOrder } from "@/lib/orders-history";
 import { formatMoney } from "@/lib/format";
 
 export default function CheckoutPage() {
@@ -111,6 +112,13 @@ export default function CheckoutPage() {
         orderId: data.orderId,
         value: Number(data.orderId ? total : 0),
         currency: subtotal.currencyCode,
+        items: lines.length,
+      });
+      recordOrder({
+        orderId: data.orderId,
+        total: Number(total.toFixed(2)),
+        currencyCode: subtotal.currencyCode,
+        placedAt: Date.now(),
         items: lines.length,
       });
       clear();

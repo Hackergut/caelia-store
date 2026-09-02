@@ -8,6 +8,22 @@ export const metadata: Metadata = {
 
 export default function AccountPage() {
   return (
+    <div className="mx-auto max-w-2xl px-6 lg:px-10 pt-16 pb-24">
+      <h1 className="font-serif text-4xl">Il mio account</h1>
+      <p className="mt-3 text-ink/70">
+        I tuoi ordini recenti. Per accedere al profilo completo collega
+        Shopify Customer Accounts o il tuo provider auth preferito.
+      </p>
+
+      <h2 className="mt-12 font-serif text-2xl">Ordini recenti</h2>
+      <AccountOrders />
+    </div>
+  );
+}
+
+import { AccountOrders } from "@/components/account-orders";
+export function AccountSignInSection() {
+  return (
     <div className="mx-auto max-w-md px-6 lg:px-10 pt-20 pb-24">
       <h1 className="font-serif text-4xl">Accedi</h1>
       <p className="mt-3 text-sm text-ink/70">

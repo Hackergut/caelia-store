@@ -2,7 +2,7 @@
 
 > CAELIA — Aprire. Ritoccare. Ripartire.
 
-Premium beauty ecommerce webapp for the **CAELIA Beauty Mirror Case**.
+A premium beauty ecommerce webapp for the **CAELIA Beauty Mirror Case**.
 Built on Next.js 16, deployed on Vercel, source on GitHub. Ships with a
 drop-in Shopify Storefront API adapter so the catalog can move from a
 local file to a live Shopify store in one commit.
@@ -14,26 +14,28 @@ local file to a live Shopify store in one commit.
 - **TypeScript** strict mode
 - **Fraunces** (display serif) + **Inter** (UI sans)
 - **Shopify Storefront API** adapter (`src/lib/shopify.ts`)
-- **Vercel** deployment with edge regions `fra1`, `iad1`
-- **PWA** installable (`manifest.webmanifest`)
-- **GDPR cookie consent** + conditional analytics
-- **JSON-LD** structured data: Organization, WebSite, Product, BreadcrumbList, FAQPage
+- **Vercel** deployment with edge regions `fra1`, `iad1` + Analytics
+- **Resend** transactional email
+- **PWA** installable, **GDPR** cookie consent, **Meta Pixel** consent-gated
+- **JSON-LD**: Organization, WebSite, Product (+ reviews + AggregateRating), BreadcrumbList, FAQPage
 
-## Pages (19 routes)
+## Pages (26 routes)
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Hero, manifesto, featured products, ritual explainer, trust strip |
-| `/products` | Full collection grid |
-| `/products/[handle]` | Product detail with gallery, variant picker, wishlist, add to cart, sold-out states, JSON-LD |
-| `/wishlist` | Saved-for-later grid |
-| `/checkout` | Multi-section checkout with shipping & payment selector, trust icons |
-| `/about` | The Carla & Giulia brand story |
-| `/journal` | Editorial listing |
-| `/account` | Sign-in (Shopify Customer Accounts / Auth0 ready) |
-| `/contact`, `/shipping`, `/faq`, `/privacy`, `/terms` | Standard info pages |
-| `/api/checkout` | Server route for order creation (Shopify / Stripe ready) |
-| `/api/newsletter` | Server route for email opt-in (Klaviyo / Mailchimp ready) |
+| `/` | Hero, manifesto, featured products, ritual explainer, trust strip, recently viewed |
+| `/products` | Full collection with filter by colour and type, sort, loading skeleton |
+| `/products/[handle]` | Detail with hover-zoom gallery, variant picker, per-variant images, wishlist, add to cart, sold-out state, inventory badge, reviews, JSON-LD |
+| `/cart` | Full-page cart with line items, trust badges, empty state, reset |
+| `/checkout` | Multi-section with shipping & payment selector, discount codes, trust icons, JSON-LD |
+| `/checkout/success` | Animated confirmation + tracking CTA |
+| `/wishlist` | Saved-for-later grid with shareable URL |
+| `/search?q=…` | Full collection search |
+| `/account` | Sign-in stub + recent orders from localStorage |
+| `/ordini/[id]` | Order tracking timeline |
+| `/about`, `/journal`, `/contact`, `/shipping`, `/faq`, `/cookies`, `/privacy`, `/terms` | Standard info pages |
+| `/sitemap.xml` | Dynamic sitemap (replaces hardcoded) |
+| `/api/checkout`, `/api/newsletter`, `/api/health` | Server routes |
 
 ## Run locally
 
@@ -41,6 +43,7 @@ local file to a live Shopify store in one commit.
 npm install
 npm run dev    # http://localhost:3000
 npm run build  # production build
+npm start      # production server
 ```
 
 ## Connect Shopify
@@ -52,12 +55,25 @@ npm run build  # production build
    SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
    SHOPIFY_STOREFRONT_API_TOKEN=xxxxx
    ```
-4. Replace the imports in `src/app/products/page.tsx` and
+4. Swap the imports in `src/app/products/page.tsx` and
    `src/app/products/[handle]/page.tsx` from `@/lib/products` to
    `@/lib/shopify` and call `loadProducts()` / `loadProductByHandle()`.
 
 The TypeScript `Product` shape is identical between the static catalog
 and the Shopify adapter, so no component changes are needed.
+
+## Env vars
+
+See `.env.example`:
+
+| Variable | Purpose |
+| --- | --- |
+| `SHOPIFY_STORE_DOMAIN` | `xxxxx.myshopify.com` |
+| `SHOPIFY_STOREFRONT_API_TOKEN` | Storefront API token |
+| `STRIPE_SECRET_KEY` | Direct Stripe checkout (optional) |
+| `RESEND_API_KEY` | Transactional emails (order confirmation) |
+| `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel (loaded only with consent) |
+| `NEXT_PUBLIC_SENTRY_DSN` | Error tracking (optional) |
 
 ## Deploy to Vercel
 
@@ -69,64 +85,16 @@ vercel --prod
 
 Or push to GitHub and import at <https://vercel.com/new>.
 
-## Env vars
-
-See `.env.example`:
-
-| Variable | Purpose |
-| --- | --- |
-| `SHOPIFY_STORE_DOMAIN` | `xxxxx.myshopify.com` |
-| `SHOPIFY_STOREFRONT_API_TOKEN` | Storefront API token |
-| `STRIPE_SECRET_KEY` | Direct Stripe checkout (optional) |
-| `RESEND_API_KEY` | Transactional emails |
-| `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel (loaded only with consent) |
-| `NEXT_PUBLIC_SENTRY_DSN` | Error tracking (optional) |
-
-## File map
-
-```
-src/
-  app/                  # App Router pages & API routes
-  components/           # Reusable UI
-    analytics.tsx       # consent-gated Meta Pixel
-    cookie-banner.tsx   # GDPR consent
-    newsletter-form.tsx # real newsletter form
-    trust-icons.tsx     # inline SVG payment icons
-    wishlist-button.tsx # heart toggle
-    product-detail.tsx
-    product-card.tsx
-    site-chrome.tsx
-    cart-drawer.tsx
-    mobile-menu.tsx
-  lib/
-    cart-context.tsx
-    wishlist-context.tsx
-    shopify.ts          # Storefront API adapter
-    json-ld.ts          # structured data
-    products.ts         # static fallback catalog
-    format.ts           # money formatter
-    types.ts            # shared types
-public/
-  products/             # premium product PNGs
-  favicon.svg, og.svg, logo.svg
-  manifest.webmanifest, robots.txt, sitemap.xml
-scripts/
-  gen-product-images.py # regenerate the 8 product PNGs
-```
-
-## Brand tokens
-
-| Token | Value |
-| --- | --- |
-| `--color-cream` | `#f7f1ea` |
-| `--color-blush` | `#e9c9c4` |
-| `--color-rose` | `#b8655f` |
-| `--color-charcoal` | `#1f1d1c` |
-| Display font | Fraunces (italic for accents) |
-| UI font | Inter |
-
 ## Imagery
 
 `public/products/*.png` are procedural beauty renders generated by
 `scripts/gen-product-images.py` (Pillow). Replace with real product
 photography for final launch.
+
+## Observability
+
+- `/api/health` → uptime monitor target.
+- Vercel Analytics (Web Vitals + page views) is wired via
+  `@vercel/analytics` in the root layout.
+- Meta Pixel fires `ViewContent` / `AddToCart` / `InitiateCheckout` /
+  `Purchase` only after the user consents to marketing cookies.

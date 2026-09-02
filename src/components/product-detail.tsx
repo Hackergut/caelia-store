@@ -51,14 +51,24 @@ export function ProductDetail({ product }: { product: Product }) {
     <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-10 pb-32 lg:pb-24 grid lg:grid-cols-2 gap-12 lg:gap-20">
       {/* Gallery */}
       <div className="flex flex-col gap-4">
-        <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep">
+        <div
+          className="group relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep cursor-zoom-in"
+          onMouseMove={(e) => {
+            const target = e.currentTarget;
+            const rect = target.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            target.style.setProperty("--zoom-x", `${x}%`);
+            target.style.setProperty("--zoom-y", `${y}%`);
+          }}
+        >
           <Image
             src={variantImages[activeImage % variantImages.length].src}
             alt={variantImages[activeImage % variantImages.length].alt}
             fill
             priority
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[2] [transform-origin:var(--zoom-x)_var(--zoom-y)]"
           />
         </div>
         <div className="grid grid-cols-4 gap-3">
