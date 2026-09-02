@@ -11,6 +11,7 @@ import { Caelia3DFrame } from "@/components/caelia-3d-frame";
 import { events } from "@/lib/track";
 import { pushRecentlyViewed } from "@/lib/recently-viewed";
 import { formatMoney } from "@/lib/format";
+import { Price } from "@/lib/currency";
 import type { Product } from "@/lib/types";
 
 export function ProductDetail({ product }: { product: Product }) {
@@ -109,9 +110,7 @@ export function ProductDetail({ product }: { product: Product }) {
           {product.description}
         </p>
 
-        <p className="mt-8 font-serif text-3xl">
-          {formatMoney(variant.price)}
-        </p>
+        <Price amountEUR={Number(variant.price.amount)} className="mt-8 font-serif text-3xl" />
 
         <div className="mt-3">
           <InventoryBadge sku={variant.sku} />

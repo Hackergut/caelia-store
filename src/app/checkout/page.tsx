@@ -9,6 +9,7 @@ import { DiscountField, type AppliedDiscount } from "@/components/discount-field
 import { CheckoutExtrasForm, type CheckoutExtras } from "@/components/checkout-extras";
 import { events } from "@/lib/track";
 import { recordOrder } from "@/lib/orders-history";
+import { validateCheckout, type FieldErrors } from "@/app/api/checkout/validate";
 import { formatMoney } from "@/lib/format";
 
 export default function CheckoutPage() {
@@ -21,6 +22,7 @@ export default function CheckoutPage() {
     giftMessage: "",
     notes: "",
   });
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   
   const [form, setForm] = useState({
     email: "",
@@ -86,6 +88,29 @@ export default function CheckoutPage() {
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const errors = validateCheckout({
+      email: form.email,
+      firstName: form.firstName,
+      lastName: form.lastName,
+      address: form.address,
+      city: form.city,
+      zip: form.zip,
+      country: form.country,
+    });
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
+      // Scroll the first errored field into view
+      const firstKey = Object.keys(errors)[0];
+      if (typeof document !== "undefined") {
+        const el = document.querySelector(`[name="${firstKey}"]`);
+        if (el && "scrollIntoView" in el) {
+          (el as HTMLElement).scrollIntoView({ behavior: "smooth", block: "center" });
+          (el as HTMLElement).focus();
+        }
+      }
+      return;
+    }
+    setFieldErrors({});
     setSubmitting(true);
     try {
       const res = await fetch("/api/checkout", {
@@ -154,8 +179,10 @@ export default function CheckoutPage() {
             label="Email"
             required
             type="email"
+            name="email"
             value={form.email}
             onChange={(v) => setForm({ ...form, email: v })}
+            error={fieldErrors.email}
           />
         </Section>
 
@@ -164,34 +191,44 @@ export default function CheckoutPage() {
             <Input
               label="Nome"
               required
+              name="firstName"
               value={form.firstName}
               onChange={(v) => setForm({ ...form, firstName: v })}
+              error={fieldErrors.firstName}
             />
             <Input
               label="Cognome"
               required
+              name="lastName"
               value={form.lastName}
               onChange={(v) => setForm({ ...form, lastName: v })}
+              error={fieldErrors.lastName}
             />
           </div>
           <Input
             label="Indirizzo"
             required
+            name="address"
             value={form.address}
             onChange={(v) => setForm({ ...form, address: v })}
+            error={fieldErrors.address}
           />
           <div className="grid sm:grid-cols-3 gap-4">
             <Input
               label="Città"
               required
+              name="city"
               value={form.city}
               onChange={(v) => setForm({ ...form, city: v })}
+              error={fieldErrors.city}
             />
             <Input
               label="CAP"
               required
+              name="zip"
               value={form.zip}
               onChange={(v) => setForm({ ...form, zip: v })}
+              error={fieldErrors.zip}
             />
             <Select
               label="Paese"
@@ -325,18 +362,27 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   );
 }
 
+function FormFieldError({ msg }: { msg?: string }) {
+  if (!msg) return null;
+  return <p role="alert" className="mt-1 text-xs text-rose">{msg}</p>;
+}
+
 function Input({
   label,
   value,
   onChange,
   type = "text",
   required,
+  name,
+  error,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   type?: string;
   required?: boolean;
+  name?: string;
+  error?: string;
 }) {
   return (
     <label className="block">
@@ -346,10 +392,14 @@ function Input({
       <input
         type={type}
         required={required}
+        name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
+        className={`w-full border rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal ${
+          error ? "border-rose" : "border-mist"
+        }`}
       />
+      <FormFieldError msg={error} />
     </label>
   );
 }
