@@ -4,6 +4,7 @@ import { products } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
 import { RecentlyViewedSection } from "@/components/recently-viewed-section";
 import { BundleSection } from "@/components/bundle-card";
+import { Caelia3DExplorer } from "@/components/caelia-3d-explorer";
 
 export default function Home() {
   return (
@@ -165,6 +166,8 @@ export default function Home() {
 
       <BundleSection all={products} />
       <RecentlyViewedSection all={products} />
+
+      <Caelia3DExplorer />
 
       {/* Press / Trust */}
       <section className="mx-auto max-w-5xl px-6 lg:px-10 py-20 lg:py-28 text-center">

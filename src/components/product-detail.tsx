@@ -7,6 +7,7 @@ import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
 import { StickyAddToCart } from "@/components/sticky-add-to-cart";
 import { BackInStockButton } from "@/components/back-in-stock";
+import { Caelia3DFrame } from "@/components/caelia-3d-frame";
 import { events } from "@/lib/track";
 import { pushRecentlyViewed } from "@/lib/recently-viewed";
 import { formatMoney } from "@/lib/format";
@@ -50,7 +51,8 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-10 pb-32 lg:pb-24 grid lg:grid-cols-2 gap-12 lg:gap-20">
-      {/* Gallery */}
+      {/* 3D hero + 2D gallery fallback */}
+      <Caelia3DFrame product={product} variant={variant} />
       <div className="flex flex-col gap-4">
         <div
           className="group relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep cursor-zoom-in"
