@@ -6,6 +6,7 @@ import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { MobileMenu } from "./mobile-menu";
 import { NewsletterForm } from "./newsletter-form";
+import { CurrencySwitcher } from "./currency-switcher";
 
 const ANNOUNCEMENT =
   "Spedizione gratuita in Italia oltre 60 euro · Resi gratuiti entro 30 giorni";
@@ -58,6 +59,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <Link href="/wishlist" className="nav-link hidden sm:inline">
                 Preferiti
               </Link>
+              <CurrencySwitcher />
               <Link href="/account" className="nav-link hidden sm:inline">
                 Account
               </Link>

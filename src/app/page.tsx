@@ -3,6 +3,7 @@ import Link from "next/link";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
 import { RecentlyViewedSection } from "@/components/recently-viewed-section";
+import { BundleSection } from "@/components/bundle-card";
 
 export default function Home() {
   return (
@@ -162,6 +163,7 @@ export default function Home() {
         </div>
       </section>
 
+      <BundleSection all={products} />
       <RecentlyViewedSection all={products} />
 
       {/* Press / Trust */}

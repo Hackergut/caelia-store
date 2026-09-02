@@ -6,6 +6,7 @@ import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
 import { StickyAddToCart } from "@/components/sticky-add-to-cart";
+import { BackInStockButton } from "@/components/back-in-stock";
 import { events } from "@/lib/track";
 import { pushRecentlyViewed } from "@/lib/recently-viewed";
 import { formatMoney } from "@/lib/format";
@@ -113,6 +114,9 @@ export function ProductDetail({ product }: { product: Product }) {
         <div className="mt-3">
           <InventoryBadge sku={variant.sku} />
         </div>
+        {!variant.available && (
+          <BackInStockButton sku={variant.sku} variantTitle={variant.title} />
+        )}
 
         <div className="mt-10">
           <p className="text-xs uppercase tracking-[0.22em] text-ink/60 mb-3">

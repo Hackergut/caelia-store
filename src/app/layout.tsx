@@ -4,11 +4,13 @@ import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 import { Fraunces, Inter } from "next/font/google";
 import { CartProvider } from "@/lib/cart-context";
 import { WishlistProvider } from "@/lib/wishlist-context";
+import { CurrencyProvider } from "@/lib/currency";
 import { SiteChrome } from "@/components/site-chrome";
 import { CookieBanner } from "@/components/cookie-banner";
 import { Analytics } from "@/components/analytics";
 import { ExitIntentModal } from "@/components/exit-intent-modal";
 import { RecoveredCartBanner } from "@/components/recovered-cart-banner";
+import { SupportWidget } from "@/components/support-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
@@ -82,9 +84,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col bg-cream text-ink font-sans">
         <CartProvider>
           <WishlistProvider>
+            <CurrencyProvider>
             <SiteChrome>{children}</SiteChrome>
             <CookieBanner />
             <Analytics />
+          </CurrencyProvider>
           </WishlistProvider>
         </CartProvider>
 
