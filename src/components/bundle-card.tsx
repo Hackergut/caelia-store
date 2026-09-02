@@ -1,8 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
 import { formatMoney } from "@/lib/format";
 import { Price } from "@/lib/currency";
+import { useCart } from "@/lib/cart-context";
+import { useRouter } from "next/navigation";
 
 type Bundle = {
   handle: string;
@@ -24,6 +28,8 @@ const BUNDLES: Bundle[] = [
 ];
 
 export function BundleSection({ all }: { all: Product[] }) {
+  const { add } = useCart();
+  const router = useRouter();
   return (
     <section className="mx-auto max-w-7xl px-6 lg:px-10 py-20">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
@@ -70,12 +76,27 @@ export function BundleSection({ all }: { all: Product[] }) {
                   </span>
                 </div>
               </div>
-              <Link
-                href="/products?bundle=duo-essentials"
-                className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors self-start"
-              >
-                Acquista il bundle
-              </Link>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    items.forEach((p) => {
+                      const v = p.variants.find((x) => x.available) ?? p.variants[0];
+                      add(p, v, 1);
+                    });
+                    router.push("/cart");
+                  }}
+                  className="inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+                >
+                  Aggiungi al carrello ({Math.round((1 - b.percentOff / 100) * 100)}% off)
+                </button>
+                <Link
+                  href="/products?bundle=duo-essentials"
+                  className="inline-flex items-center justify-center border border-charcoal px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-charcoal hover:text-cream transition-colors"
+                >
+                  Dettagli
+                </Link>
+              </div>
             </article>
           );
         })}
