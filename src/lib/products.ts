@@ -49,19 +49,19 @@ export const products: Product[] = [
     },
     images: [
       {
-        src: "/products/beauty-case-rose-front.svg",
+        src: "/products/beauty-case-rose-front.png",
         alt: "CAELIA Beauty Mirror Case vista frontale",
       },
       {
-        src: "/products/beauty-case-rose-open.svg",
+        src: "/products/beauty-case-rose-open.png",
         alt: "Beauty Mirror Case aperto con specchio e prodotti",
       },
       {
-        src: "/products/beauty-case-rose-detail.svg",
+        src: "/products/beauty-case-rose-detail.png",
         alt: "Dettaglio della chiusura magnetica e della fodera",
       },
       {
-        src: "/products/beauty-case-rose-lifestyle.svg",
+        src: "/products/beauty-case-rose-lifestyle.png",
         alt: "Beauty case in uso su un tavolino da caffe",
       },
     ],
@@ -127,11 +127,11 @@ export const products: Product[] = [
     },
     images: [
       {
-        src: "/products/beauty-case-mini-rose.svg",
+        src: "/products/beauty-case-mini-rose.png",
         alt: "Beauty Mirror Case Mini in rosa cipria",
       },
       {
-        src: "/products/beauty-case-mini-open.svg",
+        src: "/products/beauty-case-mini-open.png",
         alt: "Mini aperto con specchio e gloss",
       },
     ],
