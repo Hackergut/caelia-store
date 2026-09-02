@@ -1,0 +1,368 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { useCart } from "@/lib/cart-context";
+import { formatMoney } from "@/lib/format";
+
+export default function CheckoutPage() {
+  const { lines, subtotal, clear } = useCart();
+  const [hydrated, setHydrated] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
+  const [form, setForm] = useState({
+    email: "",
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    zip: "",
+    country: "Italia",
+    shipping: "standard" as "standard" | "express",
+    payment: "card" as "card" | "paypal" | "klarna",
+  });
+
+  useEffect(() => setHydrated(true), []);
+
+  const shippingCost =
+    form.shipping === "express"
+      ? 8
+      : subtotal && Number(subtotal.amount) >= 60
+        ? 0
+        : 4.9;
+  const total = Number(subtotal.amount || "0") + shippingCost;
+
+  if (orderId) {
+    return (
+      <div className="mx-auto max-w-3xl px-6 lg:px-10 py-24 text-center">
+        <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
+          Ordine ricevuto
+        </p>
+        <h1 className="mt-4 font-serif text-5xl leading-tight">
+          Grazie, <span className="italic text-rose">{form.firstName || "amica"}</span>.
+        </h1>
+        <p className="mt-6 text-lg text-ink/80">
+          Il tuo ordine <strong>{orderId}</strong> è in preparazione. Ti
+          abbiamo inviato una conferma a {form.email}.
+        </p>
+        <div className="mt-12">
+          <Link
+            href="/products"
+            className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+          >
+            Continua a esplorare
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (!hydrated) {
+    return (
+      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 text-center text-ink/60">
+        Caricamento...
+      </div>
+    );
+  }
+
+  if (lines.length === 0) {
+    return (
+      <div className="mx-auto max-w-3xl px-6 lg:px-10 py-24 text-center">
+        <h1 className="font-serif text-4xl">Il carrello è vuoto.</h1>
+        <p className="mt-4 text-ink/70">
+          Aggiungi un Beauty Mirror Case prima di procedere.
+        </p>
+        <Link
+          href="/products"
+          className="mt-8 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+        >
+          Scopri la collezione
+        </Link>
+      </div>
+    );
+  }
+
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setSubmitting(true);
+    // POST to a future /api/checkout route that talks to Shopify / Stripe.
+    // For now, simulate a success locally.
+    await new Promise((r) => setTimeout(r, 900));
+    setOrderId(`CAELIA-${Math.floor(Math.random() * 99999).toString().padStart(5, "0")}`);
+    clear();
+    setSubmitting(false);
+  }
+
+  return (
+    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-24 grid lg:grid-cols-[1.4fr_1fr] gap-12">
+      <form onSubmit={submit} className="space-y-10">
+        <div>
+          <h1 className="font-serif text-4xl">Checkout</h1>
+          <p className="mt-2 text-sm text-ink/60">
+            Pagamenti sicuri via Stripe · Crittografia SSL
+          </p>
+        </div>
+
+        <Section title="Contatto">
+          <Input
+            label="Email"
+            required
+            type="email"
+            value={form.email}
+            onChange={(v) => setForm({ ...form, email: v })}
+          />
+        </Section>
+
+        <Section title="Spedizione">
+          <div className="grid sm:grid-cols-2 gap-4">
+            <Input
+              label="Nome"
+              required
+              value={form.firstName}
+              onChange={(v) => setForm({ ...form, firstName: v })}
+            />
+            <Input
+              label="Cognome"
+              required
+              value={form.lastName}
+              onChange={(v) => setForm({ ...form, lastName: v })}
+            />
+          </div>
+          <Input
+            label="Indirizzo"
+            required
+            value={form.address}
+            onChange={(v) => setForm({ ...form, address: v })}
+          />
+          <div className="grid sm:grid-cols-3 gap-4">
+            <Input
+              label="Città"
+              required
+              value={form.city}
+              onChange={(v) => setForm({ ...form, city: v })}
+            />
+            <Input
+              label="CAP"
+              required
+              value={form.zip}
+              onChange={(v) => setForm({ ...form, zip: v })}
+            />
+            <Select
+              label="Paese"
+              value={form.country}
+              onChange={(v) => setForm({ ...form, country: v })}
+              options={["Italia", "Francia", "Germania", "Spagna", "Regno Unito", "Stati Uniti", "Emirati Arabi Uniti"]}
+            />
+          </div>
+
+          <div className="mt-6 space-y-3">
+            <ShippingOption
+              selected={form.shipping === "standard"}
+              onSelect={() => setForm({ ...form, shipping: "standard" })}
+              title="Standard"
+              eta="3-5 giorni lavorativi"
+              cost={
+                Number(subtotal.amount) >= 60
+                  ? "Gratuita"
+                  : formatMoney({ amount: "4.90", currencyCode: "EUR" })
+              }
+            />
+            <ShippingOption
+              selected={form.shipping === "express"}
+              onSelect={() => setForm({ ...form, shipping: "express" })}
+              title="Express"
+              eta="1-2 giorni lavorativi"
+              cost={formatMoney({ amount: "8.00", currencyCode: "EUR" })}
+            />
+          </div>
+        </Section>
+
+        <Section title="Pagamento">
+          <div className="grid sm:grid-cols-3 gap-3">
+            {[
+              { id: "card", label: "Carta di credito" },
+              { id: "paypal", label: "PayPal" },
+              { id: "klarna", label: "Klarna" },
+            ].map((opt) => (
+              <button
+                key={opt.id}
+                type="button"
+                onClick={() =>
+                  setForm({ ...form, payment: opt.id as typeof form.payment })
+                }
+                className={`border rounded-md py-3 text-xs uppercase tracking-[0.18em] transition-colors ${
+                  form.payment === opt.id
+                    ? "border-charcoal"
+                    : "border-mist hover:border-charcoal/60"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+          <p className="mt-4 text-xs text-ink/60">
+            Pagamento elaborato in modo sicuro. I dati della carta non vengono
+            mai salvati sui nostri server.
+          </p>
+        </Section>
+
+        <button
+          type="submit"
+          disabled={submitting}
+          className="w-full bg-charcoal text-cream py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:opacity-50"
+        >
+          {submitting ? "Elaborazione..." : `Conferma ordine · ${formatMoney({ amount: total.toFixed(2), currencyCode: "EUR" })}`}
+        </button>
+      </form>
+
+      <aside className="bg-cream-deep p-8 rounded-md self-start sticky top-28">
+        <p className="font-serif text-2xl mb-6">Riepilogo</p>
+        <ul className="space-y-4">
+          {lines.map((line) => (
+            <li key={line.variantId} className="flex gap-4">
+              <div className="relative h-16 w-16 rounded bg-cream shrink-0 overflow-hidden">
+                <Image src={line.image} alt={line.productTitle} fill sizes="64px" className="object-cover" />
+              </div>
+              <div className="flex-1 text-sm">
+                <p>{line.productTitle}</p>
+                <p className="text-xs uppercase tracking-[0.18em] text-ink/60">
+                  {line.variantTitle} · ×{line.quantity}
+                </p>
+              </div>
+              <p className="text-sm">
+                {formatMoney({
+                  amount: (Number(line.price.amount) * line.quantity).toFixed(2),
+                  currencyCode: line.price.currencyCode,
+                })}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <hr className="my-6 border-mist/60" />
+        <SummaryRow label="Subtotale" value={formatMoney(subtotal)} />
+        <SummaryRow
+          label="Spedizione"
+          value={shippingCost === 0 ? "Gratuita" : formatMoney({ amount: shippingCost.toFixed(2), currencyCode: "EUR" })}
+        />
+        <SummaryRow label="Totale" value={formatMoney({ amount: total.toFixed(2), currencyCode: "EUR" })} large />
+      </aside>
+    </div>
+  );
+}
+
+function Section({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <section>
+      <h2 className="font-serif text-2xl mb-4">{title}</h2>
+      <div className="space-y-4">{children}</div>
+    </section>
+  );
+}
+
+function Input({
+  label,
+  value,
+  onChange,
+  type = "text",
+  required,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  required?: boolean;
+}) {
+  return (
+    <label className="block">
+      <span className="block text-xs uppercase tracking-[0.22em] text-ink/60 mb-1">
+        {label}
+      </span>
+      <input
+        type={type}
+        required={required}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
+      />
+    </label>
+  );
+}
+
+function Select({
+  label,
+  value,
+  onChange,
+  options,
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  options: string[];
+}) {
+  return (
+    <label className="block">
+      <span className="block text-xs uppercase tracking-[0.22em] text-ink/60 mb-1">
+        {label}
+      </span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
+      >
+        {options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function ShippingOption({
+  selected,
+  onSelect,
+  title,
+  eta,
+  cost,
+}: {
+  selected: boolean;
+  onSelect: () => void;
+  title: string;
+  eta: string;
+  cost: string;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      className={`w-full flex items-center justify-between border rounded-md p-4 transition-colors ${
+        selected ? "border-charcoal" : "border-mist hover:border-charcoal/60"
+      }`}
+    >
+      <div>
+        <p className="font-serif text-lg">{title}</p>
+        <p className="text-xs text-ink/60">{eta}</p>
+      </div>
+      <p className="text-sm">{cost}</p>
+    </button>
+  );
+}
+
+function SummaryRow({
+  label,
+  value,
+  large = false,
+}: {
+  label: string;
+  value: string;
+  large?: boolean;
+}) {
+  return (
+    <div className="flex justify-between py-1.5">
+      <span className="text-sm text-ink/70">{label}</span>
+      <span className={large ? "font-serif text-2xl" : "text-sm"}>{value}</span>
+    </div>
+  );
+}

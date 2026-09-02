@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Beauty case mini rose">
+  <defs>
+    <linearGradient id="bgMini" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f1ea"/>
+      <stop offset="1" stop-color="#efe5d8"/>
+    </linearGradient>
+    <linearGradient id="caseMini" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e9c9c4"/>
+      <stop offset="1" stop-color="#d49b96"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bgMini)"/>
+  <ellipse cx="400" cy="820" rx="220" ry="32" fill="rgba(31,29,28,0.18)"/>
+  <g transform="translate(280,400)">
+    <rect width="240" height="280" rx="24" fill="url(#caseMini)"/>
+    <rect x="18" y="18" width="204" height="244" rx="14" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+    <text x="120" y="140" text-anchor="middle" font-family="serif" font-size="28" fill="#f7f1ea">CAELIA</text>
+    <rect x="50" y="160" width="140" height="1" fill="rgba(255,255,255,0.5)"/>
+    <text x="120" y="180" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#f7f1ea" letter-spacing="4">MINI</text>
+  </g>
+  <text x="400" y="900" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2a2624" letter-spacing="6">MINI · ROSE</text>
+</svg>

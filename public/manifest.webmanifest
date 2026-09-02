@@ -1,0 +1,12 @@
+{
+  "name": "CAELIA — Aprire. Ritoccare. Ripartire.",
+  "short_name": "CAELIA",
+  "description": "Beauty Mirror Case: specchio, matita contorno labbra e lip gloss in un astuccio compatto.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f1ea",
+  "theme_color": "#1f1d1c",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
