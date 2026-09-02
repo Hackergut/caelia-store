@@ -10,11 +10,18 @@ type CheckoutPayload = {
   country?: string;
   shipping?: "standard" | "express";
   payment?: "card" | "paypal" | "klarna";
+  discountCode?: string;
   lines?: Array<{
     variantId: string;
     quantity: number;
     price: { amount: string; currencyCode: "EUR" };
   }>;
+};
+
+const DISCOUNT_CODES: Record<string, number> = {
+  CAELIA10: 10,
+  WELCOME: 10,
+  COMEBACK: 15,
 };
 
 export async function POST(req: Request) {
@@ -38,7 +45,11 @@ export async function POST(req: Request) {
   );
   const shipping =
     payload.shipping === "express" ? 8 : subtotal >= 60 ? 0 : 4.9;
-  const total = subtotal + shipping;
+  const discountPct = payload.discountCode
+    ? DISCOUNT_CODES[payload.discountCode.toUpperCase()] ?? 0
+    : 0;
+  const discountAmount = Number((subtotal * discountPct / 100).toFixed(2));
+  const total = Number((subtotal + shipping - discountAmount).toFixed(2));
 
   // In produzione: crea un ordine su Shopify tramite Storefront API o una
   // sessione Stripe Checkout, poi invia l evento a Meta CAPI.
@@ -58,5 +69,7 @@ export async function POST(req: Request) {
     orderId,
     total: total.toFixed(2),
     currencyCode: payload.lines[0].price.currencyCode,
+    discountCode: discountPct > 0 ? payload.discountCode : undefined,
+    discountAmount: discountPct > 0 ? discountAmount : undefined,
   });
 }

@@ -5,12 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
 import { LockIcon, PaymentIcons } from "@/components/trust-icons";
+import { DiscountField, type AppliedDiscount } from "@/components/discount-field";
 import { formatMoney } from "@/lib/format";
 
 export default function CheckoutPage() {
   const { lines, subtotal, clear } = useCart();
   const [hydrated, setHydrated] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [discount, setDiscount] = useState<AppliedDiscount | null>(null);
   
   const [form, setForm] = useState({
     email: "",
@@ -32,7 +34,9 @@ export default function CheckoutPage() {
       : subtotal && Number(subtotal.amount) >= 60
         ? 0
         : 4.9;
-  const total = Number(subtotal.amount || "0") + shippingCost;
+  const discountAmount = discount?.amount ?? 0;
+  const total =
+    Number(subtotal.amount || "0") + shippingCost - discountAmount;
 
 
   
@@ -183,6 +187,14 @@ export default function CheckoutPage() {
               cost={formatMoney({ amount: "8.00", currencyCode: "EUR" })}
             />
           </div>
+        </Section>
+
+        <Section title="Codice sconto">
+          <DiscountField
+            subtotal={Number(subtotal.amount || "0")}
+            currencyCode="EUR"
+            onApply={setDiscount}
+          />
         </Section>
 
         <Section title="Pagamento">

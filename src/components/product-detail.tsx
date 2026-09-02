@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
+import { InventoryBadge } from "@/components/inventory-badge";
 import { formatMoney } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -68,6 +69,10 @@ export function ProductDetail({ product }: { product: Product }) {
         <p className="mt-8 font-serif text-3xl">
           {formatMoney(variant.price)}
         </p>
+
+        <div className="mt-3">
+          <InventoryBadge sku={variant.sku} />
+        </div>
 
         <div className="mt-10">
           <p className="text-xs uppercase tracking-[0.22em] text-ink/60 mb-3">

@@ -6,6 +6,7 @@ import { WishlistProvider } from "@/lib/wishlist-context";
 import { SiteChrome } from "@/components/site-chrome";
 import { CookieBanner } from "@/components/cookie-banner";
 import { Analytics } from "@/components/analytics";
+import { ExitIntentModal } from "@/components/exit-intent-modal";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
