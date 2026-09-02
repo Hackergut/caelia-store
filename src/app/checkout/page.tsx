@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useCart } from "@/lib/cart-context";
 import { LockIcon, PaymentIcons } from "@/components/trust-icons";
 import { DiscountField, type AppliedDiscount } from "@/components/discount-field";
+import { events } from "@/lib/track";
 import { formatMoney } from "@/lib/format";
 
 export default function CheckoutPage() {
@@ -27,6 +28,15 @@ export default function CheckoutPage() {
   });
 
   useEffect(() => setHydrated(true), []);
+  useEffect(() => {
+    if (hydrated && lines.length > 0) {
+      events.initiateCheckout({
+        value: Number(subtotal.amount),
+        currency: subtotal.currencyCode,
+        items: lines.length,
+      });
+    }
+  }, [hydrated, lines.length]);
 
   const shippingCost =
     form.shipping === "express"
@@ -97,6 +107,12 @@ export default function CheckoutPage() {
         throw new Error(body.error ?? "Errore durante l ordine");
       }
       const data = (await res.json()) as { orderId: string };
+      events.purchase({
+        orderId: data.orderId,
+        value: Number(data.orderId ? total : 0),
+        currency: subtotal.currencyCode,
+        items: lines.length,
+      });
       clear();
       window.location.assign(`/checkout/success?order=${data.orderId}`);
     } catch (err) {

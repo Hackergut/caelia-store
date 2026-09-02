@@ -1,5 +1,31 @@
 import { NextResponse } from "next/server";
 
+function buildOrderEmail(args: {
+  orderId: string;
+  firstName?: string;
+  total: number;
+  currencyCode: "EUR" | "USD" | "GBP";
+  lines: Array<{ variantId: string; quantity: number; price: { amount: string; currencyCode: "EUR" } }>;
+}): string {
+  const lineRows = args.lines
+    .map(
+      (l) =>
+        `<tr><td style="padding:8px 0">${l.variantId}</td><td style="padding:8px 0;text-align:center">x${l.quantity}</td><td style="padding:8px 0;text-align:right">€${(Number(l.price.amount) * l.quantity).toFixed(2)}</td></tr>`,
+    )
+    .join("");
+  return `<!doctype html><html><body style="font-family:Georgia,serif;background:#f7f1ea;color:#2a2624;padding:32px">
+    <div style="max-width:560px;margin:0 auto;background:#fff;padding:32px;border-radius:8px">
+      <p style="letter-spacing:0.32em;text-transform:uppercase;font-size:11px;color:#b8655f;margin:0">CAELIA</p>
+      <h1 style="font-size:32px;line-height:1.1;margin:8px 0 0">Grazie, ${args.firstName || "amica"}.</h1>
+      <p style="margin-top:16px">Il tuo ordine <strong>${args.orderId}</strong> è in preparazione. Ti abbiamo inviato questa email come conferma.</p>
+      <table style="width:100%;border-collapse:collapse;margin-top:24px">${lineRows}</table>
+      <p style="text-align:right;font-size:24px;margin-top:16px"><strong>€${args.total.toFixed(2)}</strong></p>
+      <p style="margin-top:24px;font-size:14px;color:#7a716a">Riceverai il numero di tracciamento non appena il pacco lascera il nostro magazzino. Per qualsiasi cosa, scrivici a ciao@caelia.com.</p>
+      <p style="margin-top:32px;font-style:italic">Aprire. Ritoccare. Ripartire.</p>
+    </div>
+  </body></html>`;
+}
+
 type CheckoutPayload = {
   email?: string;
   firstName?: string;
@@ -63,6 +89,39 @@ export async function POST(req: Request) {
     total,
     currency: payload.lines[0].price.currencyCode,
   });
+
+  // Try to send a transactional order-confirmation email via Resend.
+  // Falls back to a no-op (just logs) if RESEND_API_KEY is not set, so
+  // the local-dev experience is unchanged.
+  if (process.env.RESEND_API_KEY && payload.email) {
+    try {
+      const emailHtml = buildOrderEmail({
+        orderId,
+        firstName: payload.firstName,
+        total,
+        currencyCode: payload.lines[0].price.currencyCode,
+        lines: payload.lines,
+      });
+      const res = await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          from: "CAELIA <ordini@caelia.com>",
+          to: payload.email,
+          subject: `CAELIA — conferma ordine ${orderId}`,
+          html: emailHtml,
+        }),
+      });
+      if (!res.ok) {
+        console.warn("[CAELIA email] Resend error", res.status, await res.text());
+      }
+    } catch (err) {
+      console.warn("[CAELIA email] failed", err);
+    }
+  }
 
   return NextResponse.json({
     ok: true,

@@ -1,10 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
+import { StickyAddToCart } from "@/components/sticky-add-to-cart";
+import { events } from "@/lib/track";
 import { formatMoney } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -17,8 +19,19 @@ export function ProductDetail({ product }: { product: Product }) {
   const variant =
     product.variants.find((v) => v.id === variantId) ?? product.variants[0];
 
+  // Track ViewContent on mount
+  useEffect(() => {
+    events.viewItem({
+      id: product.id,
+      title: product.title,
+      price: Number(variant.price.amount),
+      currency: variant.price.currencyCode,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product.id, variant.id]);
+
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-10 pb-24 grid lg:grid-cols-2 gap-12 lg:gap-20">
+    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-10 pb-32 lg:pb-24 grid lg:grid-cols-2 gap-12 lg:gap-20">
       {/* Gallery */}
       <div className="flex flex-col gap-4">
         <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep">
@@ -122,7 +135,16 @@ export function ProductDetail({ product }: { product: Product }) {
           </div>
           <button
             type="button"
-            onClick={() => add(product, variant, quantity)}
+            onClick={() => {
+              add(product, variant, quantity);
+              events.addToCart({
+                id: product.id,
+                title: product.title,
+                price: Number(variant.price.amount),
+                currency: variant.price.currencyCode,
+                quantity,
+              });
+            }}
             disabled={!variant.available}
             className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:bg-ink/30 disabled:cursor-not-allowed"
           >

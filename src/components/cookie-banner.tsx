@@ -45,8 +45,8 @@ export function CookieBanner() {
       <p className="mt-3 text-sm leading-relaxed">
         Usiamo cookie tecnici e, previo consenso, cookie di analisi per
         migliorare la tua esperza.{" "}
-        <Link href="/privacy" className="underline">
-          Privacy
+        <Link href="/cookies" className="underline">
+          Cookie policy
         </Link>
       </p>
       <div className="mt-4 flex flex-wrap gap-2">
