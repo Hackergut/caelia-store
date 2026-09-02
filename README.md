@@ -2,8 +2,10 @@
 
 > CAELIA — Aprire. Ritoccare. Ripartire.
 
-A premium beauty ecommerce webapp for the CAELIA Beauty Mirror Case,
-launched on Vercel with the source code on GitHub.
+Premium beauty ecommerce webapp for the **CAELIA Beauty Mirror Case**.
+Built on Next.js 16, deployed on Vercel, source on GitHub. Ships with a
+drop-in Shopify Storefront API adapter so the catalog can move from a
+local file to a live Shopify store in one commit.
 
 ## Stack
 
@@ -11,36 +13,51 @@ launched on Vercel with the source code on GitHub.
 - **Tailwind CSS v4** with custom design tokens
 - **TypeScript** strict mode
 - **Fraunces** (display serif) + **Inter** (UI sans)
-- **Shopify Storefront API** ready (drop-in adapter in `src/lib/shopify.ts`)
-- **Stripe Checkout** ready
+- **Shopify Storefront API** adapter (`src/lib/shopify.ts`)
 - **Vercel** deployment with edge regions `fra1`, `iad1`
 - **PWA** installable (`manifest.webmanifest`)
-- **i18n** scaffolding (Italian primary, English copy present in `products.ts`)
+- **GDPR cookie consent** + conditional analytics
+- **JSON-LD** structured data: Organization, WebSite, Product, BreadcrumbList, FAQPage
 
-## Pages
+## Pages (19 routes)
 
 | Route | Purpose |
 | --- | --- |
-| `/` | Hero, manifesto, featured products, ritual explainer, trust |
+| `/` | Hero, manifesto, featured products, ritual explainer, trust strip |
 | `/products` | Full collection grid |
-| `/products/[handle]` | Product detail with gallery, variant picker, add to cart |
-| `/checkout` | Multi-section checkout with shipping & payment selector |
-| `/cart` | Triggered from the drawer (state in `lib/cart-context.tsx`) |
+| `/products/[handle]` | Product detail with gallery, variant picker, wishlist, add to cart, sold-out states, JSON-LD |
+| `/wishlist` | Saved-for-later grid |
+| `/checkout` | Multi-section checkout with shipping & payment selector, trust icons |
 | `/about` | The Carla & Giulia brand story |
-| `/journal` | Editorial listing (3 sample posts) |
+| `/journal` | Editorial listing |
 | `/account` | Sign-in (Shopify Customer Accounts / Auth0 ready) |
 | `/contact`, `/shipping`, `/faq`, `/privacy`, `/terms` | Standard info pages |
-| `/api/checkout` | Server route for order creation |
-| `/api/newsletter` | Server route for email opt-in |
+| `/api/checkout` | Server route for order creation (Shopify / Stripe ready) |
+| `/api/newsletter` | Server route for email opt-in (Klaviyo / Mailchimp ready) |
 
 ## Run locally
 
 ```bash
 npm install
-npm run dev
+npm run dev    # http://localhost:3000
+npm run build  # production build
 ```
 
-The store runs at <http://localhost:3000>.
+## Connect Shopify
+
+1. Create a custom app in Shopify Admin → Storefront API.
+2. Enable scopes: `unauthenticated_read_product_listings`, `unauthenticated_write_checkouts`.
+3. Set env vars:
+   ```
+   SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
+   SHOPIFY_STOREFRONT_API_TOKEN=xxxxx
+   ```
+4. Replace the imports in `src/app/products/page.tsx` and
+   `src/app/products/[handle]/page.tsx` from `@/lib/products` to
+   `@/lib/shopify` and call `loadProducts()` / `loadProductByHandle()`.
+
+The TypeScript `Product` shape is identical between the static catalog
+and the Shopify adapter, so no component changes are needed.
 
 ## Deploy to Vercel
 
@@ -50,46 +67,51 @@ vercel link
 vercel --prod
 ```
 
-Or push to GitHub and import the repo at <https://vercel.com/new>.
+Or push to GitHub and import at <https://vercel.com/new>.
 
-## Connecting to Shopify (Storefront API)
+## Env vars
 
-1. In Shopify admin: **Settings → Apps and sales channels → Develop apps → Create an app**.
-2. Enable the **Storefront API** access scope with at minimum:
-   `unauthenticated_read_product_listings`, `unauthenticated_read_product_inventory`,
-   `unauthenticated_write_checkouts`, `unauthenticated_read_checkouts`.
-3. Install the app and copy the Storefront access token.
-4. Add to `.env.local`:
-   ```
-   SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
-   SHOPIFY_STOREFRONT_API_TOKEN=xxxxx
-   ```
-5. The product data in `src/lib/products.ts` mirrors the Shopify product
-   shape, so you can drop in a `fetch` from the Storefront API without
-   changing the UI.
+See `.env.example`:
 
-## Connecting Stripe (direct checkout)
-
-1. Get your secret key from <https://dashboard.stripe.com/apikeys>.
-2. Add to `.env.local`:
-   ```
-   STRIPE_SECRET_KEY=sk_live_xxx
-   ```
-3. Replace the stub logic in `src/app/api/checkout/route.ts` with a
-   `stripe.checkout.sessions.create` call.
+| Variable | Purpose |
+| --- | --- |
+| `SHOPIFY_STORE_DOMAIN` | `xxxxx.myshopify.com` |
+| `SHOPIFY_STOREFRONT_API_TOKEN` | Storefront API token |
+| `STRIPE_SECRET_KEY` | Direct Stripe checkout (optional) |
+| `RESEND_API_KEY` | Transactional emails |
+| `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel (loaded only with consent) |
+| `NEXT_PUBLIC_SENTRY_DSN` | Error tracking (optional) |
 
 ## File map
 
 ```
 src/
-  app/                 # App Router pages & API routes
-  components/          # Reusable UI (cart, chrome, product card, ...)
-  lib/                 # Products, cart context, types, formatters
+  app/                  # App Router pages & API routes
+  components/           # Reusable UI
+    analytics.tsx       # consent-gated Meta Pixel
+    cookie-banner.tsx   # GDPR consent
+    newsletter-form.tsx # real newsletter form
+    trust-icons.tsx     # inline SVG payment icons
+    wishlist-button.tsx # heart toggle
+    product-detail.tsx
+    product-card.tsx
+    site-chrome.tsx
+    cart-drawer.tsx
+    mobile-menu.tsx
+  lib/
+    cart-context.tsx
+    wishlist-context.tsx
+    shopify.ts          # Storefront API adapter
+    json-ld.ts          # structured data
+    products.ts         # static fallback catalog
+    format.ts           # money formatter
+    types.ts            # shared types
 public/
-  products/            # SVG placeholders (swap with real photography)
-  og.svg, favicon.svg  # Brand mark + social share image
-  manifest.webmanifest # PWA
-  robots.txt, sitemap.xml
+  products/             # premium product PNGs
+  favicon.svg, og.svg, logo.svg
+  manifest.webmanifest, robots.txt, sitemap.xml
+scripts/
+  gen-product-images.py # regenerate the 8 product PNGs
 ```
 
 ## Brand tokens
@@ -103,9 +125,8 @@ public/
 | Display font | Fraunces (italic for accents) |
 | UI font | Inter |
 
-## Notes
+## Imagery
 
-- Cart state is persisted to `localStorage` and ready to be replaced with
-  Shopify Cart API calls inside `src/lib/cart-context.tsx`.
-- All product imagery is currently SVG placeholders. Swap
-  `public/products/*.svg` with real `.webp` photos for production.
+`public/products/*.png` are procedural beauty renders generated by
+`scripts/gen-product-images.py` (Pillow). Replace with real product
+photography for final launch.

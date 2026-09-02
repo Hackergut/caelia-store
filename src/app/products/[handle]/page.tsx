@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getProductByHandle, products } from "@/lib/products";
 import { ProductDetail } from "@/components/product-detail";
 import { ProductCard } from "@/components/product-card";
+import { ProductReviews } from "@/components/product-reviews";
+import { getReviewsForProduct } from "@/lib/reviews";
 import { productJsonLd, breadcrumbJsonLd } from "@/lib/json-ld";
 
 type Params = { handle: string };
@@ -56,6 +58,7 @@ export default async function ProductPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(ldBreadcrumb) }}
       />
       <ProductDetail product={product} />
+      <ProductReviews reviews={getReviewsForProduct(product.handle)} />
 
       <section className="bg-cream-deep relative grain">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 relative z-10">

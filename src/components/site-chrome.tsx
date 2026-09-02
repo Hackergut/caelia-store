@@ -43,6 +43,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <Link href="/products" className="nav-link">Collezione</Link>
               <Link href="/about" className="nav-link">Storia</Link>
               <Link href="/journal" className="nav-link">Journal</Link>
+              <Link href="/search" className="nav-link" aria-label="Cerca">Cerca</Link>
             </nav>
 
             <Link

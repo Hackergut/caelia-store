@@ -57,3 +57,14 @@ export type CartLine = {
   quantity: number;
   image: string;
 };
+
+export type Review = {
+  id: string;
+  author: string;
+  location: string;
+  rating: 1 | 2 | 3 | 4 | 5;
+  title: string;
+  body: string;
+  date: string;
+  verified: boolean;
+};

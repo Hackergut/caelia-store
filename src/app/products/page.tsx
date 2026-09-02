@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { products } from "@/lib/products";
-import { ProductCard } from "@/components/product-card";
+import { ProductsExplorer } from "@/components/products-explorer";
 
 export const metadata: Metadata = {
   title: "Collezione",
@@ -27,11 +27,7 @@ export default function ProductsPage() {
         </p>
       </div>
 
-      <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((p) => (
-          <ProductCard key={p.id} product={p} />
-        ))}
-      </div>
+      <ProductsExplorer products={products} />
     </div>
   );
 }

@@ -11,7 +11,7 @@ export default function CheckoutPage() {
   const { lines, subtotal, clear } = useCart();
   const [hydrated, setHydrated] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const [orderId, setOrderId] = useState<string | null>(null);
+  
   const [form, setForm] = useState({
     email: "",
     firstName: "",
@@ -34,30 +34,8 @@ export default function CheckoutPage() {
         : 4.9;
   const total = Number(subtotal.amount || "0") + shippingCost;
 
-  if (orderId) {
-    return (
-      <div className="mx-auto max-w-3xl px-6 lg:px-10 py-24 text-center">
-        <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
-          Ordine ricevuto
-        </p>
-        <h1 className="mt-4 font-serif text-5xl leading-tight">
-          Grazie, <span className="italic text-rose">{form.firstName || "amica"}</span>.
-        </h1>
-        <p className="mt-6 text-lg text-ink/80">
-          Il tuo ordine <strong>{orderId}</strong> è in preparazione. Ti
-          abbiamo inviato una conferma a {form.email}.
-        </p>
-        <div className="mt-12">
-          <Link
-            href="/products"
-            className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
-          >
-            Continua a esplorare
-          </Link>
-        </div>
-      </div>
-    );
-  }
+
+  
 
   if (!hydrated) {
     return (
@@ -87,12 +65,40 @@ export default function CheckoutPage() {
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
-    // POST to a future /api/checkout route that talks to Shopify / Stripe.
-    // For now, simulate a success locally.
-    await new Promise((r) => setTimeout(r, 900));
-    setOrderId(`CAELIA-${Math.floor(Math.random() * 99999).toString().padStart(5, "0")}`);
-    clear();
-    setSubmitting(false);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: form.email,
+          firstName: form.firstName,
+          lastName: form.lastName,
+          address: form.address,
+          city: form.city,
+          zip: form.zip,
+          country: form.country,
+          shipping: form.shipping,
+          payment: form.payment,
+          lines: lines.map((l) => ({
+            variantId: l.variantId,
+            quantity: l.quantity,
+            price: l.price,
+          })),
+        }),
+      });
+      if (!res.ok) {
+        const body = (await res.json().catch(() => ({}))) as {
+          error?: string;
+        };
+        throw new Error(body.error ?? "Errore durante l ordine");
+      }
+      const data = (await res.json()) as { orderId: string };
+      clear();
+      window.location.assign(`/checkout/success?order=${data.orderId}`);
+    } catch (err) {
+      setSubmitting(false);
+      alert(err instanceof Error ? err.message : "Errore durante l ordine");
+    }
   }
 
   return (
