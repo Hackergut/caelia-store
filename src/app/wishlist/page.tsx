@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   description: "I tuoi Beauty Mirror Case salvati.",
 };
 
-export default function WishlistPage() {
-  return <WishlistView allProducts={products} />;
+export default async function WishlistPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ h?: string }>;
+}) {
+  const sp = await searchParams;
+  const handles = (sp.h ?? "").split(",").filter(Boolean);
+  return <WishlistView allProducts={products} initialHandles={handles} />;
 }

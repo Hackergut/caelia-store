@@ -4,11 +4,33 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product-card";
+import { WishlistShare } from "@/components/wishlist-share";
 
-export function WishlistView({ allProducts }: { allProducts: Product[] }) {
-  const [handles, setHandles] = useState<string[] | null>(null);
+export function WishlistView({
+  allProducts,
+  initialHandles,
+}: {
+  allProducts: Product[];
+  initialHandles?: string[];
+}) {
+  const [handles, setHandles] = useState<string[] | null>(
+    initialHandles ?? null,
+  );
 
   useEffect(() => {
+    if (initialHandles && initialHandles.length > 0) {
+      // Seed local storage from the shared link.
+      try {
+        window.localStorage.setItem(
+          "caelia_wishlist_v1",
+          JSON.stringify(initialHandles),
+        );
+      } catch {
+        // ignore
+      }
+      setHandles(initialHandles);
+      return;
+    }
     try {
       const raw = window.localStorage.getItem("caelia_wishlist_v1");
       if (raw) setHandles(JSON.parse(raw) as string[]);
@@ -41,6 +63,9 @@ export function WishlistView({ allProducts }: { allProducts: Product[] }) {
       <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
         I tuoi Beauty Mirror Case.
       </h1>
+      <div className="mt-4">
+        <WishlistShare handles={handles ?? []} />
+      </div>
 
       {saved.length === 0 ? (
         <div className="mt-16 rounded-md bg-cream-deep p-12 text-center">
