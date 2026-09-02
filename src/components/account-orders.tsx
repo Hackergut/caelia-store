@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useOrders } from "@/lib/orders-history";
-import { formatMoney } from "@/lib/format";
+import { Price } from "@/lib/currency";
 
 export function AccountOrders() {
   const orders = useOrders();
@@ -45,9 +45,10 @@ export function AccountOrders() {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <p className="text-sm">
-              {formatMoney({ amount: o.total.toFixed(2), currencyCode: o.currencyCode })}
-            </p>
+            <Price
+              amountEUR={o.total}
+              className="text-sm"
+            />
             <Link
               href={`/ordini/${o.orderId}`}
               className="text-xs uppercase tracking-[0.22em] nav-link"

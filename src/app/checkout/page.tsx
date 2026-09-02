@@ -10,6 +10,7 @@ import { CheckoutExtrasForm, type CheckoutExtras } from "@/components/checkout-e
 import { events } from "@/lib/track";
 import { recordOrder } from "@/lib/orders-history";
 import { validateCheckout, type FieldErrors } from "@/app/api/checkout/validate";
+import { Price } from "@/lib/currency";
 import { formatMoney } from "@/lib/format";
 
 export default function CheckoutPage() {
@@ -340,7 +341,7 @@ export default function CheckoutPage() {
         {giftWrapCost > 0 && (
             <SummaryRow
               label="Confezione regalo"
-              value={formatMoney({ amount: giftWrapCost.toFixed(2), currencyCode: "EUR" })}
+              value={<Price amountEUR={giftWrapCost} /> as unknown as string}
             />
           )}
           <SummaryRow

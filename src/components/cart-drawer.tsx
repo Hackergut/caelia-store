@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { useCart } from "@/lib/cart-context";
 import { formatMoney } from "@/lib/format";
+import { Price } from "@/lib/currency";
 
 export function CartDrawer() {
   const { isOpen, close, lines, subtotal, setQuantity, remove } = useCart();

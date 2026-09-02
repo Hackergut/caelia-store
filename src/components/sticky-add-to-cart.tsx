@@ -2,7 +2,7 @@
 
 import { useCart } from "@/lib/cart-context";
 import { events } from "@/lib/track";
-import { formatMoney } from "@/lib/format";
+import { Price } from "@/lib/currency";
 import type { Product, ProductVariant } from "@/lib/types";
 
 export function StickyAddToCart({
@@ -23,7 +23,7 @@ export function StickyAddToCart({
           <p className="truncate text-xs uppercase tracking-[0.18em] text-ink/60">
             {variant.title}
           </p>
-          <p className="font-serif text-lg">{formatMoney(variant.price)}</p>
+          <Price amountEUR={Number(variant.price.amount)} className="font-serif text-lg" />
         </div>
         <button
           type="button"

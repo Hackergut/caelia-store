@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ProductCard } from "@/components/product-card";
 import type { Product } from "@/lib/types";
 import { formatMoney } from "@/lib/format";
+import { Price } from "@/lib/currency";
 
 type Bundle = {
   handle: string;
@@ -62,10 +63,10 @@ export function BundleSection({ all }: { all: Product[] }) {
                 </p>
                 <div>
                   <span className="text-sm text-ink/60 line-through mr-2">
-                    {formatMoney({ amount: total.toFixed(2), currencyCode: items[0].variants[0].price.currencyCode })}
+                    <Price amountEUR={total} />
                   </span>
                   <span className="font-serif text-2xl">
-                    {formatMoney({ amount: discounted.toFixed(2), currencyCode: items[0].variants[0].price.currencyCode })}
+                    <Price amountEUR={discounted} />
                   </span>
                 </div>
               </div>

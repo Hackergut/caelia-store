@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { formatMoney } from "@/lib/format";
+import { Price } from "@/lib/currency";
 import { LockIcon, PaymentIcons, TruckIcon, RefreshIcon } from "@/components/trust-icons";
 
 export function CartView() {
@@ -102,14 +103,10 @@ export function CartView() {
                         +
                       </button>
                     </div>
-                    <p className="text-sm">
-                      {formatMoney({
-                        amount: (
-                          Number(line.price.amount) * line.quantity
-                        ).toFixed(2),
-                        currencyCode: line.price.currencyCode,
-                      })}
-                    </p>
+                    <Price
+                      amountEUR={Number(line.price.amount) * line.quantity}
+                      className="text-sm"
+                    />
                   </div>
                 </div>
                 <button
