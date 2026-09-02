@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { products } from "@/lib/products";
 import { ProductCard } from "@/components/product-card";
+import { RecentlyViewedSection } from "@/components/recently-viewed-section";
 
 export default function Home() {
   return (
@@ -160,6 +161,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <RecentlyViewedSection all={products} />
 
       {/* Press / Trust */}
       <section className="mx-auto max-w-5xl px-6 lg:px-10 py-20 lg:py-28 text-center">

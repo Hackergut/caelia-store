@@ -79,10 +79,10 @@ export function SuccessView({
 
       <div className="mt-12 flex flex-wrap justify-center gap-3">
         <Link
-          href="/products"
+          href={orderId ? `/ordini/${orderId}` : "/products"}
           className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
         >
-          Continua a esplorare
+          Stato del tuo ordine
         </Link>
         <Link
           href="/journal"

@@ -1,12 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
 import { StickyAddToCart } from "@/components/sticky-add-to-cart";
 import { events } from "@/lib/track";
+import { pushRecentlyViewed } from "@/lib/recently-viewed";
 import { formatMoney } from "@/lib/format";
 import type { Product } from "@/lib/types";
 
@@ -16,8 +17,23 @@ export function ProductDetail({ product }: { product: Product }) {
   const [activeImage, setActiveImage] = useState(0);
   const { add } = useCart();
 
+  useEffect(() => { setActiveImage(0); }, [variantId]);
   const variant =
     product.variants.find((v) => v.id === variantId) ?? product.variants[0];
+
+  // Map variant title suffix ("Rose", "Noir", "Ivory") to a matching image
+  // so selecting a colour updates the gallery.
+  const variantImages = useMemo(() => {
+    const match = product.images.filter((img) => {
+      const alt = img.alt.toLowerCase();
+      const titleSuffix = variant.title
+        .replace(product.title, "")
+        .trim()
+        .toLowerCase();
+      return titleSuffix.length > 0 && alt.includes(titleSuffix);
+    });
+    return match.length > 0 ? match : product.images;
+  }, [product.images, product.title, variant.title]);
 
   // Track ViewContent on mount
   useEffect(() => {
@@ -27,6 +43,7 @@ export function ProductDetail({ product }: { product: Product }) {
       price: Number(variant.price.amount),
       currency: variant.price.currencyCode,
     });
+    pushRecentlyViewed(product.handle);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [product.id, variant.id]);
 
@@ -36,8 +53,8 @@ export function ProductDetail({ product }: { product: Product }) {
       <div className="flex flex-col gap-4">
         <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep">
           <Image
-            src={product.images[activeImage].src}
-            alt={product.images[activeImage].alt}
+            src={variantImages[activeImage % variantImages.length].src}
+            alt={variantImages[activeImage % variantImages.length].alt}
             fill
             priority
             sizes="(min-width: 1024px) 50vw, 100vw"
@@ -45,7 +62,7 @@ export function ProductDetail({ product }: { product: Product }) {
           />
         </div>
         <div className="grid grid-cols-4 gap-3">
-          {product.images.map((img, i) => (
+          {variantImages.map((img, i) => (
             <button
               key={img.src}
               type="button"

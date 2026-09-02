@@ -54,6 +54,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setHydrated(true);
   }, []);
 
+  // Abandoned-cart telemetry: persist a lightweight signal whenever the
+  // cart has items but the user closes the tab / navigates without checking
+  // out. The signal is consumed by the recovered-cart banner on next visit.
+  useEffect(() => {
+    if (!hydrated) return;
+    if (typeof window === "undefined") return;
+    if (lines.length === 0) return;
+    const total = lines.reduce((n, l) => n + l.quantity, 0);
+    try {
+      window.localStorage.setItem(
+        "caelia_abandoned_cart_v1",
+        JSON.stringify({ at: Date.now(), count: total }),
+      );
+    } catch {
+      // ignore
+    }
+  }, [lines, hydrated]);
+
   useEffect(() => {
     if (!hydrated) return;
     try {
@@ -106,7 +124,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const clear = useCallback(() => setLines([]), []);
+  const clear = useCallback(() => {
+    setLines([]);
+    try { window.localStorage.removeItem("caelia_abandoned_cart_v1"); } catch { /* ignore */ }
+  }, []);
 
   const itemCount = useMemo(
     () => lines.reduce((sum, l) => sum + l.quantity, 0),
