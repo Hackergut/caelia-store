@@ -31,7 +31,7 @@ export default function Home() {
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+                  className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
                 >
                   Scopri la collezione
                 </Link>
@@ -105,8 +105,8 @@ export default function Home() {
           </Link>
         </div>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p) => (
-            <ProductCard key={p.id} product={p} />
+          {products.map((p, i) => (
+            <ProductCard key={p.id} product={p} className="reveal" style={{ "--i": i } as React.CSSProperties} />
           ))}
         </div>
       </section>

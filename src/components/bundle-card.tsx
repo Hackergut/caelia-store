@@ -86,13 +86,13 @@ export function BundleSection({ all }: { all: Product[] }) {
                     });
                     router.push("/cart");
                   }}
-                  className="inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+                  className="inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
                 >
                   Aggiungi al carrello ({Math.round((1 - b.percentOff / 100) * 100)}% off)
                 </button>
                 <Link
                   href="/products?bundle=duo-essentials"
-                  className="inline-flex items-center justify-center border border-charcoal px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-charcoal hover:text-cream transition-colors"
+                  className="inline-flex items-center justify-center border border-charcoal px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-charcoal hover:text-cream transition-colors btn-press"
                 >
                   Dettagli
                 </Link>

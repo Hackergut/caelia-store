@@ -72,7 +72,7 @@ export function ProductDetail({ product }: { product: Product }) {
             fill
             priority
             sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[2] [transform-origin:var(--zoom-x)_var(--zoom-y)]"
+            className="object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[2] [transform-origin:var(--zoom-x)_var(--zoom-y)]"
           />
         </div>
         <div className="grid grid-cols-4 gap-3">
@@ -129,7 +129,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 key={v.id}
                 type="button"
                 onClick={() => setVariantId(v.id)}
-                className={`flex items-center gap-3 border rounded-full pl-2 pr-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors ${
+                className={`flex items-center gap-3 border rounded-full pl-2 pr-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors chip ${
                   v.id === variantId
                     ? "border-charcoal"
                     : "border-mist hover:border-charcoal/60"
@@ -178,7 +178,7 @@ export function ProductDetail({ product }: { product: Product }) {
               });
             }}
             disabled={!variant.available}
-            className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:bg-ink/30 disabled:cursor-not-allowed"
+            className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press disabled:bg-ink/30 disabled:cursor-not-allowed"
           >
             {variant.available ? "Aggiungi al carrello" : "Esaurito"}
           </button>

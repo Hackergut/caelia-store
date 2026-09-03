@@ -3,7 +3,15 @@ import Link from "next/link";
 import type { Product } from "@/lib/types";
 import { Price } from "@/lib/currency";
 
-export function ProductCard({ product }: { product: Product }) {
+export function ProductCard({
+  product,
+  className = "",
+  style,
+}: {
+  product: Product;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
   const variant = product.variants[0];
   const colors = product.variants
     .map((v) => v.swatch)
@@ -12,15 +20,16 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/products/${product.handle}`}
-      className="group block img-fade-in"
+      style={style}
+      className={`group block reveal ${className}`}
     >
-      <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep">
+      <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep media-zoom lift">
         <Image
           src={product.images[0].src}
           alt={product.images[0].alt}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          className="object-cover"
         />
         {colors.length > 0 && (
           <div className="absolute bottom-4 left-4 flex gap-1.5">
@@ -28,7 +37,7 @@ export function ProductCard({ product }: { product: Product }) {
               <span
                 key={c}
                 className="h-3.5 w-3.5 rounded-full ring-1 ring-charcoal/10"
-              style={{ background: c }}
+                style={{ background: c }}
               />
             ))}
           </div>

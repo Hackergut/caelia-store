@@ -96,7 +96,7 @@ export function Caelia3DExplorer() {
                     aria-pressed={variant.id === v.id}
                     aria-label={v.name}
                     title={`${v.name} — ${v.description}`}
-                    className={`group relative h-14 flex-1 rounded-md border-2 transition-all ${
+                    className={`group relative h-14 flex-1 rounded-md border-2 transition-[border-color,box-shadow,transform] duration-[var(--dur-fast)] ease-[var(--ease-out)] chip ${
                       variant.id === v.id
                         ? "border-cream shadow-[0_0_0_4px_rgba(184,101,95,0.25)]"
                         : "border-cream/20 hover:border-cream/50"

@@ -32,7 +32,7 @@ export function CartDrawer() {
     <>
       <div
         aria-hidden={!isOpen}
-        className={`fixed inset-0 z-50 bg-charcoal/40 transition-opacity duration-300 ${
+        className={`fixed inset-0 z-50 bg-charcoal/40 transition-opacity duration-[var(--dur-medium)] ease-[var(--ease-out)] ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={close}
@@ -41,7 +41,7 @@ export function CartDrawer() {
         role="dialog"
         aria-label="Carrello"
         aria-hidden={!isOpen}
-        className={`fixed right-0 top-0 z-50 h-full w-full max-w-md bg-cream shadow-2xl transition-transform duration-300 ${
+        className={`fixed right-0 top-0 z-50 h-full w-full max-w-md bg-cream shadow-2xl transition-transform duration-[var(--dur-slow)] ease-[var(--ease-drawer)] ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -150,7 +150,7 @@ export function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={close}
-                className="block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+                className="block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
               >
                 Procedi al checkout
               </Link>

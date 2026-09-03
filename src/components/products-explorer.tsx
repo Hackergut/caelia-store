@@ -119,8 +119,8 @@ export function ProductsExplorer({ products }: { products: Product[] }) {
             {filtered.length} {filtered.length === 1 ? "prodotto" : "prodotti"}
           </p>
           <div className="mt-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((p) => (
-              <ProductCard key={p.id} product={p} />
+            {filtered.map((p, i) => (
+              <ProductCard key={p.id} product={p} className="reveal" style={{ "--i": i } as React.CSSProperties} />
             ))}
           </div>
         </>

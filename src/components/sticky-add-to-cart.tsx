@@ -38,7 +38,7 @@ export function StickyAddToCart({
               quantity,
             });
           }}
-          className="inline-flex items-center justify-center bg-charcoal text-cream px-5 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:bg-ink/30"
+          className="inline-flex items-center justify-center bg-charcoal text-cream px-5 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press disabled:bg-ink/30"
         >
           {variant.available ? "Aggiungi" : "Esaurito"}
         </button>

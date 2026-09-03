@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* -------------------------------------------------------------------------
+   CAELIA design tokens — colors, fonts, shadows
+   ------------------------------------------------------------------------- */
 @theme {
   --color-cream: #f7f1ea;
   --color-cream-deep: #efe5d8;
@@ -17,17 +20,42 @@
   --shadow-product: 0 30px 60px -30px rgba(31, 29, 28, 0.35);
 }
 
+/* -------------------------------------------------------------------------
+   Motion tokens — Emil Kowalski philosophy.
+   Strong curves (built-in CSS easings are too weak), short durations
+   (UI stays under 300ms), and one symmetric pair per purpose.
+   ------------------------------------------------------------------------- */
 :root {
   --background: var(--color-cream);
   --foreground: var(--color-ink);
+
+  /* Curves — see https://easing.dev */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);          /* entrances, press release */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);      /* on-screen morph / panning */
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);       /* iOS drawer (Ionic) */
+  --ease-spring-out: cubic-bezier(0.16, 1.08, 0.38, 1); /* a hint of overshoot for marketing moments */
+
+  /* Durations — under 300ms for UI */
+  --dur-instant: 100ms;   /* color, opacity, micro hover */
+  --dur-fast: 160ms;      /* button press, checkbox */
+  --dur-base: 220ms;      /* buttons, small popovers */
+  --dur-medium: 320ms;    /* dropdowns, drawers (exits), tooltips */
+  --dur-slow: 480ms;      /* modals, drawers (entries), marketing reveals */
+
+  /* Stagger unit — used to reveal grids and lists */
+  --stagger: 60ms;
 }
 
+/* -------------------------------------------------------------------------
+   Page foundation
+   ------------------------------------------------------------------------- */
 html,
 body {
   background: var(--background);
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "ss02", "cv11";
 }
 
 ::selection {
@@ -35,18 +63,62 @@ body {
   color: var(--color-cream);
 }
 
+/* -------------------------------------------------------------------------
+   Press feedback — Apple "Response" rule.
+   Every button responds on :active, never on release. Gates touch so it
+   doesn't fire sticky-press on tap.
+   ------------------------------------------------------------------------- */
+@media (hover: hover) and (pointer: fine) {
+  .btn-press {
+    transition:
+      transform var(--dur-instant) var(--ease-out),
+      background-color var(--dur-instant) var(--ease-out),
+      color var(--dur-instant) var(--ease-out),
+      border-color var(--dur-instant) var(--ease-out),
+      box-shadow var(--dur-instant) var(--ease-out);
+  }
+  .btn-press:active {
+    transform: scale(0.97);
+  }
+  .btn-press:hover {
+    /* nothing by default — let consumers compose on top */
+  }
+}
+
+/* Touch devices: press feedback is a brief opacity dip, no scale
+   (avoids the iOS double-tap-zoom race). */
+@media (hover: none) {
+  .btn-press:active {
+    opacity: 0.7;
+    transition: opacity var(--dur-fast) var(--ease-out);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Reduced motion — gentler, not zero.
+   Drop motion-based reveals; keep color/opacity feedback for legibility.
+   ------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  /* Marquee is decorative — drop it entirely */
   .marquee { animation: none !important; }
+  /* Press feedback stays — scale(0.97) becomes instant scale(1) below */
+  .btn-press:active {
+    transform: none;
+    transition: none;
+  }
 }
 
+/* -------------------------------------------------------------------------
+   Decorative texture
+   ------------------------------------------------------------------------- */
 .grain::before {
   content: "";
   position: absolute;
@@ -58,6 +130,11 @@ body {
   opacity: 0.5;
 }
 
+/* -------------------------------------------------------------------------
+   Nav link underline — anchored at start, expands on hover.
+   Uses --ease-out instead of built-in ease so the underline feels intentional.
+   Gated by hover capability so it never flashes on tap.
+   ------------------------------------------------------------------------- */
 .nav-link {
   position: relative;
 }
@@ -67,40 +144,55 @@ body {
   left: 0;
   bottom: -4px;
   height: 1px;
-  width: 0;
-  background: currentColor;
-  transition: width 0.3s ease;
-}
-.nav-link:hover::after {
   width: 100%;
+  transform: scaleX(0);
+  transform-origin: left center;
+  background: currentColor;
+  transition: transform var(--dur-medium) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
 }
 
+/* -------------------------------------------------------------------------
+   Marquee — constant motion → linear easing (correct per Emil rule).
+   ------------------------------------------------------------------------- */
 @keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 .marquee {
   animation: marquee 30s linear infinite;
 }
 
-.img-fade-in {
-  animation: fadeIn 0.8s ease-out both;
-}
+/* -------------------------------------------------------------------------
+   Image fade-in on load — short, transform + opacity only.
+   ------------------------------------------------------------------------- */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.img-fade-in {
+  animation: fadeIn var(--dur-medium) var(--ease-out) both;
 }
 
+/* -------------------------------------------------------------------------
+   Reveal stagger — for grids and lists on mount.
+   Each item uses --stagger * index. Author: style="--i: 3".
+   ------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeIn var(--dur-slow) var(--ease-out) both;
+  animation-delay: calc(var(--stagger) * var(--i, 0));
+}
+
+/* -------------------------------------------------------------------------
+   Shake — used for form errors. Short and tight.
+   ------------------------------------------------------------------------- */
 @keyframes shake {
   10%, 90% { transform: translateX(-2px); }
   20%, 80% { transform: translateX(3px); }
@@ -108,5 +200,121 @@ body {
   40%, 60% { transform: translateX(5px); }
 }
 .animate-\[shake_0\.4s_ease-in-out\] {
-  animation: shake 0.4s ease-in-out;
+  animation: shake 0.4s var(--ease-in-out);
+}
+
+/* -------------------------------------------------------------------------
+   Drawer / sheet — iOS-style. Use --ease-drawer on transform and opacity.
+   ------------------------------------------------------------------------- */
+.drawer-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.drawer-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition:
+    transform var(--dur-slow) var(--ease-drawer),
+    opacity var(--dur-medium) var(--ease-out);
+}
+.drawer-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition:
+    transform var(--dur-medium) var(--ease-drawer),
+    opacity var(--dur-medium) var(--ease-out);
+}
+
+/* -------------------------------------------------------------------------
+   Modal — centered (not anchored to a trigger), scale from 0.97.
+   ------------------------------------------------------------------------- */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.97);
+}
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition:
+    transform var(--dur-medium) var(--ease-out),
+    opacity var(--dur-medium) var(--ease-out);
+}
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.97);
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    opacity var(--dur-base) var(--ease-out);
+}
+
+/* -------------------------------------------------------------------------
+   Toast — slide + fade from bottom. Emits user feedback (add-to-cart).
+   Use transition, not keyframes — toasts can fire repeatedly.
+   ------------------------------------------------------------------------- */
+.toast-enter {
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+}
+.toast-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    transform var(--dur-medium) var(--ease-spring-out),
+    opacity var(--dur-medium) var(--ease-out);
+}
+
+/* -------------------------------------------------------------------------
+   Magnetic lift — for hero CTAs and product cards.
+   transform-only, never animate width/height.
+   ------------------------------------------------------------------------- */
+.lift {
+  transition: transform var(--dur-medium) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .lift:hover {
+    transform: translateY(-2px);
+  }
+}
+.lift-strong {
+  transition: transform var(--dur-medium) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .lift-strong:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Image scale-on-hover for product cards.
+   Inner image scales; outer is the clip. Two transforms is fine — both
+   are on the GPU, parent stays still.
+   ------------------------------------------------------------------------- */
+.media-zoom {
+  overflow: hidden;
+}
+.media-zoom > img,
+.media-zoom > picture > img {
+  transition: transform var(--dur-slow) var(--ease-out);
+  will-change: transform;
+}
+@media (hover: hover) and (pointer: fine) {
+  .media-zoom:hover > img,
+  .media-zoom:hover > picture > img {
+    transform: scale(1.04);
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Chip / pill border lift — used by the 3D Explorer swatches.
+   ------------------------------------------------------------------------- */
+.chip {
+  transition:
+    border-color var(--dur-instant) var(--ease-out),
+    box-shadow var(--dur-medium) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .chip:hover {
+    transform: translateY(-1px);
+  }
 }

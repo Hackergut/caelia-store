@@ -45,7 +45,7 @@ export function CartView() {
           </p>
           <Link
             href="/products"
-            className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+            className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
           >
             Esplora la collezione
           </Link>
@@ -143,7 +143,7 @@ export function CartView() {
               </dl>
               <Link
                 href="/checkout"
-                className="mt-6 block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+                className="mt-6 block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
               >
                 Procedi al checkout
               </Link>
