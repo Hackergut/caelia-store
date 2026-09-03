@@ -5,7 +5,6 @@ import { ProductCard } from "@/components/product-card";
 import { RecentlyViewedSection } from "@/components/recently-viewed-section";
 import { BundleSection } from "@/components/bundle-card";
 import { Caelia3DExplorer } from "@/components/caelia-3d-explorer";
-import { CaeliaFinder } from "@/components/caelia-finder";
 
 export default async function Home() {
   const products = await listProducts();
@@ -169,9 +168,22 @@ export default async function Home() {
       <BundleSection all={products} />
       <RecentlyViewedSection all={products} />
 
-      <Caelia3DExplorer />
-      <CaeliaFinder all={products} />
 
+      {/* Studio 3D — sezione dedicata. Unico spazio interattivo 3D della landing. */}
+      <section className="bg-cream-deep relative grain">
+        <div className="mx-auto max-w-5xl px-6 lg:px-10 py-16 lg:py-20 text-center relative z-10">
+          <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Studio 3D</p>
+          <h2 className="mt-4 font-serif text-3xl lg:text-4xl leading-[1.15]">
+            Prendilo in mano. Ruotalo. Aprilo.
+          </h2>
+          <p className="mt-4 text-base text-ink/70 max-w-xl mx-auto leading-relaxed">
+            Esplora il Beauty Mirror Case in alta risoluzione. Cambia tonalità,
+            guarda il formato pocket, scarica uno screenshot da condividere.
+          </p>
+        </div>
+      </section>
+
+      <Caelia3DExplorer />
       {/* Press / Trust */}
       <section className="mx-auto max-w-5xl px-6 lg:px-10 py-20 lg:py-28 text-center">
         <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
