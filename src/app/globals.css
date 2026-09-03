@@ -18,8 +18,15 @@
   --color-charcoal: var(--color-cacao);  /* legacy alias — text & bg utilities stay consistent */
   --color-ink: var(--color-cacao);       /* legacy alias — body text */
 
-  --color-burgundy: #6e1f2a;       /* accent — CTA, hover, badge */
-  --color-burgundy-deep: #4a0f1a; /* deep accent — hover state, hero italic */
+  /* Burgundy palette — aligned to the CAELIA Luxury reference (Material 3 burgundy).
+     Primary is darker than before so it reads as a real CTA color on cream.
+     Tertiary is a near-black with burgundy undertone, used where we need
+     a strong dark surface (announcement bar, footer). */
+  --color-burgundy: #4a0e16;       /* primary — CTA, hover, link emphasis */
+  --color-burgundy-deep: #2e070d; /* hover state */
+  --color-burgundy-tint: #7a2630;  /* softer primary on dark surfaces */
+  --color-night: #1a0a0e;          /* near-black with burgundy undertone — used for surfaces */
+  --color-night-deep: #0e0507;
 
   --color-rose: #d49b96;           /* decorative tint — back to original rose */
   --color-rose-deep: #b8655f;      /* deeper rose — slight emphasis */

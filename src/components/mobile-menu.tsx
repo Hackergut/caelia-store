@@ -22,7 +22,7 @@ export function MobileMenu({
     <>
       <div
         aria-hidden={!open}
-        className={`fixed inset-0 z-40 bg-charcoal/30 transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-0 z-40 bg-night/30 transition-opacity duration-300 md:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={onClose}

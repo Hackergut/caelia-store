@@ -32,7 +32,7 @@ export function CartDrawer() {
     <>
       <div
         aria-hidden={!isOpen}
-        className={`fixed inset-0 z-50 bg-charcoal/40 transition-opacity duration-[var(--dur-medium)] ease-[var(--ease-out)] ${
+        className={`fixed inset-0 z-50 bg-night/40 transition-opacity duration-[var(--dur-medium)] ease-[var(--ease-out)] ${
           isOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         onClick={close}

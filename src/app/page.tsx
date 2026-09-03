@@ -112,7 +112,7 @@ export default async function Home() {
       </section>
 
       {/* Ritual */}
-      <section className="bg-charcoal text-cream">
+      <section className="bg-night text-cream">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/5] rounded-md overflow-hidden">
             <Image

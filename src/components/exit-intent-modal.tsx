@@ -75,7 +75,7 @@ export function ExitIntentModal() {
     <div
       role="dialog"
       aria-label="Iscriviti per il 10% di sconto"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/50"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-night/50"
       onClick={() => setShow(false)}
     >
       <div

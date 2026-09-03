@@ -48,7 +48,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <>
       {/* Announcement bar */}
-      <div className="overflow-hidden bg-charcoal text-cream text-xs tracking-[0.18em] uppercase py-2">
+      <div className="overflow-hidden bg-night text-cream text-xs tracking-[0.18em] uppercase py-2">
         <div className="flex whitespace-nowrap marquee">
           {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="mx-8">
@@ -115,7 +115,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       {/* Footer — 2 colonne: brand block (esteso) + due gruppi di link.
           Su mobile collassa a colonna singola. */}
-      <footer className="bg-charcoal text-cream mt-24">
+      <footer className="bg-night text-cream mt-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid gap-10 md:grid-cols-2">
           {/* Brand block — descrizione estesa, social, sede */}
           <div className="md:max-w-md">
