@@ -1,100 +1,110 @@
-# CAELIA Storefront
+# CAELIA — Beauty Mirror Case storefront
 
-> CAELIA — Aprire. Ritoccare. Ripartire.
+Production: https://caelia-store.vercel.app
 
-A premium beauty ecommerce webapp for the **CAELIA Beauty Mirror Case**.
-Built on Next.js 16, deployed on Vercel, source on GitHub. Ships with a
-drop-in Shopify Storefront API adapter so the catalog can move from a
-local file to a live Shopify store in one commit.
+CAELIA nasce dall''incontro di due sorelle, Carla (Los Angeles) e Giulia (Dubai).
+Beauty Mirror Case: un astuccio compatto con specchio, matita contorno labbra e lip gloss.
+**Aprire. Ritoccare. Ripartire.**
 
 ## Stack
 
-- **Next.js 16** App Router (React 19, Server Components)
-- **Tailwind CSS v4** with custom design tokens
-- **TypeScript** strict mode
-- **Fraunces** (display serif) + **Inter** (UI sans)
-- **Shopify Storefront API** adapter (`src/lib/shopify.ts`)
-- **Vercel** deployment with edge regions `fra1`, `iad1` + Analytics
-- **Resend** transactional email
-- **PWA** installable, **GDPR** cookie consent, **Meta Pixel** consent-gated
-- **JSON-LD**: Organization, WebSite, Product (+ reviews + AggregateRating), BreadcrumbList, FAQPage
+- **Next.js 16** (App Router) + React 19
+- **Tailwind v4** (custom design tokens)
+- **TypeScript** strict
+- **Three.js** + @react-three/fiber + drei per il viewer 3D
+- **@vercel/analytics** mounted in root layout
+- **Shopify Storefront API adapter** pronto (`src/lib/shopify.ts` + `src/lib/catalog.ts`)
 
-## Pages (26 routes)
+## Brand
 
-| Route | Purpose |
-| --- | --- |
-| `/` | Hero, manifesto, featured products, ritual explainer, trust strip, recently viewed |
-| `/products` | Full collection with filter by colour and type, sort, loading skeleton |
-| `/products/[handle]` | Detail with hover-zoom gallery, variant picker, per-variant images, wishlist, add to cart, sold-out state, inventory badge, reviews, JSON-LD |
-| `/cart` | Full-page cart with line items, trust badges, empty state, reset |
-| `/checkout` | Multi-section with shipping & payment selector, discount codes, trust icons, JSON-LD |
-| `/checkout/success` | Animated confirmation + tracking CTA |
-| `/wishlist` | Saved-for-later grid with shareable URL |
-| `/search?q=…` | Full collection search |
-| `/account` | Sign-in stub + recent orders from localStorage |
-| `/ordini/[id]` | Order tracking timeline |
-| `/about`, `/journal`, `/contact`, `/shipping`, `/faq`, `/cookies`, `/privacy`, `/terms` | Standard info pages |
-| `/sitemap.xml` | Dynamic sitemap (replaces hardcoded) |
-| `/api/checkout`, `/api/newsletter`, `/api/health` | Server routes |
+Three-tone palette, each color with a defined role:
+
+| Token | Hex | Role |
+| --- | --- | --- |
+| `--color-cacao` | `#7b5644` | main — body text, headings, primary surfaces |
+| `--color-burgundy` | `#4a0e16` | accent — CTA, hover, link emphasis |
+| `--color-rose` | `#d49b96` | decorative tint — italic accents, badges |
+| `--color-night` | `#1a0a0e` | surface — footer, announcement bar, drawer scrim |
+| `--color-cream` | `#f7f1ea` | background |
+| `--color-mist` | `#e0d6c9` | warm separators |
+
+Typography: **Inter** sans-only (minimal, linear), no serif.
 
 ## Run locally
 
 ```bash
 npm install
-npm run dev    # http://localhost:3000
-npm run build  # production build
-npm start      # production server
+npm run dev          # http://localhost:3000
+npm run build        # 28 routes
+npm run start        # production server
 ```
 
-## Connect Shopify
+Requires Node 20+.
 
-1. Create a custom app in Shopify Admin → Storefront API.
-2. Enable scopes: `unauthenticated_read_product_listings`, `unauthenticated_write_checkouts`.
-3. Set env vars:
-   ```
-   SHOPIFY_STORE_DOMAIN=your-store.myshopify.com
-   SHOPIFY_STOREFRONT_API_TOKEN=xxxxx
-   ```
-4. Swap the imports in `src/app/products/page.tsx` and
-   `src/app/products/[handle]/page.tsx` from `@/lib/products` to
-   `@/lib/shopify` and call `loadProducts()` / `loadProductByHandle()`.
+## Drop real product photos
 
-The TypeScript `Product` shape is identical between the static catalog
-and the Shopify adapter, so no component changes are needed.
+The catalog renders procedural placeholder PNGs from `public/products/*.png`. Replace them with real photography **keeping the same filenames**:
 
-## Env vars
-
-See `.env.example`:
-
-| Variable | Purpose |
+| File | What to photograph |
 | --- | --- |
-| `SHOPIFY_STORE_DOMAIN` | `xxxxx.myshopify.com` |
-| `SHOPIFY_STOREFRONT_API_TOKEN` | Storefront API token |
-| `STRIPE_SECRET_KEY` | Direct Stripe checkout (optional) |
-| `RESEND_API_KEY` | Transactional emails (order confirmation) |
-| `NEXT_PUBLIC_META_PIXEL_ID` | Meta Pixel (loaded only with consent) |
-| `NEXT_PUBLIC_SENTRY_DSN` | Error tracking (optional) |
+| `beauty-case-rose-front.png` | Beauty Mirror Case, Rose variant, front |
+| `beauty-case-noir-front.png` | Beauty Mirror Case, Noir variant, front |
+| `beauty-case-ivory-front.png` | Beauty Mirror Case, Ivory variant, front |
+| `beauty-case-rose-open.png` | Beauty Mirror Case, Rose, opened (mirror + gloss visible) |
+| `beauty-case-rose-detail.png` | Beauty Mirror Case, Rose, close-up of magnetic closure / texture |
+| `beauty-case-rose-lifestyle.png` | Beauty Mirror Case, Rose, in use (in handbag, on vanity) |
+| `beauty-case-mini-rose.png` | Beauty Mirror Case Mini, Rose, front |
+| `beauty-case-mini-noir.png` | Beauty Mirror Case Mini, Noir, front |
+| `beauty-case-mini-ivory.png` | Beauty Mirror Case Mini, Ivory, front |
+| `beauty-case-mini-open.png` | Beauty Mirror Case Mini, opened |
 
-## Deploy to Vercel
+### Easiest path — drag & drop on GitHub
+
+1. Open https://github.com/Hackergut/caelia-store/tree/master/public/products
+2. Click **"Add file"** → → "Upload files"
+3. Drag your photos, keeping the filenames above (rename if needed during upload)
+4. Click **"Commit changes"**
+5. Vercel auto-deploys from `master`. Live within ~60 seconds.
+
+### Automated path — use the import script
 
 ```bash
-npm i -g vercel
-vercel link
+# Resize, encode WebP, drop in public/products/, report coverage
+.\scripts\import-product-photos.ps1 `
+  -Source "C:\path\to\rose-front.jpg" `
+  -Target beauty-case-rose-front.png `
+  -Format webp
+```
+
+The script also prints which catalog files are still missing.
+
+## Deploy
+
+```bash
+vercel link        # one-time, links to hackguts-projects/caelia-store
+vercel --prod      # deploy to production
+```
+
+Or push to `master` on GitHub — Vercel auto-deploys.
+
+## Wiring Shopify (optional — catalog currently local)
+
+```bash
+vercel env add SHOPIFY_STORE_DOMAIN production
+# enter: tuonegozio.myshopify.com
+vercel env add SHOPIFY_STOREFRONT_API_TOKEN production
+# enter the Storefront API access token
 vercel --prod
 ```
 
-Or push to GitHub and import at <https://vercel.com/new>.
+`src/lib/catalog.ts` automatically routes to Shopify when both env vars are present, with local fallback.
 
-## Imagery
+## Documentation
 
-`public/products/*.png` are procedural beauty renders generated by
-`scripts/gen-product-images.py` (Pillow). Replace with real product
-photography for final launch.
+- `docs/MOTION.md` — Emil Kowalski motion philosophy, tokens, utility classes
+- `docs/SHOPIFY.md` — Shopify activation guide
+- `docs/PRODUCT-PHOTOS.md` — detailed photo specs (sizes, colors, formats)
 
-## Observability
+## Authors
 
-- `/api/health` → uptime monitor target.
-- Vercel Analytics (Web Vitals + page views) is wired via
-  `@vercel/analytics` in the root layout.
-- Meta Pixel fires `ViewContent` / `AddToCart` / `InitiateCheckout` /
-  `Purchase` only after the user consents to marketing cookies.
+Carla R. (Los Angeles) · Giulia D. (Dubai) — sister-founders of CAELIA.
