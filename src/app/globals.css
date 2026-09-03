@@ -16,11 +16,15 @@
   --color-rose-deep: var(--color-burgundy-deep); /* legacy alias → deep */
   --color-blush: #e9c9c4;                       /* warm cream-pink, kept for subtle tints */
   --color-blush-deep: #d49b96;
-  --color-charcoal: #1f1d1c;
-  --color-ink: #2a2624;
-  --color-mist: #cfc7be;
+  --color-night: #1a0d11;          /* deepest burgundy-tinted near-black — used for full-dark surfaces if ever needed */
+  --color-charcoal: var(--color-burgundy); /* legacy alias — primary text & surfaces are now burgundy */
+  --color-ink: var(--color-burgundy);       /* body text = burgundy, the main color */
+  --color-mist: #e0d6c9;            /* warm grey-beige separator, slightly lifted to match the new warm palette */
 
-  --font-serif: var(--font-fraunces), Georgia, ui-serif, serif;
+  /* Fonts — minimal, linear, sans-only system inspired by CAELIA Luxury reference.
+     Drop the decorative Fraunces serif entirely; Inter covers display + body.
+     Legacy --font-serif still works but resolves to the same Inter family. */
+  --font-serif: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
   --shadow-soft: 0 10px 30px -12px rgba(31, 29, 28, 0.15);
@@ -325,3 +329,21 @@ body {
     transform: translateY(-1px);
   }
 }
+/* -------------------------------------------------------------------------
+   Typography — minimal, linear, sans-only.
+   Tighter tracking on headings, lighter weight on body, optical sizing.
+   ------------------------------------------------------------------------- */
+h1, h2, h3, h4 {
+  letter-spacing: -0.018em;
+  font-weight: 500;
+}
+h1 { letter-spacing: -0.024em; font-weight: 500; }
+h2 { letter-spacing: -0.02em;  font-weight: 500; }
+
+.font-display {
+  font-family: var(--font-inter);
+  letter-spacing: -0.028em;
+  font-weight: 500;
+}
+
+.text-balance { text-wrap: balance; }
