@@ -6,20 +6,25 @@
 @theme {
   --color-cream: #f7f1ea;
   --color-cream-deep: #efe5d8;
-  /* Burgundy is now the primary brand color (was rose).
-     We keep the old --color-rose / --color-blush aliases pointing to the same
-     hex so every existing Tailwind class (bg-rose, text-blush, border-rose, ring-rose, hover:bg-rose…)
-     automatically uses the burgundy without changing call sites. */
-  --color-burgundy: #6e1f2a;
-  --color-burgundy-deep: #4a0f1a;
-  --color-rose: var(--color-burgundy);          /* legacy alias → primary */
-  --color-rose-deep: var(--color-burgundy-deep); /* legacy alias → deep */
-  --color-blush: #e9c9c4;                       /* warm cream-pink, kept for subtle tints */
+  --color-mist: #e0d6c9;            /* warm grey-beige separator */
+
+  /* Three-tone palette: each color has a defined role.
+     Cacao is the new "main color" — warm, natural, more readable than the previous
+     burgundy-on-cream. Burgundy is reserved for strong accents (CTA primary, emphasis).
+     Rose returns to its original rosy hue for decorative tints and the "Rose" variant.
+     Legacy charcoal / ink are aliased to cacao so existing call sites work unchanged. */
+  --color-cacao: #7b5644;           /* main — body text, headings, surfaces */
+  --color-cacao-deep: #5a3d2e;     /* deeper cacao for hover on dark surfaces */
+  --color-charcoal: var(--color-cacao);  /* legacy alias — text & bg utilities stay consistent */
+  --color-ink: var(--color-cacao);       /* legacy alias — body text */
+
+  --color-burgundy: #6e1f2a;       /* accent — CTA, hover, badge */
+  --color-burgundy-deep: #4a0f1a; /* deep accent — hover state, hero italic */
+
+  --color-rose: #d49b96;           /* decorative tint — back to original rose */
+  --color-rose-deep: #b8655f;      /* deeper rose — slight emphasis */
+  --color-blush: #e9c9c4;          /* warm pink — cream-ish tint */
   --color-blush-deep: #d49b96;
-  --color-night: #1a0d11;          /* deepest burgundy-tinted near-black — used for full-dark surfaces if ever needed */
-  --color-charcoal: var(--color-burgundy); /* legacy alias — primary text & surfaces are now burgundy */
-  --color-ink: var(--color-burgundy);       /* body text = burgundy, the main color */
-  --color-mist: #e0d6c9;            /* warm grey-beige separator, slightly lifted to match the new warm palette */
 
   /* Fonts — minimal, linear, sans-only system inspired by CAELIA Luxury reference.
      Drop the decorative Fraunces serif entirely; Inter covers display + body.
