@@ -1,13 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { products } from "@/lib/products";
+import { listProducts } from "@/lib/catalog";
 import { ProductCard } from "@/components/product-card";
 import { RecentlyViewedSection } from "@/components/recently-viewed-section";
 import { BundleSection } from "@/components/bundle-card";
 import { Caelia3DExplorer } from "@/components/caelia-3d-explorer";
 import { CaeliaFinder } from "@/components/caelia-finder";
 
-export default function Home() {
+export default async function Home() {
+  const products = await listProducts();
   return (
     <>
       {/* Hero */}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { products } from "@/lib/products";
+import { listProducts } from "@/lib/catalog";
 import { ProductsExplorer } from "@/components/products-explorer";
 
 export const metadata: Metadata = {
@@ -9,7 +9,8 @@ export const metadata: Metadata = {
     "Tutti i prodotti CAELIA: Beauty Mirror Case e Mini. Specchio, matita contorno labbra e lip gloss, in un astuccio compatto.",
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const products = await listProducts();
   return (
     <>
       <ProductsPageHeader />

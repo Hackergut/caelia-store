@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import { getProductByHandle, products } from "@/lib/products";
+import { getProduct, listProducts } from "@/lib/catalog";
 import { ProductDetail } from "@/components/product-detail";
 import { ProductCard } from "@/components/product-card";
 import { ProductReviews } from "@/components/product-reviews";
@@ -10,7 +10,8 @@ import { productJsonLd, breadcrumbJsonLd } from "@/lib/json-ld";
 
 type Params = { handle: string };
 
-export function generateStaticParams(): Params[] {
+export async function generateStaticParams(): Promise<Params[]> {
+  const products = await listProducts();
   return products.map((p) => ({ handle: p.handle }));
 }
 
@@ -20,7 +21,7 @@ export async function generateMetadata({
   params: Promise<Params>;
 }): Promise<Metadata> {
   const { handle } = await params;
-  const product = getProductByHandle(handle);
+  const product = await getProduct(handle);
   if (!product) return {};
   return {
     title: product.seo.title,
@@ -34,9 +35,10 @@ export default async function ProductPage({
   params: Promise<Params>;
 }) {
   const { handle } = await params;
-  const product = getProductByHandle(handle);
+  const product = await getProduct(handle);
   if (!product) notFound();
 
+  const products = await listProducts();
   const related = products.filter((p) => p.handle !== handle).slice(0, 3);
   const ldProduct = productJsonLd(product);
   const ldBreadcrumb = breadcrumbJsonLd([
