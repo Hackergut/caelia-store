@@ -104,6 +104,8 @@ vercel --prod
 - `docs/MOTION.md` — Emil Kowalski motion philosophy, tokens, utility classes
 - `docs/SHOPIFY.md` — Shopify activation guide
 - `docs/PRODUCT-PHOTOS.md` — detailed photo specs (sizes, colors, formats)
+- `skills/caelia-store/SKILL.md` — **full project skill**: brand, design system, copy, data model, commerce rules, API contracts, known issues, QA checklist (IT/EN)
+- `skills/caelia-store/v0-prompts.md` — ready-to-paste **v0 (Vercel) prompt chain** to rebuild the entire store (10 phases + acceptance criteria)
 
 ## Authors
 
