@@ -6,11 +6,16 @@
 @theme {
   --color-cream: #f7f1ea;
   --color-cream-deep: #efe5d8;
-  --color-blush: #e9c9c4;
-  --color-blush-deep: #d49b96;
-  --color-rose: #b8655f;
+  /* Burgundy is now the primary brand color (was rose).
+     We keep the old --color-rose / --color-blush aliases pointing to the same
+     hex so every existing Tailwind class (bg-rose, text-blush, border-rose, ring-rose, hover:bg-rose…)
+     automatically uses the burgundy without changing call sites. */
   --color-burgundy: #6e1f2a;
   --color-burgundy-deep: #4a0f1a;
+  --color-rose: var(--color-burgundy);          /* legacy alias → primary */
+  --color-rose-deep: var(--color-burgundy-deep); /* legacy alias → deep */
+  --color-blush: #e9c9c4;                       /* warm cream-pink, kept for subtle tints */
+  --color-blush-deep: #d49b96;
   --color-charcoal: #1f1d1c;
   --color-ink: #2a2624;
   --color-mist: #cfc7be;
