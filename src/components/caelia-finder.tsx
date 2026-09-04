@@ -5,16 +5,16 @@ import Link from "next/link";
 import type { Product } from "@/lib/types";
 import { formatMoney } from "@/lib/format";
 
-type Answer = "rose" | "noir" | "ivory" | "size_full" | "size_mini" | "either";
+type Answer = "burgundy" | "cacao" | "crema" | "size_full" | "size_mini" | "either";
 
 const QUESTIONS = [
   {
     key: "vibe",
     label: "Qual e il tuo stile?",
     options: [
-      { value: "rose", label: "Caldo, naturale, luminoso" },
-      { value: "ivory", label: "Pulito, essenziale, nordico" },
-      { value: "noir", label: "Deciso, notturno, deciso" },
+      { value: "burgundy", label: "Burgundy Caelia — deciso, maison" },
+      { value: "cacao", label: "Cacao Caelia — caldo, naturale" },
+      { value: "crema", label: "Crema Caelia — luminoso, essenziale" },
     ] as { value: Answer; label: string }[],
   },
   {
@@ -28,40 +28,44 @@ const QUESTIONS = [
   },
 ] as const;
 
-const RECOMMENDATIONS: Record<string, {
-  handle: string;
-  variantId: string;
-  reason: string;
-}> = {
-  rose_full: {
+const RECOMMENDATIONS: Record<
+  string,
+  {
+    handle: string;
+    variantId: string;
+    reason: string;
+  }
+> = {
+  burgundy_full: {
     handle: "beauty-mirror-case",
-    variantId: "beauty-case-rose",
-    reason: "Il formato completo con specchio, matita e gloss nella tonalita Rose. Pensato per chi porta sempre con se tutto cio che serve.",
+    variantId: "beauty-case-burgundy",
+    reason:
+      "Il formato completo in Burgundy Caelia, il colore principale della maison.",
   },
-  rose_mini: {
+  burgundy_mini: {
     handle: "beauty-mirror-case-mini",
-    variantId: "beauty-case-mini-rose",
-    reason: "Il mini in Rose entra in ogni pochette. Specchio e gloss, perfetto per la sera.",
+    variantId: "beauty-case-mini-burgundy",
+    reason: "Il Mini in Burgundy Caelia: stesso carattere, formato pochette.",
   },
-  noir_full: {
+  cacao_full: {
     handle: "beauty-mirror-case",
-    variantId: "beauty-case-noir",
-    reason: "Beauty Mirror Case in Noir. Deciso, elegante, si abbina a tutto.",
+    variantId: "beauty-case-cacao",
+    reason: "Beauty Mirror Case in Cacao Caelia. Cuoio caldo, toscano.",
   },
-  noir_mini: {
+  cacao_mini: {
     handle: "beauty-mirror-case-mini",
-    variantId: "beauty-case-mini-noir",
-    reason: "Mini Noir: stessa eleganza, in formato tascabile.",
+    variantId: "beauty-case-mini-cacao",
+    reason: "Mini Cacao Caelia: stessa pelle, in formato tascabile.",
   },
-  ivory_full: {
+  crema_full: {
     handle: "beauty-mirror-case",
-    variantId: "beauty-case-ivory",
-    reason: "Beauty Mirror Case in Ivory. Pulito, essenziale, si abbina a tutto.",
+    variantId: "beauty-case-crema",
+    reason: "Beauty Mirror Case in Crema Caelia. Luminoso, discreto.",
   },
-  ivory_mini: {
+  crema_mini: {
     handle: "beauty-mirror-case-mini",
-    variantId: "beauty-case-mini-ivory",
-    reason: "Mini Ivory: la tonalita piu chiara, luminosa, per chi cerca un dettaglio discreto.",
+    variantId: "beauty-case-mini-crema",
+    reason: "Mini Crema Caelia: la tonalità più chiara, per un dettaglio morbido.",
   },
 };
 
@@ -77,13 +81,13 @@ export function CaeliaFinder({ all }: { all: Product[] }) {
   const [carry, setCarry] = useState<Answer | null>(null);
   const [step, setStep] = useState<0 | 1 | 2>(0);
 
-  const product = all.find((p) =>
-    p.handle === RECOMMENDATIONS[recommendKey(vibe ?? "rose", carry ?? "size_full")].handle,
+  const product = all.find(
+    (p) =>
+      p.handle ===
+      RECOMMENDATIONS[recommendKey(vibe ?? "burgundy", carry ?? "size_full")].handle,
   );
   const recommendation =
-    vibe && carry
-      ? RECOMMENDATIONS[recommendKey(vibe, carry)]
-      : null;
+    vibe && carry ? RECOMMENDATIONS[recommendKey(vibe, carry)] : null;
 
   function reset() {
     setVibe(null);
@@ -100,7 +104,8 @@ export function CaeliaFinder({ all }: { all: Product[] }) {
         Trova la tua CAELIA.
       </h2>
       <p className="mt-4 text-ink/70 max-w-2xl">
-        Due domande. Ti consigliamo la tonalita e il formato.
+        Due domande. Ti consigliamo la tonalita e il formato: Burgundy, Cacao o
+        Crema Caelia.
       </p>
 
       <div className="mt-10 rounded-md bg-cream-deep p-8 lg:p-12">
@@ -146,14 +151,11 @@ export function CaeliaFinder({ all }: { all: Product[] }) {
                     ?.price ?? product.variants[0].price,
                 )}
               </span>
-              <span className="text-xs uppercase tracking-[0.18em] text-ink/60">
-                spedizione gratuita sopra € 60
-              </span>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={`/products/${product.handle}`}
-                className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+                className="inline-flex items-center justify-center bg-burgundy text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors"
               >
                 Scopri
               </Link>
@@ -200,8 +202,8 @@ function Question({
             aria-pressed={value === opt.value}
             className={`text-left rounded-md border p-4 transition-colors ${
               value === opt.value
-                ? "border-charcoal bg-cream"
-                : "border-mist hover:border-charcoal/40"
+                ? "border-burgundy bg-cream"
+                : "border-mist hover:border-burgundy/40"
             }`}
           >
             <span className="block text-sm">{opt.label}</span>

@@ -154,9 +154,11 @@ function FilterPill({
 
 function colorLabel(hex: string): string {
   const map: Record<string, string> = {
-    "#d49b96": "Rose",
-    "#1f1d1c": "Noir",
-    "#efe5d8": "Ivory",
+    "#4a0e16": "Burgundy Caelia",
+    "#7b5644": "Cacao Caelia",
+    "#efe5d8": "Crema Caelia",
+    "#d49b96": "Burgundy Caelia",
+    "#1f1d1c": "Cacao Caelia",
     "#cfc7be": "Mist",
   };
   return map[hex.toLowerCase()] ?? hex;

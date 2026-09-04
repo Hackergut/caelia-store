@@ -1,12 +1,12 @@
 import type { Product, ProductVariant } from "./types";
 
-const beautyCaseDefault: ProductVariant = {
-  id: "beauty-case-rose",
-  sku: "CAELIA-BC-ROSE-01",
-  title: "Beauty Mirror Case — Rose",
+const burgundy: ProductVariant = {
+  id: "beauty-case-burgundy",
+  sku: "CAELIA-BC-BURG-01",
+  title: "Burgundy Caelia",
   price: { amount: "58.00", currencyCode: "EUR" },
   available: true,
-  swatch: "#d49b96",
+  swatch: "#4a0e16",
 };
 
 export const products: Product[] = [
@@ -18,9 +18,9 @@ export const products: Product[] = [
     productType: "Beauty Accessory",
     tags: ["beauty", "mirror", "essentials", "travel"],
     description:
-      "L'astuccio compatto che racchiude tutto cio che serve per un ritocco veloce: matita contorno labbra, lip gloss e specchio. Pensato per le giornate che cambiano ritmo ogni ora.",
+      "L'astuccio compatto che racchiude tutto cio che serve per un ritocco veloce: matita contorno labbra, lip gloss e specchio. Pensato per le giornate che cambiano ritmo ogni ora. Tre colorazioni: Burgundy Caelia, Cacao Caelia, Crema Caelia.",
     descriptionEn:
-      "A compact case that holds everything you need for a fast touch-up: lip liner, lip gloss and mirror. Designed for days that shift tempo every hour.",
+      "A compact case that holds everything you need for a fast touch-up: lip liner, lip gloss and mirror. Three colorways: Burgundy Caelia, Cacao Caelia, Crema Caelia.",
     features: [
       "Specchio integrato, anti-riflesso",
       "Matita contorno labbra, formula cremosa",
@@ -36,13 +36,13 @@ export const products: Product[] = [
       "Microfiber lining for quick wipe",
     ],
     details: {
-      material: "Esterno in pelle vegana color rosa cipria, interno in raso.",
+      material: "Esterno in pelle vegana, interno in raso. Tre colorazioni maison.",
       dimensions: "11,5 x 7,5 x 2 cm",
       weight: "120 g",
       madeIn: "Italia",
     },
     detailsEn: {
-      material: "Vegan leather shell in dusty rose, satin interior.",
+      material: "Vegan leather shell, satin interior. Three maison colorways.",
       dimensions: "11.5 x 7.5 x 2 cm",
       weight: "120 g",
       madeIn: "Italy",
@@ -50,44 +50,52 @@ export const products: Product[] = [
     images: [
       {
         src: "/products/beauty-case-rose-front.png",
-        alt: "Beauty Mirror Case Rose vista frontale",
+        alt: "Beauty Mirror Case Burgundy Caelia vista frontale",
       },
       {
         src: "/products/beauty-case-rose-open.png",
-        alt: "Beauty Mirror Case Rose aperto con specchio e prodotti",
+        alt: "Beauty Mirror Case Burgundy Caelia aperto con specchio e prodotti",
       },
       {
         src: "/products/beauty-case-rose-detail.png",
-        alt: "Beauty Mirror Case Rose dettaglio della chiusura magnetica",
+        alt: "Beauty Mirror Case Burgundy Caelia dettaglio della chiusura magnetica",
+      },
+      {
+        src: "/products/beauty-case-noir-front.png",
+        alt: "Beauty Mirror Case Cacao Caelia vista frontale",
+      },
+      {
+        src: "/products/beauty-case-ivory-front.png",
+        alt: "Beauty Mirror Case Crema Caelia vista frontale",
       },
       {
         src: "/products/beauty-case-rose-lifestyle.png",
-        alt: "Beauty Mirror Case Rose in uso su un tavolino da caffe",
+        alt: "Beauty Mirror Case Burgundy Caelia in uso",
       },
     ],
     variants: [
-      beautyCaseDefault,
+      burgundy,
       {
-        id: "beauty-case-noir",
-        sku: "CAELIA-BC-NOIR-01",
-        title: "Beauty Mirror Case — Noir",
+        id: "beauty-case-cacao",
+        sku: "CAELIA-BC-CACAO-01",
+        title: "Cacao Caelia",
         price: { amount: "58.00", currencyCode: "EUR" },
         available: true,
-        swatch: "#1f1d1c",
+        swatch: "#7b5644",
       },
       {
-        id: "beauty-case-ivory",
-        sku: "CAELIA-BC-IVO-01",
-        title: "Beauty Mirror Case — Ivory",
+        id: "beauty-case-crema",
+        sku: "CAELIA-BC-CREMA-01",
+        title: "Crema Caelia",
         price: { amount: "58.00", currencyCode: "EUR" },
         available: true,
         swatch: "#efe5d8",
       },
     ],
     seo: {
-      title: "CAELIA Beauty Mirror Case — astuccio beauty con specchio",
+      title: "CAELIA Beauty Mirror Case — Burgundy, Cacao, Crema",
       description:
-        "Compatto, elegante, sempre con te. Scopri il Beauty Mirror Case CAELIA in tre varianti.",
+        "Compatto, elegante, sempre con te. Tre colorazioni: Burgundy Caelia, Cacao Caelia, Crema Caelia.",
     },
   },
   {
@@ -98,9 +106,9 @@ export const products: Product[] = [
     productType: "Beauty Accessory",
     tags: ["beauty", "mirror", "essentials", "travel", "mini"],
     description:
-      "La versione Mini del Beauty Mirror Case: solo specchio e gloss, perfetta per la pochette della sera.",
+      "La versione Mini del Beauty Mirror Case: solo specchio e gloss, perfetta per la pochette della sera. Stesse tre colorazioni maison.",
     descriptionEn:
-      "The Mini version of the Beauty Mirror Case: mirror and gloss only, perfect for an evening clutch.",
+      "The Mini version of the Beauty Mirror Case: mirror and gloss only. Same three maison colorways.",
     features: [
       "Specchio integrato",
       "Lip gloss non appiccicoso",
@@ -128,43 +136,51 @@ export const products: Product[] = [
     images: [
       {
         src: "/products/beauty-case-mini-rose.png",
-        alt: "Beauty Mirror Case Mini Rose vista frontale",
+        alt: "Beauty Mirror Case Mini Burgundy Caelia vista frontale",
       },
       {
         src: "/products/beauty-case-mini-noir.png",
-        alt: "Beauty Mirror Case Mini Noir vista frontale",
+        alt: "Beauty Mirror Case Mini Cacao Caelia vista frontale",
       },
       {
         src: "/products/beauty-case-mini-ivory.png",
-        alt: "Beauty Mirror Case Mini Ivory vista frontale",
+        alt: "Beauty Mirror Case Mini Crema Caelia vista frontale",
       },
       {
         src: "/products/beauty-case-mini-open.png",
-        alt: "Beauty Mirror Case Mini Rose aperto con specchio e gloss",
+        alt: "Beauty Mirror Case Mini Burgundy Caelia aperto",
       },
     ],
     variants: [
       {
-        id: "beauty-case-mini-rose",
-        sku: "CAELIA-BCM-ROSE-01",
-        title: "Beauty Mirror Case Mini — Rose",
+        id: "beauty-case-mini-burgundy",
+        sku: "CAELIA-BCM-BURG-01",
+        title: "Burgundy Caelia",
         price: { amount: "38.00", currencyCode: "EUR" },
         available: true,
-        swatch: "#d49b96",
+        swatch: "#4a0e16",
       },
       {
-        id: "beauty-case-mini-noir",
-        sku: "CAELIA-BCM-NOIR-01",
-        title: "Beauty Mirror Case Mini — Noir",
+        id: "beauty-case-mini-cacao",
+        sku: "CAELIA-BCM-CACAO-01",
+        title: "Cacao Caelia",
         price: { amount: "38.00", currencyCode: "EUR" },
         available: true,
-        swatch: "#1f1d1c",
+        swatch: "#7b5644",
+      },
+      {
+        id: "beauty-case-mini-crema",
+        sku: "CAELIA-BCM-CREMA-01",
+        title: "Crema Caelia",
+        price: { amount: "38.00", currencyCode: "EUR" },
+        available: true,
+        swatch: "#efe5d8",
       },
     ],
     seo: {
-      title: "CAELIA Beauty Mirror Case Mini",
+      title: "CAELIA Beauty Mirror Case Mini — Burgundy, Cacao, Crema",
       description:
-        "Specchio e gloss in formato tascabile. Il Mini entra in ogni borsa.",
+        "Specchio e gloss in formato tascabile. Tre colorazioni: Burgundy, Cacao, Crema Caelia.",
     },
   },
 ];

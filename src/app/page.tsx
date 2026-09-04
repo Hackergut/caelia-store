@@ -19,7 +19,7 @@ export default async function Home() {
                 Los Angeles · Dubai
               </p>
               <h1 className="mt-6 font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
-                Aprire. <span className="italic text-rose">Ritoccare.</span>
+                Aprire. <span className="italic text-burgundy">Ritoccare.</span>
                 <br />
                 Ripartire.
               </h1>
@@ -31,7 +31,7 @@ export default async function Home() {
               <div className="mt-10 flex flex-wrap items-center gap-4">
                 <Link
                   href="/products"
-                  className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+                  className="inline-flex items-center justify-center bg-burgundy text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors btn-press"
                 >
                   Scopri la collezione
                 </Link>

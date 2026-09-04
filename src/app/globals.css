@@ -4,31 +4,30 @@
    CAELIA design tokens — colors, fonts, shadows
    ------------------------------------------------------------------------- */
 @theme {
-  /* Tokens from CAELIA design system (design-sistem-caelia-brand-r8):
-     Cream #F7F1EA · Blush #E9C9C4 · Rose #B8655F · Charcoal #1F1D1C
-     Display: Fraunces · UI: Inter */
+  /* CAELIA brand: burgundy main, Tenor Sans logo, three leather colors */
   --color-cream: #f7f1ea;
   --color-cream-deep: #efe5d8;
   --color-mist: #e0d6c9;
 
-  --color-charcoal: #1f1d1c;
-  --color-ink: #1f1d1c;
-  --color-cacao: #7b5644;
-  --color-cacao-deep: #5a3d2e;
-
   --color-burgundy: #4a0e16;
   --color-burgundy-deep: #2e070d;
   --color-burgundy-tint: #7a2630;
-  --color-night: #1f1d1c;
-  --color-night-deep: #141211;
+  --color-cacao: #7b5644;
+  --color-cacao-deep: #5a3d2e;
 
-  --color-rose: #b8655f;
-  --color-rose-deep: #8f4540;
+  --color-charcoal: #1f1d1c;
+  --color-ink: #4a0e16;
+  --color-night: #4a0e16;
+  --color-night-deep: #2e070d;
+
+  --color-rose: #4a0e16;
+  --color-rose-deep: #2e070d;
   --color-blush: #e9c9c4;
   --color-blush-deep: #d49b96;
 
   --font-serif: var(--font-fraunces), "Times New Roman", ui-serif, serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-logo: var(--font-tenor), var(--font-sans);
 
   --shadow-soft: 0 10px 30px -12px rgba(31, 29, 28, 0.15);
   --shadow-product: 0 30px 60px -30px rgba(31, 29, 28, 0.35);
@@ -347,6 +346,13 @@ h1 { letter-spacing: -0.028em; }
   font-family: var(--font-serif);
   letter-spacing: -0.03em;
   font-weight: 450;
+}
+
+.font-logo {
+  font-family: var(--font-logo);
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
 .text-balance { text-wrap: balance; }

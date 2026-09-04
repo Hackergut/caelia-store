@@ -24,7 +24,7 @@ export function ProductDetail({ product }: { product: Product }) {
   const variant =
     product.variants.find((v) => v.id === variantId) ?? product.variants[0];
 
-  // Map variant title suffix ("Rose", "Noir", "Ivory") to a matching image
+  // Map variant title ("Burgundy Caelia", …) to a matching gallery image
   // so selecting a colour updates the gallery.
   const variantImages = useMemo(() => {
     const match = product.images.filter((img) => {
@@ -178,7 +178,7 @@ export function ProductDetail({ product }: { product: Product }) {
               });
             }}
             disabled={!variant.available}
-            className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press disabled:bg-ink/30 disabled:cursor-not-allowed"
+            className="flex-1 bg-burgundy text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors btn-press disabled:bg-ink/30 disabled:cursor-not-allowed"
           >
             {variant.available ? "Aggiungi al carrello" : "Esaurito"}
           </button>

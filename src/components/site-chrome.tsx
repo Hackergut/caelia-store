@@ -79,7 +79,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
             <Link
               href="/"
-              className="justify-self-center font-serif text-2xl md:text-3xl tracking-[0.05em]"
+              className="justify-self-center font-logo text-xl md:text-2xl"
               aria-label="CAELIA home"
             >
               CAELIA
@@ -119,7 +119,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid gap-10 md:grid-cols-2">
           {/* Brand block — descrizione estesa, social, sede */}
           <div className="md:max-w-md">
-            <p className="font-serif text-3xl tracking-[0.05em]">CAELIA</p>
+            <p className="font-logo text-2xl">CAELIA</p>
             <p className="mt-4 text-sm text-cream/70 leading-relaxed">
               Aprire. Ritoccare. Ripartire. L&apos;astuccio beauty con specchio
               per le donne che non si fermano. Pensato da Carla e Giulia, due

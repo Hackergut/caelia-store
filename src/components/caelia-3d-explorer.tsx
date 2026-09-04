@@ -44,7 +44,7 @@ export function Caelia3DExplorer() {
   }
 
   return (
-    <section className="relative bg-charcoal text-cream overflow-hidden">
+    <section className="relative bg-night text-cream overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-20 lg:py-28">
         <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-14 items-center">
           {/* 3D Canvas */}

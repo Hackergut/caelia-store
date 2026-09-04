@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Inter, Tenor_Sans } from "next/font/google";
 import { CartProvider } from "@/lib/cart-context";
 import { WishlistProvider } from "@/lib/wishlist-context";
 import { CurrencyProvider } from "@/lib/currency";
@@ -26,8 +26,15 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
+const tenor = Tenor_Sans({
+  variable: "--font-tenor",
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export const viewport: Viewport = {
-  themeColor: "#1f1d1c",
+  themeColor: "#4a0e16",
   width: "device-width",
   initialScale: 1,
 };
@@ -78,7 +85,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
-      className={`${inter.variable} ${fraunces.variable} h-full antialiased`}
+      className={`${inter.variable} ${fraunces.variable} ${tenor.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-ink font-sans">
         <CartProvider>
