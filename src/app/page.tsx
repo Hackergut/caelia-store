@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { listProducts } from "@/lib/catalog";
 import { ProductCard } from "@/components/product-card";
+import { ProductInfoMap } from "@/components/product-info-map";
 
 export default async function Home() {
   const products = await listProducts();
@@ -59,6 +60,8 @@ export default async function Home() {
           </p>
         </div>
       </section>
+
+      <ProductInfoMap />
 
       <section className="bg-cream border-t border-mist/40">
         <div className="shell section-y">
