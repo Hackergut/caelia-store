@@ -1,26 +1,51 @@
 import type { MetadataRoute } from "next";
 import { products } from "@/lib/products";
+import { journalPosts } from "@/lib/journal";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://caelia.com";
   const now = new Date();
-  const staticRoutes: MetadataRoute.Sitemap = [
-    { url: `${base}/`, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
-    { url: `${base}/products`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
-    { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${base}/journal`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
-    { url: `${base}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${base}/shipping`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
-    { url: `${base}/cookies`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${base}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${base}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+  const paths = [
+    "/",
+    "/products",
+    "/about",
+    "/journal",
+    "/faq",
+    "/shipping",
+    "/returns",
+    "/contact",
+    "/cookies",
+    "/privacy",
+    "/terms",
+    "/press",
+    "/sostenibilita",
+    "/stores",
+    "/care",
+    "/wholesale",
+    "/gift-cards",
+    "/login",
+    "/register",
+    "/account",
+    "/search",
+    "/wishlist",
   ];
+  const staticRoutes: MetadataRoute.Sitemap = paths.map((path) => ({
+    url: `${base}${path}`,
+    lastModified: now,
+    changeFrequency: path === "/" || path === "/products" ? "weekly" : "monthly",
+    priority: path === "/" ? 1 : path === "/products" ? 0.9 : 0.5,
+  }));
   const productRoutes: MetadataRoute.Sitemap = products.map((p) => ({
     url: `${base}/products/${p.handle}`,
     lastModified: now,
     changeFrequency: "weekly",
     priority: 0.9,
   }));
-  return [...staticRoutes, ...productRoutes];
+  const journalRoutes: MetadataRoute.Sitemap = journalPosts.map((p) => ({
+    url: `${base}/journal/${p.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+  return [...staticRoutes, ...productRoutes, ...journalRoutes];
 }

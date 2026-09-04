@@ -1,33 +1,11 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { journalPosts } from "@/lib/journal";
 
 export const metadata: Metadata = {
   title: "Journal",
   description: "Note di stile, rituali e pensieri da Carla e Giulia.",
 };
-
-const POSTS = [
-  {
-    title: "Tre gesti per ripartire",
-    excerpt:
-      "Aprire, ritoccare, ripartire: la routine pensata per le giornate che cambiano ritmo ogni ora.",
-    date: "Settembre 2026",
-    readTime: "3 min",
-  },
-  {
-    title: "Cosa mettere in borsa a Dubai",
-    excerpt:
-      "Cinque oggetti che non lascio mai a casa durante le giornate piu lunghe. Spoiler: il Beauty Mirror Case è il primo.",
-    date: "Agosto 2026",
-    readTime: "4 min",
-  },
-  {
-    title: "Da Los Angeles con amore",
-    excerpt:
-      "I momenti che richiedono un ritocco veloce e come il Beauty Mirror Case mi segue ovunque.",
-    date: "Luglio 2026",
-    readTime: "5 min",
-  },
-];
 
 export default function JournalPage() {
   return (
@@ -40,9 +18,9 @@ export default function JournalPage() {
       </h1>
 
       <div className="mt-16 divide-y divide-mist/60 border-t border-b border-mist/60">
-        {POSTS.map((p, i) => (
+        {journalPosts.map((p, i) => (
           <article
-            key={p.title}
+            key={p.slug}
             className="grid md:grid-cols-[1fr_3fr] gap-6 py-10 items-baseline"
           >
             <div className="text-xs uppercase tracking-[0.22em] text-ink/60">
@@ -55,9 +33,12 @@ export default function JournalPage() {
                 {p.title}
               </h2>
               <p className="mt-3 text-ink/70 max-w-2xl">{p.excerpt}</p>
-              <button className="mt-4 text-xs uppercase tracking-[0.22em] nav-link">
+              <Link
+                href={`/journal/${p.slug}`}
+                className="mt-4 inline-block text-xs uppercase tracking-[0.22em] nav-link"
+              >
                 Continua a leggere →
-              </button>
+              </Link>
             </div>
           </article>
         ))}

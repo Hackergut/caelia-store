@@ -47,7 +47,9 @@ export function MobileMenu({
           <Link href="/products" onClick={onClose}>Collezione</Link>
           <Link href="/about" onClick={onClose}>Storia</Link>
           <Link href="/journal" onClick={onClose}>Journal</Link>
+          <Link href="/stores" onClick={onClose}>Boutique</Link>
           <Link href="/account" onClick={onClose}>Account</Link>
+          <Link href="/login" onClick={onClose}>Accedi</Link>
           <Link href="/contact" onClick={onClose}>Contatti</Link>
         </nav>
       </div>

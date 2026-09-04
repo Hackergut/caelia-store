@@ -171,14 +171,19 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 { href: "/about", label: "La nostra storia" },
                 { href: "/journal", label: "Journal" },
                 { href: "/press", label: "Press & media" },
+                { href: "/stores", label: "Boutique" },
+                { href: "/wholesale", label: "Wholesale" },
               ]}
             />
             <FooterColumn
               title="Aiuto"
               links={[
                 { href: "/shipping", label: "Spedizioni e resi" },
+                { href: "/returns", label: "Resi" },
                 { href: "/faq", label: "Domande frequenti" },
                 { href: "/contact", label: "Contatti" },
+                { href: "/care", label: "Cura del prodotto" },
+                { href: "/gift-cards", label: "Gift card" },
                 { href: "/sostenibilita", label: "Sostenibilità" },
               ]}
             />
