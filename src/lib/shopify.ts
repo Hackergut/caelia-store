@@ -12,8 +12,27 @@
  */
 import type { Product, ProductVariant, ProductImage, Money } from "./types";
 
-const DOMAIN = process.env.SHOPIFY_STORE_DOMAIN;
-const TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN;
+function firstEnv(...names: string[]): string | undefined {
+  for (const name of names) {
+    const v = process.env[name]?.trim();
+    if (v) return v;
+  }
+  return undefined;
+}
+
+/** Private vars plus Vercel Commerce / Shopify Storefront public names. */
+const DOMAIN = firstEnv(
+  "SHOPIFY_STORE_DOMAIN",
+  "NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN",
+  "SHOPIFY_STOREFRONT_DOMAIN",
+);
+
+const TOKEN = firstEnv(
+  "SHOPIFY_STOREFRONT_API_TOKEN",
+  "SHOPIFY_STOREFRONT_ACCESS_TOKEN",
+  "NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN",
+  "NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN",
+);
 
 type ShopifyResponse<T> = { data?: T; errors?: Array<{ message: string }> };
 
@@ -23,7 +42,8 @@ async function shopifyFetch<T>(query: string, variables: Record<string, unknown>
       "Shopify env vars missing: set SHOPIFY_STORE_DOMAIN and SHOPIFY_STOREFRONT_API_TOKEN",
     );
   }
-  const res = await fetch(`https://${DOMAIN}/api/2024-10/graphql.json`, {
+  const host = DOMAIN.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  const res = await fetch(`https://${host}/api/2024-10/graphql.json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

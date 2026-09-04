@@ -81,6 +81,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <SiteChrome>{children}</SiteChrome>
             <CookieBanner />
             <Analytics />
+            <VercelAnalytics />
           </CurrencyProvider>
           </WishlistProvider>
         </CartProvider>
