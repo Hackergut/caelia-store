@@ -42,31 +42,32 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </div>
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="flex h-16 w-full items-center justify-between gap-4 px-5 sm:px-8 md:h-20">
-          <details id="nav-caelia" className="relative md:hidden">
-            <summary className="cursor-pointer list-none whitespace-nowrap text-xl [&::-webkit-details-marker]:hidden">
+        <div className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8 md:h-20">
+          <div className="justify-self-start">
+            <details id="nav-caelia" className="relative sm:hidden">
+              <summary className="cursor-pointer list-none whitespace-nowrap text-xl [&::-webkit-details-marker]:hidden">
+                <LogoWordmark />
+              </summary>
+              <nav className="absolute left-0 top-full z-[310] min-w-[16rem] border border-mist/60 bg-cream py-5 shadow-2xl">
+                {NAV.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    className="block px-6 py-2 text-[13px] uppercase tracking-[0.18em] hover:text-burgundy"
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+              </nav>
+            </details>
+            <p className="hidden whitespace-nowrap text-xl lg:block">
               <LogoWordmark />
-            </summary>
-            <nav className="absolute left-0 top-full z-[310] min-w-[16rem] border border-mist/60 bg-cream py-5 shadow-2xl">
-              {NAV.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className="block px-6 py-2 text-[13px] uppercase tracking-[0.18em] hover:text-burgundy"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </details>
-
-          <Link href="/" className="hidden whitespace-nowrap text-2xl md:block" aria-label="CAELIA home">
-            <LogoWordmark />
-          </Link>
+            </p>
+          </div>
 
           <nav
             aria-label="Principale"
-            className="hidden flex-1 items-center justify-center gap-7 text-[11px] uppercase tracking-[0.18em] md:flex"
+            className="hidden items-center justify-center gap-5 md:gap-8 text-[11px] uppercase tracking-[0.2em] sm:flex"
           >
             {NAV.map((l) => (
               <Link
@@ -75,7 +76,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 className={
                   pathname === l.href
                     ? "text-burgundy underline underline-offset-8"
-                    : "hover:text-burgundy"
+                    : "text-ink hover:text-burgundy"
                 }
               >
                 {l.label}
@@ -85,7 +86,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
           <Link
             href="/cart"
-            className="relative ml-auto shrink-0 text-[11px] uppercase tracking-[0.22em] md:ml-0"
+            className="relative justify-self-end text-[11px] uppercase tracking-[0.22em]"
           >
             Carrello
             {itemCount > 0 ? (
