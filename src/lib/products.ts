@@ -82,10 +82,10 @@ export const products: Product[] = [
     descriptionEn:
       "Beauty Mirror Case in Cacao Caelia — warm cocoa leather. Same form, different colour.",
     images: [
-      { src: "/products/new-beauty-case-cacao-open.jpg", alt: "Cacao Caelia — astuccio e specchio" },
-      { src: "/products/new-beauty-case-cacao-angle.jpg", alt: "Cacao Caelia — tre quarti" },
-      { src: "/products/new-beauty-case-cacao-front.jpg", alt: "Cacao Caelia — logo in rilievo" },
-      { src: "/products/new-beauty-case-cacao-logo.jpg", alt: "Cacao Caelia — tasca con matite" },
+      { src: "/products/cacao-caelia-pair.jpg", alt: "Cacao Caelia — astuccio e specchio" },
+      { src: "/products/cacao-caelia-pencils.jpg", alt: "Cacao Caelia — matite in tasca" },
+      { src: "/products/cacao-caelia-logo.jpg", alt: "Cacao Caelia — logo CAELIA" },
+      { src: "/products/cacao-caelia-angle.jpg", alt: "Cacao Caelia — tre quarti" },
     ],
     variants: [oneVariant("cacao-caelia", "CAELIA-BC-CACAO-01", "Cacao Caelia", "#7b5644")],
     seo: {
@@ -103,7 +103,8 @@ export const products: Product[] = [
     descriptionEn:
       "Beauty Mirror Case in Crema Caelia — pale cream leather. Same design, light colourway.",
     images: [
-      { src: "/products/new-beauty-case-crema-front.jpg", alt: "Crema Caelia — astuccio e specchio" },
+      { src: "/products/new-beauty-case-burgundy-set.jpg", alt: "Crema Caelia — astuccio e specchio" },
+      { src: "/products/new-beauty-case-crema-front.jpg", alt: "Crema Caelia — su fondo grigio" },
       { src: "/products/new-beauty-case-crema-angle.jpg", alt: "Crema Caelia — tre quarti" },
       { src: "/products/new-beauty-case-crema-open.jpg", alt: "Crema Caelia — tasca con matite" },
     ],
