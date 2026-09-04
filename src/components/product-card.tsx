@@ -23,7 +23,7 @@ export function ProductCard({
       style={style}
       className={`group block reveal ${className}`}
     >
-      <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep media-zoom lift">
+      <div className="relative aspect-square overflow-hidden bg-cream-deep media-zoom">
         <Image
           src={product.images[0].src}
           alt={product.images[0].alt}

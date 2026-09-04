@@ -30,7 +30,7 @@ export function ProductReviews({ reviews }: { reviews: Review[] }) {
         <div>
           <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Recensioni</p>
           <h2 className="mt-3 font-serif text-4xl leading-tight">
-            Cosa dicono le nostre clienti.
+            Le clienti parlano da sole.
           </h2>
         </div>
         <div className="flex items-center gap-3">

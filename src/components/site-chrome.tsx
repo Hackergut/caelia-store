@@ -10,8 +10,7 @@ import { NewsletterForm } from "./newsletter-form";
 import { CurrencySwitcher } from "./currency-switcher";
 import { LogoWordmark } from "./logo-wordmark";
 
-const ANNOUNCEMENT =
-  "Spedizione gratuita in Italia oltre 60 euro · Resi gratuiti entro 30 giorni";
+const ANNOUNCEMENT = "Spedizione gratuita oltre 60€  ·  Resi 30 giorni";
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount, open } = useCart();

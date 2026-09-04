@@ -57,7 +57,7 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative aspect-[4/5] rounded-md overflow-hidden shadow-product">
+            <div className="relative aspect-square overflow-hidden bg-cream-deep">
               <Image
                 src="/products/beauty-case-burgundy-front.jpg"
                 alt="Beauty Mirror Case CAELIA"
