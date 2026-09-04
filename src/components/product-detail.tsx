@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
@@ -52,11 +52,7 @@ export function ProductDetail({ product }: { product: Product }) {
   const variant =
     product.variants.find((v) => v.id === variantId) ?? product.variants[0];
 
-  const variantImages = useMemo(() => {
-    const key = variant.title.toLowerCase().split(" ")[0];
-    const match = product.images.filter((img) => img.alt.toLowerCase().includes(key));
-    return match.length > 0 ? match : product.images;
-  }, [product.images, variant.title]);
+  const variantImages = product.images;
 
   useEffect(() => {
     events.viewItem({
@@ -92,6 +88,7 @@ export function ProductDetail({ product }: { product: Product }) {
               alt={img.alt}
               fill
               priority
+              unoptimized
               sizes="(min-width: 1024px) 50vw, 100vw"
               className="object-cover"
             />
@@ -107,7 +104,7 @@ export function ProductDetail({ product }: { product: Product }) {
                 }`}
                 aria-label={`Immagine ${i + 1}`}
               >
-                <Image src={thumb.src} alt="" fill sizes="80px" className="object-cover" />
+                <Image src={thumb.src} alt="" fill sizes="80px" unoptimized className="object-cover" />
               </button>
             ))}
           </div>

@@ -57,15 +57,38 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-            <div className="relative aspect-square overflow-hidden bg-cream-deep">
-              <Image
-                src="/products/beauty-case-burgundy-front.jpg"
-                alt="Beauty Mirror Case CAELIA"
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
+            <div className="grid grid-cols-2 gap-2">
+              <div className="relative col-span-2 aspect-square overflow-hidden bg-cream-deep">
+                <Image
+                  src="/products/new-beauty-case-burgundy-front.jpg"
+                  alt="Beauty Mirror Case Burgundy Caelia"
+                  fill
+                  priority
+                  unoptimized
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative aspect-square overflow-hidden bg-cream-deep">
+                <Image
+                  src="/products/new-beauty-case-cacao-front.jpg"
+                  alt="Cacao Caelia"
+                  fill
+                  unoptimized
+                  sizes="25vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="relative aspect-square overflow-hidden bg-cream-deep">
+                <Image
+                  src="/products/new-beauty-case-crema-front.jpg"
+                  alt="Crema Caelia"
+                  fill
+                  unoptimized
+                  sizes="25vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -116,7 +139,7 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/5] rounded-md overflow-hidden">
             <Image
-              src="/products/beauty-case-burgundy-open.jpg"
+              src="/products/new-beauty-case-burgundy-open.jpg"
               alt="Beauty Mirror Case aperto"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
