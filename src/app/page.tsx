@@ -5,9 +5,9 @@ export default function Home() {
   return (
     <>
       <section className="bg-cream">
-        <div className="shell grid items-center gap-6 pb-14 pt-6 sm:gap-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:gap-16 lg:py-20">
-          {/* Mobile: titolo, poi immagine, poi CTA. Desktop: testo a sinistra. */}
-          <div>
+        <div className="shell grid gap-6 pb-12 pt-6 sm:gap-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:grid-rows-[auto_auto] lg:items-center lg:gap-x-16 lg:gap-y-8 lg:py-20">
+          {/* 1 — Titolo. Mobile: in cima. Desktop: colonna sinistra, riga 1. */}
+          <div className="lg:col-start-1 lg:row-start-1 lg:self-end">
             <p className="text-[10px] uppercase tracking-[0.32em] text-ink/45 sm:text-[11px] sm:tracking-[0.38em]">
               Volume 01 · Los Angeles · Dubai
             </p>
@@ -21,30 +21,11 @@ export default function Home() {
             <p className="mt-4 max-w-sm leading-relaxed text-ink/70 sm:mt-6">
               Beauty Mirror Case. Specchio, matita, gloss. Un gesto.
             </p>
-
-            {/* Immagine: sotto il titolo su mobile, colonna destra su desktop */}
-            <div className="-mx-[clamp(1rem,4vw,2.5rem)] mt-6 aspect-[5/4] overflow-hidden bg-cream-deep sm:mx-0 sm:aspect-[16/9] lg:hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/products/burgundy-caelia-pencils.jpg"
-                alt="Burgundy Caelia — matita labbra e gloss nella tasca dell'astuccio"
-                width={1600}
-                height={1280}
-                className="h-full w-full object-cover"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
-
-            <Link
-              href="/products"
-              className="mt-8 inline-flex min-h-12 w-full items-center justify-center bg-burgundy px-8 text-[11px] uppercase tracking-[0.22em] text-cream transition-colors hover:bg-burgundy-deep sm:w-auto"
-            >
-              La collezione
-            </Link>
           </div>
 
-          <div className="hidden aspect-square overflow-hidden bg-cream-deep lg:block">
+          {/* 2 — Immagine. Mobile: sotto il titolo, con la CTA sopra.
+                  Desktop: colonna destra a tutta altezza. */}
+          <div className="relative -mx-[clamp(1rem,4vw,2.5rem)] aspect-[5/4] overflow-hidden bg-cream-deep sm:mx-0 sm:aspect-[16/9] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:aspect-square">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/products/burgundy-caelia-pencils.jpg"
@@ -52,8 +33,29 @@ export default function Home() {
               width={1600}
               height={1600}
               className="h-full w-full object-cover"
+              fetchPriority="high"
               decoding="async"
             />
+
+            {/* CTA sull'immagine — solo mobile */}
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/70 to-transparent p-4 lg:hidden">
+              <Link
+                href="/products"
+                className="flex min-h-12 w-full items-center justify-center bg-cream px-8 text-[11px] uppercase tracking-[0.22em] text-burgundy"
+              >
+                La collezione
+              </Link>
+            </div>
+          </div>
+
+          {/* 3 — CTA desktop, sotto il titolo nella colonna sinistra. */}
+          <div className="hidden lg:col-start-1 lg:row-start-2 lg:block lg:self-start">
+            <Link
+              href="/products"
+              className="inline-flex min-h-12 items-center justify-center bg-burgundy px-8 text-[11px] uppercase tracking-[0.22em] text-cream transition-colors hover:bg-burgundy-deep"
+            >
+              La collezione
+            </Link>
           </div>
         </div>
       </section>
