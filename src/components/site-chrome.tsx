@@ -39,10 +39,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
   const headerSolid = !isHome || scrolled;
   const headerClass = [
-    "sticky top-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-[var(--dur-base)] ease-[var(--ease-out)]",
+    "sticky top-0 z-[300] isolate",
     headerSolid
       ? "bg-cream/95 backdrop-blur-md border-b border-mist/60"
-      : "bg-transparent border-b border-transparent",
+      : "bg-cream/95 border-b border-mist/40",
   ].join(" ");
 
   return (
@@ -65,8 +65,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               type="button"
               aria-label="Apri menu CAELIA"
               aria-expanded={mobileOpen}
-              className="relative z-[60] text-left text-lg md:text-2xl"
-              onClick={() => setMobileOpen(true)}
+              className="relative z-[310] pointer-events-auto cursor-pointer py-2 pr-6 text-left text-lg md:text-2xl"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setMobileOpen(true);
+              }}
             >
               <LogoWordmark />
             </button>
