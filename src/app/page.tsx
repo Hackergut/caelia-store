@@ -1,10 +1,7 @@
 import Link from "next/link";
-import { listProducts } from "@/lib/catalog";
-import { ProductCard } from "@/components/product-card";
 import { ProductInfoMap } from "@/components/product-info-map";
 
-export default async function Home() {
-  const products = await listProducts();
+export default function Home() {
   return (
     <>
       <section className="bg-cream">
@@ -62,25 +59,6 @@ export default async function Home() {
       </section>
 
       <ProductInfoMap />
-
-      <section className="bg-cream border-t border-mist/40">
-        <div className="shell section-y">
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4 md:mb-12 md:gap-6">
-            <div>
-              <p className="text-[11px] uppercase tracking-[0.32em] text-ink/40">N° 03</p>
-              <h2 className="fluid-h2 mt-2 font-light">Tre colori.</h2>
-            </div>
-            <Link href="/products" className="text-[11px] uppercase tracking-[0.2em] text-ink/70">
-              Vedi tutto →
-            </Link>
-          </div>
-          <div className="grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
-            {products.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section className="bg-cream">
         <div className="shell section-y grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
