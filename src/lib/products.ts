@@ -48,34 +48,20 @@ export const products: Product[] = [
       madeIn: "Italy",
     },
     images: [
-      {
-        src: "/products/beauty-case-burgundy-front.jpg",
-        alt: "Beauty Mirror Case Burgundy Caelia",
-      },
-      {
-        src: "/products/beauty-case-burgundy-open.jpg",
-        alt: "Beauty Mirror Case Burgundy Caelia specchio e tasca",
-      },
-      {
-        src: "/products/beauty-case-burgundy-detail.jpg",
-        alt: "Beauty Mirror Case Burgundy Caelia dettaglio cucitura e logo",
-      },
-      {
-        src: "/products/beauty-case-burgundy-lifestyle.jpg",
-        alt: "Beauty Mirror Case Burgundy Caelia su marmo",
-      },
-      {
-        src: "/products/beauty-case-burgundy-pocket.jpg",
-        alt: "Beauty Mirror Case Burgundy Caelia con matite",
-      },
-      {
-        src: "/products/beauty-case-cacao-front.jpg",
-        alt: "Beauty Mirror Case Cacao Caelia specchio e tasca",
-      },
-      {
-        src: "/products/beauty-case-crema-front.jpg",
-        alt: "Beauty Mirror Case Crema Caelia con matite e specchio",
-      },
+      { src: "/products/beauty-case-burgundy-front.jpg", alt: "Beauty Mirror Case Burgundy Caelia" },
+      { src: "/products/beauty-case-burgundy-logo.jpg", alt: "Logo CAELIA in rilievo Burgundy" },
+      { src: "/products/beauty-case-burgundy-open.jpg", alt: "Burgundy Caelia specchio e tasca" },
+      { src: "/products/beauty-case-burgundy-detail.jpg", alt: "Dettaglio cucitura Burgundy Caelia" },
+      { src: "/products/beauty-case-burgundy-lifestyle.jpg", alt: "Burgundy Caelia su marmo" },
+      { src: "/products/beauty-case-burgundy-pocket.jpg", alt: "Tasca Burgundy Caelia con matite" },
+      { src: "/products/beauty-case-burgundy-angle.jpg", alt: "Burgundy Caelia vista tre quarti" },
+      { src: "/products/beauty-case-burgundy-hero.jpg", alt: "Burgundy Caelia close-up" },
+      { src: "/products/beauty-case-burgundy-vanity.jpg", alt: "Burgundy Caelia vanity" },
+      { src: "/products/beauty-case-burgundy-set.jpg", alt: "Set Burgundy Caelia" },
+      { src: "/products/beauty-case-cacao-front.jpg", alt: "Beauty Mirror Case Cacao Caelia" },
+      { src: "/products/beauty-case-cacao-pocket.jpg", alt: "Tasca Cacao Caelia con matite" },
+      { src: "/products/beauty-case-crema-front.jpg", alt: "Beauty Mirror Case Crema Caelia" },
+      { src: "/products/beauty-case-crema-pocket.jpg", alt: "Tasca Crema Caelia con matite" },
     ],
     variants: [
       burgundy,
