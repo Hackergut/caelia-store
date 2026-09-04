@@ -4,37 +4,54 @@ import { ProductInfoMap } from "@/components/product-info-map";
 export default function Home() {
   return (
     <>
-      <section className="bg-cream">
-        <div className="shell grid items-center gap-6 pb-10 pt-6 sm:gap-8 md:pb-16 md:pt-10 lg:grid-cols-2 lg:gap-16 lg:py-20">
-          {/* Mobile: immagine a tutta larghezza, fuori dai gutter */}
-          <div className="order-first -mx-[clamp(1rem,4vw,2.5rem)] aspect-[5/4] overflow-hidden bg-cream-deep sm:mx-0 sm:aspect-square lg:order-none">
+      {/* -----------------------------------------------------------------
+          Hero.
+          Mobile: immersiva a schermo pieno, testo sopra l'immagine.
+          Desktop (lg+): torna alle due colonne testo / foto.
+          ----------------------------------------------------------------- */}
+      <section className="relative bg-cream">
+        {/* Immagine di fondo — solo mobile/tablet */}
+        <div className="absolute inset-0 lg:hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/products/burgundy-caelia-pencils.jpg"
+            alt=""
+            aria-hidden="true"
+            className="h-full w-full object-cover object-[60%_40%]"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-night/85 via-night/45 to-night/20" />
+        </div>
+
+        <div className="shell relative grid min-h-[78svh] content-end gap-6 pb-10 pt-8 lg:min-h-0 lg:grid-cols-2 lg:content-center lg:items-center lg:gap-16 lg:py-20">
+          <div className="hidden aspect-square overflow-hidden bg-cream-deep lg:order-2 lg:block">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/products/burgundy-caelia-pencils.jpg"
               alt="Burgundy Caelia — matita labbra e gloss nella tasca dell'astuccio"
               className="h-full w-full object-cover"
-              fetchPriority="high"
               decoding="async"
             />
           </div>
 
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.32em] text-ink/45 sm:text-[11px] sm:tracking-[0.38em]">
+          <div className="lg:order-1">
+            <p className="text-[10px] uppercase tracking-[0.32em] text-cream/70 sm:text-[11px] sm:tracking-[0.38em] lg:text-ink/45">
               Volume 01 · Los Angeles · Dubai
             </p>
-            <h1 className="fluid-display mt-3 font-light tracking-tight text-ink sm:mt-5">
+            <h1 className="fluid-display mt-3 font-light tracking-tight text-cream sm:mt-5 lg:text-ink">
               Aprire.
               <br />
               Ritoccare.
               <br />
               Ripartire.
             </h1>
-            <p className="mt-4 max-w-sm leading-relaxed text-ink/70 sm:mt-7">
+            <p className="mt-4 max-w-sm leading-relaxed text-cream/80 sm:mt-6 lg:text-ink/70">
               Beauty Mirror Case. Specchio, matita, gloss. Un gesto.
             </p>
             <Link
               href="/products"
-              className="mt-6 inline-flex min-h-12 w-full items-center justify-center bg-burgundy px-8 text-[11px] uppercase tracking-[0.22em] text-cream sm:mt-8 sm:w-auto"
+              className="mt-6 inline-flex min-h-12 w-full items-center justify-center bg-cream px-8 text-[11px] uppercase tracking-[0.22em] text-burgundy sm:mt-8 sm:w-auto lg:bg-burgundy lg:text-cream"
             >
               La collezione
             </Link>
