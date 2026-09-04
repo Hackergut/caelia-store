@@ -41,50 +41,35 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           padding: 0 32px;
           gap: 28px;
         }
-        .caelia-hb {
-          display: none;
+        .caelia-menu {
           position: relative;
+          flex: 0 0 auto;
         }
-        .caelia-hb > summary {
+        .caelia-menu > summary {
           list-style: none;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 5px;
-          width: 40px;
-          height: 40px;
-          border: 1px solid #4a0e16;
           cursor: pointer;
+          font-size: 20px;
+          white-space: nowrap;
         }
-        .caelia-hb > summary::-webkit-details-marker { display: none; }
-        .caelia-hb-line {
-          display: block;
-          width: 16px;
-          height: 2px;
-          background: #4a0e16;
-        }
-        .caelia-hb-panel {
+        .caelia-menu > summary::-webkit-details-marker { display: none; }
+        .caelia-panel {
+          display: none;
           position: absolute;
           left: 0;
-          top: calc(100% + 8px);
+          top: calc(100% + 12px);
           z-index: 400;
           min-width: 220px;
           background: #f7f1ea;
           border: 1px solid #e0d6c9;
           padding: 12px 0;
         }
-        .caelia-hb-panel a {
+        .caelia-menu[open] .caelia-panel { display: block; }
+        .caelia-panel a {
           display: block;
           padding: 10px 20px;
           font-size: 13px;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-        }
-        .caelia-logo {
-          font-size: 20px;
-          white-space: nowrap;
-          flex: 0 0 auto;
         }
         .caelia-pc {
           display: flex;
@@ -102,8 +87,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           text-transform: uppercase;
           white-space: nowrap;
         }
+        @media (min-width: 768px) {
+          .caelia-menu > summary { cursor: default; pointer-events: none; }
+          .caelia-panel { display: none !important; }
+        }
         @media (max-width: 767px) {
-          .caelia-hb { display: block; }
           .caelia-pc { display: none; }
           .caelia-row { height: 64px; padding: 0 16px; gap: 12px; }
         }
@@ -121,13 +109,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       <header className="caelia-top">
         <div className="caelia-row">
-          <details className="caelia-hb">
-            <summary aria-label="Apri menu">
-              <span className="caelia-hb-line" />
-              <span className="caelia-hb-line" />
-              <span className="caelia-hb-line" />
+          <details className="caelia-menu">
+            <summary aria-label="Menu CAELIA">
+              <LogoWordmark />
             </summary>
-            <nav className="caelia-hb-panel">
+            <nav className="caelia-panel">
               {NAV.map((l) => (
                 <Link key={l.href} href={l.href}>
                   {l.label}
@@ -135,10 +121,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               ))}
             </nav>
           </details>
-
-          <span className="caelia-logo">
-            <LogoWordmark />
-          </span>
 
           <nav className="caelia-pc" aria-label="Principale">
             {NAV.map((l) => (
