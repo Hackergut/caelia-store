@@ -16,15 +16,15 @@ export function InventoryBadge({ sku }: { sku: string }) {
   const stock = stockForSku(sku);
   if (stock <= 0) {
     return (
-      <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-rose">
-        <span className="h-1.5 w-1.5 rounded-full bg-rose" /> Esaurito
+      <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-burgundy">
+        <span className="h-1.5 w-1.5 rounded-full bg-burgundy" /> Esaurito
       </p>
     );
   }
   if (stock <= 4) {
     return (
-      <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-rose">
-        <span className="h-1.5 w-1.5 rounded-full bg-rose animate-pulse" />
+      <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-burgundy">
+        <span className="h-1.5 w-1.5 rounded-full bg-burgundy animate-pulse" />
         Solo {stock} disponibili
       </p>
     );

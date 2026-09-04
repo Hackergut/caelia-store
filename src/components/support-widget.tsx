@@ -49,7 +49,7 @@ export function SupportWidget() {
           <div className="mt-4 space-y-2 text-sm">
             <a
               href="mailto:ciao@caelia.com"
-              className="flex items-center gap-2 text-ink/80 hover:text-charcoal"
+              className="flex items-center gap-2 text-ink/80 hover:text-burgundy"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
                 <path d="M3 6h18v12H3z" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -59,7 +59,7 @@ export function SupportWidget() {
             </a>
             <a
               href="/faq"
-              className="flex items-center gap-2 text-ink/80 hover:text-charcoal"
+              className="flex items-center gap-2 text-ink/80 hover:text-burgundy"
             >
               <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
@@ -74,7 +74,7 @@ export function SupportWidget() {
         type="button"
         aria-label={open ? "Chiudi supporto" : "Apri supporto"}
         onClick={() => setOpen((v) => !v)}
-        className="h-14 w-14 rounded-full bg-charcoal text-cream shadow-2xl hover:bg-rose transition-colors flex items-center justify-center"
+        className="h-14 w-14 rounded-full bg-burgundy text-cream shadow-2xl hover:bg-burgundy-deep transition-colors flex items-center justify-center"
       >
         <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
           {open ? (

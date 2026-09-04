@@ -1,85 +1,48 @@
-import type { Metadata } from "next";
+import { ContactForm } from "@/components/contact-form";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Contatti",
-  description: "Scrivici: siamo qui per risponderti entro 24 ore.",
+  description:
+    "Contatta il team CAELIA per assistenza su ordini, resi e prodotti. Ti rispondiamo entro 1–2 giorni lavorativi.",
 };
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24">
-      <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Contatti</p>
-      <h1 className="mt-4 font-serif text-5xl leading-[1.05]">
-        Scrivici.
-      </h1>
-      <p className="mt-4 text-lg text-ink/80">
-        Carla e Giulia leggono ogni messaggio. Ti rispondiamo entro 24 ore,
-        sempre.
-      </p>
+    <div className="mx-auto max-w-5xl px-6 lg:px-10 pt-12 pb-24 grid gap-16 lg:grid-cols-[1fr_1.2fr]">
+      <div>
+        <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Aiuto</p>
+        <h1 className="mt-4 font-serif text-5xl leading-[1.05]">Contatti.</h1>
+        <p className="mt-4 text-ink/70 leading-relaxed">
+          Domande su un ordine, un reso o un prodotto? Scrivici: il nostro team
+          risponde entro 1–2 giorni lavorativi.
+        </p>
 
-      <form className="mt-12 grid gap-4 sm:grid-cols-2">
-        <Field label="Nome" />
-        <Field label="Email" type="email" />
-        <Field label="Ordine (opzionale)" className="sm:col-span-2" />
-        <label className="sm:col-span-2">
-          <span className="block text-xs uppercase tracking-[0.22em] text-ink/60 mb-1">
-            Messaggio
-          </span>
-          <textarea
-            rows={6}
-            className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
-          />
-        </label>
-        <button
-          type="button"
-          className="sm:col-span-2 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
-        >
-          Invia messaggio
-        </button>
-      </form>
+        <dl className="mt-10 space-y-6 text-sm">
+          <div>
+            <dt className="text-xs uppercase tracking-[0.18em] text-ink/60">Email</dt>
+            <dd className="mt-1">
+              <a
+                href="mailto:support@caelia.com"
+                className="text-burgundy underline underline-offset-4"
+              >
+                support@caelia.com
+              </a>
+            </dd>
+          </div>
+          <div>
+            <dt className="text-xs uppercase tracking-[0.18em] text-ink/60">Orari</dt>
+            <dd className="mt-1 text-ink/75">Lun–Ven, 9:00–18:00 (CET)</dd>
+          </div>
+          <div>
+            <dt className="text-xs uppercase tracking-[0.18em] text-ink/60">Sedi</dt>
+            <dd className="mt-1 text-ink/75">Los Angeles · Dubai · Prodotto in Italia</dd>
+          </div>
+        </dl>
+      </div>
 
-      <div className="mt-16 grid gap-8 sm:grid-cols-3 text-sm">
-        <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-ink/60">
-            Email
-          </p>
-          <p className="mt-2 font-serif text-lg">ciao@caelia.com</p>
-        </div>
-        <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-ink/60">
-            Instagram
-          </p>
-          <p className="mt-2 font-serif text-lg">@caelia</p>
-        </div>
-        <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-ink/60">
-            Sede
-          </p>
-          <p className="mt-2 font-serif text-lg">Milano, IT</p>
-        </div>
+      <div>
+        <ContactForm />
       </div>
     </div>
-  );
-}
-
-function Field({
-  label,
-  type = "text",
-  className = "",
-}: {
-  label: string;
-  type?: string;
-  className?: string;
-}) {
-  return (
-    <label className={`block ${className}`}>
-      <span className="block text-xs uppercase tracking-[0.22em] text-ink/60 mb-1">
-        {label}
-      </span>
-      <input
-        type={type}
-        className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
-      />
-    </label>
   );
 }

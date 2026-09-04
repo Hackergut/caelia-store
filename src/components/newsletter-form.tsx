@@ -60,7 +60,7 @@ export function NewsletterForm() {
         {status === "loading" ? "..." : "Iscriviti"}
       </button>
       {status === "err" && error && (
-        <p role="alert" className="ml-3 text-xs text-rose">
+        <p role="alert" className="ml-3 text-xs text-burgundy">
           {error}
         </p>
       )}

@@ -36,7 +36,7 @@ export function ProductCard({
             {colors.map((c) => (
               <span
                 key={c}
-                className="h-3.5 w-3.5 rounded-full ring-1 ring-charcoal/10"
+                className="h-3.5 w-3.5 rounded-full ring-1 ring-burgundy/10"
                 style={{ background: c }}
               />
             ))}

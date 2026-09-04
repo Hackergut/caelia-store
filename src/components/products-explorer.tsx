@@ -66,12 +66,12 @@ export function ProductsExplorer({ products }: { products: Product[] }) {
               type="button"
               onClick={() => setColor(c)}
               className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 transition-colors ${
-                color === c ? "border-charcoal" : "border-mist hover:border-charcoal/60"
+                color === c ? "border-burgundy" : "border-mist hover:border-burgundy/60"
               }`}
               aria-pressed={color === c}
             >
               <span
-                className="h-3.5 w-3.5 rounded-full ring-1 ring-charcoal/10"
+                className="h-3.5 w-3.5 rounded-full ring-1 ring-burgundy/10"
                 style={{ background: c }}
               />
               <span>{colorLabel(c)}</span>
@@ -144,7 +144,7 @@ function FilterPill({
       onClick={onClick}
       aria-pressed={active}
       className={`rounded-full border px-3 py-1 transition-colors ${
-        active ? "border-charcoal bg-charcoal text-cream" : "border-mist hover:border-charcoal/60"
+        active ? "border-burgundy bg-burgundy text-cream" : "border-mist hover:border-burgundy/60"
       }`}
     >
       {label}

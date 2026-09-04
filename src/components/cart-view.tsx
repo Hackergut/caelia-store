@@ -9,7 +9,7 @@ import { Price } from "@/lib/currency";
 import { LockIcon, PaymentIcons, TruckIcon, RefreshIcon } from "@/components/trust-icons";
 
 export function CartView() {
-  const { lines, subtotal, setQuantity, remove, clear } = useCart();
+  const { lines, subtotal, setQuantity, remove, clear, goToCheckout } = useCart();
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => setHydrated(true), []);
@@ -45,7 +45,7 @@ export function CartView() {
           </p>
           <Link
             href="/products"
-            className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+            className="mt-6 inline-flex items-center justify-center bg-burgundy text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors btn-press"
           >
             Esplora la collezione
           </Link>
@@ -55,7 +55,7 @@ export function CartView() {
           <ul className="divide-y divide-mist/60 border-y border-mist/60">
             {lines.map((line) => (
               <li
-                key={line.variantId}
+                key={line.lineId}
                 className="flex flex-col sm:flex-row gap-4 py-6"
               >
                 <div className="relative h-28 w-28 sm:h-32 sm:w-32 shrink-0 overflow-hidden rounded-md bg-cream-deep">
@@ -84,7 +84,7 @@ export function CartView() {
                         className="h-9 w-9 text-sm"
                         aria-label="Diminuisci quantita"
                         onClick={() =>
-                          setQuantity(line.variantId, line.quantity - 1)
+                          setQuantity(line.lineId, line.quantity - 1)
                         }
                       >
                         −
@@ -97,7 +97,7 @@ export function CartView() {
                         className="h-9 w-9 text-sm"
                         aria-label="Aumenta quantita"
                         onClick={() =>
-                          setQuantity(line.variantId, line.quantity + 1)
+                          setQuantity(line.lineId, line.quantity + 1)
                         }
                       >
                         +
@@ -111,8 +111,8 @@ export function CartView() {
                 </div>
                 <button
                   type="button"
-                  onClick={() => remove(line.variantId)}
-                  className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+                  onClick={() => remove(line.lineId)}
+                  className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
                 >
                   Rimuovi
                 </button>
@@ -141,16 +141,17 @@ export function CartView() {
                   </dd>
                 </div>
               </dl>
-              <Link
-                href="/checkout"
-                className="mt-6 block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+              <button
+                type="button"
+                onClick={goToCheckout}
+                className="mt-6 block w-full text-center bg-burgundy text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors btn-press"
               >
                 Procedi al checkout
-              </Link>
+              </button>
               <button
                 type="button"
                 onClick={clear}
-                className="mt-3 block w-full text-center text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+                className="mt-3 block w-full text-center text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
               >
                 Svuota carrello
               </button>

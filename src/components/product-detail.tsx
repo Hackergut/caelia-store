@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
@@ -14,29 +15,22 @@ import { formatMoney } from "@/lib/format";
 import { Price } from "@/lib/currency";
 import type { Product } from "@/lib/types";
 
-export function ProductDetail({ product }: { product: Product }) {
-  const [variantId, setVariantId] = useState(product.variants[0].id);
+export function ProductDetail({
+  product,
+  colorSiblings = [],
+}: {
+  product: Product;
+  colorSiblings?: Product[];
+}) {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const { add } = useCart();
 
-  useEffect(() => { setActiveImage(0); }, [variantId]);
-  const variant =
-    product.variants.find((v) => v.id === variantId) ?? product.variants[0];
-
-  // Map variant title suffix ("Rose", "Noir", "Ivory") to a matching image
-  // so selecting a colour updates the gallery.
-  const variantImages = useMemo(() => {
-    const match = product.images.filter((img) => {
-      const alt = img.alt.toLowerCase();
-      const titleSuffix = variant.title
-        .replace(product.title, "")
-        .trim()
-        .toLowerCase();
-      return titleSuffix.length > 0 && alt.includes(titleSuffix);
-    });
-    return match.length > 0 ? match : product.images;
-  }, [product.images, product.title, variant.title]);
+  // Each Shopify product here is a single colour with a single variant.
+  const variant = product.variants[0];
+  const variantImages = product.images.length > 0 ? product.images : [
+    { src: "/products/caelia-burgundy-front.jpg", alt: product.title },
+  ];
 
   // Track ViewContent on mount
   useEffect(() => {
@@ -82,7 +76,7 @@ export function ProductDetail({ product }: { product: Product }) {
               type="button"
               onClick={() => setActiveImage(i)}
               className={`relative aspect-square overflow-hidden rounded-md bg-cream-deep border ${
-                i === activeImage ? "border-charcoal" : "border-transparent"
+                i === activeImage ? "border-burgundy" : "border-transparent"
               }`}
               aria-label={`Mostra immagine ${i + 1}`}
             >
@@ -124,25 +118,34 @@ export function ProductDetail({ product }: { product: Product }) {
             Colore
           </p>
           <div className="flex flex-wrap gap-3">
-            {product.variants.map((v) => (
-              <button
-                key={v.id}
-                type="button"
-                onClick={() => setVariantId(v.id)}
-                className={`flex items-center gap-3 border rounded-full pl-2 pr-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors chip ${
-                  v.id === variantId
-                    ? "border-charcoal"
-                    : "border-mist hover:border-charcoal/60"
-                }`}
-              >
-                <span
-                  className="h-4 w-4 rounded-full ring-1 ring-charcoal/10"
-                  style={{ background: v.swatch ?? "#cfc7be" }}
-                />
-                {v.title.replace(product.title, "").trim() || v.title}
-              </button>
-            ))}
+            <span className="flex items-center gap-3 border border-burgundy rounded-full pl-2 pr-4 py-2 text-xs uppercase tracking-[0.18em] chip">
+              <span
+                className="h-4 w-4 rounded-full ring-1 ring-burgundy/10"
+                style={{ background: variant.swatch ?? "#cfc7be" }}
+              />
+              {variant.title}
+            </span>
           </div>
+          {colorSiblings.length > 0 && (
+            <div className="mt-4 flex flex-wrap gap-3">
+              {colorSiblings.map((sibling) => {
+                const siblingVariant = sibling.variants[0];
+                return (
+                  <Link
+                    key={sibling.handle}
+                    href={`/products/${sibling.handle}`}
+                    className="flex items-center gap-3 border border-mist rounded-full pl-2 pr-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors chip hover:border-burgundy/60"
+                  >
+                    <span
+                      className="h-4 w-4 rounded-full ring-1 ring-burgundy/10"
+                      style={{ background: siblingVariant?.swatch ?? "#cfc7be" }}
+                    />
+                    {siblingVariant?.title ?? sibling.title}
+                  </Link>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         <div className="mt-8 flex items-center gap-4">
@@ -178,7 +181,7 @@ export function ProductDetail({ product }: { product: Product }) {
               });
             }}
             disabled={!variant.available}
-            className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press disabled:bg-ink/30 disabled:cursor-not-allowed"
+            className="flex-1 bg-burgundy text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors btn-press disabled:bg-ink/30 disabled:cursor-not-allowed"
           >
             {variant.available ? "Aggiungi al carrello" : "Esaurito"}
           </button>
@@ -188,7 +191,7 @@ export function ProductDetail({ product }: { product: Product }) {
         <ul className="mt-10 space-y-3 text-sm text-ink/80">
           {product.features.map((f) => (
             <li key={f} className="flex gap-3">
-              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-rose" />
+              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-burgundy" />
               <span>{f}</span>
             </li>
           ))}

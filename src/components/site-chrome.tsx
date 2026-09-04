@@ -60,37 +60,38 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       <header className={headerClass}>
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid grid-cols-3 items-center h-20">
-            <button
-              type="button"
-              aria-label="Apri menu"
-              className="justify-self-start inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] md:hidden"
-              onClick={() => setMobileOpen(true)}
-            >
-              <span className="block h-px w-6 bg-charcoal" />
-              <span className="block h-px w-6 bg-charcoal" />
-            </button>
-            <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.22em]">
-              <Link href="/products" className="nav-link">Collezione</Link>
-              <Link href="/about" className="nav-link">Storia</Link>
-              <Link href="/journal" className="nav-link">Journal</Link>
-              <Link href="/search" className="nav-link" aria-label="Cerca">Cerca</Link>
-            </nav>
-
+          <div className="flex items-center justify-between h-20" style={{ gap: "54px" }}>
+            {/* Logo — ancorato a sinistra. Su desktop apre la home; su
+                mobile funge anche da innesco del menu a scomparsa, così
+                non serve un&apos;icona hamburger separata. */}
             <Link
               href="/"
-              className="justify-self-center font-serif text-2xl md:text-3xl tracking-[0.05em]"
-              aria-label="CAELIA home"
+              onClick={(e) => {
+                if (window.innerWidth < 768) {
+                  e.preventDefault();
+                  setMobileOpen(true);
+                }
+              }}
+              className="shrink-0 font-logo text-2xl md:text-3xl tracking-[0.08em] text-burgundy"
+              aria-label="CAELIA — apri il menu"
+              aria-haspopup="true"
             >
               CAELIA
             </Link>
 
-            <div className="justify-self-end flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
-              <Link href="/wishlist" className="nav-link hidden sm:inline">
+            <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.22em] mx-auto">
+              <Link href="/products" className="nav-link" style={{ color: "var(--color-burgundy-deep)" }}>Collezione</Link>
+              <Link href="/about" className="nav-link" style={{ color: "var(--color-burgundy-deep)" }}>Storia</Link>
+              <Link href="/journal" className="nav-link" style={{ color: "var(--color-burgundy-deep)" }}>Journal</Link>
+              <Link href="/search" className="nav-link" style={{ color: "var(--color-burgundy-deep)" }} aria-label="Cerca">Cerca</Link>
+            </nav>
+
+            <div className="flex items-center text-xs uppercase tracking-[0.18em]" style={{ gap: "45px" }}>
+              <Link href="/wishlist" className="nav-link hidden sm:inline" style={{ color: "var(--color-burgundy-deep)" }}>
                 Preferiti
               </Link>
               <CurrencySwitcher />
-              <Link href="/account" className="nav-link hidden sm:inline">
+              <Link href="/account" className="nav-link hidden sm:inline" style={{ color: "#3f0000" }}>
                 Account
               </Link>
               <button
@@ -98,6 +99,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 className="nav-link relative"
                 onClick={open}
                 aria-label={`Apri carrello, ${itemCount} articoli`}
+                style={{ color: "var(--color-burgundy-deep)" }}
               >
                 Carrello
                 {itemCount > 0 && (
@@ -119,7 +121,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid gap-10 md:grid-cols-2">
           {/* Brand block — descrizione estesa, social, sede */}
           <div className="md:max-w-md">
-            <p className="font-serif text-3xl tracking-[0.05em]">CAELIA</p>
+            <p className="font-logo text-3xl tracking-[0.08em]" style={{ color: "#e7e7e7" }}>CAELIA</p>
             <p className="mt-4 text-sm text-cream/70 leading-relaxed">
               Aprire. Ritoccare. Ripartire. L&apos;astuccio beauty con specchio
               per le donne che non si fermano. Pensato da Carla e Giulia, due
@@ -131,7 +133,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <span aria-hidden="true">·</span>
               <span>Dubai</span>
               <span aria-hidden="true">·</span>
-              <span>Made in Italy</span>
+              <span>Prodotto in Italia</span>
             </div>
             {/* Social row — placeholder anchor per Instagram/TikTok quando attivi */}
             <div className="mt-6 flex items-center gap-5 text-xs uppercase tracking-[0.18em] text-cream/70">
@@ -170,7 +172,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 { href: "/products", label: "Collezione" },
                 { href: "/about", label: "La nostra storia" },
                 { href: "/journal", label: "Journal" },
-                { href: "/press", label: "Press & media" },
+                { href: "/press", label: "Stampa e media" },
               ]}
             />
             <FooterColumn

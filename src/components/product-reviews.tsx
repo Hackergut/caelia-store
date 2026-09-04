@@ -7,7 +7,7 @@ export function StarRating({ value, className = "" }: { value: number; className
         <svg
           key={i}
           viewBox="0 0 24 24"
-          className={`h-4 w-4 ${i < value ? "text-rose" : "text-mist"}`}
+          className={`h-4 w-4 ${i < value ? "text-burgundy" : "text-mist"}`}
           aria-hidden="true"
         >
           <path

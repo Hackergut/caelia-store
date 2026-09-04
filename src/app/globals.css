@@ -9,20 +9,24 @@
   --color-mist: #e0d6c9;            /* warm grey-beige separator */
 
   /* Three-tone palette: each color has a defined role.
-     Cacao is the new "main color" — warm, natural, more readable than the previous
-     burgundy-on-cream. Burgundy is reserved for strong accents (CTA primary, emphasis).
-     Rose returns to its original rosy hue for decorative tints and the "Rose" variant.
+     Burgundy is the platform's main + accent color — the brand mark, primary
+     CTAs, active nav state, and every strong-emphasis surface all resolve to
+     burgundy. Cacao stays as the warm neutral for body copy and surfaces so
+     long-form reading text never competes with burgundy for attention.
+     Rose is the decorative tint for the "Rose" variant and soft accents.
      Legacy charcoal / ink are aliased to cacao so existing call sites work unchanged. */
-  --color-cacao: #7b5644;           /* main — body text, headings, surfaces */
+  --color-cacao: #7b5644;           /* neutral — body text, headings, surfaces */
   --color-cacao-deep: #5a3d2e;     /* deeper cacao for hover on dark surfaces */
   --color-charcoal: var(--color-cacao);  /* legacy alias — text & bg utilities stay consistent */
   --color-ink: var(--color-cacao);       /* legacy alias — body text */
 
-  /* Burgundy palette — aligned to the CAELIA Luxury reference (Material 3 burgundy).
-     Primary is darker than before so it reads as a real CTA color on cream.
-     Tertiary is a near-black with burgundy undertone, used where we need
-     a strong dark surface (announcement bar, footer). */
-  --color-burgundy: #4a0e16;       /* primary — CTA, hover, link emphasis */
+  /* Burgundy palette — the platform's main + accent color, aligned to the
+     CAELIA Luxury reference (Material 3 burgundy). Used for the logo mark,
+     primary CTAs, active/hover states, and link emphasis — the color that
+     should read as "CAELIA" at a glance. Tertiary is a near-black with
+     burgundy undertone, used where we need a strong dark surface
+     (announcement bar, footer). */
+  --color-burgundy: #4a0e16;       /* main + accent — logo, CTA, hover, link emphasis */
   --color-burgundy-deep: #2e070d; /* hover state */
   --color-burgundy-tint: #7a2630;  /* softer primary on dark surfaces */
   --color-night: #1a0a0e;          /* near-black with burgundy undertone — used for surfaces */
@@ -39,6 +43,10 @@
   --font-serif: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
+  /* Logo wordmark — Tenor Sans, reserved for the CAELIA mark only
+     (header + footer). Never used for body or UI copy. */
+  --font-logo: var(--font-tenor-sans), ui-sans-serif, system-ui, sans-serif;
+
   --shadow-soft: 0 10px 30px -12px rgba(31, 29, 28, 0.15);
   --shadow-product: 0 30px 60px -30px rgba(31, 29, 28, 0.35);
 }
@@ -49,6 +57,12 @@
    (UI stays under 300ms), and one symmetric pair per purpose.
    ------------------------------------------------------------------------- */
 :root {
+  /* CAELIA is a single-theme (light) system. Force light UA rendering so
+     native controls (select, option, scrollbars) never pick up the
+     visitor's OS/browser dark scheme and render white text on our cream
+     surfaces. */
+  color-scheme: light;
+
   --background: var(--color-cream);
   --foreground: var(--color-ink);
 
@@ -359,3 +373,12 @@ h2 { letter-spacing: -0.02em;  font-weight: 500; }
 }
 
 .text-balance { text-wrap: balance; }
+
+/* -------------------------------------------------------------------------
+   404 Error page styling — Next.js default error page customization.
+   Adjust spacing and margins for visual consistency with CAELIA design.
+   ------------------------------------------------------------------------- */
+h1.next-error-h1 {
+  margin-right: 51px;
+  padding-right: 55px;
+}

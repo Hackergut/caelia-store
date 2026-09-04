@@ -118,17 +118,17 @@ export function ExitIntentModal() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 disabled={status === "loading"}
-                className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
+                className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-burgundy"
               />
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:opacity-50"
+                className="w-full bg-burgundy text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors disabled:opacity-50"
               >
                 {status === "loading" ? "Invio..." : "Scarica il 10%"}
               </button>
               {status === "err" && error && (
-                <p role="alert" className="text-xs text-rose">
+                <p role="alert" className="text-xs text-burgundy">
                   {error}
                 </p>
               )}

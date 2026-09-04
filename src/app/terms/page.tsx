@@ -1,52 +1,74 @@
-import type { Metadata } from "next";
+import { LegalPage, LegalSection } from "@/components/legal-page";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Termini e condizioni",
-  description: "Termini e condizioni d uso di CAELIA.",
+  description:
+    "Termini e condizioni di vendita e d'uso del sito e dei prodotti CAELIA.",
 };
 
 export default function TermsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24">
-      <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
-        Termini e condizioni
+    <LegalPage title="Termini e condizioni." updated="Settembre 2026">
+      <p>
+        I presenti termini e condizioni regolano l&apos;uso del sito CAELIA e
+        l&apos;acquisto dei prodotti. Effettuando un ordine dichiari di accettarli
+        integralmente.
       </p>
-      <h1 className="mt-4 font-serif text-5xl leading-[1.05]">
-        Termini d uso.
-      </h1>
 
-      <div className="mt-10 space-y-6 text-ink/80 leading-relaxed">
+      <LegalSection title="Ordini e prezzi">
         <p>
-          Ultimo aggiornamento: 3 settembre 2026. Utilizzando il sito
-          caelia.com accetti i seguenti termini e condizioni.
+          Tutti i prezzi sono espressi nella valuta indicata al checkout e
+          includono l&apos;IVA ove applicabile. Ci riserviamo il diritto di
+          modificare i prezzi in qualsiasi momento; il prezzo applicato è quello
+          in vigore al momento dell&apos;ordine.
         </p>
-        <h2 className="font-serif text-2xl pt-4">Ordini</h2>
+      </LegalSection>
+
+      <LegalSection title="Conclusione del contratto">
         <p>
-          Gli ordini sono soggetti a disponibilita. CAELIA si riserva il
-          diritto di annullare un ordine per indisponibilita del prodotto o
-          per anomalie nei prezzi pubblicati.
+          Il contratto si intende concluso quando ricevi la conferma
+          dell&apos;ordine via email. Ci riserviamo il diritto di rifiutare o
+          annullare ordini in caso di errori di prezzo, indisponibilità o sospetto
+          di frode.
         </p>
-        <h2 className="font-serif text-2xl pt-4">Prezzi e IVA</h2>
+      </LegalSection>
+
+      <LegalSection title="Pagamenti">
         <p>
-          I prezzi sono espressi in euro e includono IVA dove applicabile. Le
-          spese di spedizione sono calcolate al checkout.
+          I pagamenti sono elaborati tramite provider sicuri e cifrati. CAELIA non
+          conserva i dati completi delle carte di pagamento.
         </p>
-        <h2 className="font-serif text-2xl pt-4">Resi</h2>
+      </LegalSection>
+
+      <LegalSection title="Diritto di recesso">
         <p>
-          Hai diritto di recedere dal contratto entro 30 giorni dal
-          ricevimento, salvo per i prodotti aperti per motivi igienici.
+          Il consumatore ha diritto di recedere entro 30 giorni dalla consegna,
+          secondo quanto indicato nella pagina Spedizioni e resi. Il prodotto deve
+          essere restituito integro e nella confezione originale.
         </p>
-        <h2 className="font-serif text-2xl pt-4">Proprieta intellettuale</h2>
+      </LegalSection>
+
+      <LegalSection title="Garanzia legale">
         <p>
-          Tutti i contenuti del sito (testi, immagini, marchi) sono di
-          proprieta di CAELIA o dei rispettivi titolari. E vietata la
-          riproduzione senza autorizzazione.
+          I prodotti sono coperti dalla garanzia legale di conformità prevista
+          dalla normativa vigente. In caso di difetto di conformità hai diritto
+          alla riparazione, sostituzione o rimborso.
         </p>
-        <h2 className="font-serif text-2xl pt-4">Foro competente</h2>
+      </LegalSection>
+
+      <LegalSection title="Proprietà intellettuale">
         <p>
-          Per qualsiasi controversia e competente il foro di Milano, Italia.
+          Tutti i contenuti del sito — marchi, testi, immagini e grafiche — sono di
+          proprietà di CAELIA e non possono essere riprodotti senza autorizzazione.
         </p>
-      </div>
-    </div>
+      </LegalSection>
+
+      <LegalSection title="Legge applicabile">
+        <p>
+          I presenti termini sono regolati dalla legge italiana. Per ogni
+          controversia è competente il foro del luogo di residenza del consumatore.
+        </p>
+      </LegalSection>
+    </LegalPage>
   );
 }

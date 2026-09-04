@@ -63,11 +63,11 @@ export function BackInStockButton({
           placeholder="email@esempio.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="flex-1 border border-mist rounded-md px-3 py-2 text-sm bg-cream focus:outline-none focus:border-charcoal"
+          className="flex-1 border border-mist rounded-md px-3 py-2 text-sm bg-cream focus:outline-none focus:border-burgundy"
         />
         <button
           type="submit"
-          className="px-4 border border-charcoal text-xs uppercase tracking-[0.22em] hover:bg-charcoal hover:text-cream transition-colors"
+          className="px-4 border border-burgundy text-burgundy text-xs uppercase tracking-[0.22em] hover:bg-burgundy hover:text-cream transition-colors"
         >
           Avvisami
         </button>
@@ -76,7 +76,7 @@ export function BackInStockButton({
         <p className="text-xs text-ink/60">Grazie. Ti scriviamo appena.</p>
       )}
       {status === "err" && (
-        <p className="text-xs text-rose">Inserisci un indirizzo email valido.</p>
+        <p className="text-xs text-burgundy">Inserisci un indirizzo email valido.</p>
       )}
     </form>
   );

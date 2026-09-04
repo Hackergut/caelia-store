@@ -9,7 +9,7 @@ const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
   loading: () => (
     <div className="absolute inset-0 grid place-items-center bg-cream-deep/40">
       <div className="flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-ink/60">
-        <span className="h-2 w-2 animate-pulse rounded-full bg-rose" />
+        <span className="h-2 w-2 animate-pulse rounded-full bg-burgundy" />
         Caricamento 3D
       </div>
     </div>
@@ -44,7 +44,7 @@ export function Caelia3DExplorer() {
   }
 
   return (
-    <section className="relative bg-charcoal text-cream overflow-hidden">
+    <section className="relative bg-burgundy text-cream overflow-hidden">
       <div className="mx-auto max-w-7xl px-6 lg:px-10 py-20 lg:py-28">
         <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-14 items-center">
           {/* 3D Canvas */}
@@ -56,8 +56,8 @@ export function Caelia3DExplorer() {
               onSnapshotReady={setSnapshotReady}
             />
             <div className="pointer-events-none absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-cream/90 px-3 py-1 text-xs uppercase tracking-[0.22em] text-ink">
-              <span className="h-1.5 w-1.5 rounded-full bg-rose" />
-              Live 3D
+              <span className="h-1.5 w-1.5 rounded-full bg-cream" />
+              3D dal vivo
             </div>
             <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-ink/70">
               <span>{variant.name}</span>
@@ -105,7 +105,7 @@ export function Caelia3DExplorer() {
                   />
                 ))}
               </div>
-              <p className="mt-3 font-serif text-xl">{variant.name}</p>
+              <p className="mt-3 font-serif text-xl text-cream">{variant.name}</p>
               <p className="text-sm text-cream/60">{variant.description}</p>
             </fieldset>
 
@@ -121,7 +121,7 @@ export function Caelia3DExplorer() {
                   aria-pressed={view === "mirror"}
                   className={`px-4 py-3 text-xs uppercase tracking-[0.22em] border transition-colors ${
                     view === "mirror"
-                      ? "bg-cream text-charcoal border-cream"
+                      ? "bg-cream text-burgundy border-cream"
                       : "border-cream/30 hover:border-cream/60"
                   }`}
                 >
@@ -133,7 +133,7 @@ export function Caelia3DExplorer() {
                   aria-pressed={view === "pocket"}
                   className={`px-4 py-3 text-xs uppercase tracking-[0.22em] border transition-colors ${
                     view === "pocket"
-                      ? "bg-cream text-charcoal border-cream"
+                      ? "bg-cream text-burgundy border-cream"
                       : "border-cream/30 hover:border-cream/60"
                   }`}
                 >
@@ -149,12 +149,12 @@ export function Caelia3DExplorer() {
                   aria-label="Attiva rotazione automatica"
                   onClick={() => setAutoRotate((v) => !v)}
                   className={`relative h-6 w-11 rounded-full transition-colors ${
-                    autoRotate ? "bg-rose" : "bg-cream/20"
+                    autoRotate ? "bg-cream" : "bg-cream/20"
                   }`}
                 >
                   <span
-                    className={`absolute top-0.5 h-5 w-5 rounded-full bg-cream shadow transition-transform ${
-                      autoRotate ? "translate-x-5" : "translate-x-0.5"
+                    className={`absolute top-0.5 h-5 w-5 rounded-full shadow transition-transform ${
+                      autoRotate ? "translate-x-5 bg-burgundy" : "translate-x-0.5 bg-cream"
                     }`}
                     aria-hidden
                   />
@@ -176,7 +176,7 @@ export function Caelia3DExplorer() {
               type="button"
               onClick={downloadSnapshot}
               disabled={!snapshotReady || snapshotBusy}
-              className="w-full inline-flex items-center justify-center gap-2 border border-cream/40 px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-cream hover:text-charcoal transition-colors disabled:opacity-50"
+              className="w-full inline-flex items-center justify-center gap-2 border border-cream/40 px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-cream hover:text-burgundy transition-colors disabled:opacity-50"
             >
               {snapshotBusy ? "Esportando..." : "Scarica snapshot PNG"}
             </button>

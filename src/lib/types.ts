@@ -49,6 +49,7 @@ export type Product = {
 };
 
 export type CartLine = {
+  lineId: string;
   productHandle: string;
   productTitle: string;
   variantId: string;

@@ -41,7 +41,7 @@ export function RecoveredCartBanner() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:bottom-6 z-40 max-w-md rounded-md bg-charcoal text-cream p-5 shadow-2xl border border-cream/10">
+    <div className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:bottom-6 z-40 max-w-md rounded-md bg-burgundy text-cream p-5 shadow-2xl border border-cream/10">
       <p className="text-xs uppercase tracking-[0.22em] text-blush">
         Bentornata
       </p>
@@ -52,7 +52,7 @@ export function RecoveredCartBanner() {
       <div className="mt-4 flex flex-wrap gap-2">
         <Link
           href="/cart"
-          className="px-3 py-2 text-xs uppercase tracking-[0.18em] bg-cream text-charcoal hover:bg-blush"
+          className="px-3 py-2 text-xs uppercase tracking-[0.18em] bg-cream text-burgundy hover:bg-blush"
         >
           Recupera il carrello
         </Link>

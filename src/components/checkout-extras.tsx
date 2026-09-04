@@ -61,7 +61,7 @@ export function CheckoutExtrasForm({
               onChange={(e) => onChange({ ...value, giftMessage: e.target.value })}
               rows={3}
               placeholder="A chi lo regali? Cosa vuoi dirgli?"
-              className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
+              className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-burgundy"
             />
             <p className="mt-1 text-xs text-ink/40 text-right">
               {value.giftMessage.length}/200
@@ -77,7 +77,7 @@ export function CheckoutExtrasForm({
               onChange={(e) => onChange({ ...value, notes: e.target.value })}
               rows={2}
               placeholder="Istruzioni di consegna, citofono, orari preferiti..."
-              className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
+              className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-burgundy"
             />
           </label>
         </div>

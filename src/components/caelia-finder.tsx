@@ -153,7 +153,7 @@ export function CaeliaFinder({ all }: { all: Product[] }) {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href={`/products/${product.handle}`}
-                className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+                className="inline-flex items-center justify-center bg-burgundy text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors"
               >
                 Scopri
               </Link>
@@ -200,8 +200,8 @@ function Question({
             aria-pressed={value === opt.value}
             className={`text-left rounded-md border p-4 transition-colors ${
               value === opt.value
-                ? "border-charcoal bg-cream"
-                : "border-mist hover:border-charcoal/40"
+                ? "border-burgundy bg-cream"
+                : "border-mist hover:border-burgundy/40"
             }`}
           >
             <span className="block text-sm">{opt.label}</span>

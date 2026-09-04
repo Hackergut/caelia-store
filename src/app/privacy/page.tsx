@@ -1,50 +1,74 @@
-import type { Metadata } from "next";
+import { LegalPage, LegalSection } from "@/components/legal-page";
 
-export const metadata: Metadata = {
-  title: "Privacy",
-  description: "Informativa sulla privacy di CAELIA.",
+export const metadata = {
+  title: "Informativa sulla privacy",
+  description:
+    "Come CAELIA raccoglie, utilizza e protegge i tuoi dati personali, in conformità al GDPR.",
 };
 
 export default function PrivacyPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24 prose prose-neutral">
-      <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Privacy</p>
-      <h1 className="mt-4 font-serif text-5xl leading-[1.05]">
-        Informativa sulla privacy.
-      </h1>
+    <LegalPage title="Informativa sulla privacy." updated="Settembre 2026">
+      <p>
+        La presente informativa descrive come CAELIA raccoglie, utilizza e
+        protegge i dati personali degli utenti del sito, in conformità al
+        Regolamento (UE) 2016/679 (GDPR).
+      </p>
 
-      <div className="mt-10 space-y-6 text-ink/80 leading-relaxed">
+      <LegalSection title="Titolare del trattamento">
         <p>
-          Ultimo aggiornamento: 3 settembre 2026. CAELIA rispetta la tua
-          privacy. Questa informativa descrive quali dati personali raccogliamo,
-          come li usiamo e quali diritti hai.
+          Il titolare del trattamento è CAELIA. Per qualsiasi richiesta relativa
+          ai tuoi dati puoi scrivere a{" "}
+          <a href="mailto:privacy@caelia.com" className="text-burgundy underline underline-offset-4">
+            privacy@caelia.com
+          </a>
+          .
         </p>
-        <h2 className="font-serif text-2xl pt-4">Dati raccolti</h2>
+      </LegalSection>
+
+      <LegalSection title="Dati che raccogliamo">
         <p>
-          Raccogliamo i dati che ci fornisci al momento dell acquisto o
-          dell iscrizione alla newsletter: nome, email, indirizzo di
-          spedizione, dati di pagamento (elaborati dal provider di pagamento,
-          mai salvati sui nostri server).
+          Raccogliamo i dati che ci fornisci direttamente (nome, indirizzo email,
+          indirizzo di spedizione e fatturazione, dati d&apos;ordine) e i dati
+          raccolti automaticamente durante la navigazione (indirizzo IP, tipo di
+          dispositivo, pagine visitate) tramite cookie e tecnologie simili.
         </p>
-        <h2 className="font-serif text-2xl pt-4">Finalita</h2>
+      </LegalSection>
+
+      <LegalSection title="Finalità del trattamento">
         <p>
-          I dati sono utilizzati per evadere gli ordini, emettere fattura,
-          rispondere alle richieste di assistenza, inviarti comunicazioni di
-          marketing solo se hai dato il consenso.
+          Utilizziamo i tuoi dati per elaborare e spedire gli ordini, gestire
+          resi e rimborsi, fornire assistenza clienti, inviarti comunicazioni di
+          marketing (solo con il tuo consenso) e adempiere agli obblighi di legge.
         </p>
-        <h2 className="font-serif text-2xl pt-4">Conservazione</h2>
+      </LegalSection>
+
+      <LegalSection title="Base giuridica">
         <p>
-          Conserviamo i dati per il tempo necessario a evadere gli obblighi
-          di legge (10 anni per la fatturazione). Puoi richiedere la
-          cancellazione in qualsiasi momento scrivendo a ciao@caelia.com.
+          Il trattamento si fonda sull&apos;esecuzione del contratto d&apos;acquisto,
+          sul consenso (per il marketing), sul legittimo interesse (per la
+          sicurezza e il miglioramento del servizio) e sugli obblighi legali.
         </p>
-        <h2 className="font-serif text-2xl pt-4">I tuoi diritti</h2>
+      </LegalSection>
+
+      <LegalSection title="Conservazione dei dati">
         <p>
-          Puoi accedere, modificare o richiedere la cancellazione dei tuoi
-          dati personali in qualsiasi momento, contattandoci all indirizzo
-          ciao@caelia.com.
+          Conserviamo i dati per il tempo necessario alle finalità indicate e per
+          rispettare gli obblighi fiscali e legali applicabili.
         </p>
-      </div>
-    </div>
+      </LegalSection>
+
+      <LegalSection title="I tuoi diritti">
+        <p>
+          Hai il diritto di accedere, rettificare, cancellare e limitare il
+          trattamento dei tuoi dati, oltre al diritto alla portabilità e
+          all&apos;opposizione. Per esercitarli, scrivi a{" "}
+          <a href="mailto:privacy@caelia.com" className="text-burgundy underline underline-offset-4">
+            privacy@caelia.com
+          </a>
+          . Puoi inoltre proporre reclamo all&apos;autorità di controllo competente.
+        </p>
+      </LegalSection>
+    </LegalPage>
   );
 }

@@ -7,8 +7,8 @@ export function CurrencySwitcher() {
   const options: Currency[] = ["EUR", "USD", "GBP"];
 
   return (
-    <label className="hidden md:inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] text-ink/70">
-      <span className="text-ink/50">Valuta</span>
+    <label className="hidden md:inline-flex items-center text-xs uppercase tracking-[0.18em] text-ink/70" style={{ gap: "44px" }}>
+      <span className="text-ink/50" style={{ color: "var(--color-night)", backgroundColor: "rgba(254, 173, 255, 0.2)" }}>Valuta</span>
       <select
         value={currency}
         onChange={(e) => setCurrency(e.target.value as Currency)}

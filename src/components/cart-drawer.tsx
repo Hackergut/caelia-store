@@ -8,7 +8,7 @@ import { formatMoney } from "@/lib/format";
 import { Price } from "@/lib/currency";
 
 export function CartDrawer() {
-  const { isOpen, close, lines, subtotal, setQuantity, remove } = useCart();
+  const { isOpen, close, lines, subtotal, setQuantity, remove, goToCheckout } = useCart();
 
   // Lock body scroll when open
   useEffect(() => {
@@ -46,7 +46,7 @@ export function CartDrawer() {
         }`}
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-mist/60">
-          <p className="font-serif text-xl">Il tuo carrello</p>
+          <p className="font-serif text-xl" style={{ color: "var(--color-burgundy-deep)" }}>Il tuo carrello</p>
           <button
             type="button"
             onClick={close}
@@ -59,14 +59,14 @@ export function CartDrawer() {
 
         {lines.length === 0 ? (
           <div className="flex h-[70vh] flex-col items-center justify-center px-6 text-center">
-            <p className="font-serif text-2xl">Il carrello è vuoto.</p>
+            <p className="font-serif text-2xl" style={{ color: "var(--color-cacao)" }}>Il carrello è vuoto.</p>
             <p className="mt-3 text-sm text-ink/70 max-w-xs">
               Apri il Beauty Mirror Case, prova i colori, scegli la tua tonalità.
             </p>
             <Link
               href="/products"
               onClick={close}
-              className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em]"
+              className="mt-6 inline-flex items-center justify-center bg-burgundy text-cream px-6 py-3 text-xs uppercase tracking-[0.22em]"
             >
               Scopri la collezione
             </Link>
@@ -75,7 +75,7 @@ export function CartDrawer() {
           <div className="flex h-[calc(100%-8rem)] flex-col">
             <ul className="flex-1 overflow-y-auto px-6 py-5 divide-y divide-mist/60">
               {lines.map((line) => (
-                <li key={line.variantId} className="flex gap-4 py-5">
+                <li key={line.lineId} className="flex gap-4 py-5">
                   <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-cream-deep">
                     <Image
                       src={line.image}
@@ -98,7 +98,7 @@ export function CartDrawer() {
                           className="h-7 w-7 text-sm"
                           aria-label="Diminuisci quantita"
                           onClick={() =>
-                            setQuantity(line.variantId, line.quantity - 1)
+                            setQuantity(line.lineId, line.quantity - 1)
                           }
                         >
                           −
@@ -110,7 +110,7 @@ export function CartDrawer() {
                           className="h-7 w-7 text-sm"
                           aria-label="Aumenta quantita"
                           onClick={() =>
-                            setQuantity(line.variantId, line.quantity + 1)
+                            setQuantity(line.lineId, line.quantity + 1)
                           }
                         >
                           +
@@ -127,8 +127,8 @@ export function CartDrawer() {
                     </div>
                   </div>
                   <button
-                    onClick={() => remove(line.variantId)}
-                    className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+                    onClick={() => remove(line.lineId)}
+                    className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
                     aria-label="Rimuovi dal carrello"
                   >
                     Rimuovi
@@ -147,12 +147,19 @@ export function CartDrawer() {
               <p className="text-xs text-ink/60">
                 Spedizione calcolata al checkout. Resi gratuiti entro 30 giorni.
               </p>
-              <Link
-                href="/checkout"
-                onClick={close}
-                className="block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+              <button
+                type="button"
+                onClick={goToCheckout}
+                className="block w-full text-center bg-burgundy text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors btn-press"
               >
                 Procedi al checkout
+              </button>
+              <Link
+                href="/cart"
+                onClick={close}
+                className="block w-full text-center text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
+              >
+                Vedi carrello completo
               </Link>
             </div>
           </div>

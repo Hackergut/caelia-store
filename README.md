@@ -1,110 +1,33 @@
-# CAELIA — Beauty Mirror Case storefront
+# caelia-designsistem
 
-Production: https://caelia-store.vercel.app
+This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
 
-CAELIA nasce dall''incontro di due sorelle, Carla (Los Angeles) e Giulia (Dubai).
-Beauty Mirror Case: un astuccio compatto con specchio, matita contorno labbra e lip gloss.
-**Aprire. Ritoccare. Ripartire.**
+## Built with v0
 
-## Stack
+This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
 
-- **Next.js 16** (App Router) + React 19
-- **Tailwind v4** (custom design tokens)
-- **TypeScript** strict
-- **Three.js** + @react-three/fiber + drei per il viewer 3D
-- **@vercel/analytics** mounted in root layout
-- **Shopify Storefront API adapter** pronto (`src/lib/shopify.ts` + `src/lib/catalog.ts`)
+[Continue working on v0 →](https://v0.app/chat/projects/prj_Fpz0e3wizmsY1FMsv4QS4oAKXuqj)
 
-## Brand
+## Getting Started
 
-Three-tone palette, each color with a defined role:
-
-| Token | Hex | Role |
-| --- | --- | --- |
-| `--color-cacao` | `#7b5644` | main — body text, headings, primary surfaces |
-| `--color-burgundy` | `#4a0e16` | accent — CTA, hover, link emphasis |
-| `--color-rose` | `#d49b96` | decorative tint — italic accents, badges |
-| `--color-night` | `#1a0a0e` | surface — footer, announcement bar, drawer scrim |
-| `--color-cream` | `#f7f1ea` | background |
-| `--color-mist` | `#e0d6c9` | warm separators |
-
-Typography: **Inter** sans-only (minimal, linear), no serif.
-
-## Run locally
+First, run the development server:
 
 ```bash
-npm install
-npm run dev          # http://localhost:3000
-npm run build        # 28 routes
-npm run start        # production server
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-Requires Node 20+.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Drop real product photos
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-The catalog renders procedural placeholder PNGs from `public/products/*.png`. Replace them with real photography **keeping the same filenames**:
+## Learn More
 
-| File | What to photograph |
-| --- | --- |
-| `beauty-case-rose-front.png` | Beauty Mirror Case, Rose variant, front |
-| `beauty-case-noir-front.png` | Beauty Mirror Case, Noir variant, front |
-| `beauty-case-ivory-front.png` | Beauty Mirror Case, Ivory variant, front |
-| `beauty-case-rose-open.png` | Beauty Mirror Case, Rose, opened (mirror + gloss visible) |
-| `beauty-case-rose-detail.png` | Beauty Mirror Case, Rose, close-up of magnetic closure / texture |
-| `beauty-case-rose-lifestyle.png` | Beauty Mirror Case, Rose, in use (in handbag, on vanity) |
-| `beauty-case-mini-rose.png` | Beauty Mirror Case Mini, Rose, front |
-| `beauty-case-mini-noir.png` | Beauty Mirror Case Mini, Noir, front |
-| `beauty-case-mini-ivory.png` | Beauty Mirror Case Mini, Ivory, front |
-| `beauty-case-mini-open.png` | Beauty Mirror Case Mini, opened |
+To learn more, take a look at the following resources:
 
-### Easiest path — drag & drop on GitHub
-
-1. Open https://github.com/Hackergut/caelia-store/tree/master/public/products
-2. Click **"Add file"** → → "Upload files"
-3. Drag your photos, keeping the filenames above (rename if needed during upload)
-4. Click **"Commit changes"**
-5. Vercel auto-deploys from `master`. Live within ~60 seconds.
-
-### Automated path — use the import script
-
-```bash
-# Resize, encode WebP, drop in public/products/, report coverage
-.\scripts\import-product-photos.ps1 `
-  -Source "C:\path\to\rose-front.jpg" `
-  -Target beauty-case-rose-front.png `
-  -Format webp
-```
-
-The script also prints which catalog files are still missing.
-
-## Deploy
-
-```bash
-vercel link        # one-time, links to hackguts-projects/caelia-store
-vercel --prod      # deploy to production
-```
-
-Or push to `master` on GitHub — Vercel auto-deploys.
-
-## Wiring Shopify (optional — catalog currently local)
-
-```bash
-vercel env add SHOPIFY_STORE_DOMAIN production
-# enter: tuonegozio.myshopify.com
-vercel env add SHOPIFY_STOREFRONT_API_TOKEN production
-# enter the Storefront API access token
-vercel --prod
-```
-
-`src/lib/catalog.ts` automatically routes to Shopify when both env vars are present, with local fallback.
-
-## Documentation
-
-- `docs/MOTION.md` — Emil Kowalski motion philosophy, tokens, utility classes
-- `docs/SHOPIFY.md` — Shopify activation guide
-- `docs/PRODUCT-PHOTOS.md` — detailed photo specs (sizes, colors, formats)
-
-## Authors
-
-Carla R. (Los Angeles) · Giulia D. (Dubai) — sister-founders of CAELIA.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
