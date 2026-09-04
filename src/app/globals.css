@@ -358,3 +358,10 @@ h1 { letter-spacing: -0.04em; font-weight: 300; }
 }
 
 .text-balance { text-wrap: balance; }
+
+#caelia-menu > summary {
+  list-style: none;
+}
+#caelia-menu > summary::-webkit-details-marker {
+  display: none;
+}
