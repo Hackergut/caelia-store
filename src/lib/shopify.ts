@@ -13,17 +13,17 @@
 import type { Product, ProductVariant, ProductImage, Money } from "./types";
 
 const DOMAIN = process.env.SHOPIFY_STORE_DOMAIN;
-const TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN;
+const TOKEN = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
 type ShopifyResponse<T> = { data?: T; errors?: Array<{ message: string }> };
 
 async function shopifyFetch<T>(query: string, variables: Record<string, unknown> = {}): Promise<T> {
   if (!DOMAIN || !TOKEN) {
     throw new Error(
-      "Shopify env vars missing: set SHOPIFY_STORE_DOMAIN and SHOPIFY_STOREFRONT_API_TOKEN",
+      "Shopify env vars missing: set SHOPIFY_STORE_DOMAIN and SHOPIFY_STOREFRONT_ACCESS_TOKEN",
     );
   }
-  const res = await fetch(`https://${DOMAIN}/api/2024-10/graphql.json`, {
+  const res = await fetch(`https://${DOMAIN}/api/2026-07/graphql.json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
