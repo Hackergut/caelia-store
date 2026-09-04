@@ -59,15 +59,12 @@ export const products: Product[] = [
     descriptionEn:
       "Beauty Mirror Case in Burgundy Caelia — the maison burgundy. Mirror, liner and gloss in one slim case.",
     images: [
-      { src: "/products/new-beauty-case-burgundy-front.jpg", alt: "Burgundy Caelia — astuccio e specchio" },
-      { src: "/products/new-beauty-case-burgundy-open.jpg", alt: "Burgundy Caelia — vista frontale" },
-      { src: "/products/new-beauty-case-crema-logo.jpg", alt: "Burgundy Caelia — su fondo crema" },
-      { src: "/products/new-beauty-case-burgundy-logo.jpg", alt: "Burgundy Caelia — tasca con matite" },
-      { src: "/products/new-beauty-case-burgundy-texture.jpg", alt: "Burgundy Caelia — texture e logo" },
-      { src: "/products/new-beauty-case-burgundy-texture-2.jpg", alt: "Burgundy Caelia — dettaglio pelle" },
-      { src: "/products/new-beauty-case-burgundy-pocket.jpg", alt: "Burgundy Caelia — tasca" },
-      { src: "/products/new-beauty-case-burgundy-logo-2.jpg", alt: "Burgundy Caelia — logo in rilievo" },
-      { src: "/products/new-beauty-case-burgundy-set.jpg", alt: "Burgundy Caelia — set" },
+      { src: "/products/burgundy-caelia-pair.jpg", alt: "Burgundy Caelia — astuccio e specchio" },
+      { src: "/products/burgundy-caelia-front.jpg", alt: "Burgundy Caelia — vista frontale" },
+      { src: "/products/burgundy-caelia-pocket.jpg", alt: "Burgundy Caelia — tasca" },
+      { src: "/products/burgundy-caelia-pencils.jpg", alt: "Burgundy Caelia — matite in tasca" },
+      { src: "/products/burgundy-caelia-logo.jpg", alt: "Burgundy Caelia — logo CAELIA" },
+      { src: "/products/burgundy-caelia-stitch.jpg", alt: "Burgundy Caelia — cucitura e pelle" },
     ],
     variants: [oneVariant("burgundy-caelia", "CAELIA-BC-BURG-01", "Burgundy Caelia", "#4a0e16")],
     seo: {
