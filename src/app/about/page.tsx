@@ -55,7 +55,7 @@ export default function AboutPage() {
         </div>
         <div className="relative aspect-[4/5] rounded-md overflow-hidden shadow-product">
           <Image
-            src="/products/beauty-case-rose-lifestyle.png"
+            src="/products/beauty-case-burgundy-lifestyle.jpg"
             alt="Due sorelle, due citta, un rituale"
             fill
             sizes="(min-width: 1024px) 40vw, 100vw"

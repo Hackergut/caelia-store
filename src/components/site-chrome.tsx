@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
-import { MobileMenu } from "./mobile-menu";
+import { SideMenu } from "./side-menu";
 import { NewsletterForm } from "./newsletter-form";
 import { CurrencySwitcher } from "./currency-switcher";
 
@@ -60,39 +60,19 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       <header className={headerClass}>
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="grid grid-cols-3 items-center h-20">
+          <div className="flex items-center justify-between h-20">
             <button
               type="button"
-              aria-label="Apri menu"
-              className="justify-self-start inline-flex items-center gap-2 text-xs uppercase tracking-[0.18em] md:hidden"
+              aria-label="Apri menu CAELIA"
+              aria-expanded={mobileOpen}
+              className="font-logo text-xl md:text-2xl text-left"
               onClick={() => setMobileOpen(true)}
             >
-              <span className="block h-px w-6 bg-charcoal" />
-              <span className="block h-px w-6 bg-charcoal" />
-            </button>
-            <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-[0.22em]">
-              <Link href="/products" className="nav-link">Collezione</Link>
-              <Link href="/about" className="nav-link">Storia</Link>
-              <Link href="/journal" className="nav-link">Journal</Link>
-              <Link href="/search" className="nav-link" aria-label="Cerca">Cerca</Link>
-            </nav>
-
-            <Link
-              href="/"
-              className="justify-self-center font-logo text-xl md:text-2xl"
-              aria-label="CAELIA home"
-            >
               CAELIA
-            </Link>
+            </button>
 
-            <div className="justify-self-end flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
-              <Link href="/wishlist" className="nav-link hidden sm:inline">
-                Preferiti
-              </Link>
+            <div className="flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
               <CurrencySwitcher />
-              <Link href="/account" className="nav-link hidden sm:inline">
-                Account
-              </Link>
               <button
                 type="button"
                 className="nav-link relative"
@@ -218,7 +198,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </footer>
 
       <CartDrawer />
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+      <SideMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
     </>
   );
 }

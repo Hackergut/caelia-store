@@ -49,28 +49,32 @@ export const products: Product[] = [
     },
     images: [
       {
-        src: "/products/beauty-case-rose-front.png",
-        alt: "Beauty Mirror Case Burgundy Caelia vista frontale",
+        src: "/products/beauty-case-burgundy-front.jpg",
+        alt: "Beauty Mirror Case Burgundy Caelia vista laterale",
       },
       {
-        src: "/products/beauty-case-rose-open.png",
-        alt: "Beauty Mirror Case Burgundy Caelia aperto con specchio e prodotti",
+        src: "/products/beauty-case-burgundy-open.jpg",
+        alt: "Beauty Mirror Case Burgundy Caelia specchio e tasca",
       },
       {
-        src: "/products/beauty-case-rose-detail.png",
-        alt: "Beauty Mirror Case Burgundy Caelia dettaglio della chiusura magnetica",
+        src: "/products/beauty-case-burgundy-detail.jpg",
+        alt: "Beauty Mirror Case Burgundy Caelia dettaglio cucitura e logo",
       },
       {
-        src: "/products/beauty-case-noir-front.png",
-        alt: "Beauty Mirror Case Cacao Caelia vista frontale",
+        src: "/products/beauty-case-burgundy-lifestyle.jpg",
+        alt: "Beauty Mirror Case Burgundy Caelia su marmo",
       },
       {
-        src: "/products/beauty-case-ivory-front.png",
-        alt: "Beauty Mirror Case Crema Caelia vista frontale",
+        src: "/products/beauty-case-burgundy-pocket.jpg",
+        alt: "Beauty Mirror Case Burgundy Caelia con matite",
       },
       {
-        src: "/products/beauty-case-rose-lifestyle.png",
-        alt: "Beauty Mirror Case Burgundy Caelia in uso",
+        src: "/products/beauty-case-cacao-front.jpg",
+        alt: "Beauty Mirror Case Cacao Caelia specchio e tasca",
+      },
+      {
+        src: "/products/beauty-case-crema-front.jpg",
+        alt: "Beauty Mirror Case Crema Caelia con matite e specchio",
       },
     ],
     variants: [
@@ -135,20 +139,20 @@ export const products: Product[] = [
     },
     images: [
       {
-        src: "/products/beauty-case-mini-rose.png",
-        alt: "Beauty Mirror Case Mini Burgundy Caelia vista frontale",
+        src: "/products/beauty-case-burgundy-pocket.jpg",
+        alt: "Beauty Mirror Case Mini Burgundy Caelia",
       },
       {
-        src: "/products/beauty-case-mini-noir.png",
-        alt: "Beauty Mirror Case Mini Cacao Caelia vista frontale",
+        src: "/products/beauty-case-cacao-pocket.jpg",
+        alt: "Beauty Mirror Case Mini Cacao Caelia",
       },
       {
-        src: "/products/beauty-case-mini-ivory.png",
-        alt: "Beauty Mirror Case Mini Crema Caelia vista frontale",
+        src: "/products/beauty-case-crema-pocket.jpg",
+        alt: "Beauty Mirror Case Mini Crema Caelia",
       },
       {
-        src: "/products/beauty-case-mini-open.png",
-        alt: "Beauty Mirror Case Mini Burgundy Caelia aperto",
+        src: "/products/beauty-case-crema-front.jpg",
+        alt: "Beauty Mirror Case Mini Crema Caelia con specchio",
       },
     ],
     variants: [
