@@ -8,6 +8,7 @@ import { CartDrawer } from "./cart-drawer";
 import { SideMenu } from "./side-menu";
 import { NewsletterForm } from "./newsletter-form";
 import { CurrencySwitcher } from "./currency-switcher";
+import { LogoWordmark } from "./logo-wordmark";
 
 const ANNOUNCEMENT =
   "Spedizione gratuita in Italia oltre 60 euro · Resi gratuiti entro 30 giorni";
@@ -65,10 +66,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               type="button"
               aria-label="Apri menu CAELIA"
               aria-expanded={mobileOpen}
-              className="font-logo text-xl md:text-2xl text-left"
+              className="text-xl md:text-2xl text-left"
               onClick={() => setMobileOpen(true)}
             >
-              CAELIA
+              <LogoWordmark />
             </button>
 
             <div className="flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
@@ -99,7 +100,9 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid gap-10 md:grid-cols-2">
           {/* Brand block — descrizione estesa, social, sede */}
           <div className="md:max-w-md">
-            <p className="font-logo text-2xl">CAELIA</p>
+            <p className="text-2xl">
+              <LogoWordmark />
+            </p>
             <p className="mt-4 text-sm text-cream/70 leading-relaxed">
               Aprire. Ritoccare. Ripartire. L&apos;astuccio beauty con specchio
               per le donne che non si fermano. Pensato da Carla e Giulia, due

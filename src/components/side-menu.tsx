@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect } from "react";
+import { LogoWordmark } from "./logo-wordmark";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -47,7 +48,9 @@ export function SideMenu({
         aria-label="Menu"
       >
         <div className="flex items-center justify-between px-8 py-6 border-b border-mist/60">
-          <p className="font-logo text-lg">CAELIA</p>
+          <p className="text-lg">
+            <LogoWordmark />
+          </p>
           <button
             type="button"
             onClick={onClose}

@@ -87,6 +87,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="it"
       className={`${inter.variable} ${fraunces.variable} ${tenor.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-cream text-ink font-sans">
         <CartProvider>
           <WishlistProvider>
