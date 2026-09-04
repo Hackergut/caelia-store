@@ -30,8 +30,8 @@ export default function Home() {
           <div className="order-first aspect-[4/3] overflow-hidden bg-cream-deep sm:aspect-square lg:order-none">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/products/burgundy-caelia-pair.jpg"
-              alt="Burgundy Caelia"
+              src="/products/burgundy-caelia-pencils.jpg"
+              alt="Burgundy Caelia — matita labbra e gloss nella tasca dell'astuccio"
               className="h-full w-full object-cover"
             />
           </div>
