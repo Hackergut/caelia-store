@@ -61,19 +61,43 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       <header className={headerClass}>
         <div className="mx-auto max-w-7xl px-6 lg:px-10">
-          <div className="flex items-center justify-between h-20">
-            <button
-              type="button"
-              aria-label="Apri menu CAELIA"
-              aria-expanded={mobileOpen}
-              className="text-xl md:text-2xl text-left"
-              onClick={() => setMobileOpen(true)}
-            >
-              <LogoWordmark />
-            </button>
+          <div className="grid grid-cols-[auto_1fr_auto] md:grid-cols-3 items-center h-20 gap-4">
+            <div className="justify-self-start flex items-center gap-3">
+              <button
+                type="button"
+                aria-label="Apri menu"
+                aria-expanded={mobileOpen}
+                className="inline-flex flex-col justify-center gap-1.5 h-10 w-10 md:hidden"
+                onClick={() => setMobileOpen(true)}
+              >
+                <span className="block h-px w-6 bg-ink" />
+                <span className="block h-px w-6 bg-ink" />
+                <span className="block h-px w-4 bg-ink" />
+              </button>
+              <Link
+                href="/"
+                className="text-lg md:text-2xl"
+                aria-label="CAELIA home"
+              >
+                <LogoWordmark />
+              </Link>
+            </div>
 
-            <div className="flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
+            <nav className="hidden md:flex justify-self-center items-center gap-8 text-xs uppercase tracking-[0.22em]">
+              <Link href="/products" className="nav-link">Collezione</Link>
+              <Link href="/about" className="nav-link">Storia</Link>
+              <Link href="/journal" className="nav-link">Journal</Link>
+              <Link href="/search" className="nav-link">Cerca</Link>
+            </nav>
+
+            <div className="justify-self-end flex items-center gap-5 text-xs uppercase tracking-[0.18em]">
+              <Link href="/wishlist" className="nav-link hidden sm:inline">
+                Preferiti
+              </Link>
               <CurrencySwitcher />
+              <Link href="/account" className="nav-link hidden md:inline">
+                Account
+              </Link>
               <button
                 type="button"
                 className="nav-link relative"

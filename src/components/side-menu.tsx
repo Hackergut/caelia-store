@@ -41,8 +41,8 @@ export function SideMenu({
         onClick={onClose}
       />
       <aside
-        className={`fixed left-0 top-0 z-50 h-full w-full max-w-sm bg-cream text-ink shadow-2xl transition-transform duration-[var(--dur-slow)] ease-[var(--ease-drawer)] ${
-          open ? "translate-x-0" : "-translate-x-full"
+        className={`fixed left-0 top-0 z-50 h-full w-[min(100%,20rem)] bg-cream text-ink shadow-2xl transition-transform duration-[var(--dur-slow)] ease-[var(--ease-drawer)] ${
+          open ? "translate-x-0" : "-translate-x-full pointer-events-none"
         }`}
         aria-hidden={!open}
         aria-label="Menu"

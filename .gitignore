@@ -42,3 +42,9 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# Raw uploads at repo root — only public/products ships
+/*.jpeg
+/*.jpg
+/*.png
+!public/**

@@ -348,11 +348,13 @@ h1 { letter-spacing: -0.028em; }
   font-weight: 450;
 }
 
-.font-logo {
-  font-family: var(--font-logo);
+.font-logo,
+.logo-wordmark {
+  font-family: "Tenor Sans", "Arial Narrow", Arial, Helvetica, sans-serif;
   font-weight: 400;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
+  font-style: normal;
 }
 
 .text-balance { text-wrap: balance; }
