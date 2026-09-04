@@ -26,6 +26,89 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <style>{`
+        .caelia-top {
+          position: sticky;
+          top: 0;
+          z-index: 300;
+          background: #f7f1ea;
+          border-bottom: 1px solid #e0d6c9;
+        }
+        .caelia-row {
+          display: flex;
+          align-items: center;
+          height: 80px;
+          padding: 0 32px;
+          gap: 28px;
+        }
+        .caelia-hb {
+          display: none;
+          position: relative;
+        }
+        .caelia-hb > summary {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          width: 40px;
+          height: 40px;
+          border: 1px solid #4a0e16;
+          cursor: pointer;
+        }
+        .caelia-hb > summary::-webkit-details-marker { display: none; }
+        .caelia-hb-line {
+          display: block;
+          width: 16px;
+          height: 2px;
+          background: #4a0e16;
+        }
+        .caelia-hb-panel {
+          position: absolute;
+          left: 0;
+          top: calc(100% + 8px);
+          z-index: 400;
+          min-width: 220px;
+          background: #f7f1ea;
+          border: 1px solid #e0d6c9;
+          padding: 12px 0;
+        }
+        .caelia-hb-panel a {
+          display: block;
+          padding: 10px 20px;
+          font-size: 13px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+        }
+        .caelia-logo {
+          font-size: 20px;
+          white-space: nowrap;
+          flex: 0 0 auto;
+        }
+        .caelia-pc {
+          display: flex;
+          align-items: center;
+          flex: 1;
+          gap: 28px;
+          font-size: 11px;
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+        }
+        .caelia-cart {
+          margin-left: auto;
+          font-size: 11px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          white-space: nowrap;
+        }
+        @media (max-width: 767px) {
+          .caelia-hb { display: block; }
+          .caelia-pc { display: none; }
+          .caelia-row { height: 64px; padding: 0 16px; gap: 12px; }
+        }
+      `}</style>
+
       <div className="overflow-hidden bg-night text-cream text-xs tracking-[0.18em] uppercase py-2">
         <div className="flex whitespace-nowrap marquee">
           {Array.from({ length: 6 }).map((_, i) => (
@@ -36,91 +119,28 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      <header
-        style={{
-          position: "sticky",
-          top: 0,
-          zIndex: 300,
-          background: "#f7f1ea",
-          borderBottom: "1px solid #e0d6c9",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            alignItems: "center",
-            gap: 16,
-            padding: "16px 24px",
-          }}
-        >
-          <details style={{ position: "relative" }}>
-            <summary
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: 5,
-                width: 40,
-                height: 40,
-                border: "1px solid #4a0e16",
-                cursor: "pointer",
-                listStyle: "none",
-              }}
-            >
-              <span style={{ display: "block", width: 16, height: 2, background: "#4a0e16" }} />
-              <span style={{ display: "block", width: 16, height: 2, background: "#4a0e16" }} />
-              <span style={{ display: "block", width: 16, height: 2, background: "#4a0e16" }} />
+      <header className="caelia-top">
+        <div className="caelia-row">
+          <details className="caelia-hb">
+            <summary aria-label="Apri menu">
+              <span className="caelia-hb-line" />
+              <span className="caelia-hb-line" />
+              <span className="caelia-hb-line" />
             </summary>
-            <nav
-              style={{
-                position: "absolute",
-                left: 0,
-                top: "calc(100% + 8px)",
-                zIndex: 400,
-                minWidth: 220,
-                background: "#f7f1ea",
-                border: "1px solid #e0d6c9",
-                padding: "16px 0",
-                boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
-              }}
-            >
+            <nav className="caelia-hb-panel">
               {NAV.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  style={{
-                    display: "block",
-                    padding: "10px 20px",
-                    fontSize: 13,
-                    letterSpacing: "0.16em",
-                    textTransform: "uppercase",
-                  }}
-                >
+                <Link key={l.href} href={l.href}>
                   {l.label}
                 </Link>
               ))}
             </nav>
           </details>
 
-          <span style={{ fontSize: 20, whiteSpace: "nowrap" }}>
+          <span className="caelia-logo">
             <LogoWordmark />
           </span>
 
-          <nav
-            aria-label="Principale"
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              alignItems: "center",
-              gap: "10px 22px",
-              flex: 1,
-              fontSize: 11,
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-            }}
-          >
+          <nav className="caelia-pc" aria-label="Principale">
             {NAV.map((l) => (
               <Link
                 key={l.href}
@@ -128,7 +148,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 style={{
                   color: "#4a0e16",
                   textDecoration: pathname === l.href ? "underline" : "none",
-                  textUnderlineOffset: 6,
+                  textUnderlineOffset: 8,
                 }}
               >
                 {l.label}
@@ -136,16 +156,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <Link
-            href="/cart"
-            style={{
-              marginLeft: "auto",
-              fontSize: 11,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              whiteSpace: "nowrap",
-            }}
-          >
+          <Link href="/cart" className="caelia-cart">
             Carrello
             {itemCount > 0 ? ` (${itemCount})` : ""}
           </Link>
