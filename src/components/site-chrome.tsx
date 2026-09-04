@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
@@ -23,10 +23,10 @@ const NAV = [
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setOpen(false);
+    const d = document.getElementById("caelia-menu") as HTMLDetailsElement | null;
+    if (d) d.open = false;
   }, [pathname]);
 
   return (
@@ -42,17 +42,34 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </div>
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="flex h-16 md:h-20 w-full items-center justify-between px-5 sm:px-8">
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="text-lg md:text-2xl"
-            aria-label={open ? "Chiudi menu" : "Apri menu"}
-          >
-            <LogoWordmark />
-          </button>
+        <div className="relative flex h-[4.25rem] w-full items-center">
+          <details id="caelia-menu" className="group">
+            <summary className="flex h-[4.25rem] cursor-pointer list-none items-center pl-5 sm:pl-8 text-xl md:text-2xl [&::-webkit-details-marker]:hidden">
+              <LogoWordmark />
+            </summary>
+            <div className="fixed inset-0 z-[600]">
+              <div className="absolute inset-0 bg-black/50" />
+              <aside className="absolute left-0 top-0 h-full w-[min(22rem,100%)] bg-cream text-ink overflow-y-auto">
+                <div className="flex h-[4.25rem] items-center justify-between px-6 border-b border-mist">
+                  <span className="text-lg">
+                    <LogoWordmark />
+                  </span>
+                </div>
+                <nav className="flex flex-col p-8 gap-6 text-2xl font-light">
+                  {NAV.map((l) => (
+                    <Link key={l.href} href={l.href}>
+                      {l.label}
+                    </Link>
+                  ))}
+                </nav>
+              </aside>
+            </div>
+          </details>
 
-          <Link href="/cart" className="relative text-[11px] uppercase tracking-[0.18em]">
+          <Link
+            href="/cart"
+            className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 text-[11px] uppercase tracking-[0.22em]"
+          >
             Carrello
             {itemCount > 0 ? (
               <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
@@ -62,38 +79,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </Link>
         </div>
       </header>
-
-      {open && (
-        <div className="fixed inset-0 z-[600]">
-          <button
-            type="button"
-            className="absolute inset-0 bg-black/50"
-            aria-label="Chiudi menu"
-            onClick={() => setOpen(false)}
-          />
-          <div className="absolute left-0 top-0 h-full w-[min(22rem,100%)] bg-cream text-ink overflow-y-auto">
-            <div className="flex h-16 items-center justify-between px-6 border-b border-mist">
-              <span className="text-lg">
-                <LogoWordmark />
-              </span>
-              <button
-                type="button"
-                className="text-[11px] uppercase tracking-[0.22em]"
-                onClick={() => setOpen(false)}
-              >
-                Chiudi
-              </button>
-            </div>
-            <nav className="flex flex-col p-8 gap-6 text-2xl font-light">
-              {NAV.map((l) => (
-                <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-        </div>
-      )}
 
       <main className="flex-1">{children}</main>
 
