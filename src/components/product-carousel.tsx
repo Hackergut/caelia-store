@@ -1,6 +1,6 @@
 import type { ProductImage } from "@/lib/types";
 
-/** Native scroll-snap carousel. Works without JS. */
+/** Native scroll-snap carousel. Images keep a square frame. */
 export function ProductCarousel({
   images,
   id = "gallery",
@@ -12,26 +12,27 @@ export function ProductCarousel({
 
   return (
     <div>
-      <div
-        id={id}
-        className="flex aspect-square w-full overflow-x-auto snap-x snap-mandatory scroll-smooth bg-cream-deep"
-        style={{ scrollbarWidth: "thin" }}
-      >
-        {images.map((img, i) => (
-          <figure
-            key={img.src}
-            id={`${id}-${i}`}
-            className="relative h-full w-full min-w-full shrink-0 snap-center snap-always"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={img.src}
-              alt={img.alt}
-              className="h-full w-full object-cover"
-              draggable={false}
-            />
-          </figure>
-        ))}
+      <div className="relative w-full aspect-square bg-cream-deep">
+        <div
+          id={id}
+          className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
+        >
+          {images.map((img, i) => (
+            <figure
+              key={img.src}
+              id={`${id}-${i}`}
+              className="h-full w-full min-w-full shrink-0 snap-center"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img.src}
+                alt={img.alt}
+                className="block h-full w-full object-cover"
+                draggable={false}
+              />
+            </figure>
+          ))}
+        </div>
       </div>
 
       {images.length > 1 && (

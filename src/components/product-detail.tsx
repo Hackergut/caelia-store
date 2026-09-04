@@ -39,7 +39,13 @@ export function ProductDetail({ product }: { product: Product }) {
       currency: variant.price.currencyCode,
     });
     pushRecentlyViewed(product.handle);
-  }, [product.id, product.handle, product.title, variant.price.amount, variant.price.currencyCode]);
+  }, [
+    product.id,
+    product.handle,
+    product.title,
+    variant.price.amount,
+    variant.price.currencyCode,
+  ]);
 
   function addToCart() {
     add(product, variant, quantity);
@@ -52,62 +58,9 @@ export function ProductDetail({ product }: { product: Product }) {
     });
   }
 
-  function prev() {
-    setI((x) => (x - 1 + n) % n);
-  }
-  function next() {
-    setI((x) => (x + 1) % n);
-  }
-
   return (
     <div className="mx-auto max-w-6xl px-5 lg:px-10 pt-8 pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16">
-      <div>
-        <div className="relative aspect-square bg-cream-deep">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={img.src}
-            alt={img.alt}
-            className="h-full w-full object-cover cursor-pointer"
-            onClick={next}
-          />
-          {n > 1 && (
-            <>
-              <button
-                type="button"
-                onClick={prev}
-                className="absolute left-3 top-1/2 z-10 -translate-y-1/2 h-10 w-10 bg-cream/90 text-ink"
-                aria-label="Foto precedente"
-              >
-                ‹
-              </button>
-              <button
-                type="button"
-                onClick={next}
-                className="absolute right-3 top-1/2 z-10 -translate-y-1/2 h-10 w-10 bg-cream/90 text-ink"
-                aria-label="Foto successiva"
-              >
-                ›
-              </button>
-            </>
-          )}
-        </div>
-        <div className="mt-3 grid grid-cols-5 gap-2">
-          {photos.map((thumb, idx) => (
-            <button
-              key={thumb.src}
-              type="button"
-              onClick={() => setI(idx)}
-              className={`aspect-square overflow-hidden ${
-                idx === i ? "ring-2 ring-burgundy" : "ring-1 ring-mist/40"
-              }`}
-              aria-label={`Foto ${idx + 1}`}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={thumb.src} alt="" className="h-full w-full object-cover pointer-events-none" />
-            </button>
-          ))}
-        </div>
-      </div>
+      <ProductCarousel images={product.images} id={product.handle} />
 
       <div>
         <p className="text-[11px] uppercase tracking-[0.28em] text-ink/50">
