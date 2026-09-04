@@ -111,19 +111,19 @@ export default async function Home() {
             {[
               {
                 href: "/products/burgundy-caelia",
-                src: "/products/burgundy-caelia-logo.jpg",
+                src: "/products/chapter-burgundy.jpg",
                 n: "01",
                 t: "Burgundy",
               },
               {
                 href: "/products/cacao-caelia",
-                src: "/products/cacao-caelia-logo.jpg",
+                src: "/products/chapter-cacao.jpg",
                 n: "02",
                 t: "Cacao",
               },
               {
                 href: "/products/crema-caelia",
-                src: "/products/crema-caelia-pair.jpg",
+                src: "/products/chapter-crema.jpg",
                 n: "03",
                 t: "Crema",
               },
