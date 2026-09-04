@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
@@ -23,11 +23,6 @@ const NAV = [
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
 
   return (
     <>
@@ -53,157 +48,109 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         <div
           style={{
             display: "flex",
-            alignItems: "center",
-            height: 72,
-            padding: "0 24px",
-            gap: 16,
-          }}
-        >
-          <button
-            type="button"
-            aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
-            onClick={() => setMenuOpen((v) => !v)}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: 5,
-              width: 40,
-              height: 40,
-              flexShrink: 0,
-              background: "transparent",
-              border: "1px solid #4a0e16",
-              cursor: "pointer",
-            }}
-          >
-            <span style={{ display: "block", width: 16, height: 1.5, background: "#4a0e16" }} />
-            <span style={{ display: "block", width: 16, height: 1.5, background: "#4a0e16" }} />
-            <span style={{ display: "block", width: 16, height: 1.5, background: "#4a0e16" }} />
-          </button>
-
-          <span style={{ fontSize: 20, whiteSpace: "nowrap" }}>
-            <LogoWordmark />
-          </span>
-          <Link
-            href="/cart"
-            style={{
-              position: "relative",
-              marginLeft: "auto",
-              fontSize: 11,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-            }}
-          >
-            Carrello
-            {itemCount > 0 ? (
-              <span className="site-bar__count">{itemCount}</span>
-            ) : null}
-          </Link>
-        </div>
-        <nav
-          aria-label="Principale"
-          style={{
-            display: "flex",
             flexWrap: "wrap",
-            justifyContent: "center",
             alignItems: "center",
-            gap: "8px 28px",
-            padding: "10px 24px 14px",
-            borderTop: "1px solid #e0d6c9",
-            fontSize: 11,
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
+            gap: 16,
+            padding: "16px 24px",
           }}
         >
-          {NAV.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              style={
-                pathname === l.href
-                  ? { textDecoration: "underline", textUnderlineOffset: 6, color: "#4a0e16" }
-                  : { color: "#4a0e16" }
-              }
-            >
-              {l.label}
-            </Link>
-          ))}
-        </nav>
-      </header>
-
-      {menuOpen ? (
-        <div style={{ position: "fixed", inset: 0, zIndex: 600 }}>
-          <button
-            type="button"
-            aria-label="Chiudi menu"
-            onClick={() => setMenuOpen(false)}
-            style={{
-              position: "absolute",
-              inset: 0,
-              background: "rgba(0,0,0,0.45)",
-              border: 0,
-              cursor: "pointer",
-            }}
-          />
-          <aside
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              height: "100%",
-              width: "min(22rem, 100%)",
-              background: "#f7f1ea",
-              overflowY: "auto",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                height: 72,
-                padding: "0 24px",
-                borderBottom: "1px solid #e0d6c9",
-              }}
-            >
-              <span style={{ fontSize: 20 }}>
-                <LogoWordmark />
-              </span>
-              <button
-                type="button"
-                onClick={() => setMenuOpen(false)}
-                style={{
-                  background: "transparent",
-                  border: 0,
-                  fontSize: 11,
-                  letterSpacing: "0.22em",
-                  textTransform: "uppercase",
-                  cursor: "pointer",
-                }}
-              >
-                Chiudi
-              </button>
-            </div>
-            <nav
+          <details style={{ position: "relative" }}>
+            <summary
               style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: 20,
-                padding: 32,
-                fontSize: 24,
-                fontWeight: 300,
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 5,
+                width: 40,
+                height: 40,
+                border: "1px solid #4a0e16",
+                cursor: "pointer",
+                listStyle: "none",
+              }}
+            >
+              <span style={{ display: "block", width: 16, height: 2, background: "#4a0e16" }} />
+              <span style={{ display: "block", width: 16, height: 2, background: "#4a0e16" }} />
+              <span style={{ display: "block", width: 16, height: 2, background: "#4a0e16" }} />
+            </summary>
+            <nav
+              style={{
+                position: "absolute",
+                left: 0,
+                top: "calc(100% + 8px)",
+                zIndex: 400,
+                minWidth: 220,
+                background: "#f7f1ea",
+                border: "1px solid #e0d6c9",
+                padding: "16px 0",
+                boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
               }}
             >
               {NAV.map((l) => (
-                <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  style={{
+                    display: "block",
+                    padding: "10px 20px",
+                    fontSize: 13,
+                    letterSpacing: "0.16em",
+                    textTransform: "uppercase",
+                  }}
+                >
                   {l.label}
                 </Link>
               ))}
             </nav>
-          </aside>
+          </details>
+
+          <span style={{ fontSize: 20, whiteSpace: "nowrap" }}>
+            <LogoWordmark />
+          </span>
+
+          <nav
+            aria-label="Principale"
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              alignItems: "center",
+              gap: "10px 22px",
+              flex: 1,
+              fontSize: 11,
+              letterSpacing: "0.2em",
+              textTransform: "uppercase",
+            }}
+          >
+            {NAV.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                style={{
+                  color: "#4a0e16",
+                  textDecoration: pathname === l.href ? "underline" : "none",
+                  textUnderlineOffset: 6,
+                }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Link
+            href="/cart"
+            style={{
+              marginLeft: "auto",
+              fontSize: 11,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              whiteSpace: "nowrap",
+            }}
+          >
+            Carrello
+            {itemCount > 0 ? ` (${itemCount})` : ""}
+          </Link>
         </div>
-      ) : null}
+      </header>
 
       <main className="flex-1">{children}</main>
 
