@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
@@ -23,6 +23,7 @@ const NAV = [
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
     <>
@@ -49,11 +50,34 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           style={{
             display: "flex",
             alignItems: "center",
-            justifyContent: "space-between",
             height: 72,
-            padding: "0 32px",
+            padding: "0 24px",
+            gap: 16,
           }}
         >
+          <button
+            type="button"
+            aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
+            onClick={() => setMenuOpen((v) => !v)}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 5,
+              width: 40,
+              height: 40,
+              flexShrink: 0,
+              background: "transparent",
+              border: "1px solid #4a0e16",
+              cursor: "pointer",
+            }}
+          >
+            <span style={{ display: "block", width: 16, height: 1.5, background: "#4a0e16" }} />
+            <span style={{ display: "block", width: 16, height: 1.5, background: "#4a0e16" }} />
+            <span style={{ display: "block", width: 16, height: 1.5, background: "#4a0e16" }} />
+          </button>
+
           <span style={{ fontSize: 20, whiteSpace: "nowrap" }}>
             <LogoWordmark />
           </span>
@@ -61,6 +85,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             href="/cart"
             style={{
               position: "relative",
+              marginLeft: "auto",
               fontSize: 11,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
