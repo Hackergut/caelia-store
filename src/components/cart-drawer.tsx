@@ -75,7 +75,7 @@ export function CartDrawer() {
           <div className="flex h-[calc(100%-8rem)] flex-col">
             <ul className="flex-1 overflow-y-auto px-6 py-5 divide-y divide-mist/60">
               {lines.map((line) => (
-                <li key={line.variantId} className="flex gap-4 py-5">
+                <li key={line.lineId} className="flex gap-4 py-5">
                   <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-cream-deep">
                     <Image
                       src={line.image}
@@ -98,7 +98,7 @@ export function CartDrawer() {
                           className="h-7 w-7 text-sm"
                           aria-label="Diminuisci quantita"
                           onClick={() =>
-                            setQuantity(line.variantId, line.quantity - 1)
+                            setQuantity(line.lineId, line.quantity - 1)
                           }
                         >
                           −
@@ -110,7 +110,7 @@ export function CartDrawer() {
                           className="h-7 w-7 text-sm"
                           aria-label="Aumenta quantita"
                           onClick={() =>
-                            setQuantity(line.variantId, line.quantity + 1)
+                            setQuantity(line.lineId, line.quantity + 1)
                           }
                         >
                           +
@@ -127,7 +127,7 @@ export function CartDrawer() {
                     </div>
                   </div>
                   <button
-                    onClick={() => remove(line.variantId)}
+                    onClick={() => remove(line.lineId)}
                     className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
                     aria-label="Rimuovi dal carrello"
                   >

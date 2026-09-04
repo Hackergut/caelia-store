@@ -38,17 +38,17 @@ export function MobileMenu({
           <button
             type="button"
             onClick={onClose}
-            className="text-xs uppercase tracking-[0.18em]"
+            className="text-xs uppercase tracking-[0.18em] text-ink"
           >
             Chiudi
           </button>
         </div>
         <nav className="flex flex-col gap-6 p-6 text-lg font-serif">
-          <Link href="/products" onClick={onClose}>Collezione</Link>
-          <Link href="/about" onClick={onClose}>Storia</Link>
-          <Link href="/journal" onClick={onClose}>Journal</Link>
-          <Link href="/account" onClick={onClose}>Account</Link>
-          <Link href="/contact" onClick={onClose}>Contatti</Link>
+          <Link href="/products" onClick={onClose} className="text-burgundy">Collezione</Link>
+          <Link href="/about" onClick={onClose} className="text-burgundy">Storia</Link>
+          <Link href="/journal" onClick={onClose} className="text-burgundy">Journal</Link>
+          <Link href="/account" onClick={onClose} className="text-burgundy">Account</Link>
+          <Link href="/contact" onClick={onClose} className="text-blush-deep">Contatti</Link>
         </nav>
       </div>
     </>

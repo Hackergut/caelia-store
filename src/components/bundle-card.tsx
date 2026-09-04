@@ -18,11 +18,15 @@ type Bundle = {
 
 const BUNDLES: Bundle[] = [
   {
-    handle: "duo-essentials",
-    title: "Duo Essentials",
+    handle: "trio-tonalita",
+    title: "Trio delle Tonalità",
     description:
-      "Beauty Mirror Case + Mini: specchio, matita e gloss in due formati. Risparmi il15%.",
-    productHandles: ["beauty-mirror-case", "beauty-mirror-case-mini"],
+      "Burgundy, Cacao e Crema: le tre firme colore CAELIA insieme, per avere sempre il tono giusto a portata di mano. Risparmi il 15%.",
+    productHandles: [
+      "caelia-beauty-mirror-case-burgundy",
+      "caelia-beauty-mirror-case-cacao",
+      "caelia-beauty-mirror-case-crema",
+    ],
     percentOff: 15,
   },
 ];
@@ -58,7 +62,7 @@ export function BundleSection({ all }: { all: Product[] }) {
                 {b.title}
               </h3>
               <p className="mt-3 text-ink/70 leading-relaxed">{b.description}</p>
-              <div className="mt-6 grid gap-4 grid-cols-2">
+              <div className="mt-6 grid gap-4 grid-cols-3">
                 {items.map((p) => (
                   <ProductCard key={p.id} product={p} />
                 ))}
@@ -91,7 +95,7 @@ export function BundleSection({ all }: { all: Product[] }) {
                   Aggiungi al carrello (-{b.percentOff}%)
                 </button>
                 <Link
-                  href="/products?bundle=duo-essentials"
+                  href="/products?bundle=trio-tonalita"
                   className="inline-flex items-center justify-center border border-burgundy text-burgundy px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy hover:text-cream transition-colors btn-press"
                 >
                   Dettagli
