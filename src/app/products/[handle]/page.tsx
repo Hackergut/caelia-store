@@ -35,5 +35,7 @@ export default async function ProductPage({
     notFound();
   }
 
-  return <ProductDetail product={product} />;
+  const colorSiblings = await loadColorSiblings(resolvedParams.handle);
+
+  return <ProductDetail product={product} colorSiblings={colorSiblings} />;
 }

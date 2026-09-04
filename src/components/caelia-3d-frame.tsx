@@ -20,14 +20,17 @@ const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
 function variantFor(swatch: string | undefined): CaeliaVariant {
   if (!swatch) return CAELIA_VARIANTS[0];
   const hex = swatch.toLowerCase();
-  if (hex === "#d49b96" || hex === "#e9c9c4") {
-    return CAELIA_VARIANTS.find((v) => v.id === "blush") ?? CAELIA_VARIANTS[0];
-  }
-  if (hex === "#1f1d1c") {
+  // Burgundy (deep wine red) → Bordeaux 3D model
+  if (hex === "#5c1a24") {
     return CAELIA_VARIANTS.find((v) => v.id === "bordeaux") ?? CAELIA_VARIANTS[0];
   }
-  if (hex === "#efe5d8") {
-    return CAELIA_VARIANTS[0];
+  // Cacao (warm brown) → Cognac 3D model
+  if (hex === "#6b4630") {
+    return CAELIA_VARIANTS.find((v) => v.id === "cognac") ?? CAELIA_VARIANTS[0];
+  }
+  // Crema (light neutral) → Blush 3D model, the lightest option available
+  if (hex === "#efe6d8") {
+    return CAELIA_VARIANTS.find((v) => v.id === "blush") ?? CAELIA_VARIANTS[0];
   }
   return CAELIA_VARIANTS[0];
 }
@@ -81,10 +84,10 @@ export function Caelia3DFrame({
       )}
       <div className="pointer-events-none absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-cream/90 px-3 py-1 text-xs uppercase tracking-[0.22em] text-ink">
         <span className="h-1.5 w-1.5 rounded-full bg-burgundy" />
-        {allow3D ? "Live 3D" : "Immagine"} · {product.variants.length} colori
+        {allow3D ? "Live 3D" : "Immagine"} · {variant.title}
       </div>
       <p className="pointer-events-none absolute bottom-4 left-4 z-10 text-xs uppercase tracking-[0.22em] text-ink/70">
-        {allow3D ? "Trascina per ruotare" : "Scegli un colore qui sotto"}
+        {allow3D ? "Trascina per ruotare" : product.title}
       </p>
     </div>
   );

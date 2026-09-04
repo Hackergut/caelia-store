@@ -8,7 +8,7 @@ import { formatMoney } from "@/lib/format";
 import { Price } from "@/lib/currency";
 
 export function CartDrawer() {
-  const { isOpen, close, lines, subtotal, setQuantity, remove } = useCart();
+  const { isOpen, close, lines, subtotal, setQuantity, remove, goToCheckout } = useCart();
 
   // Lock body scroll when open
   useEffect(() => {
@@ -147,12 +147,19 @@ export function CartDrawer() {
               <p className="text-xs text-ink/60">
                 Spedizione calcolata al checkout. Resi gratuiti entro 30 giorni.
               </p>
-              <Link
-                href="/checkout"
-                onClick={close}
+              <button
+                type="button"
+                onClick={goToCheckout}
                 className="block w-full text-center bg-burgundy text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy-deep transition-colors btn-press"
               >
                 Procedi al checkout
+              </button>
+              <Link
+                href="/cart"
+                onClick={close}
+                className="block w-full text-center text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
+              >
+                Vedi carrello completo
               </Link>
             </div>
           </div>
