@@ -41,53 +41,34 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="grid h-16 w-full grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8 md:h-20">
-          <div className="justify-self-start">
-            <details id="nav-caelia" className="relative sm:hidden">
-              <summary className="cursor-pointer list-none whitespace-nowrap text-xl [&::-webkit-details-marker]:hidden">
-                <LogoWordmark />
-              </summary>
-              <nav className="absolute left-0 top-full z-[310] min-w-[16rem] border border-mist/60 bg-cream py-5 shadow-2xl">
-                {NAV.map((l) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className="block px-6 py-2 text-[13px] uppercase tracking-[0.18em] hover:text-burgundy"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </nav>
-            </details>
-            <p className="hidden whitespace-nowrap text-xl lg:block">
+      <header className="site-bar">
+        <div className="site-bar__inner">
+          <details id="nav-caelia" className="site-bar__brand">
+            <summary>
               <LogoWordmark />
-            </p>
-          </div>
+            </summary>
+            <nav className="site-bar__drop">
+              {NAV.map((l) => (
+                <Link key={l.href} href={l.href}>
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </details>
 
-          <nav
-            aria-label="Principale"
-            className="hidden items-center justify-center gap-5 md:gap-8 text-[11px] uppercase tracking-[0.2em] sm:flex"
-          >
+          <nav className="site-bar__links" aria-label="Principale">
             {NAV.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className={
-                  pathname === l.href
-                    ? "text-burgundy underline underline-offset-8"
-                    : "text-ink hover:text-burgundy"
-                }
+                className={pathname === l.href ? "text-burgundy underline underline-offset-8" : undefined}
               >
                 {l.label}
               </Link>
             ))}
           </nav>
 
-          <Link
-            href="/cart"
-            className="relative justify-self-end text-[11px] uppercase tracking-[0.22em]"
-          >
+          <Link href="/cart" className="site-bar__cart">
             Carrello
             {itemCount > 0 ? (
               <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
