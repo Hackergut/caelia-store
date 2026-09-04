@@ -139,6 +139,7 @@ export function ProductDetail({ product }: { product: Product }) {
             <BackInStockButton sku={variant.sku} variantTitle={variant.title} />
           )}
 
+          {product.variants.length > 1 && (
           <div className="mt-8">
             <p className="text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-3">
               Colore — {variant.title}
@@ -158,6 +159,7 @@ export function ProductDetail({ product }: { product: Product }) {
               ))}
             </div>
           </div>
+          )}
 
           <div className="mt-8 flex items-stretch gap-3">
             <div className="inline-flex items-center border border-mist">

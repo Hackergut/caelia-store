@@ -28,22 +28,19 @@ export function CartDrawer() {
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, close]);
 
+  if (!isOpen) return null;
+
   return (
     <>
       <div
-        aria-hidden={!isOpen}
-        className={`fixed inset-0 z-50 bg-night/40 transition-opacity duration-[var(--dur-medium)] ease-[var(--ease-out)] ${
-          isOpen ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
+        className="fixed inset-0 z-[450] bg-night/40"
         onClick={close}
       />
       <aside
         role="dialog"
         aria-label="Carrello"
         aria-hidden={!isOpen}
-        className={`fixed right-0 top-0 z-50 h-full w-full max-w-md bg-cream shadow-2xl transition-transform duration-[var(--dur-slow)] ease-[var(--ease-drawer)] ${
-          isOpen ? "translate-x-0" : "translate-x-full pointer-events-none"
-        }`}
+        className="fixed right-0 top-0 z-[460] h-full w-full max-w-md bg-cream shadow-2xl"
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-mist/60">
           <p className="font-serif text-xl">Il tuo carrello</p>

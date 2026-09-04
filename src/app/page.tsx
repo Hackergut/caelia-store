@@ -71,7 +71,7 @@ export default async function Home() {
               </div>
               <div className="relative aspect-square overflow-hidden bg-cream-deep">
                 <Image
-                  src="/products/new-beauty-case-cacao-front.jpg"
+                  src="/products/new-beauty-case-cacao-open.jpg"
                   alt="Cacao Caelia"
                   fill
                   unoptimized

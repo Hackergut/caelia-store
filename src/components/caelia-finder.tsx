@@ -37,34 +37,34 @@ const RECOMMENDATIONS: Record<
   }
 > = {
   burgundy_full: {
-    handle: "beauty-mirror-case",
-    variantId: "beauty-case-burgundy",
+    handle: "burgundy-caelia",
+    variantId: "burgundy-caelia",
     reason:
       "Il formato completo in Burgundy Caelia, il colore principale della maison.",
   },
   burgundy_mini: {
-    handle: "beauty-mirror-case-mini",
-    variantId: "beauty-case-mini-burgundy",
+    handle: "burgundy-caelia",
+    variantId: "burgundy-caelia",
     reason: "Il Mini in Burgundy Caelia: stesso carattere, formato pochette.",
   },
   cacao_full: {
-    handle: "beauty-mirror-case",
-    variantId: "beauty-case-cacao",
+    handle: "cacao-caelia",
+    variantId: "cacao-caelia",
     reason: "Beauty Mirror Case in Cacao Caelia. Cuoio caldo, toscano.",
   },
   cacao_mini: {
-    handle: "beauty-mirror-case-mini",
-    variantId: "beauty-case-mini-cacao",
+    handle: "cacao-caelia",
+    variantId: "cacao-caelia",
     reason: "Mini Cacao Caelia: stessa pelle, in formato tascabile.",
   },
   crema_full: {
-    handle: "beauty-mirror-case",
-    variantId: "beauty-case-crema",
+    handle: "crema-caelia",
+    variantId: "crema-caelia",
     reason: "Beauty Mirror Case in Crema Caelia. Luminoso, discreto.",
   },
   crema_mini: {
-    handle: "beauty-mirror-case-mini",
-    variantId: "beauty-case-mini-crema",
+    handle: "crema-caelia",
+    variantId: "crema-caelia",
     reason: "Mini Crema Caelia: la tonalità più chiara, per un dettaglio morbido.",
   },
 };
