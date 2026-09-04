@@ -25,8 +25,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
 
   useEffect(() => {
-    const d = document.getElementById("caelia-menu") as HTMLDetailsElement | null;
-    if (d) d.open = false;
+    const box = document.getElementById("caelia-nav") as HTMLInputElement | null;
+    if (box) box.checked = false;
   }, [pathname]);
 
   return (
@@ -41,34 +41,20 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </div>
 
+      <input id="caelia-nav" type="checkbox" className="peer sr-only" />
+
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="relative flex h-[4.25rem] w-full items-center">
-          <details id="caelia-menu" className="group">
-            <summary className="flex h-[4.25rem] cursor-pointer list-none items-center pl-5 sm:pl-8 text-xl md:text-2xl [&::-webkit-details-marker]:hidden">
-              <LogoWordmark />
-            </summary>
-            <div className="fixed inset-0 z-[600]">
-              <div className="absolute inset-0 bg-black/50" />
-              <aside className="absolute left-0 top-0 h-full w-[min(22rem,100%)] bg-cream text-ink overflow-y-auto">
-                <div className="flex h-[4.25rem] items-center justify-between px-6 border-b border-mist">
-                  <span className="text-lg">
-                    <LogoWordmark />
-                  </span>
-                </div>
-                <nav className="flex flex-col p-8 gap-6 text-2xl font-light">
-                  {NAV.map((l) => (
-                    <Link key={l.href} href={l.href}>
-                      {l.label}
-                    </Link>
-                  ))}
-                </nav>
-              </aside>
-            </div>
-          </details>
+        <div className="flex h-16 w-full items-center justify-between px-5 sm:px-8 md:h-20">
+          <label
+            htmlFor="caelia-nav"
+            className="cursor-pointer select-none whitespace-nowrap text-xl md:text-2xl"
+          >
+            <LogoWordmark />
+          </label>
 
           <Link
             href="/cart"
-            className="absolute right-5 sm:right-8 top-1/2 -translate-y-1/2 text-[11px] uppercase tracking-[0.22em]"
+            className="relative shrink-0 whitespace-nowrap text-[11px] uppercase tracking-[0.22em]"
           >
             Carrello
             {itemCount > 0 ? (
@@ -80,17 +66,36 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </header>
 
+      <div className="pointer-events-none invisible fixed inset-0 z-[600] peer-checked:pointer-events-auto peer-checked:visible">
+        <label htmlFor="caelia-nav" className="absolute inset-0 bg-black/50" aria-label="Chiudi menu" />
+        <aside className="absolute left-0 top-0 h-full w-[min(22rem,100%)] overflow-y-auto bg-cream text-ink">
+          <div className="flex h-16 items-center justify-between border-b border-mist px-6">
+            <span className="whitespace-nowrap text-lg">
+              <LogoWordmark />
+            </span>
+            <label htmlFor="caelia-nav" className="cursor-pointer text-[11px] uppercase tracking-[0.22em]">
+              Chiudi
+            </label>
+          </div>
+          <nav className="flex flex-col gap-6 p-8 text-2xl font-light">
+            {NAV.map((l) => (
+              <Link key={l.href} href={l.href}>
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+        </aside>
+      </div>
+
       <main className="flex-1">{children}</main>
 
-      <footer className="bg-night text-cream mt-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 grid gap-10 md:grid-cols-2">
+      <footer className="mt-24 bg-night text-cream">
+        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-2 lg:px-10">
           <div className="md:max-w-md">
             <p className="text-2xl">
               <LogoWordmark />
             </p>
-            <p className="mt-4 text-sm text-cream/70 leading-relaxed">
-              Aprire. Ritoccare. Ripartire.
-            </p>
+            <p className="mt-4 text-sm leading-relaxed text-cream/70">Aprire. Ritoccare. Ripartire.</p>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
             <FooterColumn
@@ -114,7 +119,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="border-t border-cream/10">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10 py-10">
+          <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
             <NewsletterForm />
           </div>
         </div>
