@@ -102,10 +102,10 @@ export const products: Product[] = [
     descriptionEn:
       "Beauty Mirror Case in Crema Caelia — pale cream leather. Same design, light colourway.",
     images: [
-      { src: "/products/new-beauty-case-burgundy-set.jpg", alt: "Crema Caelia — astuccio e specchio" },
-      { src: "/products/new-beauty-case-crema-front.jpg", alt: "Crema Caelia — su fondo grigio" },
-      { src: "/products/new-beauty-case-crema-angle.jpg", alt: "Crema Caelia — tre quarti" },
-      { src: "/products/new-beauty-case-crema-open.jpg", alt: "Crema Caelia — tasca con matite" },
+      { src: "/products/crema-caelia-pair.jpg", alt: "Crema Caelia — astuccio e specchio" },
+      { src: "/products/crema-caelia-pencils.jpg", alt: "Crema Caelia — matite in tasca" },
+      { src: "/products/crema-caelia-logo.jpg", alt: "Crema Caelia — logo CAELIA" },
+      { src: "/products/crema-caelia-angle.jpg", alt: "Crema Caelia — tre quarti" },
     ],
     variants: [oneVariant("crema-caelia", "CAELIA-BC-CREMA-01", "Crema Caelia", "#efe5d8")],
     seo: {
