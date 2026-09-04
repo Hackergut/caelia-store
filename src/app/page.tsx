@@ -67,8 +67,8 @@ export default async function Home() {
         <div className="shell section-y">
           <div className="mb-8 flex flex-wrap items-end justify-between gap-4 md:mb-12 md:gap-6">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.32em] text-ink/40">N° 06</p>
-              <h2 className="fluid-h2 mt-2 font-light">Due forme, tre colori.</h2>
+              <p className="text-[11px] uppercase tracking-[0.32em] text-ink/40">N° 03</p>
+              <h2 className="fluid-h2 mt-2 font-light">Tre colori.</h2>
             </div>
             <Link href="/products" className="text-[11px] uppercase tracking-[0.2em] text-ink/70">
               Vedi tutto →

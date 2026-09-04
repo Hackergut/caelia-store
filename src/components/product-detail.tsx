@@ -26,34 +26,16 @@ const BENEFITS = [
   "Pensato per ogni borsa, anche la più mini",
 ];
 
-const FAMILIES = {
-  case: [
-    { handle: "burgundy-caelia", label: "Burgundy", hex: "#4a0e16" },
-    { handle: "cacao-caelia", label: "Cacao", hex: "#7b5644" },
-    { handle: "crema-caelia", label: "Crema", hex: "#efe5d8" },
-  ],
-  slim: [
-    { handle: "burgundy-slim-card", label: "Burgundy", hex: "#4a0e16" },
-    { handle: "cacao-slim-card", label: "Cacao", hex: "#7b5644" },
-    { handle: "crema-slim-card", label: "Crema", hex: "#efe5d8" },
-  ],
-} as const;
+const COLORS = [
+  { handle: "burgundy-caelia", label: "Burgundy", hex: "#4a0e16" },
+  { handle: "cacao-caelia", label: "Cacao", hex: "#7b5644" },
+  { handle: "crema-caelia", label: "Crema", hex: "#efe5d8" },
+];
 
 export function ProductDetail({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const { add } = useCart();
   const variant = product.variants[0];
-  const isSlim = product.handle.endsWith("slim-card");
-  const colors = isSlim ? FAMILIES.slim : FAMILIES.case;
-  const sibling = isSlim
-    ? {
-        href: `/products/${product.handle.replace("-slim-card", "-caelia")}`,
-        label: "Vedi il Beauty Mirror Case",
-      }
-    : {
-        href: `/products/${product.handle.replace("-caelia", "-slim-card")}`,
-        label: "Vedi lo Slim Mirror Card",
-      };
 
   useEffect(() => {
     events.viewItem({
@@ -90,7 +72,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
       <div>
         <p className="text-[11px] uppercase tracking-[0.28em] text-ink/50">
-          CAELIA · {isSlim ? "Slim Mirror Card Case" : "Beauty Mirror Case"}
+          CAELIA · Beauty accessory
         </p>
         <h1 className="mt-3 text-[1.65rem] font-light leading-[1.15] sm:text-[2rem] lg:text-[2.6rem]">
           {product.title}
@@ -119,7 +101,7 @@ export function ProductDetail({ product }: { product: Product }) {
             Colore
           </p>
           <div className="flex gap-3">
-            {colors.map((c) => (
+            {COLORS.map((c) => (
               <Link
                 key={c.handle}
                 href={`/products/${c.handle}`}
@@ -132,12 +114,6 @@ export function ProductDetail({ product }: { product: Product }) {
             ))}
           </div>
           <p className="mt-2 text-xs text-ink/50">{product.title}</p>
-          <Link
-            href={sibling.href}
-            className="mt-3 inline-flex min-h-9 items-center text-[11px] uppercase tracking-[0.2em] text-burgundy underline underline-offset-8"
-          >
-            {sibling.label}
-          </Link>
         </div>
 
         <div className="mt-8 flex flex-wrap items-stretch gap-3">
