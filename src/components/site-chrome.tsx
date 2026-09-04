@@ -43,25 +43,19 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </div>
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 h-16 md:h-20 flex items-center gap-3">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 h-16 md:h-20 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="relative z-[310] flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] border border-ink/20"
-            aria-label="Apri menu"
+            className="justify-self-start text-lg md:text-2xl"
+            aria-label="Apri menu CAELIA"
           >
-            <span className="block h-[1.5px] w-4 bg-ink" />
-            <span className="block h-[1.5px] w-4 bg-ink" />
-            <span className="block h-[1.5px] w-4 bg-ink" />
-          </button>
-
-          <Link href="/" className="text-lg md:text-2xl" aria-label="CAELIA home">
             <LogoWordmark />
-          </Link>
+          </button>
 
           <nav
             aria-label="Principale"
-            className="ml-auto hidden lg:flex items-center gap-6 text-[11px] uppercase tracking-[0.18em]"
+            className="hidden lg:flex items-center justify-center gap-6 text-[11px] uppercase tracking-[0.18em]"
           >
             {NAV.map((l) => (
               <Link
@@ -76,7 +70,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
           <Link
             href="/cart"
-            className="ml-auto lg:ml-6 relative text-[11px] uppercase tracking-[0.18em] shrink-0"
+            className="justify-self-end relative text-[11px] uppercase tracking-[0.18em] shrink-0"
           >
             Carrello
             {itemCount > 0 ? (
