@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
@@ -43,25 +43,16 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       <header className="site-bar">
         <div className="site-bar__inner">
-          <details id="nav-caelia" className="site-bar__brand">
-            <summary>
-              <LogoWordmark />
-            </summary>
-            <nav className="site-bar__drop">
-              {NAV.map((l) => (
-                <Link key={l.href} href={l.href}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </details>
+          <span className="site-bar__brand">
+            <LogoWordmark />
+          </span>
 
           <nav className="site-bar__links" aria-label="Principale">
             {NAV.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className={pathname === l.href ? "text-burgundy underline underline-offset-8" : undefined}
+                className={pathname === l.href ? "is-active" : undefined}
               >
                 {l.label}
               </Link>
@@ -71,9 +62,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           <Link href="/cart" className="site-bar__cart">
             Carrello
             {itemCount > 0 ? (
-              <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
-                {itemCount}
-              </span>
+              <span className="site-bar__count">{itemCount}</span>
             ) : null}
           </Link>
         </div>
