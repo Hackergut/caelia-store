@@ -24,11 +24,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
 
-  useEffect(() => {
-    const el = document.getElementById("nav-caelia") as HTMLDetailsElement | null;
-    if (el) el.open = false;
-  }, [pathname]);
-
   return (
     <>
       <div className="overflow-hidden bg-night text-cream text-xs tracking-[0.18em] uppercase py-2">
@@ -41,31 +36,71 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      <header className="site-bar">
-        <div className="site-bar__inner">
-          <span className="site-bar__brand">
+      <header
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 300,
+          background: "#f7f1ea",
+          borderBottom: "1px solid #e0d6c9",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: 72,
+            padding: "0 32px",
+          }}
+        >
+          <span style={{ fontSize: 20, whiteSpace: "nowrap" }}>
             <LogoWordmark />
           </span>
-
-          <nav className="site-bar__links" aria-label="Principale">
-            {NAV.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={pathname === l.href ? "is-active" : undefined}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-
-          <Link href="/cart" className="site-bar__cart">
+          <Link
+            href="/cart"
+            style={{
+              position: "relative",
+              fontSize: 11,
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+            }}
+          >
             Carrello
             {itemCount > 0 ? (
               <span className="site-bar__count">{itemCount}</span>
             ) : null}
           </Link>
         </div>
+        <nav
+          aria-label="Principale"
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "8px 28px",
+            padding: "10px 24px 14px",
+            borderTop: "1px solid #e0d6c9",
+            fontSize: 11,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+          }}
+        >
+          {NAV.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              style={
+                pathname === l.href
+                  ? { textDecoration: "underline", textUnderlineOffset: 6, color: "#4a0e16" }
+                  : { color: "#4a0e16" }
+              }
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
       </header>
 
       <main className="flex-1">{children}</main>
