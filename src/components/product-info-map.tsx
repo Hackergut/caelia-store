@@ -101,10 +101,10 @@ export function ProductInfoMap() {
                 >
                   <span
                     className={cn(
-                      "flex h-7 w-7 items-center justify-center rounded-full border text-[10px] tabular-nums shadow-sm transition-all duration-200 sm:h-8 sm:w-8 sm:text-[11px]",
+                      "flex h-10 w-10 items-center justify-center rounded-full border-2 text-[13px] font-medium tabular-nums shadow-[0_2px_10px_rgba(0,0,0,0.35)] transition-all duration-200 sm:h-12 sm:w-12 sm:text-[15px]",
                       isActive
-                        ? "scale-110 border-burgundy bg-burgundy text-cream"
-                        : "border-ink/20 bg-cream/85 text-ink/70 hover:bg-cream",
+                        ? "scale-110 border-cream bg-cream text-burgundy"
+                        : "border-cream/80 bg-night/55 text-cream backdrop-blur-[2px] hover:bg-night/75",
                     )}
                   >
                     {p.n}
@@ -128,7 +128,7 @@ export function ProductInfoMap() {
                   >
                     <span
                       className={cn(
-                        "mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border text-[10px] tabular-nums transition-colors",
+                        "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border text-xs font-medium tabular-nums transition-colors",
                         isActive
                           ? "border-burgundy bg-burgundy text-cream"
                           : "border-mist text-ink/50",
