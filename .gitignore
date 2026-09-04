@@ -48,3 +48,4 @@ next-env.d.ts
 /*.jpg
 /*.png
 !public/**
+public/products/_candidates/

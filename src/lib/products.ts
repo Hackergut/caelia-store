@@ -50,7 +50,7 @@ export const products: Product[] = [
     images: [
       {
         src: "/products/beauty-case-burgundy-front.jpg",
-        alt: "Beauty Mirror Case Burgundy Caelia vista laterale",
+        alt: "Beauty Mirror Case Burgundy Caelia",
       },
       {
         src: "/products/beauty-case-burgundy-open.jpg",

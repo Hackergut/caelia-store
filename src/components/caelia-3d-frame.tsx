@@ -20,14 +20,14 @@ const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
 function variantFor(swatch: string | undefined): CaeliaVariant {
   if (!swatch) return CAELIA_VARIANTS[0];
   const hex = swatch.toLowerCase();
-  if (hex === "#d49b96" || hex === "#e9c9c4") {
-    return CAELIA_VARIANTS.find((v) => v.id === "blush") ?? CAELIA_VARIANTS[0];
+  if (hex === "#4a0e16") {
+    return CAELIA_VARIANTS.find((v) => v.id === "burgundy") ?? CAELIA_VARIANTS[0];
   }
-  if (hex === "#1f1d1c") {
-    return CAELIA_VARIANTS.find((v) => v.id === "bordeaux") ?? CAELIA_VARIANTS[0];
+  if (hex === "#7b5644") {
+    return CAELIA_VARIANTS.find((v) => v.id === "cacao") ?? CAELIA_VARIANTS[0];
   }
-  if (hex === "#efe5d8") {
-    return CAELIA_VARIANTS[0];
+  if (hex === "#efe5d8" || hex === "#f7f1ea") {
+    return CAELIA_VARIANTS.find((v) => v.id === "crema") ?? CAELIA_VARIANTS[0];
   }
   return CAELIA_VARIANTS[0];
 }
@@ -56,7 +56,7 @@ export function Caelia3DFrame({
   // Poster image shown beneath the canvas so users see the product even
   // before WebGL finishes loading, and as the static fallback for the
   // reduced-motion case.
-  const poster = product.images[0]?.src ?? "/products/beauty-case-rose-front.png";
+  const poster = product.images[0]?.src ?? "/products/beauty-case-burgundy-front.jpg";
 
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md bg-gradient-to-br from-cream-deep to-blush/20 group">
