@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
-import { Fraunces, Inter, Tenor_Sans } from "next/font/google";
+import { DM_Sans, Tenor_Sans } from "next/font/google";
 import { CartProvider } from "@/lib/cart-context";
 import { WishlistProvider } from "@/lib/wishlist-context";
 import { CurrencyProvider } from "@/lib/currency";
@@ -14,16 +14,11 @@ import { SupportWidget } from "@/components/support-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm",
   subsets: ["latin"],
   display: "swap",
-});
-
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
+  weight: ["300", "400", "500"],
 });
 
 const tenor = Tenor_Sans({
@@ -85,13 +80,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="it"
-      className={`${inter.variable} ${fraunces.variable} ${tenor.variable} h-full antialiased`}
+      className={`${dmSans.variable} ${tenor.variable} h-full antialiased`}
     >
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&family=Tenor+Sans&display=swap"
           rel="stylesheet"
         />
       </head>

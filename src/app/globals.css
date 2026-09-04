@@ -25,9 +25,9 @@
   --color-blush: #e9c9c4;
   --color-blush-deep: #d49b96;
 
-  --font-serif: var(--font-fraunces), "Times New Roman", ui-serif, serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-logo: var(--font-tenor), var(--font-sans);
+  --font-sans: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-logo: var(--font-tenor), "Tenor Sans", "Arial Narrow", Arial, sans-serif;
 
   --shadow-soft: 0 10px 30px -12px rgba(31, 29, 28, 0.15);
   --shadow-product: 0 30px 60px -30px rgba(31, 29, 28, 0.35);
@@ -336,16 +336,16 @@ body {
    Tighter tracking on headings, lighter weight on body, optical sizing.
    ------------------------------------------------------------------------- */
 h1, h2, h3, h4 {
-  font-family: var(--font-serif);
-  letter-spacing: -0.02em;
-  font-weight: 450;
+  font-family: var(--font-sans);
+  letter-spacing: -0.03em;
+  font-weight: 400;
 }
-h1 { letter-spacing: -0.028em; }
+h1 { letter-spacing: -0.04em; font-weight: 300; }
 
 .font-display {
-  font-family: var(--font-serif);
-  letter-spacing: -0.03em;
-  font-weight: 450;
+  font-family: var(--font-sans);
+  letter-spacing: -0.04em;
+  font-weight: 300;
 }
 
 .font-logo,

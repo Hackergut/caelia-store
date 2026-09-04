@@ -18,8 +18,8 @@ export default async function Home() {
               <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
                 Los Angeles · Dubai
               </p>
-              <h1 className="mt-6 font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
-                Aprire. <span className="italic text-burgundy">Ritoccare.</span>
+              <h1 className="mt-6 font-sans text-5xl sm:text-6xl lg:text-7xl leading-[1.05] font-light tracking-tight">
+                Aprire. <span className="text-burgundy">Ritoccare.</span>
                 <br />
                 Ripartire.
               </h1>
@@ -60,7 +60,7 @@ export default async function Home() {
             <div className="grid grid-cols-2 gap-2">
               <div className="relative col-span-2 aspect-square overflow-hidden bg-cream-deep">
                 <Image
-                  src="/products/new-beauty-case-burgundy-front.jpg"
+                  src="/products/burgundy-caelia-pair.jpg"
                   alt="Beauty Mirror Case Burgundy Caelia"
                   fill
                   priority
@@ -71,7 +71,7 @@ export default async function Home() {
               </div>
               <div className="relative aspect-square overflow-hidden bg-cream-deep">
                 <Image
-                  src="/products/new-beauty-case-cacao-open.jpg"
+                  src="/products/cacao-caelia-pair.jpg"
                   alt="Cacao Caelia"
                   fill
                   unoptimized
@@ -81,7 +81,7 @@ export default async function Home() {
               </div>
               <div className="relative aspect-square overflow-hidden bg-cream-deep">
                 <Image
-                  src="/products/new-beauty-case-crema-front.jpg"
+                  src="/products/crema-caelia-pair.jpg"
                   alt="Crema Caelia"
                   fill
                   unoptimized
