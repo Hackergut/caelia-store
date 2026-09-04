@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="mx-auto max-w-md px-6 lg:px-10 pt-20 pb-24">
+    <div className="shell max-w-md pt-20 pb-24">
       <h1 className="font-serif text-4xl">Accedi</h1>
       <p className="mt-3 text-sm text-ink/70">
         Ordini, wishlist e spedizioni.

@@ -7,6 +7,13 @@ import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
 import { BackInStockButton } from "@/components/back-in-stock";
 import { ProductCarousel } from "@/components/product-carousel";
+import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { events } from "@/lib/track";
 import { pushRecentlyViewed } from "@/lib/recently-viewed";
 import { Price } from "@/lib/currency";
@@ -27,7 +34,6 @@ const COLORS = [
 
 export function ProductDetail({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
-  const [openDesc, setOpenDesc] = useState(true);
   const { add } = useCart();
   const variant = product.variants[0];
 
@@ -59,14 +65,16 @@ export function ProductDetail({ product }: { product: Product }) {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-5 lg:px-10 pt-8 pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16">
-      <ProductCarousel images={product.images} id={product.handle} />
+    <div className="shell grid max-w-6xl gap-8 pt-6 pb-28 md:pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:pt-8">
+      <div className="lg:sticky lg:top-28 lg:self-start">
+        <ProductCarousel images={product.images} id={product.handle} />
+      </div>
 
       <div>
         <p className="text-[11px] uppercase tracking-[0.28em] text-ink/50">
           CAELIA · Beauty accessory
         </p>
-        <h1 className="mt-3 text-[2rem] lg:text-[2.6rem] leading-[1.12] font-light">
+        <h1 className="mt-3 text-[1.65rem] font-light leading-[1.15] sm:text-[2rem] lg:text-[2.6rem]">
           {product.title}
         </h1>
         <p className="mt-3 text-sm text-ink/55">5.000+ venduti in tutto il mondo</p>
@@ -108,7 +116,7 @@ export function ProductDetail({ product }: { product: Product }) {
           <p className="mt-2 text-xs text-ink/50">{product.title}</p>
         </div>
 
-        <div className="mt-8 flex items-stretch gap-3">
+        <div className="mt-8 flex flex-wrap items-stretch gap-3">
           <div className="inline-flex items-center border border-mist">
             <button
               type="button"
@@ -128,14 +136,14 @@ export function ProductDetail({ product }: { product: Product }) {
               +
             </button>
           </div>
-          <button
+          <Button
             type="button"
             onClick={addToCart}
             disabled={!variant.available}
-            className="flex-1 bg-burgundy text-cream py-3 text-[11px] uppercase tracking-[0.22em] hover:bg-burgundy-deep disabled:bg-ink/30"
+            className="min-w-[12rem] flex-1"
           >
             {variant.available ? "Aggiungi al carrello" : "Esaurito"}
-          </button>
+          </Button>
           <WishlistButton handle={product.handle} />
         </div>
 
@@ -144,25 +152,41 @@ export function ProductDetail({ product }: { product: Product }) {
         </p>
 
         <div className="mt-10 border-t border-mist/70">
-          <button
-            type="button"
-            className="flex w-full items-center justify-between py-4 text-left text-xs uppercase tracking-[0.2em]"
-            onClick={() => setOpenDesc((v) => !v)}
-          >
-            Descrizione
-            <span>{openDesc ? "−" : "+"}</span>
-          </button>
-          {openDesc && (
-            <p className="pb-5 text-[15px] leading-relaxed text-ink/80">
-              {product.description}
-            </p>
-          )}
-          <div className="grid grid-cols-2 gap-x-6 gap-y-3 border-t border-mist/70 py-5 text-sm">
+          <Accordion type="single" collapsible defaultValue="desc">
+            <AccordionItem value="desc" className="border-b-0">
+              <AccordionTrigger>Descrizione</AccordionTrigger>
+              <AccordionContent>{product.description}</AccordionContent>
+            </AccordionItem>
+          </Accordion>
+          <div className="grid grid-cols-1 gap-x-6 gap-y-4 border-t border-mist/70 py-5 text-sm sm:grid-cols-2">
             <DetailItem label="Materiale" value={product.details.material} />
             <DetailItem label="Dimensioni" value={product.details.dimensions} />
             <DetailItem label="Peso" value={product.details.weight} />
             <DetailItem label="Prodotto in" value={product.details.madeIn} />
           </div>
+        </div>
+      </div>
+
+      {/* Mobile sticky buy bar */}
+      <div className="buybar-mobile fixed inset-x-0 bottom-0 z-[280] border-t border-mist/70 bg-cream/95 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur md:hidden">
+        <div className="flex items-center gap-3">
+          <div className="min-w-0">
+            <p className="truncate text-[11px] uppercase tracking-[0.18em] text-ink/55">
+              {product.title}
+            </p>
+            <Price
+              amountEUR={Number(variant.price.amount)}
+              className="text-base font-light"
+            />
+          </div>
+          <Button
+            type="button"
+            onClick={addToCart}
+            disabled={!variant.available}
+            className="ml-auto flex-1"
+          >
+            {variant.available ? "Aggiungi" : "Esaurito"}
+          </Button>
         </div>
       </div>
     </div>

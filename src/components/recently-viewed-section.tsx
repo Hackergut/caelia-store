@@ -10,7 +10,7 @@ export function RecentlyViewedSection({ all }: { all: Product[] }) {
   if (items.length === 0) return null;
 
   return (
-    <section className="mx-auto max-w-7xl px-6 lg:px-10 py-20">
+    <section className="shell py-20">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
         Visti di recente
       </p>

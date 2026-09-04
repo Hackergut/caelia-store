@@ -22,7 +22,7 @@ export default function AboutPage() {
           <p className="text-[11px] uppercase tracking-[0.38em] text-cream/70">
             La nostra storia
           </p>
-          <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-light leading-[1.05] text-cream">
+          <h1 className="mt-4 fluid-h2 font-light text-cream">
             Due sorelle, due città,
             <br />
             un’unica idea.
@@ -31,7 +31,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-cream">
-        <div className="mx-auto max-w-3xl px-6 py-20 lg:py-24 space-y-6 text-lg leading-relaxed text-ink/80 font-light">
+        <div className="shell max-w-3xl py-20 lg:py-24 space-y-6 text-lg leading-relaxed text-ink/80 font-light">
           <p>
             CAELIA nasce dall’incontro di due sorelle, Carla e Giulia, divise da
             migliaia di chilometri ma unite dallo stesso modo di vivere il mondo.
@@ -53,7 +53,7 @@ export default function AboutPage() {
           className="absolute inset-0 h-full w-full object-cover blur-[2px] brightness-[0.5]"
         />
         <div className="absolute inset-0 bg-night/40" />
-        <div className="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center">
+        <div className="relative z-10 shell max-w-3xl py-24 text-center">
           <p className="text-2xl sm:text-3xl font-light leading-snug text-cream">
             Quante volte, per un ritocco, cerchiamo matita, gloss e specchio in
             fondo alla borsa?
@@ -62,7 +62,7 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-cream">
-        <div className="mx-auto max-w-3xl px-6 py-20 space-y-6 text-lg leading-relaxed text-ink/80 font-light">
+        <div className="shell max-w-3xl py-20 space-y-6 text-lg leading-relaxed text-ink/80 font-light">
           <p>
             È da qui che prende forma il{" "}
             <strong className="font-medium text-ink">CAELIA Beauty Mirror Case</strong>

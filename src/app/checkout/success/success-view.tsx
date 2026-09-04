@@ -21,7 +21,7 @@ export function SuccessView({
   }, [searchParams]);
 
   return (
-    <div className="mx-auto max-w-2xl px-6 lg:px-10 py-24 text-center">
+    <div className="shell max-w-2xl py-24 text-center">
       <div className="mx-auto h-20 w-20 rounded-full bg-rose/10 flex items-center justify-center">
         <svg
           viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ export function SuccessView({
       <p className="mt-8 text-xs uppercase tracking-[0.32em] text-ink/60">
         Ordine confermato
       </p>
-      <h1 className="mt-4 font-serif text-5xl leading-tight">
+      <h1 className="mt-4 font-serif fluid-h2">
         Grazie.
       </h1>
       <p className="mt-6 text-lg text-ink/80">

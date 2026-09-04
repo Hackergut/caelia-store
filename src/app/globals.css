@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
 /* -------------------------------------------------------------------------
    CAELIA design tokens — colors, fonts, shadows
@@ -447,4 +448,85 @@ h1 { letter-spacing: -0.04em; font-weight: 300; }
 }
 #caelia-menu > summary::-webkit-details-marker {
   display: none;
+}
+
+/* -------------------------------------------------------------------------
+   shadcn/ui bridge — animation keyframes used by Accordion / Sheet
+   ------------------------------------------------------------------------- */
+@theme inline {
+  --animate-accordion-down: accordion-down var(--dur-medium) var(--ease-out);
+  --animate-accordion-up: accordion-up var(--dur-medium) var(--ease-out);
+}
+
+@keyframes accordion-down {
+  from { height: 0; opacity: 0; }
+  to { height: var(--radix-accordion-content-height); opacity: 1; }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); opacity: 1; }
+  to { height: 0; opacity: 0; }
+}
+
+/* -------------------------------------------------------------------------
+   Responsive foundation — mobile-first
+   ------------------------------------------------------------------------- */
+
+/* Never let a page scroll sideways on a phone */
+html { -webkit-text-size-adjust: 100%; }
+body { overflow-x: clip; }
+img, video, canvas, svg { max-width: 100%; }
+
+/* One shared page shell: fluid gutters on mobile, capped on desktop */
+.shell {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+.shell-narrow {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 48rem;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* Fluid section rhythm — sections breathe less on small screens */
+.section-y { padding-block: clamp(2.5rem, 7vw, 6rem); }
+
+/* Fluid display type: no more 4.6rem headline crushing a 360px phone */
+.fluid-display { font-size: clamp(2.25rem, 10.5vw, 4.6rem); line-height: 0.98; }
+.fluid-h2 { font-size: clamp(1.75rem, 6vw, 3rem); line-height: 1.06; }
+
+/* iOS: inputs under 16px trigger auto-zoom on focus */
+@media (max-width: 767px) {
+  input, select, textarea { font-size: 16px; }
+}
+
+/* Comfortable tap targets on touch devices */
+@media (pointer: coarse) {
+  a, button, [role="button"], summary, select {
+    touch-action: manipulation;
+  }
+}
+
+/* Safe areas (notch / home indicator) */
+.pb-safe { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+
+/* Horizontal snap rail — used for filters and galleries on mobile */
+.snap-rail {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+}
+.snap-rail::-webkit-scrollbar { display: none; }
+.snap-rail > * { scroll-snap-align: start; flex: 0 0 auto; }
+
+/* Mobile sticky buy bar clearance */
+body:has(.buybar-mobile) footer { padding-bottom: 4.5rem; }
+@media (min-width: 768px) {
+  body:has(.buybar-mobile) footer { padding-bottom: 0; }
 }

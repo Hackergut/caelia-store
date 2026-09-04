@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function JournalPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 lg:px-10 pt-16 pb-24">
+    <div className="shell max-w-5xl pt-16 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Journal</p>
-      <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
+      <h1 className="mt-4 font-serif fluid-h2">
         Pensieri, rituali,
         <br />
         <span className="italic text-rose">dietro le quinte.</span>

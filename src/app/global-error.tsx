@@ -10,11 +10,11 @@ export default function GlobalError({
   return (
     <html lang="it">
       <body className="bg-cream text-ink font-sans">
-        <div className="mx-auto max-w-2xl px-6 lg:px-10 pt-32 pb-24 text-center">
+        <div className="shell max-w-2xl pt-32 pb-24 text-center">
           <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
             Errore critico
           </p>
-          <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
+          <h1 className="mt-4 font-serif fluid-h2">
             Stiamo riavviando.
           </h1>
           <p className="mt-6 text-ink/70">

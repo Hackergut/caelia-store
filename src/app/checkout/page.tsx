@@ -64,7 +64,7 @@ export default function CheckoutPage() {
 
   if (!hydrated) {
     return (
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 text-center text-ink/60">
+      <div className="shell py-24 text-center text-ink/60">
         Caricamento...
       </div>
     );
@@ -72,14 +72,14 @@ export default function CheckoutPage() {
 
   if (lines.length === 0) {
     return (
-      <div className="mx-auto max-w-3xl px-6 lg:px-10 py-24 text-center">
+      <div className="shell max-w-3xl py-24 text-center">
         <h1 className="font-serif text-4xl">Il carrello è vuoto.</h1>
         <p className="mt-4 text-ink/70">
           Aggiungi un Beauty Mirror Case prima di procedere.
         </p>
         <Link
           href="/products"
-          className="mt-8 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+          className="mt-8 inline-flex min-h-12 w-full items-center justify-center bg-charcoal px-8 text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-rose sm:w-auto"
         >
           Scopri la collezione
         </Link>
@@ -166,10 +166,10 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-24 grid lg:grid-cols-[1.4fr_1fr] gap-12">
-      <form onSubmit={submit} className="space-y-10">
+    <div className="shell grid gap-8 pt-8 pb-24 md:pt-12 lg:grid-cols-[1.4fr_1fr] lg:gap-12 lg:pt-16">
+      <form onSubmit={submit} className="order-2 space-y-8 md:space-y-10 lg:order-1">
         <div>
-          <h1 className="font-serif text-4xl">Checkout</h1>
+          <h1 className="font-serif text-3xl md:text-4xl">Checkout</h1>
           <p className="mt-2 text-sm text-ink/60">
             Pagamenti sicuri via Stripe · Crittografia SSL
           </p>
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
         </Section>
 
         <Section title="Spedizione">
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
             <Input
               label="Nome"
               required
@@ -214,7 +214,7 @@ export default function CheckoutPage() {
             onChange={(v) => setForm({ ...form, address: v })}
             error={fieldErrors.address}
           />
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid gap-4 sm:grid-cols-3">
             <Input
               label="Città"
               required
@@ -274,7 +274,7 @@ export default function CheckoutPage() {
         </Section>
 
         <Section title="Pagamento">
-          <div className="grid sm:grid-cols-3 gap-3">
+          <div className="grid gap-3 sm:grid-cols-3">
             {[
               { id: "card", label: "Carta di credito" },
               { id: "paypal", label: "PayPal" },
@@ -307,14 +307,14 @@ export default function CheckoutPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-charcoal text-cream py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:opacity-50"
+          className="btn-press sticky bottom-3 z-10 flex min-h-14 w-full items-center justify-center bg-charcoal text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-rose disabled:opacity-50"
         >
           {submitting ? "Elaborazione..." : `Conferma ordine · ${formatMoney({ amount: total.toFixed(2), currencyCode: "EUR" })}`}
         </button>
       </form>
 
-      <aside className="bg-cream-deep p-8 rounded-md self-start sticky top-28">
-        <p className="font-serif text-2xl mb-6">Riepilogo</p>
+      <aside className="order-1 self-start rounded-md bg-cream-deep p-5 md:p-8 lg:sticky lg:top-28 lg:order-2">
+        <p className="mb-4 font-serif text-xl md:mb-6 md:text-2xl">Riepilogo</p>
         <ul className="space-y-4">
           {lines.map((line) => (
             <li key={line.variantId} className="flex gap-4">
@@ -357,7 +357,7 @@ export default function CheckoutPage() {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="font-serif text-2xl mb-4">{title}</h2>
+      <h2 className="mb-4 font-serif text-xl md:text-2xl">{title}</h2>
       <div className="space-y-4">{children}</div>
     </section>
   );
@@ -396,7 +396,7 @@ function Input({
         name={name}
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full border rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal ${
+        className={`min-h-12 w-full rounded-md border bg-cream px-4 text-base focus:border-charcoal focus:outline-none md:min-h-11 md:text-sm ${
           error ? "border-rose" : "border-mist"
         }`}
       />
@@ -424,7 +424,7 @@ function Select({
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal"
+        className="min-h-12 w-full rounded-md border border-mist bg-cream px-4 text-base focus:border-charcoal focus:outline-none md:min-h-11 md:text-sm"
       >
         {options.map((o) => (
           <option key={o} value={o}>

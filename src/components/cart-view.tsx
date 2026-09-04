@@ -16,7 +16,7 @@ export function CartView() {
 
   if (!hydrated) {
     return (
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-24">
+      <div className="shell pt-16 pb-24">
         <p className="text-ink/60">Caricamento...</p>
       </div>
     );
@@ -31,9 +31,9 @@ export function CartView() {
   const total = Number(subtotal.amount) + shipping;
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-12 pb-24">
+    <div className="shell pt-12 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Carrello</p>
-      <h1 className="mt-4 font-serif text-5xl leading-[1.05]">
+      <h1 className="mt-4 font-serif fluid-h2">
         Il tuo Beauty Mirror Case.
       </h1>
 

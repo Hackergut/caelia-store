@@ -45,7 +45,7 @@ export function Caelia3DExplorer() {
 
   return (
     <section className="relative bg-night text-cream overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 py-20 lg:py-28">
+      <div className="shell py-20 lg:py-28">
         <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-14 items-center">
           {/* 3D Canvas */}
           <div className="relative aspect-[4/5] rounded-md overflow-hidden bg-gradient-to-br from-cream-deep/30 to-blush/30">
@@ -73,7 +73,7 @@ export function Caelia3DExplorer() {
               <p className="text-xs uppercase tracking-[0.32em] text-blush">
                 Studio 3D
               </p>
-              <h2 className="mt-3 font-serif text-4xl lg:text-5xl leading-[1.05]">
+              <h2 className="mt-3 font-serif fluid-h2">
                 Tieni il Beauty Mirror Case tra le mani.
               </h2>
               <p className="mt-4 text-cream/80 leading-relaxed">

@@ -49,7 +49,7 @@ export function WishlistView({
 
   if (handles === null) {
     return (
-      <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-24">
+      <div className="shell pt-16 pb-24">
         <div className="h-10 w-40 bg-mist/40 rounded animate-pulse" />
       </div>
     );
@@ -58,9 +58,9 @@ export function WishlistView({
   const saved = allProducts.filter((p) => handles.includes(p.handle));
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-24">
+    <div className="shell pt-16 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Preferiti</p>
-      <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
+      <h1 className="mt-4 font-serif fluid-h2">
         I tuoi Beauty Mirror Case.
       </h1>
       <div className="mt-4">

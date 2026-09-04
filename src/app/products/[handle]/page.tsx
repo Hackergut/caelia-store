@@ -63,7 +63,7 @@ export default async function ProductPage({
       <ProductReviews reviews={getReviewsForProduct(product.handle)} />
 
       <section className="bg-cream-deep relative grain">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 relative z-10">
+        <div className="shell py-24 relative z-10">
           <p className="text-xs uppercase tracking-[0.32em] text-ink/60 mb-6">
             Per completare il rituale
           </p>

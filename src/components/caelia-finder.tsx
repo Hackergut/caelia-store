@@ -96,11 +96,11 @@ export function CaeliaFinder({ all }: { all: Product[] }) {
   }
 
   return (
-    <section className="mx-auto max-w-5xl px-6 lg:px-10 py-20">
+    <section className="shell max-w-5xl py-20">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
         Beauty Finder
       </p>
-      <h2 className="mt-3 font-serif text-4xl lg:text-5xl leading-[1.05]">
+      <h2 className="mt-3 font-serif fluid-h2">
         Trova la tua CAELIA.
       </h2>
       <p className="mt-4 text-ink/70 max-w-2xl">

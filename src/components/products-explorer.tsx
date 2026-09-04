@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Product } from "@/lib/types";
 import { ProductCard } from "@/components/product-card";
+import { cn } from "@/lib/utils";
 
 type Sort = "featured" | "price-asc" | "price-desc" | "title";
 
@@ -52,58 +53,64 @@ export function ProductsExplorer({ products }: { products: Product[] }) {
 
   return (
     <>
-      <div className="mt-12 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between border-y border-mist/60 py-4">
-        <div className="flex flex-wrap items-center gap-3 text-xs uppercase tracking-[0.22em] text-ink/70">
-          <span>Filtra:</span>
-          <FilterPill
-            label="Tutti i colori"
-            active={color === "all"}
-            onClick={() => setColor("all")}
-          />
-          {allColors.map((c) => (
-            <button
-              key={c}
-              type="button"
-              onClick={() => setColor(c)}
-              className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 transition-colors ${
-                color === c ? "border-charcoal" : "border-mist hover:border-charcoal/60"
-              }`}
-              aria-pressed={color === c}
-            >
-              <span
-                className="h-3.5 w-3.5 rounded-full ring-1 ring-charcoal/10"
-                style={{ background: c }}
-              />
-              <span>{colorLabel(c)}</span>
-            </button>
-          ))}
-          <span className="mx-2 text-mist">|</span>
-          {allTypes.map((t) => (
+      <div className="shell mt-8 border-y border-mist/60 py-3 md:mt-12 md:py-4">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+          {/* Mobile: single horizontal snap rail. Desktop: wrapping pills. */}
+          <div className="snap-rail -mx-1 px-1 text-[11px] uppercase tracking-[0.2em] text-ink/70 lg:mx-0 lg:flex-wrap lg:items-center lg:gap-3 lg:overflow-visible lg:px-0">
+            <span className="hidden items-center lg:inline-flex">Filtra:</span>
             <FilterPill
-              key={t}
-              label={t}
-              active={type === t}
-              onClick={() => setType(type === t ? "all" : t)}
+              label="Tutti"
+              active={color === "all"}
+              onClick={() => setColor("all")}
             />
-          ))}
+            {allColors.map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setColor(c)}
+                className={cn(
+                  "inline-flex min-h-9 items-center gap-2 rounded-full border px-3 transition-colors",
+                  color === c
+                    ? "border-charcoal"
+                    : "border-mist hover:border-charcoal/60",
+                )}
+                aria-pressed={color === c}
+              >
+                <span
+                  className="h-3.5 w-3.5 rounded-full ring-1 ring-charcoal/10"
+                  style={{ background: c }}
+                />
+                <span className="whitespace-nowrap">{colorLabel(c)}</span>
+              </button>
+            ))}
+            <span className="mx-1 hidden text-mist lg:inline">|</span>
+            {allTypes.map((t) => (
+              <FilterPill
+                key={t}
+                label={t}
+                active={type === t}
+                onClick={() => setType(type === t ? "all" : t)}
+              />
+            ))}
+          </div>
+          <label className="flex items-center justify-between gap-2 text-[11px] uppercase tracking-[0.2em] text-ink/70 lg:justify-start">
+            Ordina:
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value as Sort)}
+              className="min-h-11 flex-1 rounded-md border border-mist bg-cream px-3 text-sm normal-case tracking-normal lg:min-h-9 lg:flex-none lg:text-xs"
+            >
+              <option value="featured">Consigliati</option>
+              <option value="price-asc">Prezzo crescente</option>
+              <option value="price-desc">Prezzo decrescente</option>
+              <option value="title">Nome A-Z</option>
+            </select>
+          </label>
         </div>
-        <label className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-ink/70">
-          Ordina:
-          <select
-            value={sort}
-            onChange={(e) => setSort(e.target.value as Sort)}
-            className="border border-mist rounded-md px-3 py-2 text-xs normal-case tracking-normal bg-cream"
-          >
-            <option value="featured">Consigliati</option>
-            <option value="price-asc">Prezzo crescente</option>
-            <option value="price-desc">Prezzo decrescente</option>
-            <option value="title">Nome A-Z</option>
-          </select>
-        </label>
       </div>
 
       {filtered.length === 0 ? (
-        <div className="mt-16 rounded-md bg-cream-deep p-12 text-center">
+        <div className="shell mt-12 rounded-md bg-cream-deep px-6 py-12 text-center md:mt-16">
           <p className="font-serif text-2xl">Nessun prodotto corrisponde.</p>
           <button
             type="button"
@@ -115,10 +122,10 @@ export function ProductsExplorer({ products }: { products: Product[] }) {
         </div>
       ) : (
         <>
-          <p className="mt-6 text-xs uppercase tracking-[0.22em] text-ink/60">
+          <p className="shell mt-6 text-xs uppercase tracking-[0.22em] text-ink/60">
             {filtered.length} {filtered.length === 1 ? "prodotto" : "prodotti"}
           </p>
-          <div className="mt-4 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="shell mt-4 grid gap-6 pb-16 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
             {filtered.map((p, i) => (
               <ProductCard key={p.id} product={p} className="reveal" style={{ "--i": i } as React.CSSProperties} />
             ))}
@@ -143,9 +150,12 @@ function FilterPill({
       type="button"
       onClick={onClick}
       aria-pressed={active}
-      className={`rounded-full border px-3 py-1 transition-colors ${
-        active ? "border-charcoal bg-charcoal text-cream" : "border-mist hover:border-charcoal/60"
-      }`}
+      className={cn(
+        "inline-flex min-h-9 items-center whitespace-nowrap rounded-full border px-3 transition-colors",
+        active
+          ? "border-charcoal bg-charcoal text-cream"
+          : "border-mist hover:border-charcoal/60",
+      )}
     >
       {label}
     </button>
