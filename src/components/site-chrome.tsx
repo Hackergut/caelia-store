@@ -42,35 +42,17 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </div>
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 h-16 md:h-20 grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+        <div className="flex h-16 md:h-20 w-full items-center justify-between px-5 sm:px-8">
           <button
             type="button"
-            onClick={() => setOpen(true)}
-            className="justify-self-start text-lg md:text-2xl"
-            aria-label="Apri menu CAELIA"
+            onClick={() => setOpen((v) => !v)}
+            className="text-lg md:text-2xl"
+            aria-label={open ? "Chiudi menu" : "Apri menu"}
           >
             <LogoWordmark />
           </button>
 
-          <nav
-            aria-label="Principale"
-            className="hidden lg:flex items-center justify-center gap-6 text-[11px] uppercase tracking-[0.18em]"
-          >
-            {NAV.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={pathname === l.href ? "text-burgundy underline underline-offset-8" : "hover:text-burgundy"}
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-
-          <Link
-            href="/cart"
-            className="justify-self-end relative text-[11px] uppercase tracking-[0.18em] shrink-0"
-          >
+          <Link href="/cart" className="relative text-[11px] uppercase tracking-[0.18em]">
             Carrello
             {itemCount > 0 ? (
               <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
