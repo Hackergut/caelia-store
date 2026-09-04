@@ -143,7 +143,7 @@ export default async function Home() {
               <Link key={c.href} href={c.href} className="group block">
                 {/* Mobile: wide banner crop with the label over the image.
                     Desktop: the original tall chapter card. */}
-                <div className="relative aspect-[16/5] overflow-hidden bg-cream-deep sm:aspect-[21/6] md:aspect-[3/4]">
+                <div className="relative aspect-[3/1] overflow-hidden bg-cream-deep sm:aspect-[4/1] md:aspect-[3/4]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={c.src}
