@@ -60,7 +60,6 @@ export const products: Product[] = [
       "Beauty Mirror Case in Burgundy Caelia — the maison burgundy. Mirror, liner and gloss in one slim case.",
     images: [
       { src: "/products/burgundy-caelia-pair.jpg", alt: "Burgundy Caelia — astuccio e specchio" },
-      { src: "/products/burgundy-caelia-front.jpg", alt: "Burgundy Caelia — vista frontale" },
       { src: "/products/burgundy-caelia-pocket.jpg", alt: "Burgundy Caelia — tasca" },
       { src: "/products/burgundy-caelia-pencils.jpg", alt: "Burgundy Caelia — matite in tasca" },
       { src: "/products/burgundy-caelia-logo.jpg", alt: "Burgundy Caelia — logo CAELIA" },
