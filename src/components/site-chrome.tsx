@@ -24,18 +24,11 @@ const NAV = [
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    setMenuOpen(false);
+    setOpen(false);
   }, [pathname]);
-
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
 
   return (
     <>
@@ -50,94 +43,82 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </div>
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
-          <div className="flex items-center justify-between h-16 md:h-20 gap-4">
-            <button
-              type="button"
-              className="md:hidden flex flex-col justify-center gap-[5px] h-10 w-10"
-              aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
-              aria-expanded={menuOpen}
-              onClick={() => setMenuOpen((v) => !v)}
-            >
-              <span
-                className={`block h-px w-5 bg-ink transition ${menuOpen ? "translate-y-[6px] rotate-45" : ""}`}
-              />
-              <span className={`block h-px w-5 bg-ink ${menuOpen ? "opacity-0" : ""}`} />
-              <span
-                className={`block h-px w-5 bg-ink transition ${menuOpen ? "-translate-y-[6px] -rotate-45" : ""}`}
-              />
-            </button>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 h-16 md:h-20 flex items-center gap-3">
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="relative z-[310] flex h-11 w-11 shrink-0 flex-col items-center justify-center gap-[5px] border border-ink/20"
+            aria-label="Apri menu"
+          >
+            <span className="block h-[1.5px] w-4 bg-ink" />
+            <span className="block h-[1.5px] w-4 bg-ink" />
+            <span className="block h-[1.5px] w-4 bg-ink" />
+          </button>
 
-            <Link href="/" className="shrink-0 text-lg md:text-2xl" aria-label="CAELIA home">
-              <LogoWordmark />
-            </Link>
+          <Link href="/" className="text-lg md:text-2xl" aria-label="CAELIA home">
+            <LogoWordmark />
+          </Link>
 
-            <nav
-              aria-label="Principale"
-              className="hidden md:flex flex-1 items-center justify-center gap-6 text-[11px] uppercase tracking-[0.18em]"
-            >
-              {NAV.map((l) => (
-                <Link
-                  key={l.href}
-                  href={l.href}
-                  className={
-                    pathname === l.href
-                      ? "text-burgundy underline underline-offset-8"
-                      : "text-ink hover:text-burgundy"
-                  }
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
+          <nav
+            aria-label="Principale"
+            className="ml-auto hidden lg:flex items-center gap-6 text-[11px] uppercase tracking-[0.18em]"
+          >
+            {NAV.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={pathname === l.href ? "text-burgundy underline underline-offset-8" : "hover:text-burgundy"}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
 
-            <Link
-              href="/cart"
-              className="relative text-[11px] uppercase tracking-[0.18em] shrink-0"
-            >
-              Carrello
-              {itemCount > 0 ? (
-                <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
-                  {itemCount}
-                </span>
-              ) : null}
-            </Link>
-          </div>
+          <Link
+            href="/cart"
+            className="ml-auto lg:ml-6 relative text-[11px] uppercase tracking-[0.18em] shrink-0"
+          >
+            Carrello
+            {itemCount > 0 ? (
+              <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
+                {itemCount}
+              </span>
+            ) : null}
+          </Link>
         </div>
       </header>
 
-      {menuOpen ? (
-        <div className="fixed inset-0 z-[400] md:hidden">
+      {open && (
+        <div className="fixed inset-0 z-[600]">
           <button
             type="button"
-            className="absolute inset-0 bg-night/40"
+            className="absolute inset-0 bg-black/50"
             aria-label="Chiudi menu"
-            onClick={() => setMenuOpen(false)}
+            onClick={() => setOpen(false)}
           />
-          <aside className="absolute left-0 top-0 h-full w-[min(100%,20rem)] bg-cream shadow-2xl overflow-y-auto">
-            <div className="flex items-center justify-between px-6 h-16 border-b border-mist/60">
-              <LogoWordmark />
+          <div className="absolute left-0 top-0 h-full w-[min(22rem,100%)] bg-cream text-ink overflow-y-auto">
+            <div className="flex h-16 items-center justify-between px-6 border-b border-mist">
+              <span className="text-lg">
+                <LogoWordmark />
+              </span>
               <button
                 type="button"
-                className="text-[11px] uppercase tracking-[0.2em]"
-                onClick={() => setMenuOpen(false)}
+                className="text-[11px] uppercase tracking-[0.22em]"
+                onClick={() => setOpen(false)}
               >
                 Chiudi
               </button>
             </div>
-            <nav className="flex flex-col gap-5 p-8 text-2xl font-light">
+            <nav className="flex flex-col p-8 gap-6 text-2xl font-light">
               {NAV.map((l) => (
-                <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
+                <Link key={l.href} href={l.href} onClick={() => setOpen(false)}>
                   {l.label}
                 </Link>
               ))}
             </nav>
-            <div className="px-8 pb-10">
-              <CurrencySwitcher />
-            </div>
-          </aside>
+          </div>
         </div>
-      ) : null}
+      )}
 
       <main className="flex-1">{children}</main>
 
@@ -148,7 +129,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               <LogoWordmark />
             </p>
             <p className="mt-4 text-sm text-cream/70 leading-relaxed">
-              Aprire. Ritoccare. Ripartire. L&apos;astuccio beauty con specchio.
+              Aprire. Ritoccare. Ripartire.
             </p>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
@@ -168,7 +149,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 { href: "/shipping", label: "Spedizioni" },
                 { href: "/faq", label: "FAQ" },
                 { href: "/contact", label: "Contatti" },
-                { href: "/cart", label: "Carrello" },
               ]}
             />
           </div>
