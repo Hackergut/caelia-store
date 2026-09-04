@@ -6,35 +6,36 @@ export default async function Home() {
   const products = await listProducts();
   return (
     <>
-      <section className="relative min-h-[86vh] overflow-hidden bg-night">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/products/burgundy-caelia-pair.jpg"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover scale-105 blur-[5px] brightness-[0.45]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-night via-night/40 to-transparent" />
-        <div className="relative z-10 mx-auto flex min-h-[86vh] max-w-7xl flex-col justify-end px-6 lg:px-10 pb-16 lg:pb-24 pt-36">
-          <p className="text-[11px] uppercase tracking-[0.38em] text-cream/75">
-            Volume 01 · Los Angeles · Dubai
-          </p>
-          <h1 className="mt-5 max-w-3xl text-5xl sm:text-6xl lg:text-[5.5rem] font-light leading-[0.96] text-cream tracking-tight">
-            Aprire.
-            <br />
-            Ritoccare.
-            <br />
-            Ripartire.
-          </h1>
-          <div className="mt-8 flex flex-wrap items-end justify-between gap-6">
-            <p className="max-w-sm text-cream/85 leading-relaxed">
+      <section className="bg-cream">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.38em] text-ink/45">
+              Volume 01 · Los Angeles · Dubai
+            </p>
+            <h1 className="mt-5 text-5xl sm:text-6xl lg:text-[4.6rem] font-light leading-[0.98] tracking-tight text-ink">
+              Aprire.
+              <br />
+              Ritoccare.
+              <br />
+              Ripartire.
+            </h1>
+            <p className="mt-7 max-w-sm text-ink/70 leading-relaxed">
               Beauty Mirror Case. Specchio, matita, gloss. Un gesto.
             </p>
             <Link
               href="/products"
-              className="inline-flex bg-cream text-night px-8 py-3.5 text-[11px] uppercase tracking-[0.22em]"
+              className="mt-8 inline-flex bg-burgundy text-cream px-8 py-3.5 text-[11px] uppercase tracking-[0.22em]"
             >
               La collezione
             </Link>
+          </div>
+          <div className="aspect-square overflow-hidden bg-cream-deep">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/products/burgundy-caelia-pair.jpg"
+              alt="Burgundy Caelia"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </section>
