@@ -25,6 +25,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
   return (
     <>
       <div className="overflow-hidden bg-night text-cream text-xs tracking-[0.18em] uppercase py-2">
@@ -127,6 +131,79 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           ))}
         </nav>
       </header>
+
+      {menuOpen ? (
+        <div style={{ position: "fixed", inset: 0, zIndex: 600 }}>
+          <button
+            type="button"
+            aria-label="Chiudi menu"
+            onClick={() => setMenuOpen(false)}
+            style={{
+              position: "absolute",
+              inset: 0,
+              background: "rgba(0,0,0,0.45)",
+              border: 0,
+              cursor: "pointer",
+            }}
+          />
+          <aside
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              height: "100%",
+              width: "min(22rem, 100%)",
+              background: "#f7f1ea",
+              overflowY: "auto",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                height: 72,
+                padding: "0 24px",
+                borderBottom: "1px solid #e0d6c9",
+              }}
+            >
+              <span style={{ fontSize: 20 }}>
+                <LogoWordmark />
+              </span>
+              <button
+                type="button"
+                onClick={() => setMenuOpen(false)}
+                style={{
+                  background: "transparent",
+                  border: 0,
+                  fontSize: 11,
+                  letterSpacing: "0.22em",
+                  textTransform: "uppercase",
+                  cursor: "pointer",
+                }}
+              >
+                Chiudi
+              </button>
+            </div>
+            <nav
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: 20,
+                padding: 32,
+                fontSize: 24,
+                fontWeight: 300,
+              }}
+            >
+              {NAV.map((l) => (
+                <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      ) : null}
 
       <main className="flex-1">{children}</main>
 
