@@ -41,7 +41,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      <input id="caelia-nav" type="checkbox" className="peer sr-only" />
+      <input
+        id="caelia-nav"
+        type="checkbox"
+        className="peer hidden"
+        aria-hidden
+      />
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
         <div className="flex h-16 w-full items-center justify-between px-5 sm:px-8 md:h-20">

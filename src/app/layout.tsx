@@ -100,7 +100,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <VercelAnalytics />
             <ExitIntentModal />
             <RecoveredCartBanner />
-            <SupportWidget />
           </CurrencyProvider>
           </WishlistProvider>
         </CartProvider>
