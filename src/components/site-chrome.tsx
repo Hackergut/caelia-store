@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
@@ -23,10 +23,10 @@ const NAV = [
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const box = document.getElementById("caelia-nav") as HTMLInputElement | null;
-    if (box) box.checked = false;
+    setMenuOpen(false);
   }, [pathname]);
 
   return (
@@ -41,21 +41,16 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </div>
 
-      <input
-        id="caelia-nav"
-        type="checkbox"
-        className="peer hidden"
-        aria-hidden
-      />
-
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
         <div className="flex h-16 w-full items-center justify-between px-5 sm:px-8 md:h-20">
-          <label
-            htmlFor="caelia-nav"
-            className="cursor-pointer select-none whitespace-nowrap text-xl md:text-2xl"
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            className="whitespace-nowrap text-xl md:text-2xl"
+            aria-label="Apri menu"
           >
             <LogoWordmark />
-          </label>
+          </button>
 
           <Link
             href="/cart"
@@ -71,26 +66,37 @@ export function SiteChrome({ children }: { children: ReactNode }) {
         </div>
       </header>
 
-      <div className="pointer-events-none invisible fixed inset-0 z-[600] peer-checked:pointer-events-auto peer-checked:visible">
-        <label htmlFor="caelia-nav" className="absolute inset-0 bg-black/50" aria-label="Chiudi menu" />
-        <aside className="absolute left-0 top-0 h-full w-[min(22rem,100%)] overflow-y-auto bg-cream text-ink">
-          <div className="flex h-16 items-center justify-between border-b border-mist px-6">
-            <span className="whitespace-nowrap text-lg">
-              <LogoWordmark />
-            </span>
-            <label htmlFor="caelia-nav" className="cursor-pointer text-[11px] uppercase tracking-[0.22em]">
-              Chiudi
-            </label>
-          </div>
-          <nav className="flex flex-col gap-6 p-8 text-2xl font-light">
-            {NAV.map((l) => (
-              <Link key={l.href} href={l.href}>
-                {l.label}
-              </Link>
-            ))}
-          </nav>
-        </aside>
-      </div>
+      {menuOpen ? (
+        <div className="fixed inset-0 z-[600]">
+          <button
+            type="button"
+            className="absolute inset-0 bg-black/50"
+            aria-label="Chiudi menu"
+            onClick={() => setMenuOpen(false)}
+          />
+          <aside className="absolute left-0 top-0 h-full w-[min(22rem,100%)] overflow-y-auto bg-cream text-ink">
+            <div className="flex h-16 items-center justify-between border-b border-mist px-6">
+              <span className="whitespace-nowrap text-lg">
+                <LogoWordmark />
+              </span>
+              <button
+                type="button"
+                className="text-[11px] uppercase tracking-[0.22em]"
+                onClick={() => setMenuOpen(false)}
+              >
+                Chiudi
+              </button>
+            </div>
+            <nav className="flex flex-col gap-6 p-8 text-2xl font-light">
+              {NAV.map((l) => (
+                <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </aside>
+        </div>
+      ) : null}
 
       <main className="flex-1">{children}</main>
 
