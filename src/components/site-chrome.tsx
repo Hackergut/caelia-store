@@ -6,7 +6,6 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
-import { CurrencySwitcher } from "./currency-switcher";
 import { LogoWordmark } from "./logo-wordmark";
 
 const ANNOUNCEMENT = "Spedizione gratuita oltre 60€  ·  Resi 30 giorni";
