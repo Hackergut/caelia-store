@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
@@ -22,8 +22,20 @@ const NAV = [
 ];
 
 export function SiteChrome({ children }: { children: ReactNode }) {
-  const { itemCount, open } = useCart();
+  const { itemCount } = useCart();
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -40,6 +52,22 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
           <div className="flex items-center justify-between h-16 md:h-20 gap-4">
+            <button
+              type="button"
+              className="md:hidden flex flex-col justify-center gap-[5px] h-10 w-10"
+              aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((v) => !v)}
+            >
+              <span
+                className={`block h-px w-5 bg-ink transition ${menuOpen ? "translate-y-[6px] rotate-45" : ""}`}
+              />
+              <span className={`block h-px w-5 bg-ink ${menuOpen ? "opacity-0" : ""}`} />
+              <span
+                className={`block h-px w-5 bg-ink transition ${menuOpen ? "-translate-y-[6px] -rotate-45" : ""}`}
+              />
+            </button>
+
             <Link href="/" className="shrink-0 text-lg md:text-2xl" aria-label="CAELIA home">
               <LogoWordmark />
             </Link>
@@ -63,40 +91,53 @@ export function SiteChrome({ children }: { children: ReactNode }) {
               ))}
             </nav>
 
-            <div className="flex items-center gap-4 text-[11px] uppercase tracking-[0.18em] shrink-0">
-              <CurrencySwitcher />
-              <Link href="/cart" className="relative">
-                Carrello
-                {itemCount > 0 ? (
-                  <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
-                    {itemCount}
-                  </span>
-                ) : null}
-              </Link>
-              <button type="button" onClick={open} className="hidden sm:inline">
-                Apri
-              </button>
-            </div>
+            <Link
+              href="/cart"
+              className="relative text-[11px] uppercase tracking-[0.18em] shrink-0"
+            >
+              Carrello
+              {itemCount > 0 ? (
+                <span className="absolute -right-3 -top-2 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] text-cream">
+                  {itemCount}
+                </span>
+              ) : null}
+            </Link>
           </div>
-
-          <nav
-            aria-label="Mobile"
-            className="md:hidden flex gap-4 overflow-x-auto pb-3 text-[11px] uppercase tracking-[0.16em] whitespace-nowrap"
-          >
-            {NAV.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className={
-                  pathname === l.href ? "text-burgundy" : "text-ink/80"
-                }
-              >
-                {l.label}
-              </Link>
-            ))}
-          </nav>
         </div>
       </header>
+
+      {menuOpen ? (
+        <div className="fixed inset-0 z-[400] md:hidden">
+          <button
+            type="button"
+            className="absolute inset-0 bg-night/40"
+            aria-label="Chiudi menu"
+            onClick={() => setMenuOpen(false)}
+          />
+          <aside className="absolute left-0 top-0 h-full w-[min(100%,20rem)] bg-cream shadow-2xl overflow-y-auto">
+            <div className="flex items-center justify-between px-6 h-16 border-b border-mist/60">
+              <LogoWordmark />
+              <button
+                type="button"
+                className="text-[11px] uppercase tracking-[0.2em]"
+                onClick={() => setMenuOpen(false)}
+              >
+                Chiudi
+              </button>
+            </div>
+            <nav className="flex flex-col gap-5 p-8 text-2xl font-light">
+              {NAV.map((l) => (
+                <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+            <div className="px-8 pb-10">
+              <CurrencySwitcher />
+            </div>
+          </aside>
+        </div>
+      ) : null}
 
       <main className="flex-1">{children}</main>
 
