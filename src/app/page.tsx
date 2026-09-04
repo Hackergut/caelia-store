@@ -59,7 +59,7 @@ export default async function Home() {
             </div>
             <div className="relative aspect-[4/5] rounded-md overflow-hidden shadow-product">
               <Image
-                src="/products/beauty-case-rose-front.svg"
+                src="/products/beauty-case-rose-front.png"
                 alt="Beauty Mirror Case CAELIA"
                 fill
                 priority
@@ -116,7 +116,7 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
           <div className="relative aspect-[4/5] rounded-md overflow-hidden">
             <Image
-              src="/products/beauty-case-rose-open.svg"
+              src="/products/beauty-case-rose-open.png"
               alt="Beauty Mirror Case aperto"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

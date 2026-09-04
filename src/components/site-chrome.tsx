@@ -172,7 +172,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 { href: "/journal", label: "Journal" },
                 { href: "/press", label: "Press & media" },
                 { href: "/stores", label: "Boutique" },
-                { href: "/wholesale", label: "Wholesale" },
               ]}
             />
             <FooterColumn
@@ -182,8 +181,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
                 { href: "/returns", label: "Resi" },
                 { href: "/faq", label: "Domande frequenti" },
                 { href: "/contact", label: "Contatti" },
-                { href: "/care", label: "Cura del prodotto" },
-                { href: "/gift-cards", label: "Gift card" },
                 { href: "/sostenibilita", label: "Sostenibilità" },
               ]}
             />

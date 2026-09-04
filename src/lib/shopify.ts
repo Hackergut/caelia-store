@@ -20,13 +20,11 @@ function firstEnv(...names: string[]): string | undefined {
   return undefined;
 }
 
-/** Private vars plus Vercel Commerce / Shopify Storefront public names. */
 const DOMAIN = firstEnv(
   "SHOPIFY_STORE_DOMAIN",
   "NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN",
   "SHOPIFY_STOREFRONT_DOMAIN",
 );
-
 const TOKEN = firstEnv(
   "SHOPIFY_STOREFRONT_API_TOKEN",
   "SHOPIFY_STOREFRONT_ACCESS_TOKEN",
@@ -42,8 +40,7 @@ async function shopifyFetch<T>(query: string, variables: Record<string, unknown>
       "Shopify env vars missing: set SHOPIFY_STORE_DOMAIN and SHOPIFY_STOREFRONT_API_TOKEN",
     );
   }
-  const host = DOMAIN.replace(/^https?:\/\//, "").replace(/\/$/, "");
-  const res = await fetch(`https://${host}/api/2024-10/graphql.json`, {
+  const res = await fetch(`https://${DOMAIN}/api/2024-10/graphql.json`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

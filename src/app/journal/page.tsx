@@ -16,7 +16,6 @@ export default function JournalPage() {
         <br />
         <span className="italic text-rose">dietro le quinte.</span>
       </h1>
-
       <div className="mt-16 divide-y divide-mist/60 border-t border-b border-mist/60">
         {journalPosts.map((p, i) => (
           <article

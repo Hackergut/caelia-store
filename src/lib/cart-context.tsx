@@ -102,7 +102,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             variantTitle: variant.title,
             price: variant.price,
             quantity,
-            image: product.images[0]?.src ?? "/products/beauty-case-rose-front.svg",
+            image: product.images[0]?.src ?? "/products/beauty-case-rose-front.png",
           },
         ];
       });

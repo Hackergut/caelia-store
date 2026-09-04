@@ -82,6 +82,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <CookieBanner />
             <Analytics />
             <VercelAnalytics />
+            <ExitIntentModal />
+            <RecoveredCartBanner />
+            <SupportWidget />
           </CurrencyProvider>
           </WishlistProvider>
         </CartProvider>

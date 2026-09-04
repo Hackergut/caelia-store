@@ -11,7 +11,7 @@ export default function LoginPage() {
     <div className="mx-auto max-w-md px-6 lg:px-10 pt-20 pb-24">
       <h1 className="font-serif text-4xl">Accedi</h1>
       <p className="mt-3 text-sm text-ink/70">
-        Entra per visualizzare ordini, wishlist e spedizioni.
+        Ordini, wishlist e spedizioni.
       </p>
       <form className="mt-10 space-y-4">
         <label className="block">

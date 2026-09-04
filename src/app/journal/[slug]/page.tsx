@@ -28,13 +28,9 @@ export default async function JournalArticlePage({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) notFound();
-
   return (
     <article className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24">
-      <Link
-        href="/journal"
-        className="text-xs uppercase tracking-[0.22em] nav-link"
-      >
+      <Link href="/journal" className="text-xs uppercase tracking-[0.22em] nav-link">
         ← Journal
       </Link>
       <p className="mt-8 text-xs uppercase tracking-[0.32em] text-ink/60">
@@ -44,7 +40,7 @@ export default async function JournalArticlePage({
       <p className="mt-4 text-sm text-ink/60">{post.author}</p>
       <div className="mt-10 space-y-6 text-lg leading-relaxed text-ink/80">
         {post.body.map((para) => (
-          <p key={para.slice(0, 24)}>{para}</p>
+          <p key={para.slice(0, 32)}>{para}</p>
         ))}
       </div>
     </article>

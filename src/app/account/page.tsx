@@ -12,11 +12,11 @@ export default function AccountPage() {
     <div className="mx-auto max-w-2xl px-6 lg:px-10 pt-16 pb-24">
       <h1 className="font-serif text-4xl">Il mio account</h1>
       <p className="mt-3 text-ink/70">
-        Ordini recenti e accesso. Per il profilo completo collega Shopify
-        Customer Accounts.
+        Ordini recenti. Per il profilo completo collega Shopify Customer
+        Accounts.
       </p>
-      <p className="mt-4 text-sm">
-        <Link href="/login" className="nav-link uppercase tracking-[0.18em] text-xs">
+      <p className="mt-4">
+        <Link href="/login" className="text-xs uppercase tracking-[0.18em] nav-link">
           Accedi →
         </Link>
       </p>
