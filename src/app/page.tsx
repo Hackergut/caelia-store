@@ -119,7 +119,7 @@ export default async function Home() {
       <section className="bg-cream">
         <div className="shell section-y">
           <p className="text-[11px] uppercase tracking-[0.32em] text-ink/40 mb-8">Capitoli</p>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
             {[
               {
                 href: "/products/burgundy-caelia",
@@ -141,18 +141,27 @@ export default async function Home() {
               },
             ].map((c) => (
               <Link key={c.href} href={c.href} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden bg-cream-deep">
+                {/* Mobile: wide banner crop with the label over the image.
+                    Desktop: the original tall chapter card. */}
+                <div className="relative aspect-[16/7] overflow-hidden bg-cream-deep sm:aspect-[21/9] md:aspect-[3/4]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={c.src}
                     alt={c.t}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-r from-night/55 via-night/15 to-transparent md:hidden" />
+                  <div className="absolute inset-y-0 left-0 flex flex-col justify-center px-5 md:hidden">
+                    <p className="text-[10px] uppercase tracking-[0.28em] text-cream/70">
+                      {c.n}
+                    </p>
+                    <p className="mt-0.5 text-2xl font-light text-cream">{c.t}</p>
+                  </div>
                 </div>
-                <p className="mt-3 text-[11px] uppercase tracking-[0.22em] text-ink/40">
+                <p className="mt-3 hidden text-[11px] uppercase tracking-[0.22em] text-ink/40 md:block">
                   {c.n}
                 </p>
-                <p className="mt-1 text-xl font-light">{c.t}</p>
+                <p className="mt-1 hidden text-xl font-light md:block">{c.t}</p>
               </Link>
             ))}
           </div>
