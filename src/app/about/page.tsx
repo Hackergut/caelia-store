@@ -1,68 +1,86 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "La nostra storia",
   description:
-    "CAELIA nasce dall incontro di due sorelle, Carla e Giulia, divise da migliaia di chilometri ma unite dallo stesso modo di vivere il mondo.",
+    "CAELIA nasce dall’incontro di due sorelle, Carla e Giulia, tra Los Angeles e Dubai.",
 };
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 lg:px-10 pt-16 pb-24">
-      <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
-        La nostra storia
-      </p>
-      <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
-        Due sorelle, due citta,
-        <br />
-        <span className="italic text-rose">un&apos;unica idea.</span>
-      </h1>
+    <>
+      <section className="relative min-h-[70vh] overflow-hidden bg-night">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/editorial/lifestyle-burgundy.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover blur-[3px] brightness-[0.45]"
+        />
+        <div className="absolute inset-0 bg-night/45" />
+        <div className="relative z-10 mx-auto flex min-h-[70vh] max-w-4xl flex-col justify-end px-6 lg:px-10 pb-16 pt-32">
+          <p className="text-[11px] uppercase tracking-[0.38em] text-cream/70">
+            La nostra storia
+          </p>
+          <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-light leading-[1.05] text-cream">
+            Due sorelle, due città,
+            <br />
+            un’unica idea.
+          </h1>
+        </div>
+      </section>
 
-      <div className="mt-16 grid gap-12 lg:grid-cols-2 items-start">
-        <div className="space-y-6 text-lg leading-relaxed text-ink/80">
+      <section className="bg-cream">
+        <div className="mx-auto max-w-3xl px-6 py-20 lg:py-24 space-y-6 text-lg leading-relaxed text-ink/80 font-light">
           <p>
-            CAELIA nasce dall incontro di due sorelle, Carla e Giulia, divise
-            da migliaia di chilometri ma unite dallo stesso modo di vivere il
-            mondo. Una vive a Los Angeles, l&apos;altra a Dubai.
+            CAELIA nasce dall’incontro di due sorelle, Carla e Giulia, divise da
+            migliaia di chilometri ma unite dallo stesso modo di vivere il mondo.
+            Una vive a Los Angeles, l’altra a Dubai.
           </p>
           <p>
-            Due citta lontane, due vite scandite da lavoro, appuntamenti,
+            Due città lontane, due vite scandite da lavoro, appuntamenti,
             palestra, trasferte, weekend improvvisati e serate che cominciano
             subito dopo.
           </p>
-          <p>
-            E vivendo questa quotidianita, fatta di ritmi veloci e continui
-            passaggi da un momento all&apos;altro della giornata, che nasce
-            un&apos;esigenza semplice: avere con se cio che conta, senza
-            perdere tempo a cercarlo.
+        </div>
+      </section>
+
+      <section className="relative min-h-[55vh] overflow-hidden bg-night">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/editorial/liner-lips.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover blur-[2px] brightness-[0.5]"
+        />
+        <div className="absolute inset-0 bg-night/40" />
+        <div className="relative z-10 mx-auto max-w-3xl px-6 py-24 text-center">
+          <p className="text-2xl sm:text-3xl font-light leading-snug text-cream">
+            Quante volte, per un ritocco, cerchiamo matita, gloss e specchio in
+            fondo alla borsa?
           </p>
+        </div>
+      </section>
+
+      <section className="bg-cream">
+        <div className="mx-auto max-w-3xl px-6 py-20 space-y-6 text-lg leading-relaxed text-ink/80 font-light">
           <p>
-            Quante volte, per un semplice ritocco, ci ritroviamo a rovistare
-            nella borsa alla ricerca di una matita, del lip gloss o dello
-            specchietto?
+            È da qui che prende forma il{" "}
+            <strong className="font-medium text-ink">CAELIA Beauty Mirror Case</strong>
+            : un astuccio compatto che racchiude tutto ciò che serve per un
+            ritocco veloce. Una matita, un tocco di gloss, lo specchio. Pochi
+            gesti e si è pronte a continuare.
           </p>
-          <p>
-            E da qui che prende forma il <strong>CAELIA Beauty Mirror Case</strong>:
-            un astuccio compatto che racchiude tutto cio che serve per un
-            ritocco veloce, ordinato e subito a portata di mano. Una matita
-            sulle labbra, un tocco di gloss, un ritocco agli occhi. Pochi
-            gesti e si e pronte a continuare.
-          </p>
-          <p className="font-serif text-2xl">
+          <p className="text-2xl font-light text-ink pt-4">
             CAELIA — Aprire. Ritoccare. Ripartire.
           </p>
+          <Link
+            href="/products"
+            className="inline-flex mt-6 bg-burgundy text-cream px-8 py-3.5 text-[11px] uppercase tracking-[0.22em]"
+          >
+            La collezione
+          </Link>
         </div>
-        <div className="relative aspect-[4/5] rounded-md overflow-hidden shadow-product">
-          <Image
-            src="/products/beauty-case-rose-lifestyle.svg"
-            alt="Due sorelle, due citta, un rituale"
-            fill
-            sizes="(min-width: 1024px) 40vw, 100vw"
-            className="object-cover"
-          />
-        </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

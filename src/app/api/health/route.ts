@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { catalogSource } from "@/lib/catalog";
 
 /**
  * Lightweight healthcheck. Used by uptime monitors.
@@ -14,6 +15,7 @@ export async function GET() {
     {
       ok: true,
       service: "caelia-storefront",
+      catalog: catalogSource,
       ts: new Date().toISOString(),
     },
     {

@@ -22,7 +22,7 @@ const BUNDLES: Bundle[] = [
     title: "Duo Essentials",
     description:
       "Beauty Mirror Case + Mini: specchio, matita e gloss in due formati. Risparmi il15%.",
-    productHandles: ["beauty-mirror-case", "beauty-mirror-case-mini"],
+    productHandles: ["burgundy-caelia", "cacao-caelia"],
     percentOff: 15,
   },
 ];

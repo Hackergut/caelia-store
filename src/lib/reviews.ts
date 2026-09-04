@@ -1,7 +1,7 @@
 import type { Review } from "@/lib/types";
 
 const SEED: Record<string, Review[]> = {
-  "beauty-mirror-case": [
+  "burgundy-caelia": [
     {
       id: "r1",
       author: "Sofia M.",

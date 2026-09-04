@@ -1,44 +1,36 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
-import { StickyAddToCart } from "@/components/sticky-add-to-cart";
 import { BackInStockButton } from "@/components/back-in-stock";
-import { Caelia3DFrame } from "@/components/caelia-3d-frame";
+import { ProductCarousel } from "@/components/product-carousel";
 import { events } from "@/lib/track";
 import { pushRecentlyViewed } from "@/lib/recently-viewed";
-import { formatMoney } from "@/lib/format";
 import { Price } from "@/lib/currency";
 import type { Product } from "@/lib/types";
 
+const BENEFITS = [
+  "Ritocco in qualsiasi momento, con specchio integrato",
+  "Tasca che tiene matite e gloss al sicuro",
+  "Protegge il lip combo da urti e tappi persi",
+  "Pensato per ogni borsa, anche la più mini",
+];
+
+const COLORS = [
+  { handle: "burgundy-caelia", label: "Burgundy", hex: "#4a0e16" },
+  { handle: "cacao-caelia", label: "Cacao", hex: "#7b5644" },
+  { handle: "crema-caelia", label: "Crema", hex: "#efe5d8" },
+];
+
 export function ProductDetail({ product }: { product: Product }) {
-  const [variantId, setVariantId] = useState(product.variants[0].id);
   const [quantity, setQuantity] = useState(1);
-  const [activeImage, setActiveImage] = useState(0);
+  const [openDesc, setOpenDesc] = useState(true);
   const { add } = useCart();
+  const variant = product.variants[0];
 
-  useEffect(() => { setActiveImage(0); }, [variantId]);
-  const variant =
-    product.variants.find((v) => v.id === variantId) ?? product.variants[0];
-
-  // Map variant title suffix ("Rose", "Noir", "Ivory") to a matching image
-  // so selecting a colour updates the gallery.
-  const variantImages = useMemo(() => {
-    const match = product.images.filter((img) => {
-      const alt = img.alt.toLowerCase();
-      const titleSuffix = variant.title
-        .replace(product.title, "")
-        .trim()
-        .toLowerCase();
-      return titleSuffix.length > 0 && alt.includes(titleSuffix);
-    });
-    return match.length > 0 ? match : product.images;
-  }, [product.images, product.title, variant.title]);
-
-  // Track ViewContent on mount
   useEffect(() => {
     events.viewItem({
       id: product.id,
@@ -47,119 +39,90 @@ export function ProductDetail({ product }: { product: Product }) {
       currency: variant.price.currencyCode,
     });
     pushRecentlyViewed(product.handle);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product.id, variant.id]);
+  }, [
+    product.id,
+    product.handle,
+    product.title,
+    variant.price.amount,
+    variant.price.currencyCode,
+  ]);
+
+  function addToCart() {
+    add(product, variant, quantity);
+    events.addToCart({
+      id: product.id,
+      title: product.title,
+      price: Number(variant.price.amount),
+      currency: variant.price.currencyCode,
+      quantity,
+    });
+  }
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-10 pb-32 lg:pb-24 grid lg:grid-cols-2 gap-12 lg:gap-20">
-      {/* 3D hero + 2D gallery fallback */}
-      <Caelia3DFrame product={product} variant={variant} />
-      <div className="flex flex-col gap-4">
-        <div
-          className="group relative aspect-[4/5] overflow-hidden rounded-md bg-cream-deep cursor-zoom-in"
-          onMouseMove={(e) => {
-            const target = e.currentTarget;
-            const rect = target.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            target.style.setProperty("--zoom-x", `${x}%`);
-            target.style.setProperty("--zoom-y", `${y}%`);
-          }}
-        >
-          <Image
-            src={variantImages[activeImage % variantImages.length].src}
-            alt={variantImages[activeImage % variantImages.length].alt}
-            fill
-            priority
-            sizes="(min-width: 1024px) 50vw, 100vw"
-            className="object-cover transition-transform duration-[var(--dur-slow)] ease-[var(--ease-out)] group-hover:scale-[2] [transform-origin:var(--zoom-x)_var(--zoom-y)]"
-          />
-        </div>
-        <div className="grid grid-cols-4 gap-3">
-          {variantImages.map((img, i) => (
-            <button
-              key={img.src}
-              type="button"
-              onClick={() => setActiveImage(i)}
-              className={`relative aspect-square overflow-hidden rounded-md bg-cream-deep border ${
-                i === activeImage ? "border-charcoal" : "border-transparent"
-              }`}
-              aria-label={`Mostra immagine ${i + 1}`}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                sizes="120px"
-                className="object-cover"
-              />
-            </button>
-          ))}
-        </div>
-      </div>
+    <div className="mx-auto max-w-6xl px-5 lg:px-10 pt-8 pb-24 grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16">
+      <ProductCarousel images={product.images} id={product.handle} />
 
-      {/* Info */}
-      <div className="lg:sticky lg:top-28 self-start">
-        <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
-          {product.productType}
+      <div>
+        <p className="text-[11px] uppercase tracking-[0.28em] text-ink/50">
+          CAELIA · Beauty accessory
         </p>
-        <h1 className="mt-3 font-serif text-4xl lg:text-5xl leading-[1.1]">
+        <h1 className="mt-3 text-[2rem] lg:text-[2.6rem] leading-[1.12] font-light">
           {product.title}
         </h1>
-        <p className="mt-6 text-lg text-ink/80 leading-relaxed">
-          {product.description}
-        </p>
+        <p className="mt-3 text-sm text-ink/55">5.000+ venduti in tutto il mondo</p>
 
-        <Price amountEUR={Number(variant.price.amount)} className="mt-8 font-serif text-3xl" />
+        <ul className="mt-6 space-y-2.5 text-[15px] text-ink/85">
+          {BENEFITS.map((b) => (
+            <li key={b} className="flex gap-3">
+              <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-burgundy" />
+              {b}
+            </li>
+          ))}
+        </ul>
 
-        <div className="mt-3">
+        <Price amountEUR={Number(variant.price.amount)} className="mt-8 text-2xl font-light" />
+        <div className="mt-2">
           <InventoryBadge sku={variant.sku} />
         </div>
         {!variant.available && (
           <BackInStockButton sku={variant.sku} variantTitle={variant.title} />
         )}
 
-        <div className="mt-10">
-          <p className="text-xs uppercase tracking-[0.22em] text-ink/60 mb-3">
+        <div className="mt-8">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-ink/55 mb-3">
             Colore
           </p>
-          <div className="flex flex-wrap gap-3">
-            {product.variants.map((v) => (
-              <button
-                key={v.id}
-                type="button"
-                onClick={() => setVariantId(v.id)}
-                className={`flex items-center gap-3 border rounded-full pl-2 pr-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors chip ${
-                  v.id === variantId
-                    ? "border-charcoal"
-                    : "border-mist hover:border-charcoal/60"
+          <div className="flex gap-3">
+            {COLORS.map((c) => (
+              <Link
+                key={c.handle}
+                href={`/products/${c.handle}`}
+                title={c.label}
+                className={`h-9 w-9 rounded-full ring-offset-2 ring-offset-cream ${
+                  product.handle === c.handle ? "ring-2 ring-burgundy" : "ring-1 ring-mist"
                 }`}
-              >
-                <span
-                  className="h-4 w-4 rounded-full ring-1 ring-charcoal/10"
-                  style={{ background: v.swatch ?? "#cfc7be" }}
-                />
-                {v.title.replace(product.title, "").trim() || v.title}
-              </button>
+                style={{ background: c.hex }}
+              />
             ))}
           </div>
+          <p className="mt-2 text-xs text-ink/50">{product.title}</p>
         </div>
 
-        <div className="mt-8 flex items-center gap-4">
-          <div className="inline-flex items-center border border-mist rounded-full">
+        <div className="mt-8 flex items-stretch gap-3">
+          <div className="inline-flex items-center border border-mist">
             <button
               type="button"
-              className="h-11 w-11"
-              aria-label="Diminuisci quantita"
+              className="h-12 w-11 text-lg"
+              aria-label="Diminuisci quantità"
               onClick={() => setQuantity((q) => Math.max(1, q - 1))}
             >
               −
             </button>
-            <span className="w-10 text-center">{quantity}</span>
+            <span className="w-8 text-center text-sm">{quantity}</span>
             <button
               type="button"
-              className="h-11 w-11"
-              aria-label="Aumenta quantita"
+              className="h-12 w-11 text-lg"
+              aria-label="Aumenta quantità"
               onClick={() => setQuantity((q) => q + 1)}
             >
               +
@@ -167,44 +130,39 @@ export function ProductDetail({ product }: { product: Product }) {
           </div>
           <button
             type="button"
-            onClick={() => {
-              add(product, variant, quantity);
-              events.addToCart({
-                id: product.id,
-                title: product.title,
-                price: Number(variant.price.amount),
-                currency: variant.price.currencyCode,
-                quantity,
-              });
-            }}
+            onClick={addToCart}
             disabled={!variant.available}
-            className="flex-1 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press disabled:bg-ink/30 disabled:cursor-not-allowed"
+            className="flex-1 bg-burgundy text-cream py-3 text-[11px] uppercase tracking-[0.22em] hover:bg-burgundy-deep disabled:bg-ink/30"
           >
             {variant.available ? "Aggiungi al carrello" : "Esaurito"}
           </button>
           <WishlistButton handle={product.handle} />
         </div>
 
-        <ul className="mt-10 space-y-3 text-sm text-ink/80">
-          {product.features.map((f) => (
-            <li key={f} className="flex gap-3">
-              <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-rose" />
-              <span>{f}</span>
-            </li>
-          ))}
-        </ul>
+        <p className="mt-4 text-[11px] uppercase tracking-[0.16em] text-ink/45">
+          Spedizione gratuita oltre 60€ · Resi 30 giorni
+        </p>
 
-        <div className="mt-10 grid grid-cols-2 gap-x-8 gap-y-4 text-sm border-t border-mist/60 pt-6">
-          <DetailItem label="Materiale" value={product.details.material} />
-          <DetailItem label="Dimensioni" value={product.details.dimensions} />
-          <DetailItem label="Peso" value={product.details.weight} />
-          <DetailItem label="Prodotto in" value={product.details.madeIn} />
-        </div>
-
-        <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs uppercase tracking-[0.18em] text-ink/60">
-          <span>· Spedizione gratuita oltre 60€</span>
-          <span>· Resi gratuiti 30 giorni</span>
-          <span>· Spedizione tracciata</span>
+        <div className="mt-10 border-t border-mist/70">
+          <button
+            type="button"
+            className="flex w-full items-center justify-between py-4 text-left text-xs uppercase tracking-[0.2em]"
+            onClick={() => setOpenDesc((v) => !v)}
+          >
+            Descrizione
+            <span>{openDesc ? "−" : "+"}</span>
+          </button>
+          {openDesc && (
+            <p className="pb-5 text-[15px] leading-relaxed text-ink/80">
+              {product.description}
+            </p>
+          )}
+          <div className="grid grid-cols-2 gap-x-6 gap-y-3 border-t border-mist/70 py-5 text-sm">
+            <DetailItem label="Materiale" value={product.details.material} />
+            <DetailItem label="Dimensioni" value={product.details.dimensions} />
+            <DetailItem label="Peso" value={product.details.weight} />
+            <DetailItem label="Prodotto in" value={product.details.madeIn} />
+          </div>
         </div>
       </div>
     </div>
@@ -214,8 +172,8 @@ export function ProductDetail({ product }: { product: Product }) {
 function DetailItem({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <p className="text-xs uppercase tracking-[0.22em] text-ink/60">{label}</p>
-      <p className="mt-1">{value}</p>
+      <p className="text-[11px] uppercase tracking-[0.18em] text-ink/50">{label}</p>
+      <p className="mt-1 text-ink/80">{value}</p>
     </div>
   );
 }

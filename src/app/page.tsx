@@ -1,163 +1,111 @@
-import Image from "next/image";
 import Link from "next/link";
 import { listProducts } from "@/lib/catalog";
 import { ProductCard } from "@/components/product-card";
-import { RecentlyViewedSection } from "@/components/recently-viewed-section";
-import { BundleSection } from "@/components/bundle-card";
-import { Caelia3DExplorer } from "@/components/caelia-3d-explorer";
 
 export default async function Home() {
   const products = await listProducts();
   return (
     <>
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-24 lg:pt-24 lg:pb-32">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            <div>
-              <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
-                Los Angeles · Dubai
-              </p>
-              <h1 className="mt-6 font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight">
-                Aprire. <span className="italic text-rose">Ritoccare.</span>
-                <br />
-                Ripartire.
-              </h1>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-ink/80">
-                Il Beauty Mirror Case CAELIA: un astuccio compatto che racchiude
-                matita contorno labbra, lip gloss e specchio. Pensato per le
-                giornate fatte di continui passaggi.
-              </p>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link
-                  href="/products"
-                  className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
-                >
-                  Scopri la collezione
-                </Link>
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] nav-link"
-                >
-                  La nostra storia →
-                </Link>
-              </div>
-              <div className="mt-12 flex gap-10 text-xs uppercase tracking-[0.22em] text-ink/60">
-                <div>
-                  <p className="font-serif text-3xl normal-case text-ink">3</p>
-                  <p>Tonalità</p>
-                </div>
-                <div>
-                  <p className="font-serif text-3xl normal-case text-ink">3-in-1</p>
-                  <p>Specchio, matita, gloss</p>
-                </div>
-                <div>
-                  <p className="font-serif text-3xl normal-case text-ink">100%</p>
-                  <p>Pelle vegana</p>
-                </div>
-              </div>
-            </div>
-            <div className="relative aspect-[4/5] rounded-md overflow-hidden shadow-product">
-              <Image
-                src="/products/beauty-case-rose-front.svg"
-                alt="Beauty Mirror Case CAELIA"
-                fill
-                priority
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-cover"
-              />
-            </div>
+      <section className="bg-cream">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-12 lg:py-16 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.38em] text-ink/45">
+              Volume 01 · Los Angeles · Dubai
+            </p>
+            <h1 className="mt-5 text-5xl sm:text-6xl lg:text-[4.6rem] font-light leading-[0.98] tracking-tight text-ink">
+              Aprire.
+              <br />
+              Ritoccare.
+              <br />
+              Ripartire.
+            </h1>
+            <p className="mt-7 max-w-sm text-ink/70 leading-relaxed">
+              Beauty Mirror Case. Specchio, matita, gloss. Un gesto.
+            </p>
+            <Link
+              href="/products"
+              className="mt-8 inline-flex bg-burgundy text-cream px-8 py-3.5 text-[11px] uppercase tracking-[0.22em]"
+            >
+              La collezione
+            </Link>
+          </div>
+          <div className="aspect-square overflow-hidden bg-cream-deep">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/products/burgundy-caelia-pair.jpg"
+              alt="Burgundy Caelia"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </section>
 
-      {/* Manifesto */}
-      <section className="bg-cream-deep relative grain">
-        <div className="mx-auto max-w-5xl px-6 lg:px-10 py-24 lg:py-32 text-center relative z-10">
-          <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Manifesto</p>
-          <h2 className="mt-6 font-serif text-3xl sm:text-4xl lg:text-5xl leading-[1.15]">
-            &ldquo;Quante volte, per un semplice ritocco, ci ritroviamo a rovistare
-            nella borsa alla ricerca di una matita, del lip gloss o dello
-            specchietto?&rdquo;
+      <section className="relative min-h-[72vh] overflow-hidden bg-night">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/products/burgundy-caelia-stitch.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover blur-[4px] brightness-[0.42]"
+        />
+        <div className="absolute inset-0 bg-night/40" />
+        <div className="relative z-10 mx-auto flex min-h-[72vh] max-w-3xl flex-col items-center justify-center px-6 py-24 text-center">
+          <p className="text-[11px] uppercase tracking-[0.38em] text-cream/70">Manifesto</p>
+          <h2 className="mt-8 text-3xl sm:text-4xl lg:text-[2.6rem] font-light leading-[1.28] text-cream text-balance">
+            «Quante volte, per un semplice ritocco, ci ritroviamo a rovistare
+            nella borsa?»
           </h2>
-          <p className="mt-8 text-sm uppercase tracking-[0.22em] text-ink/70">
-            Carla &amp; Giulia — fondatrici di CAELIA
+          <p className="mt-10 text-[11px] uppercase tracking-[0.28em] text-cream/65">
+            Carla &amp; Giulia — fondatrici
           </p>
         </div>
       </section>
 
-      {/* Featured products */}
-      <section className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-32">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
-          <div>
-            <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
-              Collezione
-            </p>
-            <h2 className="mt-3 font-serif text-4xl lg:text-5xl leading-[1.1]">
-              Un astuccio. Tutto il necessario.
-            </h2>
+      <section className="bg-cream border-t border-mist/40">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-20 lg:py-24">
+          <div className="mb-12 flex items-end justify-between gap-6">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.32em] text-ink/40">N° 03</p>
+              <h2 className="mt-2 text-4xl lg:text-5xl font-light">Tre colori.</h2>
+            </div>
+            <Link href="/products" className="text-[11px] uppercase tracking-[0.2em] text-ink/70">
+              Vedi tutto →
+            </Link>
           </div>
-          <Link
-            href="/products"
-            className="text-xs uppercase tracking-[0.22em] nav-link self-start md:self-end"
-          >
-            Vedi tutto →
-          </Link>
-        </div>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((p, i) => (
-            <ProductCard key={p.id} product={p} className="reveal" style={{ "--i": i } as React.CSSProperties} />
-          ))}
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {products.map((p) => (
+              <ProductCard key={p.id} product={p} />
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Ritual */}
-      <section className="bg-night text-cream">
-        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-24 lg:py-32 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="relative aspect-[4/5] rounded-md overflow-hidden">
-            <Image
-              src="/products/beauty-case-rose-open.svg"
-              alt="Beauty Mirror Case aperto"
-              fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
-              className="object-cover"
+      <section className="bg-cream">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 lg:py-24 grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="aspect-[3/4] overflow-hidden bg-cream-deep">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/editorial/liner-lips.jpg"
+              alt="Ritocco labbra"
+              className="h-full w-full object-cover"
             />
           </div>
           <div>
-            <p className="text-xs uppercase tracking-[0.32em] text-blush">
-              Il rituale CAELIA
-            </p>
-            <h2 className="mt-6 font-serif text-4xl lg:text-5xl leading-[1.1]">
+            <p className="text-[11px] uppercase tracking-[0.32em] text-ink/40">Il rituale</p>
+            <h2 className="mt-5 text-4xl lg:text-5xl font-light leading-[1.05]">
               Tre gesti.
               <br />
-              Pronta a ripartire.
+              Pronta.
             </h2>
-            <ol className="mt-10 space-y-6 text-cream/80">
+            <ol className="mt-10">
               {[
-                {
-                  n: "01",
-                  t: "Apri",
-                  d: "Chiusura magnetica, si apre con una sola mano.",
-                },
-                {
-                  n: "02",
-                  t: "Ritocca",
-                  d: "Matita contorno labbra, gloss, specchio. Tutto in un gesto.",
-                },
-                {
-                  n: "03",
-                  t: "Ripartire",
-                  d: "Richiudi e sei gia oltre. Nessun attimo perso.",
-                },
-              ].map((step) => (
-                <li key={step.n} className="flex gap-6">
-                  <span className="font-serif text-2xl text-blush">
-                    {step.n}
-                  </span>
-                  <div>
-                    <p className="font-serif text-2xl">{step.t}</p>
-                    <p className="mt-1 text-sm text-cream/70">{step.d}</p>
-                  </div>
+                { n: "01", t: "Apri", d: "Una mano. Si apre." },
+                { n: "02", t: "Ritocca", d: "Matita, gloss, specchio." },
+                { n: "03", t: "Riparti", d: "Richiudi. Sei oltre." },
+              ].map((s) => (
+                <li key={s.n} className="border-t border-mist/70 py-5">
+                  <p className="text-[11px] tracking-[0.28em] text-ink/40">{s.n}</p>
+                  <p className="mt-1 text-2xl font-light">{s.t}</p>
+                  <p className="mt-1 text-ink/65">{s.d}</p>
                 </li>
               ))}
             </ol>
@@ -165,42 +113,52 @@ export default async function Home() {
         </div>
       </section>
 
-      <BundleSection all={products} />
-      <RecentlyViewedSection all={products} />
-
-
-      {/* Studio 3D — sezione dedicata. Unico spazio interattivo 3D della landing. */}
-      <section className="bg-cream-deep relative grain">
-        <div className="mx-auto max-w-5xl px-6 lg:px-10 py-16 lg:py-20 text-center relative z-10">
-          <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Studio 3D</p>
-          <h2 className="mt-4 font-serif text-3xl lg:text-4xl leading-[1.15]">
-            Prendilo in mano. Ruotalo. Aprilo.
-          </h2>
-          <p className="mt-4 text-base text-ink/70 max-w-xl mx-auto leading-relaxed">
-            Esplora il Beauty Mirror Case in alta risoluzione. Cambia tonalità,
-            guarda il formato pocket, scarica uno screenshot da condividere.
-          </p>
+      <section className="bg-cream">
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-16 lg:py-20">
+          <p className="text-[11px] uppercase tracking-[0.32em] text-ink/40 mb-8">Capitoli</p>
+          <div className="grid md:grid-cols-3 gap-3">
+            {[
+              {
+                href: "/products/burgundy-caelia",
+                src: "/products/chapter-burgundy.jpg",
+                n: "01",
+                t: "Burgundy",
+              },
+              {
+                href: "/products/cacao-caelia",
+                src: "/products/chapter-cacao.jpg",
+                n: "02",
+                t: "Cacao",
+              },
+              {
+                href: "/products/crema-caelia",
+                src: "/products/chapter-crema.jpg",
+                n: "03",
+                t: "Crema",
+              },
+            ].map((c) => (
+              <Link key={c.href} href={c.href} className="group block">
+                <div className="relative aspect-[3/4] overflow-hidden bg-cream-deep">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={c.src}
+                    alt={c.t}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <p className="mt-3 text-[11px] uppercase tracking-[0.22em] text-ink/40">
+                  {c.n}
+                </p>
+                <p className="mt-1 text-xl font-light">{c.t}</p>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
-      <Caelia3DExplorer />
-      {/* Press / Trust */}
-      <section className="mx-auto max-w-5xl px-6 lg:px-10 py-20 lg:py-28 text-center">
-        <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
-          Pensato per chi vive in movimento
-        </p>
-        <p className="mt-6 font-serif text-2xl lg:text-3xl leading-snug text-ink/80">
-          Due citta lontane, due vite scandite da lavoro, appuntamenti, palestra,
-          trasferte, weekend improvvisati e serate che cominciano subito dopo.
-        </p>
-        <div className="mt-12 flex flex-wrap justify-center gap-x-12 gap-y-4 text-xs uppercase tracking-[0.22em] text-ink/60">
-          <span>Prodotto in Italia</span>
-          <span>·</span>
-          <span>Pelle vegana certificata</span>
-          <span>·</span>
-          <span>Spedizioni tracciate</span>
-          <span>·</span>
-          <span>Resi gratuiti 30 giorni</span>
+      <section className="border-t border-mist/40 bg-cream">
+        <div className="mx-auto max-w-4xl px-6 py-14 text-center text-[11px] uppercase tracking-[0.22em] text-ink/40">
+          Italia · Pelle vegana · Resi 30 giorni
         </div>
       </section>
     </>

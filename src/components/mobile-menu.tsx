@@ -34,7 +34,7 @@ export function MobileMenu({
         aria-hidden={!open}
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-mist/60">
-          <p className="font-serif text-xl">CAELIA</p>
+          <p className="font-logo text-lg">CAELIA</p>
           <button
             type="button"
             onClick={onClose}
@@ -47,7 +47,9 @@ export function MobileMenu({
           <Link href="/products" onClick={onClose}>Collezione</Link>
           <Link href="/about" onClick={onClose}>Storia</Link>
           <Link href="/journal" onClick={onClose}>Journal</Link>
+          <Link href="/stores" onClick={onClose}>Boutique</Link>
           <Link href="/account" onClick={onClose}>Account</Link>
+          <Link href="/login" onClick={onClose}>Accedi</Link>
           <Link href="/contact" onClick={onClose}>Contatti</Link>
         </nav>
       </div>

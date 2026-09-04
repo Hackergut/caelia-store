@@ -4,40 +4,35 @@
    CAELIA design tokens — colors, fonts, shadows
    ------------------------------------------------------------------------- */
 @theme {
+  /* CAELIA brand: burgundy main, Tenor Sans logo, three leather colors */
   --color-cream: #f7f1ea;
   --color-cream-deep: #efe5d8;
-  --color-mist: #e0d6c9;            /* warm grey-beige separator */
+  --color-mist: #e0d6c9;
 
-  /* Three-tone palette: each color has a defined role.
-     Cacao is the new "main color" — warm, natural, more readable than the previous
-     burgundy-on-cream. Burgundy is reserved for strong accents (CTA primary, emphasis).
-     Rose returns to its original rosy hue for decorative tints and the "Rose" variant.
-     Legacy charcoal / ink are aliased to cacao so existing call sites work unchanged. */
-  --color-cacao: #7b5644;           /* main — body text, headings, surfaces */
-  --color-cacao-deep: #5a3d2e;     /* deeper cacao for hover on dark surfaces */
-  --color-charcoal: var(--color-cacao);  /* legacy alias — text & bg utilities stay consistent */
-  --color-ink: var(--color-cacao);       /* legacy alias — body text */
+  --color-burgundy: #4a0e16;
+  --color-burgundy-deep: #2e070d;
+  --color-burgundy-tint: #7a2630;
+  --color-cacao: #7b5644;
+  --color-cacao-deep: #5a3d2e;
 
-  /* Burgundy palette — aligned to the CAELIA Luxury reference (Material 3 burgundy).
-     Primary is darker than before so it reads as a real CTA color on cream.
-     Tertiary is a near-black with burgundy undertone, used where we need
-     a strong dark surface (announcement bar, footer). */
-  --color-burgundy: #4a0e16;       /* primary — CTA, hover, link emphasis */
-  --color-burgundy-deep: #2e070d; /* hover state */
-  --color-burgundy-tint: #7a2630;  /* softer primary on dark surfaces */
-  --color-night: #1a0a0e;          /* near-black with burgundy undertone — used for surfaces */
-  --color-night-deep: #0e0507;
+  --color-charcoal: #1f1d1c;
+  --color-ink: #4a0e16;
+  --color-night: #4a0e16;
+  --color-night-deep: #2e070d;
 
-  --color-rose: #d49b96;           /* decorative tint — back to original rose */
-  --color-rose-deep: #b8655f;      /* deeper rose — slight emphasis */
-  --color-blush: #e9c9c4;          /* warm pink — cream-ish tint */
+  --color-rose: #4a0e16;
+  --color-rose-deep: #2e070d;
+  --color-blush: #e9c9c4;
   --color-blush-deep: #d49b96;
 
-  /* Fonts — minimal, linear, sans-only system inspired by CAELIA Luxury reference.
-     Drop the decorative Fraunces serif entirely; Inter covers display + body.
-     Legacy --font-serif still works but resolves to the same Inter family. */
-  --font-serif: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --font-logo: var(--font-tenor), "Tenor Sans", "Arial Narrow", Arial, sans-serif;
 
   --shadow-soft: 0 10px 30px -12px rgba(31, 29, 28, 0.15);
   --shadow-product: 0 30px 60px -30px rgba(31, 29, 28, 0.35);
@@ -72,6 +67,84 @@
 /* -------------------------------------------------------------------------
    Page foundation
    ------------------------------------------------------------------------- */
+button {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+#nav-caelia > summary {
+  list-style: none;
+}
+#nav-caelia > summary::-webkit-details-marker {
+  display: none;
+}
+
+.site-bar {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  background: var(--color-cream);
+  border-bottom: 1px solid #e0d6c9;
+}
+.site-bar__inner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 80px;
+  padding: 0 32px;
+  box-sizing: border-box;
+}
+.site-bar__brand {
+  flex: 0 0 auto;
+  font-size: 20px;
+  white-space: nowrap;
+  margin-right: 48px;
+}
+.site-bar__links {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 28px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+.site-bar__links a.is-active {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+  color: var(--color-burgundy);
+}
+.site-bar__links a:hover {
+  color: var(--color-burgundy);
+}
+.site-bar__cart {
+  margin-left: auto;
+  position: relative;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  white-space: nowrap;
+}
+.site-bar__count {
+  position: absolute;
+  right: -12px;
+  top: -8px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--color-burgundy);
+  color: var(--color-cream);
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 html,
 body {
   background: var(--background);
@@ -346,16 +419,32 @@ body {
    Tighter tracking on headings, lighter weight on body, optical sizing.
    ------------------------------------------------------------------------- */
 h1, h2, h3, h4 {
-  letter-spacing: -0.018em;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  letter-spacing: -0.03em;
+  font-weight: 400;
 }
-h1 { letter-spacing: -0.024em; font-weight: 500; }
-h2 { letter-spacing: -0.02em;  font-weight: 500; }
+h1 { letter-spacing: -0.04em; font-weight: 300; }
 
 .font-display {
-  font-family: var(--font-inter);
-  letter-spacing: -0.028em;
-  font-weight: 500;
+  font-family: var(--font-sans);
+  letter-spacing: -0.04em;
+  font-weight: 300;
+}
+
+.font-logo,
+.logo-wordmark {
+  font-family: "Tenor Sans", "Arial Narrow", Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  font-style: normal;
 }
 
 .text-balance { text-wrap: balance; }
+
+#caelia-menu > summary {
+  list-style: none;
+}
+#caelia-menu > summary::-webkit-details-marker {
+  display: none;
+}

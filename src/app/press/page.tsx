@@ -7,14 +7,15 @@ export const metadata: Metadata = {
 };
 
 const COLORS = [
-  { name: "Cream", hex: "#f7f1ea", text: "#2a2624" },
-  { name: "Blush", hex: "#e9c9c4", text: "#2a2624" },
-  { name: "Rose", hex: "#b8655f", text: "#f7f1ea" },
-  { name: "Charcoal", hex: "#1f1d1c", text: "#f7f1ea" },
+  { name: "Burgundy Caelia", hex: "#4a0e16", text: "#f7f1ea" },
+  { name: "Cacao Caelia", hex: "#7b5644", text: "#f7f1ea" },
+  { name: "Crema Caelia", hex: "#f7f1ea", text: "#4a0e16" },
+  { name: "Blush", hex: "#e9c9c4", text: "#4a0e16" },
 ];
 
 const FONTS = [
-  { name: "Fraunces", role: "Display serif", sample: "CAELIA" },
+  { name: "Tenor Sans", role: "Logo", sample: "CAELIA" },
+  { name: "Fraunces", role: "Display serif", sample: "Aprire. Ritoccare." },
   { name: "Inter", role: "UI sans-serif", sample: "Aprire. Ritoccare. Ripartire." },
 ];
 
@@ -91,7 +92,13 @@ export default function PressPage() {
               <div key={f.name} className="rounded-md bg-cream-deep p-6">
                 <p className="text-xs uppercase tracking-[0.22em] text-ink/60">{f.role}</p>
                 <p
-                  className={`mt-2 ${f.name === "Fraunces" ? "font-serif text-4xl" : "text-2xl"}`}
+                  className={`mt-2 ${
+                    f.name === "Tenor Sans"
+                      ? "font-logo text-3xl"
+                      : f.name === "Fraunces"
+                        ? "font-serif text-4xl"
+                        : "text-2xl"
+                  }`}
                 >
                   {f.sample}
                 </p>

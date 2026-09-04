@@ -26,9 +26,9 @@ import {
 } from "./shopify";
 import type { Product } from "./types";
 
-export const catalogSource: "shopify" | "local" = isShopifyConfigured()
-  ? "shopify"
-  : "local";
+// Always use the local catalog so the exact CAELIA JPEGs in public/products
+// are what the storefront shows (Shopify photos were the old set).
+export const catalogSource: "shopify" | "local" = "local";
 
 export async function listProducts(): Promise<Product[]> {
   if (catalogSource === "shopify") {

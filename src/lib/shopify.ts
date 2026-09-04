@@ -12,8 +12,25 @@
  */
 import type { Product, ProductVariant, ProductImage, Money } from "./types";
 
-const DOMAIN = process.env.SHOPIFY_STORE_DOMAIN;
-const TOKEN = process.env.SHOPIFY_STOREFRONT_API_TOKEN;
+function firstEnv(...names: string[]): string | undefined {
+  for (const name of names) {
+    const v = process.env[name]?.trim();
+    if (v) return v;
+  }
+  return undefined;
+}
+
+const DOMAIN = firstEnv(
+  "SHOPIFY_STORE_DOMAIN",
+  "NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN",
+  "SHOPIFY_STOREFRONT_DOMAIN",
+);
+const TOKEN = firstEnv(
+  "SHOPIFY_STOREFRONT_API_TOKEN",
+  "SHOPIFY_STOREFRONT_ACCESS_TOKEN",
+  "NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN",
+  "NEXT_PUBLIC_SHOPIFY_STOREFRONT_API_TOKEN",
+);
 
 type ShopifyResponse<T> = { data?: T; errors?: Array<{ message: string }> };
 
@@ -121,9 +138,13 @@ function mapVariant(
   );
   const swatch = colorOpt?.value?.toLowerCase();
   const colorMap: Record<string, string> = {
-    rose: "#d49b96",
-    noir: "#1f1d1c",
+    rose: "#4a0e16",
+    burgundy: "#4a0e16",
+    noir: "#7b5644",
+    cacao: "#7b5644",
     ivory: "#efe5d8",
+    crema: "#efe5d8",
+    cream: "#efe5d8",
   };
   return {
     id: node.id,

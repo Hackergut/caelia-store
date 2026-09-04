@@ -1,170 +1,116 @@
 import type { Product, ProductVariant } from "./types";
 
-const beautyCaseDefault: ProductVariant = {
-  id: "beauty-case-rose",
-  sku: "CAELIA-BC-ROSE-01",
-  title: "Beauty Mirror Case — Rose",
-  price: { amount: "58.00", currencyCode: "EUR" },
-  available: true,
-  swatch: "#d49b96",
+const shared = {
+  vendor: "CAELIA",
+  productType: "Beauty Accessory",
+  tags: ["beauty", "mirror", "essentials", "travel"],
+  features: [
+    "Specchio integrato, anti-riflesso",
+    "Matita contorno labbra, formula cremosa",
+    "Lip gloss non appiccicoso",
+    "Tasca che tiene le matite al sicuro",
+    "Fodera in microfibra",
+  ],
+  featuresEn: [
+    "Built-in anti-glare mirror",
+    "Creamy lip liner",
+    "Non-sticky lip gloss",
+    "Secure pencil pocket",
+    "Microfiber lining",
+  ],
+  details: {
+    material: "Esterno in pelle vegana, interno in raso.",
+    dimensions: "11,5 x 7,5 x 2 cm",
+    weight: "120 g",
+    madeIn: "Italia",
+  },
+  detailsEn: {
+    material: "Vegan leather shell, satin interior.",
+    dimensions: "11.5 x 7.5 x 2 cm",
+    weight: "120 g",
+    madeIn: "Italy",
+  },
 };
+
+function oneVariant(
+  id: string,
+  sku: string,
+  title: string,
+  swatch: string,
+): ProductVariant {
+  return {
+    id,
+    sku,
+    title,
+    price: { amount: "58.00", currencyCode: "EUR" },
+    available: true,
+    swatch,
+  };
+}
 
 export const products: Product[] = [
   {
-    id: "gid://caelia/Product/beauty-mirror-case",
-    handle: "beauty-mirror-case",
-    title: "CAELIA Beauty Mirror Case",
-    vendor: "CAELIA",
-    productType: "Beauty Accessory",
-    tags: ["beauty", "mirror", "essentials", "travel"],
+    id: "gid://caelia/Product/burgundy-caelia",
+    handle: "burgundy-caelia",
+    title: "Burgundy Caelia",
+    ...shared,
     description:
-      "L'astuccio compatto che racchiude tutto cio che serve per un ritocco veloce: matita contorno labbra, lip gloss e specchio. Pensato per le giornate che cambiano ritmo ogni ora.",
+      "Beauty Mirror Case in Burgundy Caelia: il bordeaux maison. Specchio, matita e gloss in un astuccio compatto.",
     descriptionEn:
-      "A compact case that holds everything you need for a fast touch-up: lip liner, lip gloss and mirror. Designed for days that shift tempo every hour.",
-    features: [
-      "Specchio integrato, anti-riflesso",
-      "Matita contorno labbra, formula cremosa",
-      "Lip gloss non appiccicoso",
-      "Chiusura magnetica sicura",
-      "Fodera in microfibra per pulizia rapida",
-    ],
-    featuresEn: [
-      "Built-in anti-glare mirror",
-      "Creamy lip liner",
-      "Non-sticky lip gloss",
-      "Secure magnetic closure",
-      "Microfiber lining for quick wipe",
-    ],
-    details: {
-      material: "Esterno in pelle vegana color rosa cipria, interno in raso.",
-      dimensions: "11,5 x 7,5 x 2 cm",
-      weight: "120 g",
-      madeIn: "Italia",
-    },
-    detailsEn: {
-      material: "Vegan leather shell in dusty rose, satin interior.",
-      dimensions: "11.5 x 7.5 x 2 cm",
-      weight: "120 g",
-      madeIn: "Italy",
-    },
+      "Beauty Mirror Case in Burgundy Caelia — the maison burgundy. Mirror, liner and gloss in one slim case.",
     images: [
-      {
-        src: "/products/beauty-case-rose-front.png",
-        alt: "Beauty Mirror Case Rose vista frontale",
-      },
-      {
-        src: "/products/beauty-case-rose-open.png",
-        alt: "Beauty Mirror Case Rose aperto con specchio e prodotti",
-      },
-      {
-        src: "/products/beauty-case-rose-detail.png",
-        alt: "Beauty Mirror Case Rose dettaglio della chiusura magnetica",
-      },
-      {
-        src: "/products/beauty-case-rose-lifestyle.png",
-        alt: "Beauty Mirror Case Rose in uso su un tavolino da caffe",
-      },
+      { src: "/products/burgundy-caelia-pair.jpg", alt: "Burgundy Caelia — astuccio e specchio" },
+      { src: "/products/burgundy-caelia-pocket.jpg", alt: "Burgundy Caelia — tasca" },
+      { src: "/products/burgundy-caelia-pencils.jpg", alt: "Burgundy Caelia — matite in tasca" },
+      { src: "/products/burgundy-caelia-logo.jpg", alt: "Burgundy Caelia — logo CAELIA" },
+      { src: "/products/burgundy-caelia-stitch.jpg", alt: "Burgundy Caelia — cucitura e pelle" },
     ],
-    variants: [
-      beautyCaseDefault,
-      {
-        id: "beauty-case-noir",
-        sku: "CAELIA-BC-NOIR-01",
-        title: "Beauty Mirror Case — Noir",
-        price: { amount: "58.00", currencyCode: "EUR" },
-        available: true,
-        swatch: "#1f1d1c",
-      },
-      {
-        id: "beauty-case-ivory",
-        sku: "CAELIA-BC-IVO-01",
-        title: "Beauty Mirror Case — Ivory",
-        price: { amount: "58.00", currencyCode: "EUR" },
-        available: true,
-        swatch: "#efe5d8",
-      },
-    ],
+    variants: [oneVariant("burgundy-caelia", "CAELIA-BC-BURG-01", "Burgundy Caelia", "#4a0e16")],
     seo: {
-      title: "CAELIA Beauty Mirror Case — astuccio beauty con specchio",
-      description:
-        "Compatto, elegante, sempre con te. Scopri il Beauty Mirror Case CAELIA in tre varianti.",
+      title: "Burgundy Caelia — Beauty Mirror Case",
+      description: "Astuccio beauty bordeaux con specchio. Burgundy Caelia.",
     },
   },
   {
-    id: "gid://caelia/Product/beauty-mirror-case-mini",
-    handle: "beauty-mirror-case-mini",
-    title: "CAELIA Beauty Mirror Case Mini",
-    vendor: "CAELIA",
-    productType: "Beauty Accessory",
-    tags: ["beauty", "mirror", "essentials", "travel", "mini"],
+    id: "gid://caelia/Product/cacao-caelia",
+    handle: "cacao-caelia",
+    title: "Cacao Caelia",
+    ...shared,
     description:
-      "La versione Mini del Beauty Mirror Case: solo specchio e gloss, perfetta per la pochette della sera.",
+      "Beauty Mirror Case in Cacao Caelia: cuoio caldo, marrone cacao. Stessa forma, solo il colore cambia.",
     descriptionEn:
-      "The Mini version of the Beauty Mirror Case: mirror and gloss only, perfect for an evening clutch.",
-    features: [
-      "Specchio integrato",
-      "Lip gloss non appiccicoso",
-      "Formato tascabile",
-      "Fodera in raso",
-    ],
-    featuresEn: [
-      "Built-in mirror",
-      "Non-sticky lip gloss",
-      "Pocket-sized",
-      "Satin lining",
-    ],
-    details: {
-      material: "Pelle vegana, raso.",
-      dimensions: "8,5 x 5,5 x 1,5 cm",
-      weight: "65 g",
-      madeIn: "Italia",
-    },
-    detailsEn: {
-      material: "Vegan leather, satin.",
-      dimensions: "8.5 x 5.5 x 1.5 cm",
-      weight: "65 g",
-      madeIn: "Italy",
-    },
+      "Beauty Mirror Case in Cacao Caelia — warm cocoa leather. Same form, different colour.",
     images: [
-      {
-        src: "/products/beauty-case-mini-rose.png",
-        alt: "Beauty Mirror Case Mini Rose vista frontale",
-      },
-      {
-        src: "/products/beauty-case-mini-noir.png",
-        alt: "Beauty Mirror Case Mini Noir vista frontale",
-      },
-      {
-        src: "/products/beauty-case-mini-ivory.png",
-        alt: "Beauty Mirror Case Mini Ivory vista frontale",
-      },
-      {
-        src: "/products/beauty-case-mini-open.png",
-        alt: "Beauty Mirror Case Mini Rose aperto con specchio e gloss",
-      },
+      { src: "/products/cacao-caelia-pair.jpg", alt: "Cacao Caelia — astuccio e specchio" },
+      { src: "/products/cacao-caelia-pencils.jpg", alt: "Cacao Caelia — matite in tasca" },
+      { src: "/products/cacao-caelia-logo.jpg", alt: "Cacao Caelia — logo CAELIA" },
+      { src: "/products/cacao-caelia-angle.jpg", alt: "Cacao Caelia — tre quarti" },
     ],
-    variants: [
-      {
-        id: "beauty-case-mini-rose",
-        sku: "CAELIA-BCM-ROSE-01",
-        title: "Beauty Mirror Case Mini — Rose",
-        price: { amount: "38.00", currencyCode: "EUR" },
-        available: true,
-        swatch: "#d49b96",
-      },
-      {
-        id: "beauty-case-mini-noir",
-        sku: "CAELIA-BCM-NOIR-01",
-        title: "Beauty Mirror Case Mini — Noir",
-        price: { amount: "38.00", currencyCode: "EUR" },
-        available: true,
-        swatch: "#1f1d1c",
-      },
-    ],
+    variants: [oneVariant("cacao-caelia", "CAELIA-BC-CACAO-01", "Cacao Caelia", "#7b5644")],
     seo: {
-      title: "CAELIA Beauty Mirror Case Mini",
-      description:
-        "Specchio e gloss in formato tascabile. Il Mini entra in ogni borsa.",
+      title: "Cacao Caelia — Beauty Mirror Case",
+      description: "Astuccio beauty cacao con specchio. Cacao Caelia.",
+    },
+  },
+  {
+    id: "gid://caelia/Product/crema-caelia",
+    handle: "crema-caelia",
+    title: "Crema Caelia",
+    ...shared,
+    description:
+      "Beauty Mirror Case in Crema Caelia: pelle chiara, luminosa. Specchio e tasca, stesso design.",
+    descriptionEn:
+      "Beauty Mirror Case in Crema Caelia — pale cream leather. Same design, light colourway.",
+    images: [
+      { src: "/products/crema-caelia-pair.jpg", alt: "Crema Caelia — astuccio e specchio" },
+      { src: "/products/crema-caelia-pencils.jpg", alt: "Crema Caelia — matite in tasca" },
+      { src: "/products/crema-caelia-logo.jpg", alt: "Crema Caelia — logo CAELIA" },
+      { src: "/products/crema-caelia-angle.jpg", alt: "Crema Caelia — tre quarti" },
+    ],
+    variants: [oneVariant("crema-caelia", "CAELIA-BC-CREMA-01", "Crema Caelia", "#efe5d8")],
+    seo: {
+      title: "Crema Caelia — Beauty Mirror Case",
+      description: "Astuccio beauty crema con specchio. Crema Caelia.",
     },
   },
 ];
