@@ -65,11 +65,21 @@ export function ProductAnatomy() {
           </p>
         </div>
 
-        <ol className="mt-8 grid gap-x-14 md:mt-10 md:grid-cols-2">
+        <div className="mt-8 grid gap-8 md:mt-10 lg:grid-cols-[1.1fr_1fr] lg:items-center lg:gap-14">
+          <figure className="overflow-hidden rounded-sm bg-cream-deep">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/products/burgundy-caelia-pair.jpg"
+              alt="Beauty Mirror Case Burgundy Caelia: astuccio con tasca e specchio in cornice di pelle"
+              className="block aspect-square w-full object-cover"
+            />
+          </figure>
+
+          <ol>
           {PARTS.map((h) => {
             const isActive = active === h.id;
             return (
-              <li key={h.id} className="border-t border-mist/70">
+              <li key={h.id} className="border-t border-mist/70 last:border-b">
                 <button
                   type="button"
                   onClick={() => setActive(h.id)}
@@ -112,7 +122,8 @@ export function ProductAnatomy() {
               </li>
             );
           })}
-        </ol>
+          </ol>
+        </div>
       </div>
     </section>
   );

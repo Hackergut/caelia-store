@@ -99,16 +99,52 @@ export default async function Home() {
               <br />
               Pronta.
             </h2>
-            <ol className="mt-6 md:mt-10">
+            <ol className="mt-6 space-y-2 md:mt-10">
               {[
-                { n: "01", t: "Apri", d: "Una mano. Si apre." },
-                { n: "02", t: "Ritocca", d: "Matita, gloss, specchio." },
-                { n: "03", t: "Riparti", d: "Richiudi. Sei oltre." },
+                {
+                  n: "01",
+                  t: "Apri",
+                  d: "Una mano. Si apre.",
+                  src: "/products/chapter-burgundy.jpg",
+                },
+                {
+                  n: "02",
+                  t: "Ritocca",
+                  d: "Matita, gloss, specchio.",
+                  src: "/products/chapter-cacao.jpg",
+                },
+                {
+                  n: "03",
+                  t: "Riparti",
+                  d: "Richiudi. Sei oltre.",
+                  src: "/products/chapter-crema.jpg",
+                },
               ].map((s) => (
-                <li key={s.n} className="border-t border-mist/70 py-5">
-                  <p className="text-[11px] tracking-[0.28em] text-ink/40">{s.n}</p>
-                  <p className="mt-1 text-2xl font-light">{s.t}</p>
-                  <p className="mt-1 text-ink/65">{s.d}</p>
+                <li
+                  key={s.n}
+                  className="relative aspect-[4/1] overflow-hidden rounded-sm sm:aspect-[5/1]"
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={s.src}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-night/80 via-night/45 to-night/10" />
+                  <div className="relative flex h-full items-center gap-4 px-5">
+                    <span className="text-[11px] tracking-[0.28em] text-cream/60">
+                      {s.n}
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-xl font-light leading-tight text-cream sm:text-2xl">
+                        {s.t}
+                      </span>
+                      <span className="block truncate text-sm text-cream/70">
+                        {s.d}
+                      </span>
+                    </span>
+                  </div>
                 </li>
               ))}
             </ol>
