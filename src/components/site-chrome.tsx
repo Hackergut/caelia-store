@@ -43,11 +43,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
         <div className="flex h-16 w-full items-center justify-between gap-4 px-5 sm:px-8 md:h-20">
-          <details id="nav-caelia" className="relative">
-            <summary className="cursor-pointer list-none whitespace-nowrap text-xl md:text-2xl [&::-webkit-details-marker]:hidden">
+          <details id="nav-caelia" className="relative md:hidden">
+            <summary className="cursor-pointer list-none whitespace-nowrap text-xl [&::-webkit-details-marker]:hidden">
               <LogoWordmark />
             </summary>
-            <nav className="absolute left-0 top-full z-[310] mt-0 min-w-[16rem] border border-mist/60 bg-cream py-5 shadow-2xl">
+            <nav className="absolute left-0 top-full z-[310] min-w-[16rem] border border-mist/60 bg-cream py-5 shadow-2xl">
               {NAV.map((l) => (
                 <Link
                   key={l.href}
@@ -60,9 +60,32 @@ export function SiteChrome({ children }: { children: ReactNode }) {
             </nav>
           </details>
 
+          <Link href="/" className="hidden whitespace-nowrap text-2xl md:block" aria-label="CAELIA home">
+            <LogoWordmark />
+          </Link>
+
+          <nav
+            aria-label="Principale"
+            className="hidden flex-1 items-center justify-center gap-7 text-[11px] uppercase tracking-[0.18em] md:flex"
+          >
+            {NAV.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={
+                  pathname === l.href
+                    ? "text-burgundy underline underline-offset-8"
+                    : "hover:text-burgundy"
+                }
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+
           <Link
             href="/cart"
-            className="relative ml-auto shrink-0 text-[11px] uppercase tracking-[0.22em]"
+            className="relative ml-auto shrink-0 text-[11px] uppercase tracking-[0.22em] md:ml-0"
           >
             Carrello
             {itemCount > 0 ? (
