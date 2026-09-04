@@ -59,7 +59,7 @@ export function Caelia3DFrame({
   // Poster image shown beneath the canvas so users see the product even
   // before WebGL finishes loading, and as the static fallback for the
   // reduced-motion case.
-  const poster = product.images[0]?.src ?? "/products/beauty-case-rose-front.png";
+  const poster = product.images[0]?.src ?? "/products/caelia-burgundy-front.jpg";
 
   return (
     <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md bg-gradient-to-br from-cream-deep to-blush/20 group">

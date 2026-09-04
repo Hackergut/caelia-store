@@ -45,7 +45,7 @@ export default async function Home() {
             style={{ "--i": 1 } as React.CSSProperties}
           >
             <Image
-              src="/products/beauty-mirror-case-burgundy.png"
+              src="/products/caelia-burgundy-front.jpg"
               alt="CAELIA Beauty Mirror Case, Burgundy"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"

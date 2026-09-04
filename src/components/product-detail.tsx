@@ -29,7 +29,7 @@ export function ProductDetail({
   // Each Shopify product here is a single colour with a single variant.
   const variant = product.variants[0];
   const variantImages = product.images.length > 0 ? product.images : [
-    { src: "/products/beauty-case-rose-front.png", alt: product.title },
+    { src: "/products/caelia-burgundy-front.jpg", alt: product.title },
   ];
 
   // Track ViewContent on mount
