@@ -21,9 +21,9 @@ const FONTS = [
 
 export default function PressPage() {
   return (
-    <div className="mx-auto max-w-5xl px-6 lg:px-10 pt-16 pb-24">
+    <div className="shell max-w-5xl pt-16 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Press</p>
-      <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
+      <h1 className="mt-4 font-serif fluid-h2">
         Stampa e media kit.
       </h1>
       <p className="mt-6 max-w-2xl text-lg text-ink/80 leading-relaxed">
@@ -113,7 +113,7 @@ export default function PressPage() {
             Logo
           </p>
           <div className="rounded-md bg-cream-deep p-12 flex items-center justify-center">
-            <p className="font-serif text-6xl tracking-[0.08em]">CAELIA</p>
+            <p className="font-serif text-4xl tracking-[0.08em] sm:text-6xl">CAELIA</p>
           </div>
           <p className="mt-2 text-xs text-ink/60">
             Scarica il logo vettoriale:{" "}

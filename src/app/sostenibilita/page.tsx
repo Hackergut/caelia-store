@@ -30,11 +30,11 @@ const PILLARS = [
 
 export default function SustainabilityPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24">
+    <div className="shell max-w-3xl pt-16 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
         Sostenibilità
       </p>
-      <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
+      <h1 className="mt-4 font-serif fluid-h2">
         Bello, ma non a spese del pianeta.
       </h1>
       <p className="mt-6 text-lg text-ink/80 leading-relaxed">

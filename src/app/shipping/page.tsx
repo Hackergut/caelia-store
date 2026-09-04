@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 
 export default function ShippingPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24 space-y-12">
+    <div className="shell max-w-3xl pt-16 pb-24 space-y-12">
       <header>
         <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
           Spedizioni e resi
         </p>
-        <h1 className="mt-4 font-serif text-5xl leading-[1.05]">
+        <h1 className="mt-4 font-serif fluid-h2">
           Spediamo con cura, rimborsiamo senza domande.
         </h1>
       </header>

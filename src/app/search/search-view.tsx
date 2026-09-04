@@ -43,9 +43,9 @@ export function SearchView({
   }, [submittedQuery, allProducts]);
 
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-12 pb-24">
+    <div className="shell pt-12 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Cerca</p>
-      <h1 className="mt-4 font-serif text-5xl leading-[1.05]">
+      <h1 className="mt-4 font-serif fluid-h2">
         Cosa stai cercando?
       </h1>
 

@@ -2,78 +2,56 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
 import { useCart } from "@/lib/cart-context";
 import { formatMoney } from "@/lib/format";
-import { Price } from "@/lib/currency";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 export function CartDrawer() {
   const { isOpen, close, lines, subtotal, setQuantity, remove } = useCart();
-
-  // Lock body scroll when open
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
-
-  // Close on Escape
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") close();
-    }
-    if (isOpen) window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [isOpen, close]);
-
-  if (!isOpen) return null;
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   return (
-    <>
-      <div
-        className="fixed inset-0 z-[450] bg-night/40"
-        onClick={close}
-      />
-      <aside
-        role="dialog"
+    <Sheet open={isOpen} onOpenChange={(v) => !v && close()}>
+      <SheetContent
+        side={isDesktop ? "right" : "bottom"}
+        className="md:max-w-md"
         aria-label="Carrello"
-        aria-hidden={!isOpen}
-        className="fixed right-0 top-0 z-[460] h-full w-full max-w-md bg-cream shadow-2xl"
       >
-        <div className="flex items-center justify-between px-6 py-5 border-b border-mist/60">
-          <p className="font-serif text-xl">Il tuo carrello</p>
-          <button
-            type="button"
-            onClick={close}
-            aria-label="Chiudi carrello"
-            className="text-xs uppercase tracking-[0.18em]"
-          >
-            Chiudi
-          </button>
-        </div>
+        <SheetHeader>
+          <SheetTitle>Il tuo carrello</SheetTitle>
+          <SheetDescription className="sr-only">
+            Articoli attualmente nel carrello
+          </SheetDescription>
+        </SheetHeader>
 
         {lines.length === 0 ? (
-          <div className="flex h-[70vh] flex-col items-center justify-center px-6 text-center">
+          <div className="flex flex-1 flex-col items-center justify-center px-6 py-16 text-center">
             <p className="font-serif text-2xl">Il carrello è vuoto.</p>
-            <p className="mt-3 text-sm text-ink/70 max-w-xs">
+            <p className="mt-3 max-w-xs text-sm text-ink/70">
               Apri il Beauty Mirror Case, prova i colori, scegli la tua tonalità.
             </p>
             <Link
               href="/products"
               onClick={close}
-              className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em]"
+              className="mt-6 inline-flex min-h-12 items-center justify-center bg-charcoal px-6 text-xs uppercase tracking-[0.22em] text-cream"
             >
               Scopri la collezione
             </Link>
           </div>
         ) : (
-          <div className="flex h-[calc(100%-8rem)] flex-col">
-            <ul className="flex-1 overflow-y-auto px-6 py-5 divide-y divide-mist/60">
+          <>
+            <ul className="flex-1 divide-y divide-mist/60 overflow-y-auto overscroll-contain px-5 py-4 md:px-6 md:py-5">
               {lines.map((line) => (
-                <li key={line.variantId} className="flex gap-4 py-5">
-                  <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-md bg-cream-deep">
+                <li key={line.variantId} className="flex gap-4 py-4 md:py-5">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-md bg-cream-deep md:h-24 md:w-24">
                     <Image
                       src={line.image}
                       alt={line.productTitle}
@@ -82,17 +60,28 @@ export function CartDrawer() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="flex flex-1 flex-col">
-                    <p className="font-serif text-lg leading-tight">
-                      {line.productTitle}
-                    </p>
-                    <p className="text-xs uppercase tracking-[0.18em] text-ink/60">
-                      {line.variantTitle}
-                    </p>
-                    <div className="mt-auto flex items-center justify-between">
-                      <div className="inline-flex items-center border border-mist rounded-full">
+                  <div className="flex min-w-0 flex-1 flex-col">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="truncate font-serif text-base leading-tight md:text-lg">
+                          {line.productTitle}
+                        </p>
+                        <p className="mt-0.5 text-[10px] uppercase tracking-[0.18em] text-ink/60">
+                          {line.variantTitle}
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => remove(line.variantId)}
+                        className="shrink-0 text-[10px] uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+                        aria-label="Rimuovi dal carrello"
+                      >
+                        Rimuovi
+                      </button>
+                    </div>
+                    <div className="mt-3 flex items-center justify-between gap-3">
+                      <div className="inline-flex items-center rounded-full border border-mist">
                         <button
-                          className="h-7 w-7 text-sm"
+                          className="h-9 w-9 text-sm"
                           aria-label="Diminuisci quantita"
                           onClick={() =>
                             setQuantity(line.variantId, line.quantity - 1)
@@ -104,7 +93,7 @@ export function CartDrawer() {
                           {line.quantity}
                         </span>
                         <button
-                          className="h-7 w-7 text-sm"
+                          className="h-9 w-9 text-sm"
                           aria-label="Aumenta quantita"
                           onClick={() =>
                             setQuantity(line.variantId, line.quantity + 1)
@@ -123,23 +112,14 @@ export function CartDrawer() {
                       </p>
                     </div>
                   </div>
-                  <button
-                    onClick={() => remove(line.variantId)}
-                    className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
-                    aria-label="Rimuovi dal carrello"
-                  >
-                    Rimuovi
-                  </button>
                 </li>
               ))}
             </ul>
 
-            <div className="border-t border-mist/60 px-6 py-5 space-y-3">
+            <SheetFooter className="space-y-3">
               <div className="flex items-center justify-between text-sm">
                 <span className="uppercase tracking-[0.18em]">Subtotale</span>
-                <span className="font-serif text-xl">
-                  {formatMoney(subtotal)}
-                </span>
+                <span className="font-serif text-xl">{formatMoney(subtotal)}</span>
               </div>
               <p className="text-xs text-ink/60">
                 Spedizione calcolata al checkout. Resi gratuiti entro 30 giorni.
@@ -147,14 +127,14 @@ export function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={close}
-                className="block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+                className="btn-press flex min-h-12 w-full items-center justify-center bg-charcoal text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-rose"
               >
                 Procedi al checkout
               </Link>
-            </div>
-          </div>
+            </SheetFooter>
+          </>
         )}
-      </aside>
-    </>
+      </SheetContent>
+    </Sheet>
   );
 }

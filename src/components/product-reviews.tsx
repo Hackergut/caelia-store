@@ -25,7 +25,7 @@ export function ProductReviews({ reviews }: { reviews: Review[] }) {
   const avg = reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
 
   return (
-    <section className="mx-auto max-w-7xl px-6 lg:px-10 py-16">
+    <section className="shell py-16">
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
         <div>
           <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Recensioni</p>

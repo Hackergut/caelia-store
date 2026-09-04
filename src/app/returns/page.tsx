@@ -8,10 +8,10 @@ export const metadata: Metadata = {
 
 export default function ReturnsPage() {
   return (
-    <div className="mx-auto max-w-3xl px-6 lg:px-10 pt-16 pb-24 space-y-10">
+    <div className="shell max-w-3xl pt-16 pb-24 space-y-10">
       <header>
         <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Resi</p>
-        <h1 className="mt-4 font-serif text-5xl leading-[1.05]">30 giorni, senza domande.</h1>
+        <h1 className="mt-4 font-serif fluid-h2">30 giorni, senza domande.</h1>
       </header>
       <ol className="space-y-6">
         {[

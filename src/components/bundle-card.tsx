@@ -31,11 +31,11 @@ export function BundleSection({ all }: { all: Product[] }) {
   const { add } = useCart();
   const router = useRouter();
   return (
-    <section className="mx-auto max-w-7xl px-6 lg:px-10 py-20">
+    <section className="shell py-20">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
         Bundle
       </p>
-      <h2 className="mt-3 font-serif text-4xl lg:text-5xl leading-[1.05]">
+      <h2 className="mt-3 font-serif fluid-h2">
         Risparmia con i duo.
       </h2>
       <div className="mt-10 grid gap-8 md:grid-cols-2">

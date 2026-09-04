@@ -36,9 +36,9 @@ export default async function OrderPage({
   const stage = stageIndexFor(id);
 
   return (
-    <div className="mx-auto max-w-2xl px-6 lg:px-10 pt-16 pb-24">
+    <div className="shell max-w-2xl pt-16 pb-24">
       <p className="text-xs uppercase tracking-[0.32em] text-ink/60">Ordine</p>
-      <h1 className="mt-4 font-serif text-4xl lg:text-5xl leading-[1.05]">
+      <h1 className="mt-4 font-serif fluid-h2">
         {id}
       </h1>
       <p className="mt-2 text-sm text-ink/60">

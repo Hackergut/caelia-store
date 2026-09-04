@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function AccountPage() {
   return (
-    <div className="mx-auto max-w-2xl px-6 lg:px-10 pt-16 pb-24">
+    <div className="shell max-w-2xl pt-16 pb-24">
       <h1 className="font-serif text-4xl">Il mio account</h1>
       <p className="mt-3 text-ink/70">
         Ordini recenti. Per il profilo completo collega Shopify Customer

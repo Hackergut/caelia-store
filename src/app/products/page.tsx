@@ -23,12 +23,12 @@ export default async function ProductsPage() {
 
 function ProductsPageHeader() {
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10 pt-16 pb-12">
+    <div className="shell pt-16 pb-12">
       <div className="max-w-2xl">
         <p className="text-xs uppercase tracking-[0.32em] text-ink/60">
           Collezione
         </p>
-        <h1 className="mt-4 font-serif text-5xl lg:text-6xl leading-[1.05]">
+        <h1 className="mt-4 font-serif fluid-h2">
           Un astuccio.
           <br />
           Tutto il necessario.
@@ -45,7 +45,7 @@ function ProductsPageHeader() {
 
 function ProductsSkeleton() {
   return (
-    <div className="mx-auto max-w-7xl px-6 lg:px-10">
+    <div className="shell">
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 3 }).map((_, i) => (
           <div key={i} className="animate-pulse">

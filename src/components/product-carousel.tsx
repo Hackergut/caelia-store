@@ -1,6 +1,10 @@
 import type { ProductImage } from "@/lib/types";
 
-/** Native scroll-snap carousel. Images keep a square frame. */
+/**
+ * Native scroll-snap carousel.
+ * Mobile: edge-to-edge square swipe rail + dot-style thumbs.
+ * Desktop: main frame plus a thumbnail strip (grid on lg).
+ */
 export function ProductCarousel({
   images,
   id = "gallery",
@@ -12,10 +16,10 @@ export function ProductCarousel({
 
   return (
     <div>
-      <div className="relative w-full aspect-square bg-cream-deep">
+      <div className="relative aspect-square w-full overflow-hidden bg-cream-deep sm:rounded-sm">
         <div
           id={id}
-          className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth"
+          className="absolute inset-0 flex snap-x snap-mandatory overflow-x-auto scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
           {images.map((img, i) => (
             <figure
@@ -29,6 +33,7 @@ export function ProductCarousel({
                 alt={img.alt}
                 className="block h-full w-full object-cover"
                 draggable={false}
+                loading={i === 0 ? "eager" : "lazy"}
               />
             </figure>
           ))}
@@ -36,15 +41,21 @@ export function ProductCarousel({
       </div>
 
       {images.length > 1 && (
-        <div className="mt-3 flex gap-2 overflow-x-auto">
+        <div className="snap-rail mt-3 gap-2">
           {images.map((img, i) => (
             <a
               key={img.src}
               href={`#${id}-${i}`}
-              className="block h-16 w-16 shrink-0 overflow-hidden ring-1 ring-mist/50"
+              aria-label={`Immagine ${i + 1}`}
+              className="block h-14 w-14 shrink-0 overflow-hidden ring-1 ring-mist/50 transition-opacity hover:opacity-80 sm:h-16 sm:w-16 lg:h-20 lg:w-20"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={img.src} alt="" className="h-full w-full object-cover" />
+              <img
+                src={img.src}
+                alt=""
+                className="h-full w-full object-cover"
+                loading="lazy"
+              />
             </a>
           ))}
         </div>

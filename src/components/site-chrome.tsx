@@ -2,11 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { Menu, ShoppingBag } from "lucide-react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
 import { LogoWordmark } from "./logo-wordmark";
+import { cn } from "@/lib/utils";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const ANNOUNCEMENT = "Spedizione gratuita oltre 60€  ·  Resi 30 giorni";
 
@@ -20,140 +30,166 @@ const NAV = [
   { href: "/contact", label: "Contatti" },
 ];
 
+const SECONDARY = [
+  { href: "/journal", label: "Journal" },
+  { href: "/shipping", label: "Spedizioni" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/wishlist", label: "Wishlist" },
+  { href: "/account", label: "Account" },
+];
+
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [navPath, setNavPath] = useState(pathname);
+
+  // Close the mobile nav on route change (render-phase sync, no effect)
+  if (navPath !== pathname) {
+    setNavPath(pathname);
+    if (open) setOpen(false);
+  }
 
   return (
     <>
-      <style>{`
-        .caelia-top {
-          position: sticky;
-          top: 0;
-          z-index: 300;
-          background: #f7f1ea;
-          border-bottom: 1px solid #e0d6c9;
-        }
-        .caelia-row {
-          display: flex;
-          align-items: center;
-          height: 80px;
-          padding: 0 32px;
-          gap: 28px;
-        }
-        .caelia-menu {
-          position: relative;
-          flex: 0 0 auto;
-        }
-        .caelia-menu > summary {
-          list-style: none;
-          cursor: pointer;
-          font-size: 20px;
-          white-space: nowrap;
-        }
-        .caelia-menu > summary::-webkit-details-marker { display: none; }
-        .caelia-panel {
-          display: none;
-          position: absolute;
-          left: 0;
-          top: calc(100% + 12px);
-          z-index: 400;
-          min-width: 220px;
-          background: #f7f1ea;
-          border: 1px solid #e0d6c9;
-          padding: 12px 0;
-        }
-        .caelia-menu[open] .caelia-panel { display: block; }
-        .caelia-panel a {
-          display: block;
-          padding: 10px 20px;
-          font-size: 13px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-        }
-        .caelia-pc {
-          display: flex;
-          align-items: center;
-          flex: 1;
-          gap: 28px;
-          font-size: 11px;
-          letter-spacing: 0.2em;
-          text-transform: uppercase;
-        }
-        .caelia-cart {
-          margin-left: auto;
-          font-size: 11px;
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-          white-space: nowrap;
-        }
-        @media (min-width: 768px) {
-          .caelia-menu > summary { cursor: default; pointer-events: none; }
-          .caelia-panel { display: none !important; }
-        }
-        @media (max-width: 767px) {
-          .caelia-pc { display: none; }
-          .caelia-row { height: 64px; padding: 0 16px; gap: 12px; }
-        }
-      `}</style>
-
-      <div className="overflow-hidden bg-night text-cream text-xs tracking-[0.18em] uppercase py-2">
-        <div className="flex whitespace-nowrap marquee">
+      <div className="overflow-hidden bg-night py-2 text-[10px] uppercase tracking-[0.18em] text-cream sm:text-xs">
+        <div className="marquee flex whitespace-nowrap">
           {Array.from({ length: 6 }).map((_, i) => (
-            <span key={i} className="mx-8">
+            <span key={i} className="mx-6 sm:mx-8">
               · {ANNOUNCEMENT}
             </span>
           ))}
         </div>
       </div>
 
-      <header className="caelia-top">
-        <div className="caelia-row">
-          <details className="caelia-menu">
-            <summary aria-label="Menu CAELIA">
-              <LogoWordmark />
-            </summary>
-            <nav className="caelia-panel">
-              {NAV.map((l) => (
-                <Link key={l.href} href={l.href}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </details>
+      <header className="sticky top-0 z-[300] border-b border-mist bg-cream/95 backdrop-blur supports-[backdrop-filter]:bg-cream/80">
+        <div className="shell flex h-16 items-center gap-3 md:h-20 md:gap-7">
+          {/* Mobile: hamburger opens a Sheet */}
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger
+              aria-label="Apri il menu"
+              className="-ml-2 inline-flex h-11 w-11 items-center justify-center text-ink md:hidden"
+            >
+              <Menu className="h-5 w-5" />
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0">
+              <SheetHeader>
+                <SheetTitle className="text-base">
+                  <LogoWordmark />
+                </SheetTitle>
+              </SheetHeader>
+              <nav
+                className="flex-1 overflow-y-auto px-5 py-4"
+                aria-label="Menu mobile"
+              >
+                <ul className="space-y-1">
+                  {NAV.map((l) => (
+                    <li key={l.href}>
+                      <SheetClose asChild>
+                        <Link
+                          href={l.href}
+                          className={cn(
+                            "flex min-h-12 items-center text-sm uppercase tracking-[0.18em] text-ink/80",
+                            pathname === l.href &&
+                              "text-burgundy underline underline-offset-8",
+                          )}
+                        >
+                          {l.label}
+                        </Link>
+                      </SheetClose>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-6 border-t border-mist/70 pt-5 text-[10px] uppercase tracking-[0.24em] text-ink/40">
+                  Altro
+                </p>
+                <ul className="mt-2 space-y-1">
+                  {SECONDARY.map((l) => (
+                    <li key={l.href}>
+                      <SheetClose asChild>
+                        <Link
+                          href={l.href}
+                          className="flex min-h-11 items-center text-sm text-ink/70"
+                        >
+                          {l.label}
+                        </Link>
+                      </SheetClose>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+              <div className="border-t border-mist/60 px-5 py-4 pb-safe">
+                <SheetClose asChild>
+                  <Link
+                    href="/cart"
+                    className="flex min-h-12 w-full items-center justify-center bg-burgundy text-[11px] uppercase tracking-[0.22em] text-cream"
+                  >
+                    Carrello{itemCount > 0 ? ` (${itemCount})` : ""}
+                  </Link>
+                </SheetClose>
+              </div>
+            </SheetContent>
+          </Sheet>
 
-          <nav className="caelia-pc" aria-label="Principale">
+          {/* Brand — centered on mobile, leading on desktop */}
+          <Link
+            href="/"
+            className="flex-1 text-center text-[17px] md:flex-none md:text-left md:text-xl"
+            aria-label="CAELIA — home"
+          >
+            <LogoWordmark />
+          </Link>
+
+          {/* Desktop nav */}
+          <nav
+            className="hidden flex-1 items-center gap-5 text-[11px] uppercase tracking-[0.2em] md:flex lg:gap-7"
+            aria-label="Principale"
+          >
             {NAV.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                style={{
-                  color: "#4a0e16",
-                  textDecoration: pathname === l.href ? "underline" : "none",
-                  textUnderlineOffset: 8,
-                }}
+                aria-current={pathname === l.href ? "page" : undefined}
+                className={cn(
+                  "nav-link text-ink/80 transition-colors hover:text-burgundy",
+                  pathname === l.href && "text-burgundy",
+                )}
               >
                 {l.label}
               </Link>
             ))}
           </nav>
 
-          <Link href="/cart" className="caelia-cart">
-            Carrello
-            {itemCount > 0 ? ` (${itemCount})` : ""}
+          <Link
+            href="/cart"
+            className="relative -mr-2 inline-flex h-11 min-w-11 items-center justify-center gap-2 px-2 text-[11px] uppercase tracking-[0.22em] text-ink md:ml-auto md:mr-0 md:px-0"
+            aria-label={`Carrello${itemCount > 0 ? `, ${itemCount} articoli` : ""}`}
+          >
+            <ShoppingBag className="h-5 w-5 md:hidden" />
+            <span className="hidden md:inline">Carrello</span>
+            <span className="hidden md:inline">
+              {itemCount > 0 ? `(${itemCount})` : ""}
+            </span>
+            {itemCount > 0 && (
+              <span className="absolute right-0 top-1.5 inline-flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[10px] leading-none text-cream md:hidden">
+                {itemCount}
+              </span>
+            )}
           </Link>
         </div>
       </header>
 
       <main className="flex-1">{children}</main>
 
-      <footer className="mt-24 bg-night text-cream">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-2 lg:px-10">
+      <footer className="mt-16 bg-night text-cream md:mt-24">
+        <div className="shell grid gap-10 py-12 md:grid-cols-2 md:py-16">
           <div className="md:max-w-md">
-            <p className="text-2xl">
+            <p className="text-xl md:text-2xl">
               <LogoWordmark />
             </p>
-            <p className="mt-4 text-sm leading-relaxed text-cream/70">Aprire. Ritoccare. Ripartire.</p>
+            <p className="mt-4 text-sm leading-relaxed text-cream/70">
+              Aprire. Ritoccare. Ripartire.
+            </p>
           </div>
           <div className="grid gap-8 sm:grid-cols-2">
             <FooterColumn
@@ -177,12 +213,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </div>
         </div>
         <div className="border-t border-cream/10">
-          <div className="mx-auto max-w-7xl px-6 py-10 lg:px-10">
+          <div className="shell py-8 md:py-10">
             <NewsletterForm />
           </div>
         </div>
         <div className="border-t border-cream/10 py-6 text-xs text-cream/60">
-          <div className="mx-auto max-w-7xl px-6 lg:px-10">
+          <div className="shell">
             <p>© {new Date().getFullYear()} CAELIA.</p>
           </div>
         </div>
@@ -206,7 +242,12 @@ function FooterColumn({
       <ul className="mt-3 space-y-2 text-sm text-cream/70">
         {links.map((l) => (
           <li key={l.href}>
-            <Link href={l.href}>{l.label}</Link>
+            <Link
+              href={l.href}
+              className="inline-flex min-h-9 items-center hover:text-cream"
+            >
+              {l.label}
+            </Link>
           </li>
         ))}
       </ul>
