@@ -6,6 +6,7 @@ import { useCart } from "@/lib/cart-context";
 import { WishlistButton } from "@/components/wishlist-button";
 import { InventoryBadge } from "@/components/inventory-badge";
 import { BackInStockButton } from "@/components/back-in-stock";
+import { ProductCarousel } from "@/components/product-carousel";
 import { events } from "@/lib/track";
 import { pushRecentlyViewed } from "@/lib/recently-viewed";
 import { Price } from "@/lib/currency";
@@ -26,16 +27,11 @@ const COLORS = [
 
 export function ProductDetail({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
-  const [i, setI] = useState(0);
   const [openDesc, setOpenDesc] = useState(true);
   const { add } = useCart();
   const variant = product.variants[0];
-  const photos = product.images;
-  const n = photos.length;
-  const img = photos[i] ?? photos[0];
 
   useEffect(() => {
-    setI(0);
     events.viewItem({
       id: product.id,
       title: product.title,
