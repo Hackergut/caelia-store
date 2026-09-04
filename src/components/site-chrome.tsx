@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, type ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 import { useCart } from "@/lib/cart-context";
 import { CartDrawer } from "./cart-drawer";
 import { NewsletterForm } from "./newsletter-form";
@@ -23,10 +23,10 @@ const NAV = [
 export function SiteChrome({ children }: { children: ReactNode }) {
   const { itemCount } = useCart();
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    setMenuOpen(false);
+    const el = document.getElementById("nav-caelia") as HTMLDetailsElement | null;
+    if (el) el.open = false;
   }, [pathname]);
 
   return (
@@ -42,19 +42,27 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       </div>
 
       <header className="sticky top-0 z-[300] bg-cream border-b border-mist/60">
-        <div className="flex h-16 w-full items-center justify-between px-5 sm:px-8 md:h-20">
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            className="whitespace-nowrap text-xl md:text-2xl"
-            aria-label="Apri menu"
-          >
-            <LogoWordmark />
-          </button>
+        <div className="flex h-16 w-full items-center justify-between gap-4 px-5 sm:px-8 md:h-20">
+          <details id="nav-caelia" className="relative">
+            <summary className="cursor-pointer list-none whitespace-nowrap text-xl md:text-2xl [&::-webkit-details-marker]:hidden">
+              <LogoWordmark />
+            </summary>
+            <nav className="absolute left-0 top-full z-[310] mt-0 min-w-[16rem] border border-mist/60 bg-cream py-5 shadow-2xl">
+              {NAV.map((l) => (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="block px-6 py-2 text-[13px] uppercase tracking-[0.18em] hover:text-burgundy"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </details>
 
           <Link
             href="/cart"
-            className="relative shrink-0 whitespace-nowrap text-[11px] uppercase tracking-[0.22em]"
+            className="relative ml-auto shrink-0 text-[11px] uppercase tracking-[0.22em]"
           >
             Carrello
             {itemCount > 0 ? (
@@ -65,38 +73,6 @@ export function SiteChrome({ children }: { children: ReactNode }) {
           </Link>
         </div>
       </header>
-
-      {menuOpen ? (
-        <div className="fixed inset-0 z-[600]">
-          <button
-            type="button"
-            className="absolute inset-0 bg-black/50"
-            aria-label="Chiudi menu"
-            onClick={() => setMenuOpen(false)}
-          />
-          <aside className="absolute left-0 top-0 h-full w-[min(22rem,100%)] overflow-y-auto bg-cream text-ink">
-            <div className="flex h-16 items-center justify-between border-b border-mist px-6">
-              <span className="whitespace-nowrap text-lg">
-                <LogoWordmark />
-              </span>
-              <button
-                type="button"
-                className="text-[11px] uppercase tracking-[0.22em]"
-                onClick={() => setMenuOpen(false)}
-              >
-                Chiudi
-              </button>
-            </div>
-            <nav className="flex flex-col gap-6 p-8 text-2xl font-light">
-              {NAV.map((l) => (
-                <Link key={l.href} href={l.href} onClick={() => setMenuOpen(false)}>
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
-          </aside>
-        </div>
-      ) : null}
 
       <main className="flex-1">{children}</main>
 

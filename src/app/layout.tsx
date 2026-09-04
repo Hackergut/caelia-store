@@ -8,9 +8,7 @@ import { CurrencyProvider } from "@/lib/currency";
 import { SiteChrome } from "@/components/site-chrome";
 import { CookieBanner } from "@/components/cookie-banner";
 import { Analytics } from "@/components/analytics";
-import { ExitIntentModal } from "@/components/exit-intent-modal";
 import { RecoveredCartBanner } from "@/components/recovered-cart-banner";
-import { SupportWidget } from "@/components/support-widget";
 import { organizationJsonLd, websiteJsonLd } from "@/lib/json-ld";
 import "./globals.css";
 
@@ -98,7 +96,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <CookieBanner />
             <Analytics />
             <VercelAnalytics />
-            <ExitIntentModal />
             <RecoveredCartBanner />
           </CurrencyProvider>
           </WishlistProvider>
