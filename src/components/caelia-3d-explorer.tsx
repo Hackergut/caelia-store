@@ -5,12 +5,6 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { CAELIA_VARIANTS, type CaeliaVariant } from "@/lib/caelia/variants";
 
-const POSTERS: Record<string, string> = {
-  burgundy: "/products/burgundy-caelia-pair.jpg",
-  cacao: "/products/cacao-caelia-pair.jpg",
-  crema: "/products/crema-caelia-pair.jpg",
-};
-
 const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
   ssr: false,
   loading: () => (
@@ -67,14 +61,7 @@ export function Caelia3DExplorer() {
       <div className="shell py-20 lg:py-28">
         <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-14 items-center">
           {/* 3D Canvas */}
-          <div className="relative -mx-[clamp(1rem,4vw,2.5rem)] aspect-[4/5] overflow-hidden bg-cream-deep sm:mx-0 sm:rounded-md">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={POSTERS[variant.id] ?? POSTERS.burgundy}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover"
-              aria-hidden
-            />
+          <div className="relative -mx-[clamp(1rem,4vw,2.5rem)] aspect-[4/5] overflow-hidden bg-cream sm:mx-0 sm:rounded-md">
             {allow3D && (
               <div className="absolute inset-0">
                 <CaeliaViewer
@@ -87,7 +74,7 @@ export function Caelia3DExplorer() {
             )}
             <div className="pointer-events-none absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-cream/90 px-3 py-1 text-xs uppercase tracking-[0.22em] text-ink">
               <span className="h-1.5 w-1.5 rounded-full bg-rose" />
-              {allow3D ? "Live 3D" : "Immagine"}
+              Live 3D
             </div>
             <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-ink/70">
               <span>{variant.name}</span>

@@ -59,18 +59,18 @@ export function Caelia3DFrame({
   const poster = product.images[0]?.src ?? "/products/burgundy-caelia-pair.jpg";
 
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md bg-gradient-to-br from-cream-deep to-blush/20 group">
-      {/* Static poster: always present, visible underneath / behind the
-          canvas. The canvas fades in once Three.js is ready. */}
-      <img
-        src={poster}
-        alt={product.images[0]?.alt ?? product.title}
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="eager"
-        decoding="async"
-      />
+    <div className="relative aspect-[4/5] w-full overflow-hidden rounded-md bg-cream group">
+      {!allow3D && (
+        <img
+          src={poster}
+          alt={product.images[0]?.alt ?? product.title}
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      )}
       {allow3D && (
-        <div className="absolute inset-0 img-fade-in">
+        <div className="absolute inset-0">
           <CaeliaViewer
             variant={modelVariant}
             view="mirror"
