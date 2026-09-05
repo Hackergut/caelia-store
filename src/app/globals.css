@@ -27,7 +27,7 @@
   --color-blush-deep: #c4a090;
 
   --font-sans: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-tenor), "Tenor Sans", "Arial Narrow", Arial, sans-serif;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -416,34 +416,24 @@ body {
   }
 }
 /* -------------------------------------------------------------------------
-   Typography — minimal, linear, sans-only.
-   Tighter tracking on headings, lighter weight on body, optical sizing.
+   Typography — Tenor Sans for titles only, DM Sans everywhere else.
    ------------------------------------------------------------------------- */
-h1, h2, h3, h4 {
-  font-family: var(--font-sans);
-  letter-spacing: -0.03em;
+h1, h2, h3, h4,
+.font-display,
+.fluid-display,
+.fluid-h2 {
+  font-family: var(--font-serif);
   font-weight: 400;
-}
-h1 { letter-spacing: -0.04em; font-weight: 300; }
-
-.font-display {
-  font-family: var(--font-sans);
-  letter-spacing: -0.04em;
-  font-weight: 300;
-}
-
-.font-logo,
-.logo-wordmark,
-.tenor-sans-regular {
-  font-family: var(--font-logo);
-  font-weight: 400;
-  font-style: normal;
+  letter-spacing: 0.01em;
 }
 
 .font-logo,
 .logo-wordmark {
+  font-family: var(--font-logo);
+  font-weight: 400;
   letter-spacing: 0.34em;
   text-transform: uppercase;
+  font-style: normal;
 }
 
 .text-balance { text-wrap: balance; }

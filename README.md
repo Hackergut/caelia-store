@@ -28,7 +28,7 @@ Three-tone palette, each color with a defined role:
 | `--color-cream` | `#f7f1ea` | background |
 | `--color-mist` | `#e0d6c9` | warm separators |
 
-Typography: **Tenor Sans** wordmark, **DM Sans** UI.
+Typography: **Tenor Sans** titles and wordmark, **DM Sans** body and UI.
 
 ## Run locally
 

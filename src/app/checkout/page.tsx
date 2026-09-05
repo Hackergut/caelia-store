@@ -478,7 +478,7 @@ function SummaryRow({
   return (
     <div className="flex justify-between py-1.5">
       <span className="text-sm text-ink/70">{label}</span>
-      <span className={large ? "font-serif text-2xl" : "text-sm"}>{value}</span>
+      <span className={large ? "text-2xl" : "text-sm"}>{value}</span>
     </div>
   );
 }

@@ -135,8 +135,8 @@ export function CartView() {
                   </dd>
                 </div>
                 <div className="flex justify-between border-t border-mist/60 pt-2 mt-2">
-                  <dt className="font-serif text-lg">Totale</dt>
-                  <dd className="font-serif text-xl">
+                  <dt className="text-lg">Totale</dt>
+                  <dd className="text-xl">
                     {formatMoney({ amount: total.toFixed(2), currencyCode: "EUR" })}
                   </dd>
                 </div>

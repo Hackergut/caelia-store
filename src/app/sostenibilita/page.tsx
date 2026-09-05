@@ -46,7 +46,7 @@ export default function SustainabilityPage() {
       <div className="mt-16 space-y-12">
         {PILLARS.map((p) => (
           <div key={p.n} className="flex gap-6">
-            <span className="font-serif text-4xl text-burgundy/70">{p.n}</span>
+            <span className="text-4xl text-burgundy/70">{p.n}</span>
             <div>
               <h2 className="font-serif text-2xl">{p.title}</h2>
               <p className="mt-3 text-ink/80 leading-relaxed">{p.body}</p>

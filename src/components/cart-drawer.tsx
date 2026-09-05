@@ -119,7 +119,7 @@ export function CartDrawer() {
             <SheetFooter className="space-y-3">
               <div className="flex items-center justify-between text-sm">
                 <span className="uppercase tracking-[0.18em]">Subtotale</span>
-                <span className="font-serif text-xl">{formatMoney(subtotal)}</span>
+                <span className="text-xl">{formatMoney(subtotal)}</span>
               </div>
               <p className="text-xs text-ink/60">
                 Spedizione calcolata al checkout. Resi gratuiti entro 30 giorni.

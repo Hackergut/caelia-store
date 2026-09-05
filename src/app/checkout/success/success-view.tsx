@@ -58,21 +58,21 @@ export function SuccessView({
           <p className="text-xs uppercase tracking-[0.18em] text-ink/60">
             Spedizione
           </p>
-          <p className="mt-2 font-serif text-lg">3-5 giorni</p>
+          <p className="mt-2 text-lg">3-5 giorni</p>
           <p className="text-ink/70">Con corriere espresso tracciato.</p>
         </div>
         <div className="rounded-md bg-cream-deep p-5 text-left">
           <p className="text-xs uppercase tracking-[0.18em] text-ink/60">
             Resi
           </p>
-          <p className="mt-2 font-serif text-lg">30 giorni</p>
+          <p className="mt-2 text-lg">30 giorni</p>
           <p className="text-ink/70">Resi gratuiti, senza domande.</p>
         </div>
         <div className="rounded-md bg-cream-deep p-5 text-left">
           <p className="text-xs uppercase tracking-[0.18em] text-ink/60">
             Supporto
           </p>
-          <p className="mt-2 font-serif text-lg">ciao@caelia.com</p>
+          <p className="mt-2 text-lg">ciao@caelia.com</p>
           <p className="text-ink/70">Ti rispondiamo entro 24 ore.</p>
         </div>
       </div>

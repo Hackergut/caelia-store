@@ -71,7 +71,7 @@ export function BundleSection({ all }: { all: Product[] }) {
                   <span className="text-sm text-ink/60 line-through mr-2">
                     <Price amountEUR={total} />
                   </span>
-                  <span className="font-serif text-2xl">
+                  <span className="text-2xl">
                     <Price amountEUR={discounted} />
                   </span>
                 </div>

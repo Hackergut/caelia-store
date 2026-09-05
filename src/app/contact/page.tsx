@@ -43,19 +43,19 @@ export default function ContactPage() {
           <p className="text-xs uppercase tracking-[0.22em] text-ink/60">
             Email
           </p>
-          <p className="mt-2 font-serif text-lg">ciao@caelia.com</p>
+          <p className="mt-2 text-lg">ciao@caelia.com</p>
         </div>
         <div>
           <p className="text-xs uppercase tracking-[0.22em] text-ink/60">
             Instagram
           </p>
-          <p className="mt-2 font-serif text-lg">@caelia</p>
+          <p className="mt-2 text-lg">@caelia</p>
         </div>
         <div>
           <p className="text-xs uppercase tracking-[0.22em] text-ink/60">
             Sede
           </p>
-          <p className="mt-2 font-serif text-lg">Milano, IT</p>
+          <p className="mt-2 text-lg">Milano, IT</p>
         </div>
       </div>
     </div>

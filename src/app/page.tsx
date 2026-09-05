@@ -98,7 +98,7 @@ export default function Home() {
               ].map((s) => (
                 <li key={s.n} className="border-t border-mist/70 py-5">
                   <p className="text-[11px] tracking-[0.28em] text-ink/40">{s.n}</p>
-                  <p className="mt-1 text-2xl font-light">{s.t}</p>
+                  <p className="mt-1 font-serif text-2xl">{s.t}</p>
                   <p className="mt-1 text-ink/65">{s.d}</p>
                 </li>
               ))}

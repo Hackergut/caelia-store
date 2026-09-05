@@ -43,7 +43,7 @@ export function MobileMenu({
             Chiudi
           </button>
         </div>
-        <nav className="flex flex-col gap-6 p-6 text-lg font-serif">
+        <nav className="flex flex-col gap-6 p-6 text-lg">
           <Link href="/products" onClick={onClose}>Collezione</Link>
           <Link href="/about" onClick={onClose}>Storia</Link>
           <Link href="/journal" onClick={onClose}>Journal</Link>

@@ -14,8 +14,8 @@ const COLORS = [
 ];
 
 const FONTS = [
-  { name: "Tenor Sans", role: "Logo", sample: "CAELIA" },
-  { name: "DM Sans", role: "UI sans-serif", sample: "Aprire. Ritoccare. Ripartire." },
+  { name: "Tenor Sans", role: "Titoli e logo", sample: "CAELIA" },
+  { name: "DM Sans", role: "Testo e UI", sample: "Aprire. Ritoccare. Ripartire." },
 ];
 
 export default function PressPage() {
@@ -135,14 +135,14 @@ export default function PressPage() {
             className="rounded-md border border-mist p-6 hover:border-charcoal transition-colors"
           >
             <p className="text-xs uppercase tracking-[0.22em] text-ink/60">Email</p>
-            <p className="mt-2 font-serif text-xl">press@caelia.com</p>
+            <p className="mt-2 text-xl">press@caelia.com</p>
           </a>
           <a
             href="mailto:partnerships@caelia.com"
             className="rounded-md border border-mist p-6 hover:border-charcoal transition-colors"
           >
             <p className="text-xs uppercase tracking-[0.22em] text-ink/60">Partnership</p>
-            <p className="mt-2 font-serif text-xl">partnerships@caelia.com</p>
+            <p className="mt-2 text-xl">partnerships@caelia.com</p>
           </a>
         </div>
       </section>
