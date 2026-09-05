@@ -13,7 +13,6 @@ Keep filenames stable. Replace a file in place to swap photography without a cod
 | `burgundy-caelia-lifestyle.jpg` | Burgundy gallery — vanity / marble |
 | `burgundy-caelia-pocket.jpg` | Burgundy gallery — empty pocket |
 | `burgundy-caelia-pencils.jpg` | Burgundy gallery + home hero |
-| `burgundy-caelia-logo.jpg` | Burgundy gallery — debossed wordmark |
 | `burgundy-caelia-stitch.jpg` | Burgundy gallery + home manifesto |
 | `cacao-caelia-pair.jpg` | Cacao hero, product card, home Capitoli |
 | `cacao-caelia-pencils.jpg` | Cacao gallery |

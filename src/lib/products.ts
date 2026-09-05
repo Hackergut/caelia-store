@@ -64,7 +64,6 @@ export const products: Product[] = [
       { src: "/products/burgundy-caelia-lifestyle.jpg", alt: "Burgundy Caelia — sul vanity di marmo" },
       { src: "/products/burgundy-caelia-pocket.jpg", alt: "Burgundy Caelia — tasca" },
       { src: "/products/burgundy-caelia-pencils.jpg", alt: "Burgundy Caelia — matite in tasca" },
-      { src: "/products/burgundy-caelia-logo.jpg", alt: "Burgundy Caelia — logo CAELIA" },
       { src: "/products/burgundy-caelia-stitch.jpg", alt: "Burgundy Caelia — cucitura e pelle" },
     ],
     variants: [oneVariant("burgundy-caelia", "CAELIA-BC-BURG-01", "Burgundy Caelia", leatherById("burgundy").swatch)],
