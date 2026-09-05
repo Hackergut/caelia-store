@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProductInfoMap } from "@/components/product-info-map";
+import { Caelia3DExplorer } from "@/components/caelia-3d-explorer";
 
 export default function Home() {
   return (
@@ -69,6 +70,8 @@ export default function Home() {
       </section>
 
       <ProductInfoMap />
+
+      <Caelia3DExplorer />
 
       <section className="bg-cream">
         <div className="shell section-y grid items-center gap-8 lg:grid-cols-2 lg:gap-16">

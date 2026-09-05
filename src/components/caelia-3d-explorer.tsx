@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { CAELIA_VARIANTS, type CaeliaVariant } from "@/lib/caelia/variants";
+
+const POSTERS: Record<string, string> = {
+  burgundy: "/products/burgundy-caelia-pair.jpg",
+  cacao: "/products/cacao-caelia-pair.jpg",
+  crema: "/products/crema-caelia-pair.jpg",
+};
 
 const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
   ssr: false,
@@ -22,10 +29,22 @@ export function Caelia3DExplorer() {
   const [variant, setVariant] = useState<CaeliaVariant>(CAELIA_VARIANTS[0]);
   const [view, setView] = useState<View>("mirror");
   const [autoRotate, setAutoRotate] = useState(true);
+  const [allow3D, setAllow3D] = useState(true);
   const [snapshotReady, setSnapshotReady] = useState<(() => string) | null>(
     null,
   );
   const [snapshotBusy, setSnapshotBusy] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+    function apply() {
+      setAllow3D(!mql.matches);
+      if (mql.matches) setAutoRotate(false);
+    }
+    apply();
+    mql.addEventListener("change", apply);
+    return () => mql.removeEventListener("change", apply);
+  }, []);
 
   async function downloadSnapshot() {
     if (!snapshotReady) return;
@@ -48,16 +67,27 @@ export function Caelia3DExplorer() {
       <div className="shell py-20 lg:py-28">
         <div className="grid lg:grid-cols-[1.6fr_1fr] gap-10 lg:gap-14 items-center">
           {/* 3D Canvas */}
-          <div className="relative aspect-[4/5] rounded-md overflow-hidden bg-gradient-to-br from-cream-deep/30 to-blush/30">
-            <CaeliaViewer
-              variant={variant}
-              view={view}
-              autoRotate={autoRotate}
-              onSnapshotReady={setSnapshotReady}
+          <div className="relative -mx-[clamp(1rem,4vw,2.5rem)] aspect-[4/5] overflow-hidden bg-cream-deep sm:mx-0 sm:rounded-md">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={POSTERS[variant.id] ?? POSTERS.burgundy}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+              aria-hidden
             />
+            {allow3D && (
+              <div className="absolute inset-0">
+                <CaeliaViewer
+                  variant={variant}
+                  view={view}
+                  autoRotate={autoRotate}
+                  onSnapshotReady={setSnapshotReady}
+                />
+              </div>
+            )}
             <div className="pointer-events-none absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-cream/90 px-3 py-1 text-xs uppercase tracking-[0.22em] text-ink">
               <span className="h-1.5 w-1.5 rounded-full bg-rose" />
-              Live 3D
+              {allow3D ? "Live 3D" : "Immagine"}
             </div>
             <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-ink/70">
               <span>{variant.name}</span>
@@ -172,14 +202,24 @@ export function Caelia3DExplorer() {
               <dd className="text-right tabular-nums">~75 g</dd>
             </dl>
 
-            <button
-              type="button"
-              onClick={downloadSnapshot}
-              disabled={!snapshotReady || snapshotBusy}
-              className="w-full inline-flex items-center justify-center gap-2 border border-cream/40 px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-cream hover:text-charcoal transition-colors disabled:opacity-50"
-            >
-              {snapshotBusy ? "Esportando..." : "Scarica snapshot PNG"}
-            </button>
+            <div className="space-y-3">
+              <Link
+                href={`/products/${variant.id}-caelia`}
+                className="flex min-h-12 w-full items-center justify-center bg-cream px-8 text-[11px] uppercase tracking-[0.22em] text-burgundy transition-colors hover:bg-burgundy hover:text-cream"
+              >
+                Vedi {variant.name}
+              </Link>
+              {allow3D && (
+                <button
+                  type="button"
+                  onClick={downloadSnapshot}
+                  disabled={!snapshotReady || snapshotBusy}
+                  className="flex min-h-12 w-full items-center justify-center border border-cream/40 px-6 text-[11px] uppercase tracking-[0.22em] transition-colors hover:bg-cream hover:text-charcoal disabled:opacity-50"
+                >
+                  {snapshotBusy ? "Esportando..." : "Scarica snapshot PNG"}
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
