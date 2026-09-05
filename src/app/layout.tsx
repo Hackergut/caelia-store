@@ -60,14 +60,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "it_IT",
     alternateLocale: ["en_US"],
-    images: [{ url: "/og.svg", width: 1200, height: 630, alt: "CAELIA" }],
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "CAELIA Beauty Mirror Case" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "CAELIA — Aprire. Ritoccare. Ripartire.",
     description:
       "Lastuccio beauty con specchio per le donne che non si fermano.",
-    images: ["/og.svg"],
+    images: ["/og.jpg"],
   },
   alternates: {
     canonical: "/",

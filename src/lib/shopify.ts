@@ -138,13 +138,14 @@ function mapVariant(
   );
   const swatch = colorOpt?.value?.toLowerCase();
   const colorMap: Record<string, string> = {
-    rose: "#4a0e16",
+    rose: "#dfc0b4",
+    rosa: "#dfc0b4",
     burgundy: "#4a0e16",
-    noir: "#7b5644",
-    cacao: "#7b5644",
-    ivory: "#efe5d8",
-    crema: "#efe5d8",
-    cream: "#efe5d8",
+    noir: "#604c46",
+    cacao: "#604c46",
+    ivory: "#e7d4c0",
+    crema: "#e7d4c0",
+    cream: "#e7d4c0",
   };
   return {
     id: node.id,

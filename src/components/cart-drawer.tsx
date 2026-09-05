@@ -72,7 +72,7 @@ export function CartDrawer() {
                       </div>
                       <button
                         onClick={() => remove(line.variantId)}
-                        className="shrink-0 text-[10px] uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+                        className="shrink-0 text-[10px] uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
                         aria-label="Rimuovi dal carrello"
                       >
                         Rimuovi
@@ -119,7 +119,7 @@ export function CartDrawer() {
             <SheetFooter className="space-y-3">
               <div className="flex items-center justify-between text-sm">
                 <span className="uppercase tracking-[0.18em]">Subtotale</span>
-                <span className="font-serif text-xl">{formatMoney(subtotal)}</span>
+                <span className="text-xl">{formatMoney(subtotal)}</span>
               </div>
               <p className="text-xs text-ink/60">
                 Spedizione calcolata al checkout. Resi gratuiti entro 30 giorni.
@@ -127,7 +127,7 @@ export function CartDrawer() {
               <Link
                 href="/checkout"
                 onClick={close}
-                className="btn-press flex min-h-12 w-full items-center justify-center bg-charcoal text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-rose"
+                className="btn-press flex min-h-12 w-full items-center justify-center bg-charcoal text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-burgundy"
               >
                 Procedi al checkout
               </Link>

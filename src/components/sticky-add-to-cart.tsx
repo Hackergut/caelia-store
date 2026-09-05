@@ -23,7 +23,7 @@ export function StickyAddToCart({
           <p className="truncate text-xs uppercase tracking-[0.18em] text-ink/60">
             {variant.title}
           </p>
-          <Price amountEUR={Number(variant.price.amount)} className="font-serif text-lg" />
+          <Price amountEUR={Number(variant.price.amount)} className="text-lg" />
         </div>
         <button
           type="button"

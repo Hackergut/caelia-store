@@ -123,12 +123,12 @@ export function ExitIntentModal() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors disabled:opacity-50"
+                className="w-full bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors disabled:opacity-50"
               >
                 {status === "loading" ? "Invio..." : "Scarica il 10%"}
               </button>
               {status === "err" && error && (
-                <p role="alert" className="text-xs text-rose">
+                <p role="alert" className="text-xs text-burgundy">
                   {error}
                 </p>
               )}

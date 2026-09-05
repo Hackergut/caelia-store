@@ -66,7 +66,7 @@ export function SideMenu({
             Chiudi
           </button>
         </div>
-        <nav className="flex flex-col gap-6 p-8 text-2xl font-serif">
+        <nav className="flex flex-col gap-6 p-8 text-2xl">
           {LINKS.map((l) => (
             <Link
               key={l.href}

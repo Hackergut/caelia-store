@@ -14,7 +14,7 @@ export default function JournalPage() {
       <h1 className="mt-4 font-serif fluid-h2">
         Pensieri, rituali,
         <br />
-        <span className="italic text-rose">dietro le quinte.</span>
+        <span className="italic text-burgundy">dietro le quinte.</span>
       </h1>
       <div className="mt-16 divide-y divide-mist/60 border-t border-b border-mist/60">
         {journalPosts.map((p, i) => (

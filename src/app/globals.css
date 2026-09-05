@@ -5,29 +5,29 @@
    CAELIA design tokens — colors, fonts, shadows
    ------------------------------------------------------------------------- */
 @theme {
-  /* CAELIA brand: burgundy main, Tenor Sans logo, three leather colors */
+  /* CAELIA brand: Burgundy / Cacao / Crema / Rosa + Tenor Sans logo */
   --color-cream: #f7f1ea;
-  --color-cream-deep: #efe5d8;
+  --color-cream-deep: #e7d4c0;
   --color-mist: #e0d6c9;
 
   --color-burgundy: #4a0e16;
   --color-burgundy-deep: #2e070d;
   --color-burgundy-tint: #7a2630;
-  --color-cacao: #7b5644;
-  --color-cacao-deep: #5a3d2e;
+  --color-cacao: #604c46;
+  --color-cacao-deep: #3e302c;
 
   --color-charcoal: #1f1d1c;
   --color-ink: #4a0e16;
   --color-night: #4a0e16;
   --color-night-deep: #2e070d;
 
-  --color-rose: #4a0e16;
-  --color-rose-deep: #2e070d;
-  --color-blush: #e9c9c4;
-  --color-blush-deep: #d49b96;
+  --color-rose: #dfc0b4;
+  --color-rose-deep: #c4a090;
+  --color-blush: #dfc0b4;
+  --color-blush-deep: #c4a090;
 
   --font-sans: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --font-serif: var(--font-dm), "DM Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: var(--font-tenor), "Tenor Sans", "Arial Narrow", Arial, sans-serif;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
@@ -416,25 +416,20 @@ body {
   }
 }
 /* -------------------------------------------------------------------------
-   Typography — minimal, linear, sans-only.
-   Tighter tracking on headings, lighter weight on body, optical sizing.
+   Typography — Tenor Sans for titles only, DM Sans everywhere else.
    ------------------------------------------------------------------------- */
-h1, h2, h3, h4 {
-  font-family: var(--font-sans);
-  letter-spacing: -0.03em;
+h1, h2, h3, h4,
+.font-display,
+.fluid-display,
+.fluid-h2 {
+  font-family: var(--font-serif);
   font-weight: 400;
-}
-h1 { letter-spacing: -0.04em; font-weight: 300; }
-
-.font-display {
-  font-family: var(--font-sans);
-  letter-spacing: -0.04em;
-  font-weight: 300;
+  letter-spacing: 0.01em;
 }
 
 .font-logo,
 .logo-wordmark {
-  font-family: "Tenor Sans", "Arial Narrow", Arial, Helvetica, sans-serif;
+  font-family: var(--font-logo);
   font-weight: 400;
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -475,6 +470,7 @@ h1 { letter-spacing: -0.04em; font-weight: 300; }
 html { -webkit-text-size-adjust: 100%; }
 body { overflow-x: clip; }
 img, video, canvas, svg { max-width: 100%; }
+img[data-nimg="fill"] { max-width: none; }
 
 /* One shared page shell: fluid gutters on mobile, capped on desktop */
 .shell {

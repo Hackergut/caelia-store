@@ -76,7 +76,7 @@ export function BackInStockButton({
         <p className="text-xs text-ink/60">Grazie. Ti scriviamo appena.</p>
       )}
       {status === "err" && (
-        <p className="text-xs text-rose">Inserisci un indirizzo email valido.</p>
+        <p className="text-xs text-burgundy">Inserisci un indirizzo email valido.</p>
       )}
     </form>
   );

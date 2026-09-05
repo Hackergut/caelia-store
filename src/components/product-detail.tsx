@@ -18,6 +18,7 @@ import { events } from "@/lib/track";
 import { pushRecentlyViewed } from "@/lib/recently-viewed";
 import { Price } from "@/lib/currency";
 import type { Product } from "@/lib/types";
+import { leatherById } from "@/lib/caelia/variants";
 
 const BENEFITS = [
   "Ritocco in qualsiasi momento, con specchio integrato",
@@ -27,9 +28,9 @@ const BENEFITS = [
 ];
 
 const COLORS = [
-  { handle: "burgundy-caelia", label: "Burgundy", hex: "#4a0e16" },
-  { handle: "cacao-caelia", label: "Cacao", hex: "#7b5644" },
-  { handle: "crema-caelia", label: "Crema", hex: "#efe5d8" },
+  { handle: "burgundy-caelia", label: "Burgundy", hex: leatherById("burgundy").swatch },
+  { handle: "cacao-caelia", label: "Cacao", hex: leatherById("cacao").swatch },
+  { handle: "crema-caelia", label: "Crema", hex: leatherById("crema").swatch },
 ];
 
 export function ProductDetail({ product }: { product: Product }) {

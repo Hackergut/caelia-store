@@ -145,7 +145,7 @@ export function CaeliaFinder({ all }: { all: Product[] }) {
               {recommendation.reason}
             </p>
             <div className="mt-6 flex items-baseline gap-3">
-              <span className="font-serif text-2xl">
+              <span className="text-2xl">
                 {formatMoney(
                   product.variants.find((v) => v.id === recommendation.variantId)
                     ?.price ?? product.variants[0].price,

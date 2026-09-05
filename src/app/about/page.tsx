@@ -14,7 +14,7 @@ export default function AboutPage() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/editorial/lifestyle-burgundy.jpg"
-          alt=""
+          alt="Burgundy Caelia Beauty Mirror Case sul vanity"
           className="absolute inset-0 h-full w-full object-cover blur-[3px] brightness-[0.45]"
         />
         <div className="absolute inset-0 bg-night/45" />

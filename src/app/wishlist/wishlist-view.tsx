@@ -75,7 +75,7 @@ export function WishlistView({
           </p>
           <Link
             href="/products"
-            className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+            className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors"
           >
             Esplora la collezione
           </Link>

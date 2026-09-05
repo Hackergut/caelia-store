@@ -20,7 +20,7 @@ export default function WholesalePage() {
       </p>
       <a
         href="mailto:partnerships@caelia.com"
-        className="mt-10 inline-flex bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+        className="mt-10 inline-flex bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors btn-press"
       >
         partnerships@caelia.com
       </a>

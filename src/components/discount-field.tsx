@@ -61,7 +61,7 @@ export function DiscountField({
   return (
     <div>
       {applied ? (
-        <div className="flex items-center justify-between border border-rose/40 bg-rose/5 rounded-md px-4 py-3 text-sm">
+        <div className="flex items-center justify-between border border-burgundy/40 bg-burgundy/5 rounded-md px-4 py-3 text-sm">
           <div>
             <p className="font-medium">{applied.code}</p>
             <p className="text-xs text-ink/60">{applied.label}</p>
@@ -69,7 +69,7 @@ export function DiscountField({
           <button
             type="button"
             onClick={remove}
-            className="text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+            className="text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
           >
             Rimuovi
           </button>
@@ -95,7 +95,7 @@ export function DiscountField({
         </form>
       )}
       {error && (
-        <p role="alert" className="mt-2 text-xs text-rose">
+        <p role="alert" className="mt-2 text-xs text-burgundy">
           {error}
         </p>
       )}

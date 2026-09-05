@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ProductInfoMap } from "@/components/product-info-map";
+import { Caelia3DExplorer } from "@/components/caelia-3d-explorer";
 
 export default function Home() {
   return (
@@ -70,6 +71,8 @@ export default function Home() {
 
       <ProductInfoMap />
 
+      <Caelia3DExplorer />
+
       <section className="bg-cream">
         <div className="shell section-y grid items-center gap-8 lg:grid-cols-2 lg:gap-16">
           <div className="aspect-[4/3] overflow-hidden bg-cream-deep sm:aspect-[3/4]">
@@ -95,7 +98,7 @@ export default function Home() {
               ].map((s) => (
                 <li key={s.n} className="border-t border-mist/70 py-5">
                   <p className="text-[11px] tracking-[0.28em] text-ink/40">{s.n}</p>
-                  <p className="mt-1 text-2xl font-light">{s.t}</p>
+                  <p className="mt-1 font-serif text-2xl">{s.t}</p>
                   <p className="mt-1 text-ink/65">{s.d}</p>
                 </li>
               ))}
@@ -111,19 +114,19 @@ export default function Home() {
             {[
               {
                 href: "/products/burgundy-caelia",
-                src: "/products/chapter-burgundy.jpg",
+                src: "/products/burgundy-caelia-pair.jpg",
                 n: "01",
                 t: "Burgundy",
               },
               {
                 href: "/products/cacao-caelia",
-                src: "/products/chapter-cacao.jpg",
+                src: "/products/cacao-caelia-pair.jpg",
                 n: "02",
                 t: "Cacao",
               },
               {
                 href: "/products/crema-caelia",
-                src: "/products/chapter-crema.jpg",
+                src: "/products/crema-caelia-pair.jpg",
                 n: "03",
                 t: "Crema",
               },
