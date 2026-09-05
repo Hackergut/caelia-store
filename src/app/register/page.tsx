@@ -23,7 +23,7 @@ export default function RegisterPage() {
           <span className="block text-xs uppercase tracking-[0.22em] text-ink/60 mb-1">Password</span>
           <input type="password" required name="password" minLength={8} className="w-full border border-mist rounded-md px-4 py-3 text-sm bg-cream focus:outline-none focus:border-charcoal" />
         </label>
-        <button type="button" className="w-full bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press">
+        <button type="button" className="w-full bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors btn-press">
           Registrati
         </button>
         <p className="text-xs text-center text-ink/60">

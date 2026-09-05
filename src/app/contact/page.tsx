@@ -32,7 +32,7 @@ export default function ContactPage() {
         </label>
         <button
           type="button"
-          className="sm:col-span-2 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+          className="sm:col-span-2 bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors"
         >
           Invia messaggio
         </button>

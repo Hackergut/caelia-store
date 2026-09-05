@@ -21,7 +21,7 @@ export default function GiftCardsPage() {
       </p>
       <Link
         href="/products"
-        className="mt-10 inline-flex bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+        className="mt-10 inline-flex bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors btn-press"
       >
         Scegli un Beauty Mirror Case
       </Link>

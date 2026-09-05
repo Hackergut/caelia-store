@@ -16,7 +16,7 @@ export function AccountOrders() {
         </p>
         <Link
           href="/products"
-          className="mt-4 inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+          className="mt-4 inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors"
         >
           Esplora la collezione
         </Link>

@@ -51,7 +51,7 @@ export function BundleSection({ all }: { all: Product[] }) {
               key={b.handle}
               className="rounded-md bg-cream-deep p-8 flex flex-col"
             >
-              <p className="text-xs uppercase tracking-[0.22em] text-rose">
+              <p className="text-xs uppercase tracking-[0.22em] text-burgundy">
                 -{b.percentOff}%
               </p>
               <h3 className="mt-2 font-serif text-3xl leading-tight">
@@ -86,7 +86,7 @@ export function BundleSection({ all }: { all: Product[] }) {
                     });
                     router.push("/cart");
                   }}
-                  className="inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+                  className="inline-flex items-center justify-center bg-charcoal text-cream px-6 py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors btn-press"
                 >
                   Aggiungi al carrello ({Math.round((1 - b.percentOff / 100) * 100)}% off)
                 </button>

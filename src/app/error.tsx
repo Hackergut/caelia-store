@@ -36,7 +36,7 @@ export default function GlobalError({
         <button
           type="button"
           onClick={reset}
-          className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+          className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors"
         >
           Riprova
         </button>

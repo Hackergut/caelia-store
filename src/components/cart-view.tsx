@@ -45,7 +45,7 @@ export function CartView() {
           </p>
           <Link
             href="/products"
-            className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+            className="mt-6 inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors btn-press"
           >
             Esplora la collezione
           </Link>
@@ -112,7 +112,7 @@ export function CartView() {
                 <button
                   type="button"
                   onClick={() => remove(line.variantId)}
-                  className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+                  className="self-start text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
                 >
                   Rimuovi
                 </button>
@@ -143,14 +143,14 @@ export function CartView() {
               </dl>
               <Link
                 href="/checkout"
-                className="mt-6 block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+                className="mt-6 block w-full text-center bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors btn-press"
               >
                 Procedi al checkout
               </Link>
               <button
                 type="button"
                 onClick={clear}
-                className="mt-3 block w-full text-center text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-rose"
+                className="mt-3 block w-full text-center text-xs uppercase tracking-[0.18em] text-ink/60 hover:text-burgundy"
               >
                 Svuota carrello
               </button>

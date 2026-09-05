@@ -21,14 +21,14 @@ Three-tone palette, each color with a defined role:
 
 | Token | Hex | Role |
 | --- | --- | --- |
-| `--color-cacao` | `#7b5644` | main — body text, headings, primary surfaces |
 | `--color-burgundy` | `#4a0e16` | accent — CTA, hover, link emphasis |
-| `--color-rose` | `#d49b96` | decorative tint — italic accents, badges |
-| `--color-night` | `#1a0a0e` | surface — footer, announcement bar, drawer scrim |
+| `--color-cacao` | `#604c46` | Cacao Caelia leather |
+| `--color-cream-deep` | `#e7d4c0` | Crema Caelia leather |
+| `--color-rose` | `#dfc0b4` | Rosa Caelia tint |
 | `--color-cream` | `#f7f1ea` | background |
 | `--color-mist` | `#e0d6c9` | warm separators |
 
-Typography: **Inter** sans-only (minimal, linear), no serif.
+Typography: **Tenor Sans** wordmark, **DM Sans** UI.
 
 ## Run locally
 

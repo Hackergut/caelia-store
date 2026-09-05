@@ -20,7 +20,7 @@ export default function ReturnsPage() {
           { n: "03", t: "Spedisci", d: "Rimborso entro 5 giorni lavorativi dal ricevimento." },
         ].map((s) => (
           <li key={s.n} className="flex gap-6">
-            <span className="font-serif text-2xl text-rose">{s.n}</span>
+            <span className="font-serif text-2xl text-burgundy">{s.n}</span>
             <div>
               <p className="font-serif text-2xl">{s.t}</p>
               <p className="mt-1 text-ink/70">{s.d}</p>

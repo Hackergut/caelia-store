@@ -38,7 +38,7 @@ export default function LoginPage() {
         </label>
         <button
           type="button"
-          className="w-full bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors btn-press"
+          className="w-full bg-charcoal text-cream py-3 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors btn-press"
         >
           Accedi
         </button>

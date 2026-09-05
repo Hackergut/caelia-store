@@ -7,16 +7,15 @@ export const metadata: Metadata = {
 };
 
 const COLORS = [
-  { name: "Burgundy Caelia", hex: "#5c2e38", text: "#f7f1ea" },
-  { name: "Cacao Caelia", hex: "#6d403b", text: "#f7f1ea" },
-  { name: "Crema Caelia", hex: "#e5d1bd", text: "#4a0e16" },
-  { name: "Blush", hex: "#e9c9c4", text: "#4a0e16" },
+  { name: "Burgundy", hex: "#4a0e16", text: "#f7f1ea" },
+  { name: "Cacao Caelia", hex: "#604c46", text: "#f7f1ea" },
+  { name: "Crema Caelia", hex: "#e7d4c0", text: "#4a0e16" },
+  { name: "Rosa Caelia", hex: "#dfc0b4", text: "#4a0e16" },
 ];
 
 const FONTS = [
   { name: "Tenor Sans", role: "Logo", sample: "CAELIA" },
-  { name: "Fraunces", role: "Display serif", sample: "Aprire. Ritoccare." },
-  { name: "Inter", role: "UI sans-serif", sample: "Aprire. Ritoccare. Ripartire." },
+  { name: "DM Sans", role: "UI sans-serif", sample: "Aprire. Ritoccare. Ripartire." },
 ];
 
 export default function PressPage() {
@@ -93,11 +92,7 @@ export default function PressPage() {
                 <p className="text-xs uppercase tracking-[0.22em] text-ink/60">{f.role}</p>
                 <p
                   className={`mt-2 ${
-                    f.name === "Tenor Sans"
-                      ? "font-logo text-3xl"
-                      : f.name === "Fraunces"
-                        ? "font-serif text-4xl"
-                        : "text-2xl"
+                    f.name === "Tenor Sans" ? "font-logo text-3xl" : "text-2xl"
                   }`}
                 >
                   {f.sample}
@@ -113,7 +108,7 @@ export default function PressPage() {
             Logo
           </p>
           <div className="rounded-md bg-cream-deep p-12 flex items-center justify-center">
-            <p className="font-serif text-4xl tracking-[0.08em] sm:text-6xl">CAELIA</p>
+            <p className="font-logo text-4xl sm:text-6xl">CAELIA</p>
           </div>
           <p className="mt-2 text-xs text-ink/60">
             Scarica il logo vettoriale:{" "}

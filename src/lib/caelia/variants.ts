@@ -1,73 +1,79 @@
+import { BRAND } from "@/lib/brand"
+
 export interface CaeliaVariant {
   id: string
   name: string
-  /** PBR albedo — photo mid-tone lifted for ACES so the render matches the stills */
+  /** PBR albedo — official leather hex */
   base: string
   /** darker shade used for logo deboss / crevices */
   dark: string
-  /** stitching thread color (tone-on-tone, as in the product photos) */
+  /** stitching thread color (tone-on-tone) */
   stitch: string
   /** subtle sheen tint */
   sheen: string
-  /** exact leather mid-tone sampled from public/products/*-pair.jpg */
+  /** official leather hex, used by catalog swatches */
   swatch: string
   roughness: number
   description: string
 }
 
 /**
- * Leather colours sampled from the published product stills
- * (burgundy/cacao/crema-caelia-pair.jpg), not the UI brand tokens.
+ * Leather colourways — official CAELIA palette.
  *
- *   Burgundy leather  #5c2e38
- *   Cacao leather     #6d403b
- *   Crema leather     #e5d1bd
+ *   Burgundy  #4a0e16
+ *   Cacao     #604c46
+ *   Crema     #e7d4c0
+ *   Rosa      #dfc0b4  (brand tint, not a catalog SKU)
  */
 export const CAELIA_VARIANTS: CaeliaVariant[] = [
   {
     id: "burgundy",
     name: "Burgundy Caelia",
-    swatch: "#5c2e38",
-    base: "#6b333d",
-    dark: "#3d1c22",
-    stitch: "#704048",
-    sheen: "#8a555c",
+    swatch: BRAND.burgundy,
+    base: BRAND.burgundy,
+    dark: "#2e070d",
+    stitch: "#7a2630",
+    sheen: "#6b3038",
     roughness: 0.52,
-    description: "Bordeaux maison, come nelle foto prodotto",
+    description: "Bordeaux maison #4a0e16",
   },
   {
     id: "cacao",
     name: "Cacao Caelia",
-    swatch: "#6d403b",
-    base: "#7b443b",
-    dark: "#4a2a27",
-    stitch: "#8a5a54",
-    sheen: "#9a6a64",
+    swatch: BRAND.cacao,
+    base: BRAND.cacao,
+    dark: "#3e302c",
+    stitch: "#7a6560",
+    sheen: "#8a7570",
     roughness: 0.55,
-    description: "Cuoio cacao caldo, come nelle foto prodotto",
+    description: "Cuoio cacao #604c46",
   },
   {
     id: "crema",
     name: "Crema Caelia",
-    swatch: "#e5d1bd",
-    base: "#ead6c2",
+    swatch: BRAND.crema,
+    base: BRAND.crema,
     dark: "#c4ae96",
     stitch: "#d4c0aa",
     sheen: "#f3e6d6",
     roughness: 0.58,
-    description: "Pelle crema, avorio caldo come nelle foto prodotto",
+    description: "Pelle crema #e7d4c0",
   },
 ]
 
 const SWATCH_ALIASES: Record<string, string> = {
+  [BRAND.burgundy]: "burgundy",
+  "#2e070d": "burgundy",
+  "#7a2630": "burgundy",
   "#5c2e38": "burgundy",
   "#6b333d": "burgundy",
-  "#4a0e16": "burgundy",
-  "#7a2630": "burgundy",
   "#d49b96": "burgundy",
+  [BRAND.cacao]: "cacao",
+  "#3e302c": "cacao",
   "#6d403b": "cacao",
   "#7b443b": "cacao",
   "#7b5644": "cacao",
+  [BRAND.crema]: "crema",
   "#e5d1bd": "crema",
   "#ead6c2": "crema",
   "#efe5d8": "crema",

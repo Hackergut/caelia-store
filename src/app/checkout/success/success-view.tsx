@@ -22,10 +22,10 @@ export function SuccessView({
 
   return (
     <div className="shell max-w-2xl py-24 text-center">
-      <div className="mx-auto h-20 w-20 rounded-full bg-rose/10 flex items-center justify-center">
+      <div className="mx-auto h-20 w-20 rounded-full bg-burgundy/10 flex items-center justify-center">
         <svg
           viewBox="0 0 24 24"
-          className="h-10 w-10 text-rose"
+          className="h-10 w-10 text-burgundy"
           aria-hidden="true"
         >
           <path
@@ -80,7 +80,7 @@ export function SuccessView({
       <div className="mt-12 flex flex-wrap justify-center gap-3">
         <Link
           href={orderId ? `/ordini/${orderId}` : "/products"}
-          className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-rose transition-colors"
+          className="inline-flex items-center justify-center bg-charcoal text-cream px-8 py-4 text-xs uppercase tracking-[0.22em] hover:bg-burgundy transition-colors"
         >
           Stato del tuo ordine
         </Link>

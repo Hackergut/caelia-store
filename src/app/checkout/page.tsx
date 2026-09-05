@@ -79,7 +79,7 @@ export default function CheckoutPage() {
         </p>
         <Link
           href="/products"
-          className="mt-8 inline-flex min-h-12 w-full items-center justify-center bg-charcoal px-8 text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-rose sm:w-auto"
+          className="mt-8 inline-flex min-h-12 w-full items-center justify-center bg-charcoal px-8 text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-burgundy sm:w-auto"
         >
           Scopri la collezione
         </Link>
@@ -307,7 +307,7 @@ export default function CheckoutPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="btn-press sticky bottom-3 z-10 flex min-h-14 w-full items-center justify-center bg-charcoal text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-rose disabled:opacity-50"
+          className="btn-press sticky bottom-3 z-10 flex min-h-14 w-full items-center justify-center bg-charcoal text-xs uppercase tracking-[0.22em] text-cream transition-colors hover:bg-burgundy disabled:opacity-50"
         >
           {submitting ? "Elaborazione..." : `Conferma ordine · ${formatMoney({ amount: total.toFixed(2), currencyCode: "EUR" })}`}
         </button>
@@ -365,7 +365,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 function FormFieldError({ msg }: { msg?: string }) {
   if (!msg) return null;
-  return <p role="alert" className="mt-1 text-xs text-rose">{msg}</p>;
+  return <p role="alert" className="mt-1 text-xs text-burgundy">{msg}</p>;
 }
 
 function Input({
@@ -397,7 +397,7 @@ function Input({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className={`min-h-12 w-full rounded-md border bg-cream px-4 text-base focus:border-charcoal focus:outline-none md:min-h-11 md:text-sm ${
-          error ? "border-rose" : "border-mist"
+          error ? "border-burgundy" : "border-mist"
         }`}
       />
       <FormFieldError msg={error} />

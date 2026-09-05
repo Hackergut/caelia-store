@@ -10,7 +10,7 @@ const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
   loading: () => (
     <div className="absolute inset-0 grid place-items-center bg-cream-deep/40">
       <div className="flex items-center gap-3 text-xs uppercase tracking-[0.22em] text-ink/60">
-        <span className="h-2 w-2 animate-pulse rounded-full bg-rose" />
+        <span className="h-2 w-2 animate-pulse rounded-full bg-burgundy" />
         Caricamento 3D
       </div>
     </div>
@@ -73,7 +73,7 @@ export function Caelia3DExplorer() {
               </div>
             )}
             <div className="pointer-events-none absolute top-4 left-4 z-10 inline-flex items-center gap-2 rounded-full bg-cream/90 px-3 py-1 text-xs uppercase tracking-[0.22em] text-ink">
-              <span className="h-1.5 w-1.5 rounded-full bg-rose" />
+              <span className="h-1.5 w-1.5 rounded-full bg-burgundy" />
               Live 3D
             </div>
             <div className="pointer-events-none absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between text-xs uppercase tracking-[0.22em] text-ink/70">

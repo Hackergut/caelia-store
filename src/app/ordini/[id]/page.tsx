@@ -50,7 +50,7 @@ export default async function OrderPage({
             stage === 3
               ? "bg-emerald-700/10 text-emerald-700"
               : stage === 2
-                ? "bg-rose/10 text-rose"
+                ? "bg-burgundy/10 text-burgundy"
                 : "bg-charcoal/5 text-charcoal"
           }`}
         >
@@ -59,7 +59,7 @@ export default async function OrderPage({
               stage === 3
                 ? "bg-emerald-700"
                 : stage === 2
-                  ? "bg-rose"
+                  ? "bg-burgundy"
                   : "bg-charcoal"
             } animate-pulse`}
             aria-hidden
@@ -98,7 +98,7 @@ export default async function OrderPage({
                 className={`mt-1 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-medium ${
                   done
                     ? current
-                      ? "bg-rose text-cream"
+                      ? "bg-burgundy text-cream"
                       : "bg-charcoal text-cream"
                     : "bg-mist text-ink/60"
                 }`}

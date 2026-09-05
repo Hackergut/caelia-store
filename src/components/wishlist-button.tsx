@@ -18,7 +18,7 @@ export function WishlistButton({
       aria-label={active ? "Rimuovi dai preferiti" : "Aggiungi ai preferiti"}
       onClick={() => toggle(handle)}
       className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-mist hover:border-charcoal transition-colors ${
-        active ? "bg-rose text-cream border-rose" : ""
+        active ? "bg-burgundy text-cream border-burgundy" : ""
       } ${className}`}
     >
       <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
