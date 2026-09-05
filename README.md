@@ -43,40 +43,17 @@ Requires Node 20+.
 
 ## Drop real product photos
 
-The catalog renders procedural placeholder PNGs from `public/products/*.png`. Replace them with real photography **keeping the same filenames**:
+The catalog serves JPEGs from `public/products/`. Replace a file **keeping the same filename** — no code change needed.
 
-| File | What to photograph |
-| --- | --- |
-| `beauty-case-rose-front.png` | Beauty Mirror Case, Rose variant, front |
-| `beauty-case-noir-front.png` | Beauty Mirror Case, Noir variant, front |
-| `beauty-case-ivory-front.png` | Beauty Mirror Case, Ivory variant, front |
-| `beauty-case-rose-open.png` | Beauty Mirror Case, Rose, opened (mirror + gloss visible) |
-| `beauty-case-rose-detail.png` | Beauty Mirror Case, Rose, close-up of magnetic closure / texture |
-| `beauty-case-rose-lifestyle.png` | Beauty Mirror Case, Rose, in use (in handbag, on vanity) |
-| `beauty-case-mini-rose.png` | Beauty Mirror Case Mini, Rose, front |
-| `beauty-case-mini-noir.png` | Beauty Mirror Case Mini, Noir, front |
-| `beauty-case-mini-ivory.png` | Beauty Mirror Case Mini, Ivory, front |
-| `beauty-case-mini-open.png` | Beauty Mirror Case Mini, opened |
+Current colourways: **Burgundy**, **Cacao**, **Crema**. See `docs/PRODUCT-PHOTOS.md` for the full file list and specs (1600px, &lt; 400 KB JPEG).
 
 ### Easiest path — drag & drop on GitHub
 
 1. Open https://github.com/Hackergut/caelia-store/tree/master/public/products
-2. Click **"Add file"** → → "Upload files"
-3. Drag your photos, keeping the filenames above (rename if needed during upload)
+2. Click **"Add file"** → "Upload files"
+3. Drag your photos, keeping the existing filenames
 4. Click **"Commit changes"**
-5. Vercel auto-deploys from `master`. Live within ~60 seconds.
-
-### Automated path — use the import script
-
-```bash
-# Resize, encode WebP, drop in public/products/, report coverage
-.\scripts\import-product-photos.ps1 `
-  -Source "C:\path\to\rose-front.jpg" `
-  -Target beauty-case-rose-front.png `
-  -Format webp
-```
-
-The script also prints which catalog files are still missing.
+5. Vercel auto-deploys from `master`.
 
 ## Deploy
 

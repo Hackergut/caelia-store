@@ -29,7 +29,6 @@ export function ProductCard({
           alt={product.images[0].alt}
           fill
           sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-          unoptimized
           className="object-cover"
         />
         {colors.length > 0 && (

@@ -475,6 +475,7 @@ h1 { letter-spacing: -0.04em; font-weight: 300; }
 html { -webkit-text-size-adjust: 100%; }
 body { overflow-x: clip; }
 img, video, canvas, svg { max-width: 100%; }
+img[data-nimg="fill"] { max-width: none; }
 
 /* One shared page shell: fluid gutters on mobile, capped on desktop */
 .shell {

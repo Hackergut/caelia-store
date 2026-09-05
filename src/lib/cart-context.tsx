@@ -102,7 +102,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
             variantTitle: variant.title,
             price: variant.price,
             quantity,
-            image: product.images[0]?.src ?? "/products/new-beauty-case-burgundy-front.jpg",
+            image: product.images[0]?.src ?? "/products/burgundy-caelia-pair.jpg",
           },
         ];
       });

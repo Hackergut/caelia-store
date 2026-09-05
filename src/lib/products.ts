@@ -60,6 +60,7 @@ export const products: Product[] = [
       "Beauty Mirror Case in Burgundy Caelia — the maison burgundy. Mirror, liner and gloss in one slim case.",
     images: [
       { src: "/products/burgundy-caelia-pair.jpg", alt: "Burgundy Caelia — astuccio e specchio" },
+      { src: "/products/burgundy-caelia-lifestyle.jpg", alt: "Burgundy Caelia — sul vanity di marmo" },
       { src: "/products/burgundy-caelia-pocket.jpg", alt: "Burgundy Caelia — tasca" },
       { src: "/products/burgundy-caelia-pencils.jpg", alt: "Burgundy Caelia — matite in tasca" },
       { src: "/products/burgundy-caelia-logo.jpg", alt: "Burgundy Caelia — logo CAELIA" },
@@ -103,6 +104,7 @@ export const products: Product[] = [
       "Beauty Mirror Case in Crema Caelia — pale cream leather. Same design, light colourway.",
     images: [
       { src: "/products/crema-caelia-pair.jpg", alt: "Crema Caelia — astuccio e specchio" },
+      { src: "/products/crema-caelia-lifestyle.jpg", alt: "Crema Caelia — sul tavolo, con matite e specchio" },
       { src: "/products/crema-caelia-pencils.jpg", alt: "Crema Caelia — matite in tasca" },
       { src: "/products/crema-caelia-logo.jpg", alt: "Crema Caelia — logo CAELIA" },
       { src: "/products/crema-caelia-angle.jpg", alt: "Crema Caelia — tre quarti" },
