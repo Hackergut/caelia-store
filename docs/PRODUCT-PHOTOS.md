@@ -42,6 +42,6 @@ Keep filenames stable. Replace a file in place to swap photography without a cod
 | Lifestyle | `.jpg` | 1600 on the long edge | Real Beauty Mirror Case (slim pouch + leather-framed mirror). Never a zippered makeup bag. |
 | Open Graph | `/og.jpg` | 1200×630 | Cropped from the burgundy lifestyle |
 
-Colourways: Burgundy `#4a0e16`, Cacao `#7b5644`, Crema `#efe5d8`.
+Colourways (sampled from the pair stills): Burgundy `#5c2e38`, Cacao `#6d403b`, Crema `#e5d1bd`.
 
 Raw generation dumps belong at the repo root (gitignored as `/*.jpeg`). Only `public/` ships.

@@ -7,9 +7,9 @@ export const metadata: Metadata = {
 };
 
 const COLORS = [
-  { name: "Burgundy Caelia", hex: "#4a0e16", text: "#f7f1ea" },
-  { name: "Cacao Caelia", hex: "#7b5644", text: "#f7f1ea" },
-  { name: "Crema Caelia", hex: "#f7f1ea", text: "#4a0e16" },
+  { name: "Burgundy Caelia", hex: "#5c2e38", text: "#f7f1ea" },
+  { name: "Cacao Caelia", hex: "#6d403b", text: "#f7f1ea" },
+  { name: "Crema Caelia", hex: "#e5d1bd", text: "#4a0e16" },
   { name: "Blush", hex: "#e9c9c4", text: "#4a0e16" },
 ];
 

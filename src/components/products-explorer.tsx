@@ -164,8 +164,14 @@ function FilterPill({
 
 function colorLabel(hex: string): string {
   const map: Record<string, string> = {
+    "#5c2e38": "Burgundy Caelia",
+    "#6b333d": "Burgundy Caelia",
     "#4a0e16": "Burgundy Caelia",
+    "#6d403b": "Cacao Caelia",
+    "#7b443b": "Cacao Caelia",
     "#7b5644": "Cacao Caelia",
+    "#e5d1bd": "Crema Caelia",
+    "#ead6c2": "Crema Caelia",
     "#efe5d8": "Crema Caelia",
     "#d49b96": "Burgundy Caelia",
     "#1f1d1c": "Cacao Caelia",

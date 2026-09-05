@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-import { CAELIA_VARIANTS, type CaeliaVariant } from "@/lib/caelia/variants";
+import { leatherBySwatch, type CaeliaVariant } from "@/lib/caelia/variants";
 import type { Product, ProductVariant } from "@/lib/types";
 
 const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
@@ -18,18 +18,7 @@ const CaeliaViewer = dynamic(() => import("./caelia-viewer"), {
 });
 
 function variantFor(swatch: string | undefined): CaeliaVariant {
-  if (!swatch) return CAELIA_VARIANTS[0];
-  const hex = swatch.toLowerCase();
-  if (hex === "#4a0e16") {
-    return CAELIA_VARIANTS.find((v) => v.id === "burgundy") ?? CAELIA_VARIANTS[0];
-  }
-  if (hex === "#7b5644") {
-    return CAELIA_VARIANTS.find((v) => v.id === "cacao") ?? CAELIA_VARIANTS[0];
-  }
-  if (hex === "#efe5d8" || hex === "#f7f1ea") {
-    return CAELIA_VARIANTS.find((v) => v.id === "crema") ?? CAELIA_VARIANTS[0];
-  }
-  return CAELIA_VARIANTS[0];
+  return leatherBySwatch(swatch);
 }
 
 export function Caelia3DFrame({

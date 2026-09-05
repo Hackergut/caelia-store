@@ -256,10 +256,11 @@ export function CaeliaModel({ variant, view, autoRotate }: CaeliaModelProps) {
       group.current.position.y = Math.sin(state.clock.elapsedTime * 0.9) * 0.012
     }
 
-    // color transitions
+    // color + finish transitions (roughness matches the sampled leather)
     const k = 1 - Math.exp(-5 * d)
     leatherMat.color.lerp(targets.leather, k)
     leatherMat.sheenColor.lerp(targets.sheen, k)
+    leatherMat.roughness = THREE.MathUtils.lerp(leatherMat.roughness, variant.roughness, k)
   })
 
   return (

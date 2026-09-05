@@ -1,4 +1,5 @@
 import type { Product, ProductVariant } from "./types";
+import { leatherById } from "./caelia/variants";
 
 const shared = {
   vendor: "CAELIA",
@@ -66,7 +67,7 @@ export const products: Product[] = [
       { src: "/products/burgundy-caelia-logo.jpg", alt: "Burgundy Caelia — logo CAELIA" },
       { src: "/products/burgundy-caelia-stitch.jpg", alt: "Burgundy Caelia — cucitura e pelle" },
     ],
-    variants: [oneVariant("burgundy-caelia", "CAELIA-BC-BURG-01", "Burgundy Caelia", "#4a0e16")],
+    variants: [oneVariant("burgundy-caelia", "CAELIA-BC-BURG-01", "Burgundy Caelia", leatherById("burgundy").swatch)],
     seo: {
       title: "Burgundy Caelia — Beauty Mirror Case",
       description: "Astuccio beauty bordeaux con specchio. Burgundy Caelia.",
@@ -87,7 +88,7 @@ export const products: Product[] = [
       { src: "/products/cacao-caelia-logo.jpg", alt: "Cacao Caelia — logo CAELIA" },
       { src: "/products/cacao-caelia-angle.jpg", alt: "Cacao Caelia — tre quarti" },
     ],
-    variants: [oneVariant("cacao-caelia", "CAELIA-BC-CACAO-01", "Cacao Caelia", "#7b5644")],
+    variants: [oneVariant("cacao-caelia", "CAELIA-BC-CACAO-01", "Cacao Caelia", leatherById("cacao").swatch)],
     seo: {
       title: "Cacao Caelia — Beauty Mirror Case",
       description: "Astuccio beauty cacao con specchio. Cacao Caelia.",
@@ -109,7 +110,7 @@ export const products: Product[] = [
       { src: "/products/crema-caelia-logo.jpg", alt: "Crema Caelia — logo CAELIA" },
       { src: "/products/crema-caelia-angle.jpg", alt: "Crema Caelia — tre quarti" },
     ],
-    variants: [oneVariant("crema-caelia", "CAELIA-BC-CREMA-01", "Crema Caelia", "#efe5d8")],
+    variants: [oneVariant("crema-caelia", "CAELIA-BC-CREMA-01", "Crema Caelia", leatherById("crema").swatch)],
     seo: {
       title: "Crema Caelia — Beauty Mirror Case",
       description: "Astuccio beauty crema con specchio. Crema Caelia.",
