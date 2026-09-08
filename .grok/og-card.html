@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <style>
+    @font-face {
+      font-family: "Tenor Sans";
+      src: url("./fonts/TenorSans-Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 1200px;
+      height: 630px;
+      background: #F7F1EA;
+      overflow: hidden;
+    }
+    .stage {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      background: #F7F1EA;
+    }
+    .product {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 640px;
+      height: 630px;
+      overflow: hidden;
+    }
+    .product img {
+      position: absolute;
+      height: 118%;
+      width: auto;
+      right: -6%;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .product .fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        #F7F1EA 0%,
+        #F7F1EA 6%,
+        rgba(247, 241, 234, 0.55) 22%,
+        rgba(247, 241, 234, 0) 46%
+      );
+      pointer-events: none;
+    }
+    .lockup {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 560px;
+      height: 630px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+    }
+    .wordmark {
+      font-family: "Tenor Sans", "Liberation Serif", serif;
+      font-size: 86px;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      color: #8C1D40;
+      line-height: 1;
+      margin: 0;
+      padding-left: 0.32em;
+      text-transform: uppercase;
+    }
+    .rule {
+      width: 72px;
+      height: 1px;
+      background: #8C1D40;
+      margin: 22px 0 18px;
+      opacity: 0.85;
+    }
+    .tag {
+      font-family: "Tenor Sans", "Liberation Sans", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.46em;
+      color: #8C1D40;
+      text-transform: uppercase;
+      margin: 0;
+      padding-left: 0.46em;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="product">
+      <img src="../public/campaign/packshot-burgundy.jpg" alt="" />
+      <div class="fade"></div>
+    </div>
+    <div class="lockup">
+      <p class="wordmark">CAELIA</p>
+      <div class="rule"></div>
+      <p class="tag">Beauty Mirror Case</p>
+    </div>
+  </div>
+</body>
+</html>

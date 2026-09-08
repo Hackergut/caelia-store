@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "CAELIA",
+      "hasCanvas": false,
+      "bodyTextLen": 1656,
+      "bodyTextHash": "a7df2f49a91d90d22a4c7433f94e30efcf9fb81c78b14b3667a4133af7f7e49d",
+      "bodyTextPrefix": "CAELIA Home Collezione Storia Contatti Carrello Volume 01 · Berr",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "CAELIA",
+      "hasCanvas": false,
+      "bodyTextLen": 1656,
+      "bodyTextHash": "c370595ab8b6962d6cdfdcc3b5bceb6abc89373d3d4f711557bc72f300b91a19",
+      "bodyTextPrefix": "CAELIA Carrello Home Collezione Storia Contatti Volume 01 · Berr",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

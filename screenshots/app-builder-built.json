@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "CAELIA",
+      "hasCanvas": false,
+      "bodyTextLen": 1618,
+      "bodyTextHash": "352ef7d230c0dbe26844c5eb63e2a54400bb6355e04986096baf8e5ccf61a7d7",
+      "bodyTextPrefix": "SPEDIZIONE GRATUITA OLTRE 60€ · RESI 30 GIORNI SPEDIZIONE GRATUI",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "CAELIA",
+      "hasCanvas": false,
+      "bodyTextLen": 1566,
+      "bodyTextHash": "533c454d8164234c2f9ba866e437f7158a158355c4ddb85a48c64154e99bfb26",
+      "bodyTextPrefix": "SPEDIZIONE GRATUITA OLTRE 60€ · RESI 30 GIORNI SPEDIZIONE GRATUI",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

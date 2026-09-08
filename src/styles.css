@@ -1,0 +1,309 @@
+@import "tailwindcss";
+
+/* CAELIA brand book — exact palette */
+@theme {
+  --color-berry: #973851;
+  --color-rosa: #ffddde;
+  --color-cacao: #604c46;
+  --color-crema: #dfc0b4;
+  --color-burgundy: #4a0e16;
+
+  --color-cream: #ffddde;
+  --color-cream-fg: #ffddde;
+  --color-cream-deep: #dfc0b4;
+  --color-ink: #4a0e16;
+  --color-night: #4a0e16;
+  --color-mist: #dfc0b4;
+  --color-rose: #ffddde;
+  --color-burgundy-deep: #4a0e16;
+
+  --font-sans: "Tenor Sans", "Arial Narrow", Arial, sans-serif;
+  --font-serif: "Tenor Sans", "Arial Narrow", Arial, sans-serif;
+  --font-logo: "Tenor Sans", "Arial Narrow", Arial, sans-serif;
+
+  --radius-none: 0;
+
+  --ease-out-soft: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-rosa);
+    color: var(--color-burgundy);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--color-rosa);
+    color: var(--color-burgundy);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--color-burgundy);
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: var(--color-berry);
+    color: var(--color-rosa);
+  }
+
+  input,
+  textarea,
+  select {
+    font: inherit;
+    color: inherit;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 1px solid var(--color-berry);
+    outline-offset: 2px;
+  }
+}
+
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+html.has-cursor input,
+html.has-cursor textarea,
+html.has-cursor select {
+  cursor: text !important;
+}
+
+@utility shell {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility section-y {
+  padding-block: 5.5rem;
+}
+
+@media (min-width: 768px) {
+  .section-y {
+    padding-block: 8.5rem;
+  }
+}
+
+@utility eyebrow {
+  font-size: 0.6875rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--color-cacao);
+}
+
+@utility type-display {
+  font-family: var(--font-serif);
+  font-size: clamp(3.15rem, 10vw, 8.25rem);
+  line-height: 0.88;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+@utility type-display-md {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 5.4vw, 4.35rem);
+  line-height: 0.94;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+}
+
+@utility type-meta {
+  font-size: 0.6875rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+
+@utility type-logo {
+  font-family: var(--font-logo);
+  font-size: clamp(3.4rem, 16vw, 12rem);
+  line-height: 0.82;
+  letter-spacing: 0.16em;
+  font-weight: 400;
+}
+
+.btn-press {
+  transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-press:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn-primary {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-berry);
+  color: var(--color-rosa);
+  padding-inline: 2rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition:
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-primary:hover {
+  background: var(--color-burgundy);
+}
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-burgundy) 22%, transparent);
+  color: var(--color-burgundy);
+  padding-inline: 2rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition:
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 200ms;
+}
+.btn-ghost:hover {
+  background: var(--color-crema);
+  border-color: var(--color-berry);
+}
+.btn-invert {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-rosa);
+  color: var(--color-berry);
+  padding-inline: 2rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition:
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+.btn-invert:hover {
+  background: var(--color-crema);
+}
+.btn-invert:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn-ghost-light {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, var(--color-rosa) 40%, transparent);
+  color: var(--color-rosa);
+  padding-inline: 2rem;
+  font-size: 0.6875rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  transition:
+    transform 150ms cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 200ms;
+}
+.btn-ghost-light:hover {
+  background: color-mix(in srgb, var(--color-rosa) 12%, transparent);
+  border-color: var(--color-rosa);
+}
+.btn-ghost-light:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.cutout {
+  filter: drop-shadow(0 22px 36px color-mix(in srgb, var(--color-burgundy) 38%, transparent));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.ticker {
+  animation: ticker 36s linear infinite;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.film-marquee {
+  animation: ticker 55s linear infinite;
+}
+
+.film-track {
+  scrollbar-width: none;
+}
+.film-track::-webkit-scrollbar {
+  display: none;
+}
+
+.pin-live::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-berry);
+  animation: pin-pulse 2.2s var(--ease-out-soft) infinite;
+}
+
+@keyframes pin-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.86);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}

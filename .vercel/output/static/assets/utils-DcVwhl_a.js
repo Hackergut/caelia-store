@@ -1,0 +1,1 @@
+function e(e){return new Intl.NumberFormat(`it-IT`,{style:`currency`,currency:`EUR`}).format(e)}export{e as t};
