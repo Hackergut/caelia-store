@@ -29,10 +29,10 @@ function ConsegnatoPage() {
             <p className="mt-3 font-serif text-2xl">Sito live</p>
             <p className="mt-2 text-sm text-rosa/70">Home senza watermark, come in consegna.</p>
           </Link>
-          <Link to="/shopify" className="border border-rosa/25 p-5 transition-colors hover:bg-rosa/10">
+          <Link to="/download" className="border border-rosa/25 p-5 transition-colors hover:bg-rosa/10">
             <p className="type-meta text-rosa/50">02</p>
             <p className="mt-3 font-serif text-2xl">Tema Shopify</p>
-            <p className="mt-2 text-sm text-rosa/70">Zip OS 2.0, CSV prodotti, checkout nativo.</p>
+            <p className="mt-2 text-sm text-rosa/70">Download zip sbloccato. Upload in Admin.</p>
           </Link>
           <a
             href="/CAELIA-consuntivo-01-2026.pdf"
