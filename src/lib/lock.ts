@@ -3,7 +3,7 @@ import { persist } from "zustand/middleware";
 
 export const PREVIEW_PASSWORD = "Tp299-5($&zj";
 export const STRIPE_PAID_TOKEN = "HgPaid-7kQ2mN9vL";
-export const STRIPE_PAY_URL = "https://buy.stripe.com/bJebJ076h5IK4bR1L1aR200";
+export const STRIPE_PAY_URL = "https://buy.stripe.com/28E14o5WV4icfeeaSQfMA01";
 
 type LockState = {
   unlocked: boolean;

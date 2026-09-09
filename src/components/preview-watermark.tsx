@@ -4,7 +4,7 @@ import { consumePaidUnlockFromUrl, useLock } from "@/lib/lock";
 
 /* Remove this component at product delivery. */
 
-const OPEN = new Set(["/consegnato", "/paid"]);
+const OPEN = new Set(["/consegnato", "/paid", "/paga"]);
 
 export function PreviewWatermark() {
   const unlocked = useLock((s) => s.unlocked);
