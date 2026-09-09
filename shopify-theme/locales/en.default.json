@@ -1,0 +1,29 @@
+{
+  "general": {
+    "skip": "Skip to content",
+    "page": "Page {{ page }}",
+    "cart": "Cart",
+    "menu": "Menu",
+    "close": "Close",
+    "home": "Home"
+  },
+  "products": {
+    "add": "Add to cart",
+    "added": "Added",
+    "sold_out": "Sold out",
+    "from": "From"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty.",
+    "collection": "The collection",
+    "checkout": "Checkout",
+    "remove": "Remove",
+    "total": "Total",
+    "continue": "Continue"
+  },
+  "contact": {
+    "send": "Send",
+    "posted": "Message received."
+  }
+}

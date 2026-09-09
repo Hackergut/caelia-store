@@ -1,0 +1,37 @@
+<section class="c-cart">
+  <div class="shell c-cart__box">
+    <h1 class="type-display-md">{{ 'cart.title' | t }}</h1>
+    {% if cart.item_count == 0 %}
+      <p class="c-cart__empty">{{ 'cart.empty' | t }}</p>
+      <a class="btn-primary" href="{{ routes.collections_url }}">{{ 'cart.collection' | t }}</a>
+    {% else %}
+      <form action="{{ routes.cart_url }}" method="post">
+        {% for item in cart.items %}
+          <div class="c-cart__line">
+            {{ item.image | image_url: width: 240 | image_tag: alt: item.title }}
+            <div class="c-cart__info">
+              <p class="c-card__title">{{ item.product.title }}</p>
+              <p class="type-meta">{{ item.final_line_price | money }}</p>
+              <div class="c-qty">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Qty">
+                <a class="type-meta" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        <div class="c-cart__tot">
+          <span class="type-meta">{{ 'cart.total' | t }}</span>
+          <strong>{{ cart.total_price | money }}</strong>
+        </div>
+        <div class="c-cart__actions">
+          <button type="submit" name="update" class="btn-ghost">Aggiorna</button>
+          <button type="submit" name="checkout" class="btn-primary">{{ 'cart.checkout' | t }}</button>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Carrello" }
+{% endschema %}

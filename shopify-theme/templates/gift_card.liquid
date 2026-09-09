@@ -1,0 +1,14 @@
+{% layout none %}
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ gift_card.balance | money }} – {{ shop.name }}</title>
+    {{ content_for_header }}
+  </head>
+  <body style="font-family:Tenor Sans,sans-serif;background:#ffddde;color:#4a0e16;padding:3rem">
+    <p>{{ shop.name }}</p>
+    <h1>{{ gift_card.balance | money }}</h1>
+    <p>{{ gift_card.code | format_code }}</p>
+  </body>
+</html>

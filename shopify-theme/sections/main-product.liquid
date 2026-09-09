@@ -1,0 +1,78 @@
+<section class="c-product" data-product>
+  <div class="shell c-product__grid">
+    <div>
+      {% assign feat = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+      <div class="c-product__stage" data-zoom>
+        {% if feat %}
+          {{ feat | image_url: width: 2000 | image_tag: class: 'c-product__img', id: 'ProductImage', alt: product.title }}
+        {% endif %}
+      </div>
+      {% if product.images.size > 1 %}
+        <div class="c-product__thumbs">
+          {% for image in product.images %}
+            <button type="button" class="c-product__thumb{% if image == feat %} is-on{% endif %}" data-thumb="{{ image | image_url: width: 1600 }}">
+              {{ image | image_url: width: 240 | image_tag: alt: '' }}
+            </button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    <div>
+      <p class="eyebrow">{{ product.type | default: 'Beauty Mirror Case' }}</p>
+      <h1 class="type-display-md">{{ product.title }}</h1>
+      <p class="c-product__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+      <div class="rte c-product__desc">{{ product.description }}</div>
+      {% form 'product', product, class: 'c-product__form' %}
+        {% unless product.has_only_default_variant %}
+          {% for option in product.options_with_values %}
+            <label class="c-label">{{ option.name }}
+              <select name="options[{{ option.name }}]" data-option>
+                {% for value in option.values %}
+                  <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+                {% endfor %}
+              </select>
+            </label>
+          {% endfor %}
+        {% endunless %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+        <button type="submit" class="btn-primary" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+          {% if product.selected_or_first_available_variant.available %}
+            {{ 'products.add' | t }}
+          {% else %}
+            {{ 'products.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+      {% if product.metafields.custom.features %}
+        <ul class="c-features">
+          {% for f in product.metafields.custom.features.value %}
+            <li>{{ f }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if collections['caelia'] %}
+        <p class="eyebrow" style="margin-top:3rem">Altri colori</p>
+        <div class="c-alts">
+          {% for p in collections['caelia'].products %}
+            {% unless p.handle == product.handle %}
+              <a href="{{ p.url }}">
+                {{ p.featured_image | image_url: width: 400 | image_tag: alt: p.title }}
+                <span class="type-meta">{{ p.title }}</span>
+              </a>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <script type="application/json" data-variants>
+    {{ product.variants | json }}
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "Prodotto",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,22 @@
+<section class="c-row">
+  <div class="shell">
+    <h1 class="type-display-md">Cerca</h1>
+    <form action="{{ routes.search_url }}" class="c-search">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="CAELIA">
+      <button class="btn-primary" type="submit">Cerca</button>
+    </form>
+    <div class="c-row__grid">
+      {% for item in search.results %}
+        {% if item.object_type == 'product' %}
+          <a class="c-card" href="{{ item.url }}">
+            <div class="c-card__frame">{{ item.featured_image | image_url: width: 800 | image_tag: alt: item.title }}</div>
+            <p class="c-card__title">{{ item.title }}</p>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Cerca" }
+{% endschema %}

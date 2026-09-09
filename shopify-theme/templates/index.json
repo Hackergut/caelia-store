@@ -1,0 +1,48 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": { "caption": "Beauty Mirror Case" } },
+    "colors": {
+      "type": "collection-row",
+      "settings": {
+        "kicker": "Collezione",
+        "title": "Tre colori.",
+        "body": "Marrone, rosa nude, burgundy berry."
+      }
+    },
+    "gesto": {
+      "type": "film-chapter",
+      "settings": {
+        "kicker": "03",
+        "title": "Il gesto.",
+        "body": "Rosa nude in mano. Cinque matite, uno specchio.",
+        "tone": "berry"
+      }
+    },
+    "intorno": {
+      "type": "film-chapter",
+      "settings": {
+        "kicker": "04",
+        "title": "Tutto intorno.",
+        "body": "I tre colori, insieme. Peonie, vanity, lo stesso gesto.",
+        "tone": "rosa"
+      }
+    },
+    "map": {
+      "type": "product-map",
+      "settings": {
+        "kicker": "Info prodotto",
+        "title": "Ogni parte ha un perché."
+      },
+      "blocks": {
+        "p1": { "type": "pin", "settings": { "n": "01", "title": "Tasca frontale", "x": 36, "y": 23, "body": "Cinque matite in verticale." } },
+        "p2": { "type": "pin", "settings": { "n": "02", "title": "Corpo dell'astuccio", "x": 36, "y": 46, "body": "Pelle vegana su fodera in raso." } },
+        "p3": { "type": "pin", "settings": { "n": "03", "title": "Logo impresso", "x": 36, "y": 77, "body": "CAELIA inciso nella pelle." } },
+        "p4": { "type": "pin", "settings": { "n": "04", "title": "Cucitura perimetrale", "x": 25, "y": 52, "body": "Filo tono su tono." } },
+        "p5": { "type": "pin", "settings": { "n": "05", "title": "Specchio anti-riflesso", "x": 65, "y": 48, "body": "Superficie infrangibile." } },
+        "p6": { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "Nessun bordo di vetro esposto." } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
+    }
+  },
+  "order": ["hero", "colors", "gesto", "intorno", "map"]
+}

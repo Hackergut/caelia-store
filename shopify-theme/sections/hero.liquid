@@ -1,0 +1,29 @@
+<section class="c-hero" data-hero>
+  <div class="c-hero__sticky">
+    {% if section.settings.video != blank %}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'c-hero__media' }}
+    {% elsif section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'c-hero__media', loading: 'eager', alt: '' }}
+    {% else %}
+      <img class="c-hero__media" src="{{ 'logo-drip.jpg' | asset_url }}" alt="">
+    {% endif %}
+    <div class="c-hero__veil"></div>
+    <div class="c-hero__lockup">
+      <p class="c-hero__word">{{ settings.brand_name | default: 'CAELIA' }}</p>
+      <p class="type-meta">{{ section.settings.caption }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero 3D",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Immagine hero" },
+    { "type": "video", "id": "video", "label": "Video hero (Shopify Files)" },
+    { "type": "text", "id": "caption", "label": "Didascalia", "default": "Beauty Mirror Case" }
+  ],
+  "presets": [{ "name": "Hero 3D" }]
+}
+{% endschema %}

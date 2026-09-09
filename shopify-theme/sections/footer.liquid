@@ -1,0 +1,15 @@
+<footer class="c-footer">
+  <div class="shell c-footer__row">
+    <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
+    <p class="type-meta">{{ section.settings.text }}</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    { "type": "text", "id": "text", "label": "Didascalia", "default": "Milano · Beauty Essentials" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,25 @@
+<section class="c-page">
+  <div class="shell c-page__box">
+    <p class="eyebrow">Contatti</p>
+    <h1 class="type-display-md">{{ page.title | default: 'Scrivici' }}</h1>
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <p>{{ 'contact.posted' | t }}</p>
+      {% else %}
+        <label class="c-label">Nome
+          <input type="text" name="contact[nome]" required>
+        </label>
+        <label class="c-label">Email
+          <input type="email" name="contact[email]" required>
+        </label>
+        <label class="c-label">Messaggio
+          <textarea name="contact[body]" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="btn-primary">{{ 'contact.send' | t }}</button>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+{% schema %}
+{ "name": "Contatti", "presets": [{ "name": "Contatti" }] }
+{% endschema %}

@@ -18,6 +18,7 @@ import { Route as LockRouteImport } from './routes/lock'
 import { Route as PagaRouteImport } from './routes/paga'
 import { Route as PaidRouteImport } from './routes/paid'
 import { Route as ProductsRouteImport } from './routes/products'
+import { Route as ShopifyRouteImport } from './routes/shopify'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 
@@ -66,6 +67,11 @@ const ProductsRoute = ProductsRouteImport.update({
   path: '/products',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ShopifyRoute = ShopifyRouteImport.update({
+  id: '/shopify',
+  path: '/shopify',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -87,6 +93,7 @@ export interface FileRoutesByFullPath {
   '/paga': typeof PagaRoute
   '/paid': typeof PaidRoute
   '/products': typeof ProductsRouteWithChildren
+  '/shopify': typeof ShopifyRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/lock': typeof LockRoute
   '/paga': typeof PagaRoute
   '/paid': typeof PaidRoute
+  '/shopify': typeof ShopifyRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/products': typeof ProductsIndexRoute
 }
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/paga': typeof PagaRoute
   '/paid': typeof PaidRoute
   '/products': typeof ProductsRouteWithChildren
+  '/shopify': typeof ShopifyRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/paga'
     | '/paid'
     | '/products'
+    | '/shopify'
     | '/products/$handle'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
@@ -140,6 +150,7 @@ export interface FileRouteTypes {
     | '/lock'
     | '/paga'
     | '/paid'
+    | '/shopify'
     | '/products/$handle'
     | '/products'
   id:
@@ -153,6 +164,7 @@ export interface FileRouteTypes {
     | '/paga'
     | '/paid'
     | '/products'
+    | '/shopify'
     | '/products/$handle'
     | '/products/'
   fileRoutesById: FileRoutesById
@@ -167,6 +179,7 @@ export interface RootRouteChildren {
   PagaRoute: typeof PagaRoute
   PaidRoute: typeof PaidRoute
   ProductsRoute: typeof ProductsRouteWithChildren
+  ShopifyRoute: typeof ShopifyRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -234,6 +247,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/shopify': {
+      id: '/shopify'
+      path: '/shopify'
+      fullPath: '/shopify'
+      preLoaderRoute: typeof ShopifyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/': {
       id: '/products/'
       path: '/'
@@ -275,6 +295,7 @@ const rootRouteChildren: RootRouteChildren = {
   PagaRoute: PagaRoute,
   PaidRoute: PaidRoute,
   ProductsRoute: ProductsRouteWithChildren,
+  ShopifyRoute: ShopifyRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

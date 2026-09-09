@@ -1,0 +1,35 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "CAELIA",
+    "theme_version": "1.0.0",
+    "theme_author": "HACKGUT",
+    "theme_documentation_url": "https://caelia-store-x1wb.vercel.app",
+    "theme_support_url": "https://caelia-store-x1wb.vercel.app/contact"
+  },
+  {
+    "name": "Colori maison",
+    "settings": [
+      { "type": "color", "id": "color_berry", "label": "Burgundy Berry", "default": "#973851" },
+      { "type": "color", "id": "color_rosa", "label": "Rosa nude", "default": "#ffddde" },
+      { "type": "color", "id": "color_crema", "label": "Avorio caldo", "default": "#dfc0b4" },
+      { "type": "color", "id": "color_cacao", "label": "Marrone", "default": "#5b3f33" },
+      { "type": "color", "id": "color_ink", "label": "Burgundy", "default": "#4a0e16" }
+    ]
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "text", "id": "brand_name", "label": "Nome", "default": "CAELIA" },
+      { "type": "text", "id": "brand_tagline", "label": "Tagline", "default": "Beauty Mirror Case" }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram", "info": "URL completo" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok" }
+    ]
+  }
+]

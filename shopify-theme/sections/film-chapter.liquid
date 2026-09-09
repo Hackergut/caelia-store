@@ -1,0 +1,31 @@
+<section class="c-chapter c-chapter--{{ section.settings.tone }}">
+  <div class="shell c-chapter__cap">
+    <div>
+      <p class="type-meta">{{ section.settings.kicker }}</p>
+      <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    </div>
+    <p class="c-chapter__body">{{ section.settings.body }}</p>
+  </div>
+  <div class="c-chapter__frame" data-parallax>
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'lazy', alt: section.settings.title }}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Capitolo film",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Numero", "default": "03" },
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Il gesto." },
+    { "type": "textarea", "id": "body", "label": "Testo", "default": "Rosa nude in mano. Cinque matite, uno specchio." },
+    { "type": "image_picker", "id": "image", "label": "Immagine" },
+    { "type": "select", "id": "tone", "label": "Tono", "default": "berry", "options": [
+      { "value": "berry", "label": "Burgundy" },
+      { "value": "rosa", "label": "Rosa nude" }
+    ]}
+  ],
+  "presets": [{ "name": "Capitolo film" }]
+}
+{% endschema %}

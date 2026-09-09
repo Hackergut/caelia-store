@@ -1,0 +1,25 @@
+<section class="c-row">
+  <div class="shell">
+    <p class="eyebrow">Collezione</p>
+    <h1 class="type-display-md">{{ collection.title | default: 'Tre colori.' }}</h1>
+    <div class="c-row__grid" style="margin-top:3rem">
+      {% for product in collection.products %}
+        <a class="c-card" href="{{ product.url }}">
+          <div class="c-card__frame" data-parallax>
+            {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
+          </div>
+          <div class="c-card__meta">
+            <p class="c-card__title">{{ product.title }}</p>
+            <p class="type-meta">{{ product.price | money }}</p>
+          </div>
+        </a>
+      {% else %}
+        <p>Aggiungi i tre colori CAELIA a questa collezione in Shopify Admin.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{ "name": "Collezione" }
+{% endschema %}

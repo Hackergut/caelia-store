@@ -1,0 +1,29 @@
+{
+  "general": {
+    "skip": "Vai al contenuto",
+    "page": "Pagina {{ page }}",
+    "cart": "Carrello",
+    "menu": "Menu",
+    "close": "Chiudi",
+    "home": "Home"
+  },
+  "products": {
+    "add": "Aggiungi al carrello",
+    "added": "Aggiunto",
+    "sold_out": "Esaurito",
+    "from": "Da"
+  },
+  "cart": {
+    "title": "Carrello",
+    "empty": "Il carrello è vuoto.",
+    "collection": "La collezione",
+    "checkout": "Checkout Shopify",
+    "remove": "Rimuovi",
+    "total": "Totale",
+    "continue": "Continua"
+  },
+  "contact": {
+    "send": "Invia",
+    "posted": "Messaggio ricevuto. Ti rispondiamo a breve."
+  }
+}

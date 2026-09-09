@@ -1,0 +1,27 @@
+<header class="c-header" data-header>
+  <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
+  <div class="c-header__end">
+    <a class="type-meta" href="{{ routes.cart_url }}">
+      {{ 'general.cart' | t }}{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
+    </a>
+    <button type="button" class="c-burger" data-menu-toggle aria-expanded="false" aria-controls="MenuTenda" aria-label="{{ 'general.menu' | t }}">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+<nav id="MenuTenda" class="c-menu" data-menu hidden>
+  <ul>
+    <li><a href="{{ routes.root_url }}">Home</a></li>
+    <li><a href="{{ collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
+    <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
+    <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
+  </ul>
+  <p class="type-meta c-menu__meta">{{ settings.brand_tagline }}</p>
+</nav>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

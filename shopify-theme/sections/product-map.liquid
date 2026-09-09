@@ -1,0 +1,66 @@
+<section class="c-map">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+  </div>
+  <div class="c-map__stage" data-map>
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'c-map__img', loading: 'lazy', alt: section.settings.title }}
+    {% else %}
+      <img class="c-map__img" src="{{ 'pair-berry.jpg' | asset_url }}" alt="">
+    {% endif %}
+    {% for block in section.blocks %}
+      <button
+        type="button"
+        class="c-map__pin"
+        style="left: {{ block.settings.x }}%; top: {{ block.settings.y }}%;"
+        data-pin
+        data-title="{{ block.settings.title | escape }}"
+        data-body="{{ block.settings.body | escape }}"
+        aria-label="{{ block.settings.n }} {{ block.settings.title }}"
+      >{{ block.settings.n }}</button>
+    {% endfor %}
+    <div class="c-map__card" data-map-card hidden>
+      <p class="type-meta" data-map-n></p>
+      <p class="c-map__card-t" data-map-t></p>
+      <p class="c-map__card-b" data-map-b></p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mappa prodotto",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Info prodotto" },
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Ogni parte ha un perché." },
+    { "type": "image_picker", "id": "image", "label": "Foto case" }
+  ],
+  "blocks": [
+    {
+      "type": "pin",
+      "name": "Punto",
+      "settings": [
+        { "type": "text", "id": "n", "label": "Numero", "default": "01" },
+        { "type": "text", "id": "title", "label": "Titolo", "default": "Tasca frontale" },
+        { "type": "textarea", "id": "body", "label": "Testo" },
+        { "type": "range", "id": "x", "label": "X %", "min": 0, "max": 100, "step": 1, "default": 36 },
+        { "type": "range", "id": "y", "label": "Y %", "min": 0, "max": 100, "step": 1, "default": 23 }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mappa prodotto",
+      "blocks": [
+        { "type": "pin", "settings": { "n": "01", "title": "Tasca frontale", "x": 36, "y": 23, "body": "Cinque matite in verticale." } },
+        { "type": "pin", "settings": { "n": "02", "title": "Corpo dell'astuccio", "x": 36, "y": 46, "body": "Pelle vegana su fodera in raso." } },
+        { "type": "pin", "settings": { "n": "03", "title": "Logo impresso", "x": 36, "y": 77, "body": "CAELIA inciso nella pelle." } },
+        { "type": "pin", "settings": { "n": "04", "title": "Cucitura perimetrale", "x": 25, "y": 52, "body": "Filo tono su tono." } },
+        { "type": "pin", "settings": { "n": "05", "title": "Specchio anti-riflesso", "x": 65, "y": 48, "body": "Superficie infrangibile." } },
+        { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "Nessun bordo di vetro esposto." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
