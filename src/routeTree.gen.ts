@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as ConsegnatoRouteImport } from './routes/consegnato'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LockRouteImport } from './routes/lock'
 import { Route as PaidRouteImport } from './routes/paid'
@@ -32,6 +33,11 @@ const AboutRoute = AboutRouteImport.update({
 const CartRoute = CartRouteImport.update({
   id: '/cart',
   path: '/cart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConsegnatoRoute = ConsegnatoRouteImport.update({
+  id: '/consegnato',
+  path: '/consegnato',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -69,6 +75,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
+  '/consegnato': typeof ConsegnatoRoute
   '/contact': typeof ContactRoute
   '/lock': typeof LockRoute
   '/paid': typeof PaidRoute
@@ -80,6 +87,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
+  '/consegnato': typeof ConsegnatoRoute
   '/contact': typeof ContactRoute
   '/lock': typeof LockRoute
   '/paid': typeof PaidRoute
@@ -91,6 +99,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/cart': typeof CartRoute
+  '/consegnato': typeof ConsegnatoRoute
   '/contact': typeof ContactRoute
   '/lock': typeof LockRoute
   '/paid': typeof PaidRoute
@@ -104,6 +113,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cart'
+    | '/consegnato'
     | '/contact'
     | '/lock'
     | '/paid'
@@ -115,6 +125,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cart'
+    | '/consegnato'
     | '/contact'
     | '/lock'
     | '/paid'
@@ -125,6 +136,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/cart'
+    | '/consegnato'
     | '/contact'
     | '/lock'
     | '/paid'
@@ -137,6 +149,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CartRoute: typeof CartRoute
+  ConsegnatoRoute: typeof ConsegnatoRoute
   ContactRoute: typeof ContactRoute
   LockRoute: typeof LockRoute
   PaidRoute: typeof PaidRoute
@@ -164,6 +177,13 @@ declare module '@tanstack/react-router' {
       path: '/cart'
       fullPath: '/cart'
       preLoaderRoute: typeof CartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/consegnato': {
+      id: '/consegnato'
+      path: '/consegnato'
+      fullPath: '/consegnato'
+      preLoaderRoute: typeof ConsegnatoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -229,6 +249,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CartRoute: CartRoute,
+  ConsegnatoRoute: ConsegnatoRoute,
   ContactRoute: ContactRoute,
   LockRoute: LockRoute,
   PaidRoute: PaidRoute,
