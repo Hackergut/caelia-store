@@ -38,9 +38,9 @@ export const products: Product[] = [
       "Beauty Mirror Case in Burgundy Berry. Astuccio e specchio, stesso gesto.",
     images: [
       { src: "/campaign/pair-berry.jpg", alt: "Burgundy Berry — astuccio e specchio" },
-      { src: "/campaign/model-berry.jpg", alt: "Burgundy Berry — packshot" },
+      { src: "/campaign/model-berry-pencils.jpg", alt: "Burgundy Berry — cinque matite" },
       { src: "/campaign/life-carla.jpg", alt: "Carla con Burgundy Berry" },
-      { src: "/campaign/zoom-berry-logo.jpg", alt: "Logo CAELIA inciso" },
+      { src: "/campaign/model-berry.jpg", alt: "Burgundy Berry — packshot" },
     ],
     features,
   },
