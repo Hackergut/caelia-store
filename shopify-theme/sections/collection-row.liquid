@@ -6,12 +6,18 @@
         <h2 class="type-display-md">{{ section.settings.title }}</h2>
         <p class="c-row__sub">{{ section.settings.body }}</p>
       </div>
-      {% if section.settings.collection != blank %}
-        <a class="type-meta" href="{{ collections[section.settings.collection].url }}">Vedi tutto</a>
+      {% if col != blank %}
+        <a class="type-meta" href="{{ col.url }}">Vedi tutto</a>
       {% endif %}
     </div>
     <div class="c-row__grid">
-      {% assign col = collections[section.settings.collection] %}
+      {% assign col = section.settings.collection %}
+      {% if col == blank %}
+        {% assign col = settings.featured_collection %}
+      {% endif %}
+      {% if col == blank %}
+        {% assign col = collections.caelia %}
+      {% endif %}
       {% if col != blank %}
         {% for product in col.products limit: 3 %}
           <a class="c-card" href="{{ product.url }}">

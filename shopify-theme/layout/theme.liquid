@@ -20,7 +20,11 @@
       }
     </style>
     {% render 'jsonld' %}
-    <link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
+    {% if settings.favicon %}
+      <link rel="icon" href="{{ settings.favicon | image_url: width: 32 }}" type="image/png">
+    {% else %}
+      <link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
+    {% endif %}
   </head>
   <body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
     <a class="skip-link" href="#MainContent">{{ 'general.skip' | t }}</a>

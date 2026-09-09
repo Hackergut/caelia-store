@@ -1,9 +1,10 @@
+{%- if settings.show_breadcrumbs -%}
 {%- unless template.name == 'index' -%}
 <nav class="c-crumbs" aria-label="Breadcrumb">
   <ol>
     <li><a href="{{ routes.root_url }}">Home</a></li>
     {%- if template.name == 'product' -%}
-      <li><a href="{{ collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
+      <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
       <li aria-current="page">{{ product.title }}</li>
     {%- elsif template.name == 'collection' -%}
       <li aria-current="page">{{ collection.title }}</li>
@@ -15,3 +16,4 @@
   </ol>
 </nav>
 {%- endunless -%}
+{%- endif -%}

@@ -3,9 +3,16 @@
     <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
     <nav aria-label="Footer">
       <ul class="c-footer__nav">
-        <li><a href="{{ collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
-        <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
-        <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
+        {% assign fmenu = linklists[settings.footer_menu] %}
+        {% if fmenu and fmenu.links.size > 0 %}
+          {% for link in fmenu.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        {% else %}
+          <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
+          <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
+          <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
+        {% endif %}
       </ul>
     </nav>
     <p class="type-meta">{{ section.settings.text }}</p>

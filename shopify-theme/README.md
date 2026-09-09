@@ -51,7 +51,5 @@ In Admin Shopify, per ogni prodotto:
 3. URL handle: `burgundy-caelia` / `crema-caelia` / `cacao-caelia`
 4. Alt su ogni foto
 
-Poi **Search & Discovery** + Google Search Console sulla sitemap:
-
-`https://TUO-NEGOZIO.myshopify.com/sitemap.xml`
+Configurazione completa: **[CONFIG.md](./CONFIG.md)** (colori, menu, collezione, SEO, pagamenti).
 

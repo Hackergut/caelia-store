@@ -1,5 +1,11 @@
 <header class="c-header" data-header>
-  <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
+  <a class="c-logo" href="{{ routes.root_url }}">
+    {% if settings.logo %}
+      {{ settings.logo | image_url: width: 240 | image_tag: alt: settings.brand_name, class: 'c-logo__img' }}
+    {% else %}
+      {{ settings.brand_name | default: shop.name }}
+    {% endif %}
+  </a>
   <div class="c-header__end">
     <a class="type-meta" href="{{ routes.cart_url }}">
       {{ 'general.cart' | t }}{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
@@ -11,10 +17,17 @@
 </header>
 <nav id="MenuTenda" class="c-menu" data-menu hidden>
   <ul>
-    <li><a href="{{ routes.root_url }}">Home</a></li>
-    <li><a href="{{ collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
-    <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
-    <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
+    {% assign menu = linklists[settings.menu] %}
+    {% if menu and menu.links.size > 0 %}
+      {% for link in menu.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    {% else %}
+      <li><a href="{{ routes.root_url }}">Home</a></li>
+      <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
+      <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
+      <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
+    {% endif %}
   </ul>
   <p class="type-meta c-menu__meta">{{ settings.brand_tagline }}</p>
 </nav>

@@ -7,6 +7,10 @@
     "color_ink": "#4a0e16",
     "brand_name": "CAELIA",
     "brand_tagline": "Beauty Mirror Case",
+    "menu": "main-menu",
+    "footer_menu": "footer",
+    "show_breadcrumbs": true,
+    "cart_note": "Spedizione gratuita oltre 60 €. Checkout Shopify.",
     "seo_home_title": "CAELIA",
     "seo_home_description": "CAELIA Beauty Mirror Case. Specchio, matita e gloss in un astuccio in pelle. Tre colori: Burgundy Berry, rosa nude, marrone. Fatto per la borsa.",
     "seo_description": "CAELIA — Beauty Mirror Case. Pelle, specchio integrato, tasca per cinque matite. Collezione maison."

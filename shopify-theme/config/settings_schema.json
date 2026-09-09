@@ -2,14 +2,15 @@
   {
     "name": "theme_info",
     "theme_name": "CAELIA",
-    "theme_version": "1.0.0",
+    "theme_version": "1.1.0",
     "theme_author": "HACKGUT",
-    "theme_documentation_url": "https://caelia-store-x1wb.vercel.app",
+    "theme_documentation_url": "https://caelia-store-x1wb.vercel.app/shopify",
     "theme_support_url": "https://caelia-store-x1wb.vercel.app/contact"
   },
   {
     "name": "Colori maison",
     "settings": [
+      { "type": "header", "content": "Palette esatta CAELIA" },
       { "type": "color", "id": "color_berry", "label": "Burgundy Berry", "default": "#973851" },
       { "type": "color", "id": "color_rosa", "label": "Rosa nude", "default": "#ffddde" },
       { "type": "color", "id": "color_crema", "label": "Avorio caldo", "default": "#dfc0b4" },
@@ -20,20 +21,30 @@
   {
     "name": "Brand",
     "settings": [
-      { "type": "image_picker", "id": "logo", "label": "Logo" },
+      { "type": "image_picker", "id": "logo", "label": "Logo (opzionale)" },
+      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
       { "type": "text", "id": "brand_name", "label": "Nome", "default": "CAELIA" },
       { "type": "text", "id": "brand_tagline", "label": "Tagline", "default": "Beauty Mirror Case" }
     ]
   },
   {
-    "name": "SEO",
+    "name": "Catalogo e menu",
     "settings": [
       {
-        "type": "text",
-        "id": "seo_home_title",
-        "label": "Title home",
-        "default": "CAELIA"
+        "type": "paragraph",
+        "content": "Crea la collezione con handle caelia (Burgundy Berry, Rosa nude, Marrone). Assegnala qui per la home."
       },
+      { "type": "collection", "id": "featured_collection", "label": "Collezione home (tre colori)" },
+      { "type": "link_list", "id": "menu", "label": "Menu header", "default": "main-menu" },
+      { "type": "link_list", "id": "footer_menu", "label": "Menu footer", "default": "footer" },
+      { "type": "checkbox", "id": "show_breadcrumbs", "label": "Mostra breadcrumb", "default": true },
+      { "type": "text", "id": "cart_note", "label": "Nota carrello", "default": "Spedizione gratuita oltre 60 €. Checkout Shopify." }
+    ]
+  },
+  {
+    "name": "SEO",
+    "settings": [
+      { "type": "text", "id": "seo_home_title", "label": "Title home", "default": "CAELIA" },
       {
         "type": "textarea",
         "id": "seo_home_description",
@@ -46,17 +57,15 @@
         "label": "Meta description di default",
         "default": "CAELIA — Beauty Mirror Case. Pelle, specchio integrato, tasca per cinque matite. Collezione maison."
       },
-      {
-        "type": "image_picker",
-        "id": "seo_image",
-        "label": "Immagine Open Graph (1200×630)"
-      },
-      {
-        "type": "text",
-        "id": "social_twitter",
-        "label": "X / Twitter",
-        "info": "URL o @handle"
-      }
+      { "type": "image_picker", "id": "seo_image", "label": "Immagine Open Graph (1200×630)" }
     ]
   },
+  {
+    "name": "Social",
+    "settings": [
+      { "type": "text", "id": "social_instagram", "label": "Instagram", "info": "URL completo" },
+      { "type": "text", "id": "social_tiktok", "label": "TikTok" },
+      { "type": "text", "id": "social_twitter", "label": "X / Twitter", "info": "URL o @handle" }
+    ]
+  }
 ]

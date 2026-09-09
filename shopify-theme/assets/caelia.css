@@ -34,6 +34,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin: .4rem 0 0;
 }
 .c-logo { font-size: 1.1rem; letter-spacing: .42em; }
+.c-logo__img { height: 1.4rem; width: auto; }
 .c-header {
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center;

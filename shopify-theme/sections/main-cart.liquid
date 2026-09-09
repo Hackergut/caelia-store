@@ -3,7 +3,7 @@
     <h1 class="type-display-md">{{ 'cart.title' | t }}</h1>
     {% if cart.item_count == 0 %}
       <p class="c-cart__empty">{{ 'cart.empty' | t }}</p>
-      <a class="btn-primary" href="{{ routes.collections_url }}">{{ 'cart.collection' | t }}</a>
+      <a class="btn-primary" href="{{ settings.featured_collection.url | default: routes.collections_url }}">{{ 'cart.collection' | t }}</a>
     {% else %}
       <form action="{{ routes.cart_url }}" method="post">
         {% for item in cart.items %}
@@ -23,6 +23,9 @@
           <span class="type-meta">{{ 'cart.total' | t }}</span>
           <strong>{{ cart.total_price | money }}</strong>
         </div>
+        {% if settings.cart_note != blank %}
+          <p class="c-cart__empty">{{ settings.cart_note }}</p>
+        {% endif %}
         <div class="c-cart__actions">
           <button type="submit" name="update" class="btn-ghost">Aggiorna</button>
           <button type="submit" name="checkout" class="btn-primary">{{ 'cart.checkout' | t }}</button>
