@@ -4,7 +4,7 @@ import { consumePaidUnlockFromUrl, useLock } from "@/lib/lock";
 
 /* Remove this component at product delivery. */
 
-const OPEN = new Set(["/consegnato", "/paid", "/paga"]);
+const HIDE = new Set(["/consegnato", "/paid", "/paga"]);
 
 export function PreviewWatermark() {
   const unlocked = useLock((s) => s.unlocked);
@@ -12,9 +12,8 @@ export function PreviewWatermark() {
 
   useEffect(() => {
     consumePaidUnlockFromUrl();
-    if (OPEN.has(pathname)) useLock.getState().unlock();
   }, [pathname]);
 
-  if (unlocked || OPEN.has(pathname)) return null;
+  if (unlocked || HIDE.has(pathname)) return null;
   return <div className="preview-watermark" aria-hidden />;
 }
