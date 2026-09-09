@@ -28,7 +28,7 @@ function ProductsPage() {
           La collezione
         </motion.h1>
         <p className="mt-4 max-w-md text-cacao">
-          Avorio caldo, rosa nude, burgundy berry. Una forma.
+          Marrone, rosa nude, burgundy berry. Una forma.
         </p>
         <div className="mt-12 grid gap-8 sm:grid-cols-3">
           {products.map((p, i) => (
@@ -43,6 +43,8 @@ function ProductsPage() {
                   <img
                     src={p.images[0].src}
                     alt={p.images[0].alt}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

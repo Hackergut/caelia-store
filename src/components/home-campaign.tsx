@@ -30,6 +30,8 @@ function ParallaxFrame({
         src={src}
         alt={alt}
         style={{ y, scale }}
+        loading="lazy"
+        decoding="async"
         className="h-[132%] w-full object-cover will-change-transform"
       />
     </div>
@@ -68,6 +70,7 @@ function AutoVideo({
       muted
       loop
       playsInline
+      preload="metadata"
       className={`h-full w-full object-cover ${className}`}
     />
   );
@@ -139,21 +142,18 @@ const works = [
     src: "/campaign/pair-berry.jpg",
     n: "01",
     t: "Burgundy Berry",
-    d: "#973851",
   },
   {
     handle: "crema-caelia",
     src: "/campaign/pair-rosa.jpg",
     n: "02",
     t: "Rosa nude",
-    d: "#ffddde",
   },
   {
     handle: "cacao-caelia",
-    src: "/campaign/pair-avorio.jpg",
+    src: "/campaign/pair-cacao.jpg",
     n: "03",
-    t: "Avorio caldo",
-    d: "#dfc0b4",
+    t: "Marrone",
   },
 ] as const;
 
@@ -166,7 +166,7 @@ export function WorkRow() {
             <p className="eyebrow">Collezione</p>
             <h2 className="type-display-md mt-3">Tre colori.</h2>
             <p className="mt-3 max-w-sm text-cacao">
-              Avorio caldo, rosa nude, burgundy berry.
+              Marrone, rosa nude, burgundy berry.
             </p>
           </div>
           <Link to="/products" className="type-meta text-cacao transition-colors hover:text-berry">
@@ -186,14 +186,13 @@ export function WorkRow() {
                 <ParallaxFrame
                   src={w.src}
                   alt={w.t}
-                  intensity={0.7 + i * 0.18}
+                  intensity={0.75}
                   className="aspect-square bg-white"
                 />
                 <div className="mt-4 flex items-baseline justify-between gap-3">
                   <p className="font-serif text-2xl tracking-wide">{w.t}</p>
                   <p className="type-meta text-cacao">{w.n}</p>
                 </div>
-                <p className="mt-1 text-sm text-cacao">{w.d}</p>
               </Link>
             </motion.div>
           ))}

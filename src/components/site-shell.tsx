@@ -1,7 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { cartCount, useCart } from "@/lib/cart";
+import { useChrome } from "@/lib/chrome";
+import { PreviewWatermark } from "@/components/preview-watermark";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -16,7 +18,17 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const count = useCart((s) => cartCount(s.lines));
   const [ready, setReady] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
+  const showNav = useChrome((s) => s.showNav);
+  const setShowNav = useChrome((s) => s.setShowNav);
+  const visible = !isHome || showNav || open;
+
   useEffect(() => setReady(true), []);
+  useEffect(() => {
+    if (!isHome) setShowNav(true);
+    else setShowNav(false);
+  }, [isHome, setShowNav]);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -27,7 +39,18 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-rosa text-burgundy">
-      <header className="sticky top-0 z-50 bg-berry/95 text-rosa backdrop-blur-md">
+      <PreviewWatermark />
+      <motion.header
+        initial={false}
+        animate={{
+          opacity: visible ? 1 : 0,
+          y: visible ? 0 : -16,
+        }}
+        transition={{ duration: 0.55, ease }}
+        className={`fixed inset-x-0 top-0 z-50 bg-berry/95 text-rosa backdrop-blur-md ${
+          visible ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
         <div className="flex h-16 items-center px-5 md:px-10">
           <Link
             to="/"
@@ -68,7 +91,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       <AnimatePresence>
         {open ? (
@@ -105,7 +128,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         ) : null}
       </AnimatePresence>
 
-      <main>{children}</main>
+      <main className={isHome ? "" : "pt-16"}>{children}</main>
 
       <footer className="relative overflow-hidden bg-berry text-rosa">
         <img

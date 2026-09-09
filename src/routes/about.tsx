@@ -9,7 +9,6 @@ const frames = [
   { src: "/campaign/life-apply.jpg", alt: "Il gesto" },
   { src: "/campaign/life-hold-rosa.jpg", alt: "Rosa nude in mano" },
   { src: "/campaign/life-portrait.jpg", alt: "Ritratto" },
-  { src: "/campaign/life-vanity.jpg", alt: "Vanity" },
   { src: "/campaign/life-flatlay.jpg", alt: "Still life" },
   { src: "/campaign/life-meadow.jpg", alt: "Nel prato" },
 ];
@@ -54,7 +53,7 @@ function AboutPage() {
             <h2 className="type-display-md mt-4">Tre colori, un oggetto.</h2>
           </div>
           <p className="max-w-md text-lg leading-relaxed text-rosa/80">
-            Burgundy Berry, rosa nude, avorio caldo. Stesso taglio, stesso specchio,
+            Burgundy Berry, rosa nude, marrone. Stesso taglio, stesso specchio,
             stesso logo inciso.
           </p>
         </div>
@@ -62,10 +61,10 @@ function AboutPage() {
           {[
             { src: "/campaign/pair-berry.jpg", t: "Burgundy Berry" },
             { src: "/campaign/pair-rosa.jpg", t: "Rosa nude" },
-            { src: "/campaign/pair-avorio.jpg", t: "Avorio caldo" },
+            { src: "/campaign/pair-cacao.jpg", t: "Marrone" },
           ].map((c) => (
             <figure key={c.t} className="bg-white">
-              <img src={c.src} alt={c.t} className="aspect-square w-full object-cover" />
+              <img src={c.src} alt={c.t} className="aspect-square w-full object-cover" loading="lazy" decoding="async" />
             </figure>
           ))}
         </div>
@@ -74,8 +73,10 @@ function AboutPage() {
       <section className="overflow-hidden">
         <img
           src="/campaign/life-flatlay.jpg"
-          alt="Still life peonie"
+          alt="Still life CAELIA — peonie, gloss, pennelli"
           className="aspect-16/9 w-full object-cover"
+          loading="lazy"
+          decoding="async"
         />
       </section>
 

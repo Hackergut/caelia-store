@@ -5,7 +5,7 @@ export type Product = {
   title: string;
   price: number;
   swatch: string;
-  tone: "berry" | "avorio" | "rosa";
+  tone: "berry" | "cacao" | "rosa";
   tagline: string;
   description: string;
   images: ProductImage[];
@@ -15,8 +15,7 @@ export type Product = {
 export const palette = [
   { name: "Burgundy Berry", hex: "#973851", rgb: "151 · 56 · 81" },
   { name: "Rosa nude", hex: "#ffddde", rgb: "255 · 221 · 222" },
-  { name: "Avorio caldo", hex: "#dfc0b4", rgb: "223 · 192 · 180" },
-  { name: "Cacao", hex: "#604c46", rgb: "96 · 76 · 70" },
+  { name: "Marrone", hex: "#5b3f33", rgb: "91 · 63 · 51" },
   { name: "Burgundy", hex: "#4a0e16", rgb: "74 · 14 · 22" },
 ] as const;
 
@@ -36,7 +35,7 @@ export const products: Product[] = [
     tone: "berry",
     tagline: "Il colore maison",
     description:
-      "Beauty Mirror Case in Burgundy Berry: #973851. Astuccio e specchio, stesso gesto.",
+      "Beauty Mirror Case in Burgundy Berry. Astuccio e specchio, stesso gesto.",
     images: [
       { src: "/campaign/pair-berry.jpg", alt: "Burgundy Berry — astuccio e specchio" },
       { src: "/campaign/model-berry.jpg", alt: "Burgundy Berry — packshot" },
@@ -53,7 +52,7 @@ export const products: Product[] = [
     tone: "rosa",
     tagline: "Polvere",
     description:
-      "Beauty Mirror Case in Rosa nude: #ffddde. Pelle polvere, specchio, tasca.",
+      "Beauty Mirror Case in Rosa nude. Pelle polvere, specchio, tasca.",
     images: [
       { src: "/campaign/pair-rosa.jpg", alt: "Rosa nude — astuccio e specchio" },
       { src: "/campaign/model-rosa.jpg", alt: "Rosa nude — packshot" },
@@ -65,19 +64,19 @@ export const products: Product[] = [
   },
   {
     handle: "cacao-caelia",
-    title: "Avorio caldo",
+    title: "Marrone",
     price: 58,
-    swatch: "#dfc0b4",
-    tone: "avorio",
-    tagline: "Avorio",
+    swatch: "#5b3f33",
+    tone: "cacao",
+    tagline: "Marrone",
     description:
-      "Beauty Mirror Case in Avorio caldo: #dfc0b4. Pelle nuda, specchio, un gesto.",
+      "Beauty Mirror Case in Marrone. Pelle bruna, specchio, tasca.",
     images: [
-      { src: "/campaign/pair-avorio.jpg", alt: "Avorio caldo — astuccio e specchio" },
-      { src: "/campaign/model-avorio.jpg", alt: "Avorio caldo — packshot" },
-      { src: "/campaign/close-avorio-pocket.jpg", alt: "Tasca, cucitura" },
-      { src: "/campaign/zoom-logo.jpg", alt: "Logo inciso" },
-      { src: "/campaign/zoom-stitch.jpg", alt: "Cucitura a sella" },
+      { src: "/campaign/pair-cacao.jpg", alt: "Marrone — astuccio e specchio" },
+      { src: "/campaign/cacao-front.jpg", alt: "Marrone — astuccio" },
+      { src: "/campaign/cacao-mirror.jpg", alt: "Marrone — specchio" },
+      { src: "/campaign/cacao-side.jpg", alt: "Marrone — profilo" },
+      { src: "/campaign/cacao-angle.jpg", alt: "Marrone — tre quarti" },
     ],
     features,
   },
