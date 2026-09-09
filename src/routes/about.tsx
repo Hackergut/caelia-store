@@ -6,10 +6,10 @@ export const Route = createFileRoute("/about")({ component: AboutPage });
 const ease = [0.23, 1, 0.32, 1] as const;
 
 const frames = [
+  { src: "/campaign/life-carla.jpg", alt: "Carla con CAELIA Burgundy Berry" },
   { src: "/campaign/life-apply.jpg", alt: "Il gesto" },
-  { src: "/campaign/life-hold-rosa.jpg", alt: "Rosa nude in mano" },
+  { src: "/campaign/life-flatlay.jpg", alt: "Still life tre colori" },
   { src: "/campaign/life-portrait.jpg", alt: "Ritratto" },
-  { src: "/campaign/life-flatlay.jpg", alt: "Still life" },
   { src: "/campaign/life-meadow.jpg", alt: "Nel prato" },
 ];
 
@@ -36,8 +36,8 @@ function AboutPage() {
           </p>
         </motion.div>
         <motion.img
-          src="/campaign/life-hold-rosa.jpg"
-          alt="Rosa nude in mano"
+          src="/campaign/life-carla.jpg"
+          alt="Carla con l’astuccio CAELIA Burgundy Berry"
           className="aspect-4/5 w-full object-cover"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ function AboutPage() {
       <section className="overflow-hidden">
         <img
           src="/campaign/life-flatlay.jpg"
-          alt="Still life CAELIA — peonie, gloss, pennelli"
+          alt="Still life CAELIA — tre colori, peonie"
           className="aspect-16/9 w-full object-cover"
           loading="lazy"
           decoding="async"

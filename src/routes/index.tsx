@@ -14,9 +14,9 @@ function Home() {
       <FilmChapter
         n="03"
         title="Il gesto."
-        body="Rosa nude in mano. Cinque matite, uno specchio."
-        src="/campaign/life-apply.jpg"
-        alt="Il gesto con Rosa nude"
+        body="Carla, Burgundy Berry in mano. Specchio e matita."
+        src="/campaign/life-carla.jpg"
+        alt="Carla con CAELIA Burgundy Berry"
       />
       <FilmChapter
         n="04"
