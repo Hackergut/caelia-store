@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { cartCount, useCart } from "@/lib/cart";
 import { useChrome } from "@/lib/chrome";
 import { PreviewWatermark } from "@/components/preview-watermark";
+import { STRIPE_PAY_URL } from "@/lib/lock";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -20,6 +21,7 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const isHome = pathname === "/";
+  const isPay = pathname === "/paga";
   const showNav = useChrome((s) => s.showNav);
   const setShowNav = useChrome((s) => s.setShowNav);
   const visible = !isHome || showNav || open;
@@ -60,6 +62,12 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
             CAELIA
           </Link>
           <div className="relative z-[60] ml-auto flex items-center gap-6">
+            {isPay ? (
+              <a href={STRIPE_PAY_URL} className="type-meta text-rosa">
+                Paga 200 €
+              </a>
+            ) : (
+              <>
             <Link to="/cart" className="type-meta text-rosa" onClick={() => setOpen(false)}>
               Carrello{shown > 0 ? ` (${shown})` : ""}
             </Link>
@@ -89,6 +97,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
                 />
               </span>
             </button>
+              </>
+            )}
           </div>
         </div>
       </motion.header>
