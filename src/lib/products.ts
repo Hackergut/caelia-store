@@ -75,6 +75,7 @@ export const products: Product[] = [
       { src: "/campaign/cacao-front.jpg", alt: "Marrone — astuccio" },
       { src: "/campaign/cacao-mirror.jpg", alt: "Marrone — specchio" },
       { src: "/campaign/cacao-side.jpg", alt: "Marrone — profilo" },
+      { src: "/campaign/life-plane.jpg", alt: "Marrone in viaggio" },
       { src: "/campaign/cacao-angle.jpg", alt: "Marrone — tre quarti" },
     ],
     features,

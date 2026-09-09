@@ -14,13 +14,18 @@ function Home() {
       <FilmChapter
         n="03"
         title="Il gesto."
-        body="Carla, Burgundy Berry in mano. Specchio e matita."
-        src="/campaign/life-carla.jpg"
-        alt="Carla con CAELIA Burgundy Berry"
+        body="Specchio in mano, matite in tasca. Anche in volo."
+        src="/campaign/life-plane.jpg"
+        alt="CAELIA in viaggio"
       />
       <FilmChapter
         n="04"
-        title="Tutto intorno."
+        title="Carla."
+        body="Burgundy Berry, lo stesso oggetto."
+        src="/campaign/life-carla.jpg"
+        alt="Carla con CAELIA Burgundy Berry"
+      />
+        n="05"
         body="I tre colori, insieme. Peonie, vanity, lo stesso gesto."
         src="/campaign/lifestyle-trio.jpg"
         alt="Burgundy Berry, Rosa nude e Marrone"
