@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LockRouteImport } from './routes/lock'
+import { Route as PaidRouteImport } from './routes/paid'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
@@ -43,6 +44,11 @@ const LockRoute = LockRouteImport.update({
   path: '/lock',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PaidRoute = PaidRouteImport.update({
+  id: '/paid',
+  path: '/paid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsRoute = ProductsRouteImport.update({
   id: '/products',
   path: '/products',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/lock': typeof LockRoute
+  '/paid': typeof PaidRoute
   '/products': typeof ProductsRouteWithChildren
   '/products/$handle': typeof ProductsHandleRoute
   '/products/': typeof ProductsIndexRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/lock': typeof LockRoute
+  '/paid': typeof PaidRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/products': typeof ProductsIndexRoute
 }
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/contact': typeof ContactRoute
   '/lock': typeof LockRoute
+  '/paid': typeof PaidRoute
   '/products': typeof ProductsRouteWithChildren
   '/products/$handle': typeof ProductsHandleRoute
   '/products/': typeof ProductsIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/lock'
+    | '/paid'
     | '/products'
     | '/products/$handle'
     | '/products/'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/lock'
+    | '/paid'
     | '/products/$handle'
     | '/products'
   id:
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/contact'
     | '/lock'
+    | '/paid'
     | '/products'
     | '/products/$handle'
     | '/products/'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   ContactRoute: typeof ContactRoute
   LockRoute: typeof LockRoute
+  PaidRoute: typeof PaidRoute
   ProductsRoute: typeof ProductsRouteWithChildren
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       path: '/lock'
       fullPath: '/lock'
       preLoaderRoute: typeof LockRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/paid': {
+      id: '/paid'
+      path: '/paid'
+      fullPath: '/paid'
+      preLoaderRoute: typeof PaidRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products': {
@@ -211,6 +231,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   ContactRoute: ContactRoute,
   LockRoute: LockRoute,
+  PaidRoute: PaidRoute,
   ProductsRoute: ProductsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
