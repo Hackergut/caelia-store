@@ -21,11 +21,13 @@ function Home() {
       <FilmChapter
         n="04"
         title="Carla."
-        body="Carla. Specchio in mano, matite in tasca."
+        body="Specchio in mano, al mare. Burgundy Berry."
         src="/campaign/life-carla.jpg"
         alt="Carla con CAELIA"
       />
+      <FilmChapter
         n="05"
+        title="Tutto intorno."
         body="I tre colori, insieme. Peonie, vanity, lo stesso gesto."
         src="/campaign/lifestyle-trio.jpg"
         alt="Burgundy Berry, Rosa nude e Marrone"
