@@ -23,7 +23,7 @@ function PaidPage() {
       unlock();
       setOk(true);
       const id = window.setTimeout(() => {
-        void navigate({ to: "/" });
+        void navigate({ to: "/consegnato" });
       }, 1600);
       return () => window.clearTimeout(id);
     }
@@ -49,8 +49,8 @@ function PaidPage() {
               : "Stiamo togliendo il watermark."}
         </p>
         {ok || bad ? (
-          <Link to="/" className="btn-invert mt-10 w-fit">
-            Home
+          <Link to="/consegnato" className="btn-invert mt-10 w-fit">
+            Consegna
           </Link>
         ) : null}
       </div>
