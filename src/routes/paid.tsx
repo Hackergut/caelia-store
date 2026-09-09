@@ -23,7 +23,7 @@ function PaidPage() {
       unlock();
       setOk(true);
       const id = window.setTimeout(() => {
-        void navigate({ to: "/" });
+        void navigate({ to: "/consegnato" });
       }, 1600);
       return () => window.clearTimeout(id);
     }
