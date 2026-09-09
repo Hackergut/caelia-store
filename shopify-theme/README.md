@@ -32,7 +32,26 @@ Poi:
 Shopify Payments / Apple Pay / Google Pay si attivano in **Settings → Payments**.
 Il checkout è quello Shopify, non il carrello demo del sito precedente.
 
-## Design
+## SEO
 
-Tenor Sans, Burgundy Berry `#973851`, rosa nude `#ffddde`, avorio `#dfc0b4`.
-Hero blur → logo, tre packshot, mappa punti, checkout nativo.
+Già nel tema:
+
+- Title e meta description (home, prodotto, collezione)
+- Canonical, hreflang, robots `noindex` su carrello / search / 404 / account
+- Open Graph + Twitter `summary_large_image`
+- JSON-LD: Organization, WebSite + SearchAction, Product + Offer, BreadcrumbList, ItemList
+- Un solo `h1` in home (wordmark CAELIA)
+- Breadcrumb visibile, footer con link crawlabili
+- Alt immagini prodotto
+
+In Admin Shopify, per ogni prodotto:
+
+1. Title SEO: `Burgundy Berry — CAELIA Beauty Mirror Case`
+2. Description: 140–160 caratteri, colore + specchio + tasca
+3. URL handle: `burgundy-caelia` / `crema-caelia` / `cacao-caelia`
+4. Alt su ogni foto
+
+Poi **Search & Discovery** + Google Search Console sulla sitemap:
+
+`https://TUO-NEGOZIO.myshopify.com/sitemap.xml`
+

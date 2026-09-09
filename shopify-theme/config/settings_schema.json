@@ -26,10 +26,37 @@
     ]
   },
   {
-    "name": "Social",
+    "name": "SEO",
     "settings": [
-      { "type": "text", "id": "social_instagram", "label": "Instagram", "info": "URL completo" },
-      { "type": "text", "id": "social_tiktok", "label": "TikTok" }
+      {
+        "type": "text",
+        "id": "seo_home_title",
+        "label": "Title home",
+        "default": "CAELIA"
+      },
+      {
+        "type": "textarea",
+        "id": "seo_home_description",
+        "label": "Meta description home",
+        "default": "CAELIA Beauty Mirror Case. Specchio, matita e gloss in un astuccio in pelle. Tre colori: Burgundy Berry, rosa nude, marrone. Fatto per la borsa."
+      },
+      {
+        "type": "textarea",
+        "id": "seo_description",
+        "label": "Meta description di default",
+        "default": "CAELIA — Beauty Mirror Case. Pelle, specchio integrato, tasca per cinque matite. Collezione maison."
+      },
+      {
+        "type": "image_picker",
+        "id": "seo_image",
+        "label": "Immagine Open Graph (1200×630)"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "X / Twitter",
+        "info": "URL o @handle"
+      }
     ]
-  }
+  },
 ]

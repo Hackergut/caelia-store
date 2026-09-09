@@ -1,0 +1,93 @@
+{%- liquid
+  assign seo_title = page_title | default: shop.name
+  if template.name == 'index'
+    assign seo_title = settings.seo_home_title | default: shop.name | append: ' — ' | append: settings.brand_tagline
+  endif
+  if current_page != 1
+    assign seo_title = seo_title | append: ' — ' | append: current_page
+  endif
+  unless seo_title contains shop.name
+    assign seo_title = seo_title | append: ' — ' | append: shop.name
+  endunless
+
+  assign seo_desc = page_description | default: settings.seo_description | default: shop.description
+  if template.name == 'index' and settings.seo_home_description != blank
+    assign seo_desc = settings.seo_home_description
+  endif
+
+  assign og_type = 'website'
+  if template.name == 'product'
+    assign og_type = 'product'
+  elsif template.name == 'article'
+    assign og_type = 'article'
+  endif
+
+  if product and product.featured_image
+    assign og_image = product.featured_image
+  elsif collection and collection.image
+    assign og_image = collection.image
+  elsif article and article.image
+    assign og_image = article.image
+  elsif settings.seo_image
+    assign og_image = settings.seo_image
+  endif
+
+  assign noindex = false
+  if template.name == 'cart' or template.name == 'search' or template.name == '404' or template.name == 'customers' or template.name == 'gift_card'
+    assign noindex = true
+  endif
+-%}
+
+<title>{{ seo_title | escape }}</title>
+<meta name="description" content="{{ seo_desc | escape | strip_html | truncate: 160 }}">
+<link rel="canonical" href="{{ canonical_url }}">
+{%- if noindex -%}
+  <meta name="robots" content="noindex, nofollow">
+{%- else -%}
+  <meta name="robots" content="index, follow, max-image-preview:large">
+{%- endif -%}
+<meta name="author" content="{{ settings.brand_name | default: shop.name | escape }}">
+<meta name="theme-color" content="{{ settings.color_berry }}">
+
+<meta property="og:site_name" content="{{ shop.name | escape }}">
+<meta property="og:type" content="{{ og_type }}">
+<meta property="og:locale" content="{{ request.locale.iso_code | replace: '-', '_' }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ seo_title | escape }}">
+<meta property="og:description" content="{{ seo_desc | escape | strip_html | truncate: 200 }}">
+{%- if og_image -%}
+  <meta property="og:image" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{ og_image.alt | default: seo_title | escape }}">
+{%- else -%}
+  <meta property="og:image" content="{{ 'logo-drip.jpg' | asset_url }}">
+{%- endif -%}
+{%- if template.name == 'product' -%}
+  <meta property="product:price:amount" content="{{ product.selected_or_first_available_variant.price | money_without_currency | replace: ',', '.' }}">
+  <meta property="product:price:currency" content="{{ cart.currency.iso_code }}">
+  <meta property="product:brand" content="CAELIA">
+  <meta property="product:availability" content="{% if product.available %}in stock{% else %}out of stock{% endif %}">
+{%- endif -%}
+
+<meta name="twitter:card" content="summary_large_image">
+{%- if settings.social_twitter != blank -%}
+  <meta name="twitter:site" content="{{ settings.social_twitter | replace: 'https://twitter.com/', '@' | replace: 'https://x.com/', '@' | prepend: '@' | replace: '@@', '@' }}">
+{%- endif -%}
+<meta name="twitter:title" content="{{ seo_title | escape }}">
+<meta name="twitter:description" content="{{ seo_desc | escape | strip_html | truncate: 200 }}">
+{%- if og_image -%}
+  <meta name="twitter:image" content="https:{{ og_image | image_url: width: 1200, height: 630, crop: 'center' }}">
+{%- endif -%}
+
+{%- if paginate and paginate.previous -%}
+  <link rel="prev" href="{{ paginate.previous.url }}">
+{%- endif -%}
+{%- if paginate and paginate.next -%}
+  <link rel="next" href="{{ paginate.next.url }}">
+{%- endif -%}
+
+{%- for language in localization.available_languages -%}
+  <link rel="alternate" hreflang="{{ language.iso_code }}" href="{{ canonical_url }}">
+{%- endfor -%}
+<link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">

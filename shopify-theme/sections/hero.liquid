@@ -5,11 +5,11 @@
     {% elsif section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'c-hero__media', loading: 'eager', alt: '' }}
     {% else %}
-      <img class="c-hero__media" src="{{ 'logo-drip.jpg' | asset_url }}" alt="">
+      <img class="c-hero__media" src="{{ 'logo-drip.jpg' | asset_url }}" alt="CAELIA Beauty Mirror Case — logo impresso, splash gloss">
     {% endif %}
     <div class="c-hero__veil"></div>
     <div class="c-hero__lockup">
-      <p class="c-hero__word">{{ settings.brand_name | default: 'CAELIA' }}</p>
+      <h1 class="c-hero__word">{{ settings.brand_name | default: 'CAELIA' }}</h1>
       <p class="type-meta">{{ section.settings.caption }}</p>
     </div>
   </div>

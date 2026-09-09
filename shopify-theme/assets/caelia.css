@@ -66,7 +66,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .c-hero__lockup {
   position: absolute; inset: 0; display: grid; place-items: center; text-align: center;
 }
-.c-hero__word { font-size: clamp(3.4rem, 16vw, 12rem); letter-spacing: .16em; margin: 0; line-height: .82; }
 .c-chapter { background: var(--berry); color: var(--rosa); }
 .c-chapter--rosa { background: var(--rosa); color: var(--ink); }
 .c-chapter__cap {
@@ -137,7 +136,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .c-search { display: flex; gap: .5rem; margin: 1.5rem 0 2rem; }
 .c-search input { flex: 1; min-height: 3rem; border: 1px solid var(--crema); background: transparent; padding: 0 .75rem; }
 .c-footer { background: var(--berry); color: var(--rosa); padding: 2rem 0; }
-.c-footer__row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.c-footer__row { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.c-footer__nav { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+.c-footer__nav a { font-size: .6875rem; letter-spacing: .22em; text-transform: uppercase; }
+.c-crumbs { width: min(76rem, calc(100% - 2.5rem)); margin: 5.5rem auto 0; }
+.c-crumbs ol { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; font-size: .75rem; letter-spacing: .12em; text-transform: uppercase; color: var(--cacao); }
+.c-crumbs li:not(:last-child)::after { content: " /"; margin-left: .5rem; opacity: .5; }
+.template-index .c-crumbs { display: none; }
+.c-hero__word { font-size: clamp(3.4rem, 16vw, 12rem); letter-spacing: .16em; margin: 0; line-height: .82; font-weight: 400; }
 .btn-primary, .btn-ghost {
   display: inline-flex; align-items: center; justify-content: center;
   min-height: 3rem; padding: 0 2rem; cursor: pointer;

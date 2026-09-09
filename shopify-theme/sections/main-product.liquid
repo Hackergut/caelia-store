@@ -10,8 +10,9 @@
       {% if product.images.size > 1 %}
         <div class="c-product__thumbs">
           {% for image in product.images %}
+            {% assign thumb_alt = image.alt | default: product.title %}
             <button type="button" class="c-product__thumb{% if image == feat %} is-on{% endif %}" data-thumb="{{ image | image_url: width: 1600 }}">
-              {{ image | image_url: width: 240 | image_tag: alt: '' }}
+              {{ image | image_url: width: 240 | image_tag: alt: thumb_alt }}
             </button>
           {% endfor %}
         </div>

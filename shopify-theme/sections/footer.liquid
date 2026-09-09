@@ -1,6 +1,13 @@
-<footer class="c-footer">
+<footer class="c-footer" role="contentinfo">
   <div class="shell c-footer__row">
     <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
+    <nav aria-label="Footer">
+      <ul class="c-footer__nav">
+        <li><a href="{{ collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
+        <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
+        <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
+      </ul>
+    </nav>
     <p class="type-meta">{{ section.settings.text }}</p>
   </div>
 </footer>

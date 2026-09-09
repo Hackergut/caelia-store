@@ -3,17 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="{{ settings.color_berry }}">
-    <title>
-      {{ page_title }}{% if current_page != 1 %} – {{ 'general.page' | t: page: current_page }}{% endif %}
-      {% unless page_title contains shop.name %} – {{ shop.name }}{% endunless %}
-    </title>
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {% render 'meta-tags' %}
     {{ content_for_header }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.shopify.com">
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
     {{ 'caelia.css' | asset_url | stylesheet_tag }}
     <style>
@@ -25,14 +19,17 @@
         --c-ink: {{ settings.color_ink }};
       }
     </style>
+    {% render 'jsonld' %}
+    <link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
   </head>
   <body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
     <a class="skip-link" href="#MainContent">{{ 'general.skip' | t }}</a>
     {% sections 'header-group' %}
     <main id="MainContent" role="main">
+      {% render 'breadcrumb' %}
       {{ content_for_layout }}
     </main>
     {% sections 'footer-group' %}
-    {{ 'caelia.js' | asset_url | script_tag }}
+    <script src="{{ 'caelia.js' | asset_url }}" defer></script>
   </body>
 </html>
