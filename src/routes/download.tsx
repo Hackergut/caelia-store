@@ -28,7 +28,7 @@ function DownloadPage() {
         <h1 className="type-display-md mt-4">{unlocked ? "Download…" : "Bloccato."}</h1>
         <p className="mt-6 text-rosa/75">
           {unlocked
-            ? "Parte il pacchetto: tema Shopify + tutte le immagini prodotto."
+            ? "Parte il tema Shopify (OS 2.0). Le immagini le hai già da caelia-immagini.zip."
             : "Il tema si sblocca dopo il pagamento. Ti portiamo al consuntivo."}
         </p>
       </div>

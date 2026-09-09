@@ -5,6 +5,8 @@ export const PREVIEW_PASSWORD = "Tp299-5($&zj";
 export const STRIPE_PAID_TOKEN = "HgPaid-7kQ2mN9vL";
 export const STRIPE_PAY_URL = "https://buy.stripe.com/28E14o5WV4icfeeaSQfMA01";
 export const PAID_COOKIE = "caelia_paid";
+export const SITE_PREVIEW_URL = "https://caelia-store-x1wb.vercel.app";
+export const IMAGES_ZIP_URL = "/caelia-immagini.zip";
 export const THEME_ZIP_URL = `/theme/${STRIPE_PAID_TOKEN}/caelia-shopify-theme.zip`;
 
 type LockState = {

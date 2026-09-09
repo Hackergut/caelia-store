@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { STRIPE_PAY_URL, useLock } from "@/lib/lock";
+import { IMAGES_ZIP_URL, SITE_PREVIEW_URL, STRIPE_PAY_URL, useLock } from "@/lib/lock";
 
 export const Route = createFileRoute("/paga")({
   validateSearch: (s: Record<string, unknown>) => ({
@@ -22,70 +22,27 @@ const rows = [
   { n: "07", t: "Infrastruttura AI e media", d: "Token, Imagine 2K, video 720p, iterazioni visive.", h: "—", p: "€  70" },
 ];
 
-const got = [
-  {
-    n: "01",
-    t: "Sito editoriale live",
-    d: "Home motion, collezione tre colori, schede prodotto, storia, contatti, carrello demo. Font Tenor Sans. Burgundy Berry protagonista.",
-  },
-  {
-    n: "02",
-    t: "Sblocco watermark",
-    d: "Dopo Stripe il marchio di anteprima sparisce su questo browser. La home è la versione di consegna.",
-  },
-  {
-    n: "03",
-    t: "Tema Shopify 2.0",
-    d: "Zip dopo il saldo: tema OS 2.0 + cartelle immagini (Burgundy, rosa nude, marrone, lifestyle, video, zoom). CSV e CONFIG.md.",
-  },
-  {
-    n: "04",
-    t: "Catalogo pronto",
-    d: "CSV: Burgundy Berry, Rosa nude, Marrone — 58 €. Handle burgundy-caelia, crema-caelia, cacao-caelia. Collezione caelia.",
-  },
-  {
-    n: "05",
-    t: "Configurazione",
-    d: "CONFIG.md: colori hex, menu, pagine Storia/Contatti, Payments, sitemap, Open Graph.",
-  },
-  {
-    n: "06",
-    t: "Consuntivo PDF",
-    d: "Fattura di lavori 450 €, anticipo 150 €, saldo 200 €, IBAN, Stripe.",
-  },
+const screens = [
+  { src: "/setup/01-hero.png", n: "01", t: "Home live", d: "Hero drip, logo sticky, motion. Così sarà il negozio." },
+  { src: "/setup/02-collezione.png", n: "02", t: "Tre colori", d: "Stessa inquadratura. In Shopify la collezione caelia alimenta questa riga." },
+  { src: "/setup/03-prodotto.png", n: "03", t: "Scheda prodotto", d: "Foto, prezzo, checkout nativo. Ogni media si cambia da Products → Media." },
+  { src: "/setup/04-mappa.png", n: "04", t: "Mappa punti", d: "Customize → sezione Mappa: sostituisci la foto, sposti i pin." },
+  { src: "/setup/05-lifestyle.png", n: "05", t: "Storia", d: "Pagine CMS. Testi e immagini dal tema, modificabili." },
 ];
 
-const work = [
-  {
-    n: "01",
-    t: "Design system",
-    d: "Palette esatta Avorio caldo #dfc0b4, Rosa nude #ffddde, Burgundy Berry #973851, Marrone #5b3f33. Tenor Sans su titoli e UI. Layout editoriale a tutta altezza, caption meta, bottoni maison.",
-  },
-  {
-    n: "02",
-    t: "Hero e motion",
-    d: "Partenza da blur sul drip Burgundy. Con lo scroll il logo CAELIA si fissa, la navbar a tenda compare. Sequenza Due pezzi (astuccio + specchio + gloss) e capitoli film con parallax.",
-  },
-  {
-    n: "03",
-    t: "Prodotto",
-    d: "Tre packshot stessa inquadratura. Scheda con zoom reale sul punto. Mappa 01–06 (tasca, corpo, logo, cucitura, specchio, cornice) con lente al passaggio del mouse.",
-  },
-  {
-    n: "04",
-    t: "Immagini",
-    d: "Cloni 1/1 dei case, lifestyle vanity e prato, ritocco matita/labbra, splash gel. File campaign in /campaign, tre colorazioni allineate.",
-  },
-  {
-    n: "05",
-    t: "Video",
-    d: "Caduta slow, splash denso tipo smalto, hero drip. Frame forniti usati come partenza, non inventati.",
-  },
-  {
-    n: "06",
-    t: "Shopify + lock",
-    d: "Tema Liquid OS 2.0 con settings, SEO, checkout nativo. Download del zip chiuso: senza pagamento si torna qui. Stripe 200 € apre /consegnato e sblocca il file.",
-  },
+const packs = [
+  { src: "/setup/06-pack-berry.jpg", t: "Burgundy Berry" },
+  { src: "/setup/07-pack-rosa.jpg", t: "Rosa nude" },
+  { src: "/setup/08-pack-cacao.jpg", t: "Marrone" },
+];
+
+const configBits = [
+  { n: "01", t: "Foto ovunque", d: "Hero, capitoli, mappa, prodotti: image picker in Customize. Niente codice." },
+  { n: "02", t: "Colori maison", d: "Theme settings: Berry #973851, Rosa #ffddde, Avorio #dfc0b4, Marrone #5b3f33." },
+  { n: "03", t: "Collezione", d: "Assegni la collezione caelia: i tre packshot si aggiornano da soli." },
+  { n: "04", t: "Testi e menu", d: "Ogni titolo/didascalia è un campo. Menu header/footer da Navigation." },
+  { n: "05", t: "Checkout", d: "Carrello Shopify, Apple Pay, Google Pay, carta. Non è il demo del sito preview." },
+  { n: "06", t: "SEO", d: "Title, meta, Open Graph, JSON-LD prodotto già nel tema." },
 ];
 
 function AppleMark() {
@@ -113,107 +70,111 @@ function PagaPage() {
         <header className="flex items-start justify-between border-b-2 border-berry pb-6">
           <div>
             <p className="font-logo text-2xl tracking-[0.28em]">CAELIA</p>
-            <p className="mt-2 type-meta text-cacao">Setup · consegna · saldo</p>
+            <p className="mt-2 type-meta text-cacao">Preview · asset · tema</p>
           </div>
           <div className="text-right">
             <p className="type-meta text-berry">Consuntivo</p>
             <p className="mt-2 text-sm text-cacao">N° 01 / 2026</p>
-            <p className="text-sm text-cacao">9 settembre 2026</p>
           </div>
         </header>
 
         {da === "tema" && !unlocked ? (
           <div className="mt-8 border border-berry bg-berry px-5 py-5 text-rosa">
-            <p className="type-meta text-rosa/60">Download bloccato</p>
-            <p className="mt-2 font-serif text-2xl">Il tema Shopify si sblocca qui.</p>
-            <p className="mt-2 text-sm text-rosa/80">
-              Paga 200 € (Apple Pay o carta). Stripe apre la consegna e il file zip parte da /download.
-            </p>
+            <p className="type-meta text-rosa/60">Tema bloccato</p>
+            <p className="mt-2 font-serif text-2xl">Il file del tema si sblocca con i 200 €.</p>
+            <p className="mt-2 text-sm text-rosa/80">Le immagini prodotto le scarichi già ora, qui sotto.</p>
           </div>
         ) : null}
 
-        {unlocked ? (
-          <div className="mt-8 border border-berry bg-berry px-5 py-5 text-rosa">
-            <p className="type-meta text-rosa/60">Pagamento registrato</p>
-            <p className="mt-2 font-serif text-2xl">Sito e tema sbloccati su questo browser.</p>
-            <div className="mt-4 flex flex-wrap gap-3">
-              <Link to="/" className="btn-invert">Sito finale</Link>
-              <Link to="/download" className="btn-ghost-light">Scarica tema Shopify</Link>
-            </div>
-          </div>
-        ) : (
-          <p className="mt-8 max-w-xl text-sm leading-relaxed text-cacao">
-            Saldo 200 €. Include il sito senza watermark e il tema Shopify da pubblicare sul negozio.
-            Senza pagamento il file zip non si scarica: si torna sempre su questa pagina.
-          </p>
-        )}
+        <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <a href={SITE_PREVIEW_URL} className="block border border-crema bg-white p-4">
+            <p className="type-meta text-berry">01 · Subito</p>
+            <p className="mt-3 font-serif text-2xl">Sito preview</p>
+            <p className="mt-2 text-xs leading-relaxed text-cacao">Versione finita live. Watermark finché non paghi.</p>
+            <p className="mt-3 text-sm underline decoration-berry/30 underline-offset-4">Apri il sito</p>
+          </a>
+          <a href={IMAGES_ZIP_URL} download className="block border border-crema bg-white p-4">
+            <p className="type-meta text-berry">02 · Subito</p>
+            <p className="mt-3 font-serif text-2xl">Immagini</p>
+            <p className="mt-2 text-xs leading-relaxed text-cacao">Tutti gli asset: 3 colori, lifestyle, video, zoom. Prima del pagamento.</p>
+            <p className="mt-3 text-sm underline decoration-berry/30 underline-offset-4">Scarica caelia-immagini.zip</p>
+          </a>
+          {unlocked ? (
+            <Link to="/download" className="block border border-berry bg-berry p-4 text-rosa">
+              <p className="type-meta text-rosa/55">03 · Sbloccato</p>
+              <p className="mt-3 font-serif text-2xl">Tema Shopify</p>
+              <p className="mt-2 text-xs leading-relaxed text-rosa/75">OS 2.0, sezioni, checkout, SEO. Tutto configurabile.</p>
+              <p className="mt-3 text-sm underline underline-offset-4">Scarica il tema</p>
+            </Link>
+          ) : (
+            <a href={STRIPE_PAY_URL} className="block border border-berry bg-berry p-4 text-rosa">
+              <p className="type-meta text-rosa/55">03 · Dopo i 200 €</p>
+              <p className="mt-3 font-serif text-2xl">Tema Shopify</p>
+              <p className="mt-2 text-xs leading-relaxed text-rosa/75">Layout, carrello, Apple Pay. Foto e testi dal Customize.</p>
+              <p className="mt-3 text-sm underline underline-offset-4">Paga e sblocca</p>
+            </a>
+          )}
+        </div>
 
-        <div className="mt-12">
-          <p className="type-meta text-berry">Cosa ottieni</p>
-          <h2 className="type-display-md mt-3">Sei consegne, un saldo.</h2>
-          <ol className="mt-8 space-y-6">
-            {got.map((g) => (
-              <li key={g.n} className="border-t border-crema pt-5">
-                <p className="type-meta text-berry">{g.n}</p>
-                <p className="mt-2 font-serif text-2xl">{g.t}</p>
-                <p className="mt-2 text-sm leading-relaxed text-cacao">{g.d}</p>
+        <div className="mt-14">
+          <p className="type-meta text-berry">Preview finita</p>
+          <h2 className="type-display-md mt-3">Il sito, come sarà.</h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-cacao">
+            Stesso look che andrà su Shopify. Apri la preview, scorri hero, collezione, scheda, mappa.
+          </p>
+          <a
+            href={SITE_PREVIEW_URL}
+            className="btn-primary mt-6"
+          >
+            caelia-store-x1wb.vercel.app
+          </a>
+          <div className="mt-8 space-y-8">
+            {screens.map((s) => (
+              <figure key={s.n} className="overflow-hidden border border-crema bg-white">
+                <img src={s.src} alt={s.t} className="w-full object-cover object-top" />
+                <figcaption className="px-4 py-4 md:px-5">
+                  <p className="type-meta text-berry">{s.n}</p>
+                  <p className="mt-2 font-serif text-2xl">{s.t}</p>
+                  <p className="mt-1 text-sm text-cacao">{s.d}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-14">
+          <p className="type-meta text-berry">Asset già tuoi</p>
+          <h2 className="mt-3 font-serif text-3xl tracking-wide">Foto prima del pagamento.</h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-cacao">
+            Zip libero: packshot dei tre colori, lifestyle, video hero, zoom. Li carichi in Products → Media. Il tema (struttura) resta chiuso fino al saldo.
+          </p>
+          <div className="mt-6 grid grid-cols-3 gap-2">
+            {packs.map((p) => (
+              <figure key={p.t} className="bg-white">
+                <img src={p.src} alt={p.t} className="aspect-square w-full object-cover" />
+                <figcaption className="px-2 py-3 text-center text-sm">{p.t}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <a href={IMAGES_ZIP_URL} download className="btn-primary mt-6">
+            Scarica le immagini
+          </a>
+        </div>
+
+        <div className="mt-14">
+          <p className="type-meta text-berry">Tema, dopo il saldo</p>
+          <h2 className="mt-3 font-serif text-3xl tracking-wide">Tutto configurabile. Foto comprese.</h2>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-cacao">
+            Non è un HTML fisso. È un tema Online Store 2.0: in Customize cambi hero, video, capitoli, mappa, collezione, colori, menu, SEO. Ogni blocco ha image picker. I prodotti prendono le foto che hai già scaricato.
+          </p>
+          <ol className="mt-8 space-y-5">
+            {configBits.map((c) => (
+              <li key={c.n} className="border-t border-crema pt-4">
+                <p className="type-meta text-berry">{c.n}</p>
+                <p className="mt-2 font-serif text-xl">{c.t}</p>
+                <p className="mt-1 text-sm leading-relaxed text-cacao">{c.d}</p>
               </li>
             ))}
-          </ol>
-        </div>
-
-        <div className="mt-14">
-          <p className="type-meta text-berry">Lavoro svolto</p>
-          <h2 className="mt-3 font-serif text-3xl tracking-wide">38 ore, 5–9 settembre.</h2>
-          <div className="mt-8 space-y-6">
-            {work.map((w) => (
-              <div key={w.n} className="grid gap-2 md:grid-cols-[4rem_1fr]">
-                <p className="type-meta text-berry">{w.n}</p>
-                <div>
-                  <p className="font-serif text-xl">{w.t}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-cacao">{w.d}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-14">
-          <p className="type-meta text-berry">Anteprima</p>
-          <h2 className="mt-3 font-serif text-3xl tracking-wide">Ora, e dopo Stripe.</h2>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3">
-            <a href="/" className="block bg-white">
-              <img src="/campaign/logo-drip.jpg" alt="Home attuale con watermark" className="aspect-[4/5] w-full object-cover" />
-              <div className="p-4">
-                <p className="type-meta text-cacao">Adesso</p>
-                <p className="mt-2 font-serif text-xl">Sito + watermark</p>
-              </div>
-            </a>
-            <div className="block bg-white">
-              <img src="/campaign/pair-berry.jpg" alt="Tema Shopify" className="aspect-[4/5] w-full object-cover" />
-              <div className="p-4">
-                <p className="type-meta text-cacao">Incluso, bloccato</p>
-                <p className="mt-2 font-serif text-xl">Zip Shopify</p>
-              </div>
-            </div>
-            <div className="block bg-white">
-              <img src="/campaign/lifestyle-trio.jpg" alt="Dopo pagamento" className="aspect-[4/5] w-full object-cover" />
-              <div className="p-4">
-                <p className="type-meta text-cacao">Dopo i 200 €</p>
-                <p className="mt-2 font-serif text-xl">Sito pulito + zip</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-14 border border-crema bg-white p-5 md:p-8">
-          <p className="type-meta text-berry">Lock del tema</p>
-          <h2 className="mt-3 font-serif text-2xl">Come si sblocca il file.</h2>
-          <ol className="mt-5 space-y-3 text-sm leading-relaxed text-cacao">
-            <li><strong className="text-burgundy">1.</strong> Qualsiasi tentativo di download senza saldo torna qui.</li>
-            <li><strong className="text-burgundy">2.</strong> Paga 200 € (Apple Pay, Google Pay, carta). Bonifico: sblocco dopo accredito.</li>
-            <li><strong className="text-burgundy">3.</strong> Stripe apre /consegnato — watermark spento, cookie di sblocco su questo browser.</li>
-            <li><strong className="text-burgundy">4.</strong> Da /shopify o /download parte lo zip. Poi: Themes → Upload → CSV → collezione <code>caelia</code> → Payments.</li>
           </ol>
         </div>
 
@@ -226,7 +187,7 @@ function PagaPage() {
           <div className="md:text-right">
             <p className="type-meta text-berry">Emittente</p>
             <p className="mt-2 font-serif text-2xl">Sergio Guttilla</p>
-            <p className="mt-1 text-sm text-cacao">Consuntivo lavori · Volume 01 · Non fiscale</p>
+            <p className="mt-1 text-sm text-cacao">Consuntivo 01 / 2026 · Non fiscale</p>
           </div>
         </div>
 
@@ -269,7 +230,7 @@ function PagaPage() {
             </div>
           ))}
           <div className="bg-rosa px-5 py-4 text-sm text-cacao">
-            Incluso nel saldo: tema Shopify 2.0 (zip + CSV + CONFIG). Download chiuso fino al pagamento.
+            Immagini scaricabili ora. Tema Shopify (configurabile: foto, testi, collezione, checkout) dopo il pagamento.
           </div>
         </div>
 
@@ -296,13 +257,16 @@ function PagaPage() {
             <p className="mt-1 text-sm text-cacao">NTSBITM1XXX · Causale: Pagamento CAELIA 200 EUR</p>
           </div>
           <div>
-            <p className="type-meta text-berry">Documenti</p>
-            <a href="/CAELIA-consuntivo-01-2026.pdf" className="mt-3 block text-sm underline decoration-berry/30 underline-offset-4">
+            <p className="type-meta text-berry">Link</p>
+            <a href={SITE_PREVIEW_URL} className="mt-3 block text-sm underline decoration-berry/30 underline-offset-4">
+              Preview sito finito
+            </a>
+            <a href={IMAGES_ZIP_URL} download className="mt-2 block text-sm underline decoration-berry/30 underline-offset-4">
+              Zip immagini (ora)
+            </a>
+            <a href="/CAELIA-consuntivo-01-2026.pdf" className="mt-2 block text-sm underline decoration-berry/30 underline-offset-4">
               Consuntivo PDF
             </a>
-            <Link to="/" className="mt-2 block text-sm underline decoration-berry/30 underline-offset-4">
-              Anteprima sito (watermark)
-            </Link>
           </div>
         </div>
       </article>
@@ -311,14 +275,14 @@ function PagaPage() {
         <div className="mx-auto flex max-w-3xl flex-col gap-3 px-5 py-4 md:flex-row md:items-center md:gap-4">
           <div className="flex-1">
             <p className="type-meta text-rosa/55">
-              {unlocked ? "Sbloccato su questo browser" : "Paga e sblocca sito + tema Shopify"}
+              {unlocked ? "Tema sbloccato" : "Immagini libere · tema dopo 200 €"}
             </p>
             <p className="mt-1 font-serif text-2xl">{unlocked ? "Consegna aperta" : "€ 200,00"}</p>
           </div>
           {unlocked ? (
             <>
-              <Link to="/" className="btn-invert flex-1 md:flex-none">Sito finale</Link>
-              <Link to="/download" className="btn-ghost-light flex-1 md:flex-none">Scarica tema</Link>
+              <a href={SITE_PREVIEW_URL} className="btn-invert flex-1 md:flex-none">Preview</a>
+              <Link to="/download" className="btn-ghost-light flex-1 md:flex-none">Tema Shopify</Link>
             </>
           ) : (
             <>
@@ -332,7 +296,7 @@ function PagaPage() {
                 </a>
               ) : null}
               <a href={STRIPE_PAY_URL} className="btn-invert flex-1 md:flex-none">
-                {apple ? "Carta / Google Pay" : "Paga 200 € e sblocca il tema"}
+                {apple ? "Carta / Google Pay" : "Paga e sblocca il tema"}
               </a>
             </>
           )}

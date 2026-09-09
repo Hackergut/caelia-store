@@ -32,7 +32,7 @@ function ConsegnatoPage() {
           <Link to="/download" className="border border-rosa/25 p-5 transition-colors hover:bg-rosa/10">
             <p className="type-meta text-rosa/50">02</p>
             <p className="mt-3 font-serif text-2xl">Tema Shopify</p>
-            <p className="mt-2 text-sm text-rosa/70">Download zip sbloccato. Upload in Admin.</p>
+            <p className="mt-2 text-sm text-rosa/70">Zip tema. Le foto le hai già da caelia-immagini.zip.</p>
           </Link>
           <a
             href="/CAELIA-consuntivo-01-2026.pdf"
