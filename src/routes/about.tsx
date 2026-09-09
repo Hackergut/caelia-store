@@ -7,7 +7,7 @@ const ease = [0.23, 1, 0.32, 1] as const;
 
 const frames = [
   { src: "/campaign/life-plane.jpg", alt: "In viaggio, CAELIA come specchio" },
-  { src: "/campaign/life-carla.jpg", alt: "Carla con CAELIA Burgundy Berry" },
+  { src: "/campaign/life-carla.jpg", alt: "Carla con CAELIA" },
   { src: "/campaign/life-apply.jpg", alt: "Il gesto" },
   { src: "/campaign/life-flatlay.jpg", alt: "Still life tre colori" },
   { src: "/campaign/life-meadow.jpg", alt: "Nel prato" },
@@ -37,7 +37,7 @@ function AboutPage() {
         </motion.div>
         <motion.img
           src="/campaign/life-carla.jpg"
-          alt="Carla con l’astuccio CAELIA Burgundy Berry"
+          alt="Carla con l’astuccio CAELIA"
           className="aspect-4/5 w-full object-cover"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

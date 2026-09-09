@@ -39,7 +39,7 @@ export const products: Product[] = [
     images: [
       { src: "/campaign/pair-berry.jpg", alt: "Burgundy Berry — astuccio e specchio" },
       { src: "/campaign/model-berry-pencils.jpg", alt: "Burgundy Berry — cinque matite" },
-      { src: "/campaign/life-carla.jpg", alt: "Carla con Burgundy Berry" },
+      { src: "/campaign/life-carla.jpg", alt: "Carla con CAELIA" },
       { src: "/campaign/life-plane.jpg", alt: "Burgundy Berry in viaggio" },
       { src: "/campaign/model-berry.jpg", alt: "Burgundy Berry — packshot" },
     ],
@@ -77,6 +77,7 @@ export const products: Product[] = [
       { src: "/campaign/cacao-mirror.jpg", alt: "Marrone — specchio" },
       { src: "/campaign/cacao-side.jpg", alt: "Marrone — profilo" },
       { src: "/campaign/cacao-angle.jpg", alt: "Marrone — tre quarti" },
+      { src: "/campaign/life-carla.jpg", alt: "Carla con CAELIA" },
     ],
     features,
   },

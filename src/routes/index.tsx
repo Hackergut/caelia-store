@@ -21,9 +21,9 @@ function Home() {
       <FilmChapter
         n="04"
         title="Carla."
-        body="Burgundy Berry, lo stesso oggetto."
+        body="Carla. Specchio in mano, matite in tasca."
         src="/campaign/life-carla.jpg"
-        alt="Carla con CAELIA Burgundy Berry"
+        alt="Carla con CAELIA"
       />
         n="05"
         body="I tre colori, insieme. Peonie, vanity, lo stesso gesto."
