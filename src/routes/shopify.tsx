@@ -38,7 +38,9 @@ function ShopifyPage() {
         <p className="eyebrow">Sbloccato</p>
         <h1 className="type-display-md mt-3">Tema Shopify.</h1>
         <p className="mt-6 leading-relaxed text-cacao">
-          File OS 2.0, CSV tre colori, CONFIG.md. Checkout Shopify, Apple Pay, SEO.
+          Nel zip: tema da caricare in Admin, più tutte le foto e i video da
+          assegnare ai tre prodotti (Burgundy Berry, Rosa nude, Marrone),
+          lifestyle, hero e dettagli zoom.
         </p>
         <img
           src="/campaign/pair-berry.jpg"
@@ -46,13 +48,16 @@ function ShopifyPage() {
           className="mt-10 aspect-[16/9] w-full object-cover"
         />
         <ol className="mt-10 list-decimal space-y-3 pl-5 text-cacao">
-          <li>Online Store → Themes → Upload zip → Publish</li>
+          <li>Apri il zip → cartella <code>tema/</code> → upload <code>caelia-os2.zip</code> → Publish</li>
           <li>Products → Import <code>products.csv</code></li>
-          <li>Collezione handle <code>caelia</code></li>
-          <li>Customize → Collezione home = CAELIA</li>
-          <li>Menu: Home, Collezione, Storia, Contatti</li>
+          <li>Media: cartella <code>immagini/01-burgundy-berry</code> sul prodotto Berry, e così via</li>
+          <li>Copertine: <code>pair-berry.jpg</code> / <code>pair-rosa.jpg</code> / <code>pair-cacao.jpg</code></li>
+          <li>Collezione handle <code>caelia</code> · Customize → Collezione home</li>
           <li>Payments → Shopify Payments / Apple Pay</li>
         </ol>
+        <p className="mt-6 text-sm text-cacao">
+          01 Burgundy · 02 Rosa nude · 03 Marrone · 04 Lifestyle · 05 Video · 06 Zoom · 07 Schede
+        </p>
         <Link to="/download" className="btn-primary mt-10">
           Scarica il tema
         </Link>

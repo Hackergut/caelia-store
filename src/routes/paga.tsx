@@ -36,7 +36,7 @@ const got = [
   {
     n: "03",
     t: "Tema Shopify 2.0",
-    d: "Zip da caricare in Admin: prodotti nativi, carrello, checkout Shopify, Apple Pay, SEO JSON-LD, mappa punti, hero, tre colori.",
+    d: "Zip dopo il saldo: tema OS 2.0 + cartelle immagini (Burgundy, rosa nude, marrone, lifestyle, video, zoom). CSV e CONFIG.md.",
   },
   {
     n: "04",
