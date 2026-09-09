@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { checkPaidToken, useLock } from "@/lib/lock";
+import { checkPaidToken, isStripeCheckoutSession, useLock } from "@/lib/lock";
 
 export const Route = createFileRoute("/paid")({
   validateSearch: (s: Record<string, unknown>) => ({
@@ -11,7 +11,7 @@ export const Route = createFileRoute("/paid")({
 });
 
 function PaidPage() {
-  const { t } = Route.useSearch();
+  const { t, session_id } = Route.useSearch();
   const unlock = useLock((s) => s.unlock);
   const unlocked = useLock((s) => s.unlocked);
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ function PaidPage() {
   const [bad, setBad] = useState(false);
 
   useEffect(() => {
-    if (checkPaidToken(t)) {
+    if (checkPaidToken(t) || isStripeCheckoutSession(session_id)) {
       unlock();
       setOk(true);
       const id = window.setTimeout(() => {
@@ -32,7 +32,7 @@ function PaidPage() {
       return;
     }
     setBad(true);
-  }, [t, unlock, unlocked, navigate]);
+  }, [t, session_id, unlock, unlocked, navigate]);
 
   return (
     <section className="bg-berry text-rosa">
