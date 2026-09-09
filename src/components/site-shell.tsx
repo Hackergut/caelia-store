@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { cartCount, useCart } from "@/lib/cart";
 import { useChrome } from "@/lib/chrome";
 import { PreviewWatermark } from "@/components/preview-watermark";
-import { STRIPE_PAY_URL } from "@/lib/lock";
+import { SITE_PREVIEW_URL, STRIPE_PAY_URL } from "@/lib/lock";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -63,9 +63,17 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
           </Link>
           <div className="relative z-[60] ml-auto flex items-center gap-6">
             {isPay ? (
-              <a href={STRIPE_PAY_URL} className="type-meta text-rosa">
-                Paga 200 €
-              </a>
+              <div className="flex items-center gap-3">
+                <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="type-meta text-rosa/80">
+                  Preview
+                </a>
+                <a
+                  href={STRIPE_PAY_URL}
+                  className="rounded-full bg-rosa px-4 py-2 text-[0.65rem] tracking-[0.18em] text-berry uppercase"
+                >
+                  Buy € 200
+                </a>
+              </div>
             ) : (
               <>
             <Link to="/cart" className="type-meta text-rosa" onClick={() => setOpen(false)}>

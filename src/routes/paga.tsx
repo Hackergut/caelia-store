@@ -12,136 +12,133 @@ export const Route = createFileRoute("/paga")({
     da: typeof s.da === "string" ? s.da : "",
   }),
   head: () => ({
-    meta: [{ title: "CAELIA — Shopify theme" }],
+    meta: [{ title: "CAELIA — Website Template for Shopify" }],
   }),
   component: PagaPage,
 });
 
-function BrowserChrome({
-  url,
-  href,
-  children,
-}: {
-  url: string;
-  href?: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="overflow-hidden rounded-xl border border-crema bg-[#faf4f0] shadow-[0_32px_80px_-36px_rgba(74,14,22,0.5)]">
-      <div className="flex items-center gap-2 border-b border-crema bg-white/80 px-3 py-2">
-        <span className="h-2 w-2 rounded-full bg-[#e8b4b4]" />
-        <span className="h-2 w-2 rounded-full bg-[#dfc0b4]" />
-        <span className="h-2 w-2 rounded-full bg-berry/35" />
-        {href ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noreferrer"
-            className="ml-2 min-w-0 flex-1 truncate rounded-full bg-rosa px-3 py-1 text-center text-[10px] tracking-[0.14em] text-berry uppercase hover:bg-berry hover:text-rosa"
-          >
-            {url.replace("https://", "")} ↗
-          </a>
-        ) : (
-          <span className="ml-2 min-w-0 flex-1 truncate rounded-full bg-rosa px-3 py-1 text-center text-[10px] tracking-[0.14em] text-cacao uppercase">
-            {url.replace("https://", "")}
-          </span>
-        )}
-      </div>
-      {children}
-    </div>
-  );
-}
-
-function Phone({ src }: { src: string }) {
-  return (
-    <div className="mx-auto w-[220px] overflow-hidden rounded-[2rem] border-[6px] border-burgundy bg-burgundy shadow-[0_28px_60px_-28px_rgba(74,14,22,0.55)]">
-      <div className="mx-auto mt-2 h-4 w-20 rounded-full bg-berry/40" />
-      <img src={src} alt="Mobile" className="mt-2 aspect-[9/16] w-full object-cover object-top" />
-    </div>
-  );
-}
-
-const gallery = [
-  { src: "/setup/01-hero.png", t: "Hero", href: SITE_PREVIEW_URL },
+const shots = [
+  { src: "/setup/01-hero.png", t: "Home", href: SITE_PREVIEW_URL },
   { src: "/setup/02-collezione.png", t: "Collezione", href: `${SITE_PREVIEW_URL}/products` },
   { src: "/setup/03-prodotto.png", t: "Prodotto", href: `${SITE_PREVIEW_URL}/products/burgundy-caelia` },
-  { src: "/setup/04-mappa.png", t: "Mappa", href: `${SITE_PREVIEW_URL}/products/burgundy-caelia` },
   { src: "/setup/05-lifestyle.png", t: "Storia", href: `${SITE_PREVIEW_URL}/about` },
+];
+
+const pages = [
+  { t: "Home", d: "Hero drip, logo sticky, film chapters, parallax." },
+  { t: "Collezione", d: "Tre colori, stessa inquadratura, 58 €." },
+  { t: "Prodotto", d: "Zoom lente, mappa 01–06, checkout." },
+  { t: "Storia", d: "Lookbook, testi CMS." },
+  { t: "Contatti", d: "Form e pagina legale." },
+  { t: "Carrello", d: "Shopify native, Apple Pay." },
+];
+
+const after = [
+  { t: "Tema OS 2.0", d: "Zip da caricare in Admin. Sezioni, settings, SEO." },
+  { t: "Customize", d: "Foto, colori, testi, menu: dal pannello, senza codice." },
+  { t: "Checkout", d: "Apple Pay, Google Pay, carta. Non è il demo." },
+  { t: "Preview pulita", d: "Watermark spento su questo browser." },
 ];
 
 const install = [
   {
     n: "01",
-    t: "Guarda la preview",
-    d: "Apri il sito live nel mockup o in una nuova scheda. Così è il negozio dopo Publish.",
+    t: "See it live",
+    d: "Apri la preview. È il sito che avrai dopo Publish.",
     img: "/setup/01-hero.png",
     href: SITE_PREVIEW_URL,
-    label: "Apri il sito",
+    label: "See it live →",
   },
   {
     n: "02",
-    t: "Scarica le immagini",
-    d: "Zip libero, prima del pagamento. Tre colori, lifestyle, video, zoom.",
+    t: "Pack immagini",
+    d: "Già scaricabile. Berry, rosa, marrone, lifestyle, video, zoom.",
     img: "/setup/06-pack-berry.jpg",
     href: IMAGES_ZIP_URL,
-    label: "caelia-immagini.zip",
+    label: "Download images",
     download: true,
   },
   {
     n: "03",
-    t: "Paga e scarica il tema",
-    d: "€ 200. Stripe apre la consegna. Nel zip: caelia-os2.zip + products.csv + CONFIG.md.",
+    t: "Get the theme",
+    d: "€ 200. Stripe consegna caelia-os2.zip, CSV, CONFIG.md.",
     img: "/setup/install-01.png",
     href: STRIPE_PAY_URL,
-    label: "Get — € 200",
+    label: "Buy for € 200",
     pay: true,
   },
   {
     n: "04",
-    t: "Upload zip in Shopify",
-    d: "Admin → Online Store → Themes → Add theme → Upload zip file → tema/caelia-os2.zip.",
+    t: "Upload zip",
+    d: "Online Store → Themes → Add theme → Upload zip → caelia-os2.zip.",
     img: "/setup/install-01.png",
   },
   {
     n: "05",
     t: "Publish",
-    d: "Theme library → CAELIA → Actions → Publish. Diventa il tema corrente.",
+    d: "Theme library → CAELIA → Publish. Diventa il tema corrente.",
     img: "/setup/install-02.png",
   },
   {
     n: "06",
-    t: "Importa i 3 prodotti",
-    d: "Products → Import → products.csv. Handle: burgundy-caelia, crema-caelia, cacao-caelia. 58 €.",
+    t: "Import products",
+    d: "Products → Import → products.csv. Tre handle, 58 €.",
     img: "/setup/install-03.png",
   },
   {
     n: "07",
-    t: "Assegna le foto",
-    d: "Products → Media. Berry → pair-berry.jpg · Rosa → pair-rosa.jpg · Marrone → pair-cacao.jpg.",
+    t: "Assign photos",
+    d: "Media: pair-berry.jpg, pair-rosa.jpg, pair-cacao.jpg.",
     img: "/setup/install-04.png",
   },
   {
     n: "08",
     t: "Customize",
-    d: "Hero (foto/video), collezione home = CAELIA, capitoli, mappa, testi, menu, SEO. Tutto da pannello.",
+    d: "Hero, collezione caelia, capitoli, mappa, menu, SEO.",
     img: "/setup/install-05.png",
   },
   {
     n: "09",
-    t: "Pagamenti",
-    d: "Settings → Payments → Shopify Payments. Apple Pay, Google Pay, carta. Checkout #973851.",
+    t: "Payments",
+    d: "Shopify Payments. Apple Pay, Google Pay, carta. Checkout #973851.",
     img: "/setup/install-06.png",
   },
 ];
 
-function AppleMark() {
+function Pill({
+  href,
+  filled,
+  children,
+}: {
+  href: string;
+  filled?: boolean;
+  children: React.ReactNode;
+}) {
   return (
-    <svg viewBox="0 0 14 17" className="h-4 w-3.5" aria-hidden>
-      <path
-        fill="currentColor"
-        d="M11.5 9.1c0-2 1.6-3 1.7-3.1-1-1.4-2.5-1.6-3-1.6-1.3-.1-2.5.8-3.1.8s-1.6-.8-2.7-.7c-1.4 0-2.7.8-3.4 2.1-1.5 2.5-.4 6.3 1 8.3.7 1 1.5 2.1 2.6 2 1 .1 1.4-.7 2.7-.7s1.6.7 2.7.6c1.1 0 1.8-1 2.5-2 .8-1.1 1.1-2.2 1.1-2.3-.1 0-2.1-.8-2.1-3.4zM9.6 3.4c.6-.7 1-1.7.9-2.7-1 .1-2.1.7-2.7 1.4-.6.6-1.1 1.7-1 2.6 1.1.1 2.2-.5 2.8-1.3z"
-      />
-    </svg>
+    <a
+      href={href}
+      target={href.startsWith("http") && !href.includes("stripe.com") ? "_blank" : undefined}
+      rel="noreferrer"
+      className={`inline-flex h-11 items-center rounded-full px-6 text-[0.7rem] tracking-[0.16em] uppercase ${
+        filled ? "bg-burgundy text-rosa" : "border border-burgundy/20 text-burgundy"
+      }`}
+    >
+      {children}
+    </a>
+  );
+}
+
+function Shot({ src, href, t }: { src: string; href: string; t: string }) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className="group block">
+      <div className="overflow-hidden rounded-[22px] bg-crema">
+        <img
+          src={src}
+          alt={t}
+          className="aspect-[16/10] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]"
+        />
+      </div>
+    </a>
   );
 }
 
@@ -153,156 +150,212 @@ function PagaPage() {
   }, []);
 
   return (
-    <section className="bg-[#f7eee9] pb-36 text-burgundy">
-      <div className="mx-auto max-w-6xl px-5 pt-24 md:px-8 md:pt-28">
-        <p className="type-meta text-cacao">Shopify theme · Preview + install</p>
-        <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
+    <section className="bg-[#f4ebe6] pb-32 text-burgundy">
+      <div className="mx-auto max-w-[1180px] px-5 pt-24 md:px-8 md:pt-28">
+        <p className="text-[0.7rem] tracking-[0.04em] text-cacao">
+          Marketplace / Templates / Shopify
+        </p>
+
+        <div className="mt-6 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <h1 className="type-display-md">CAELIA</h1>
-            <p className="mt-3 max-w-md text-lg text-cacao">
-              Mockup live del sito. Poi le immagini, poi il tema, poi i passi in Admin.
-            </p>
+            <h1 className="font-serif text-[clamp(2.2rem,5vw,3.6rem)] leading-[1.05] tracking-wide">
+              CAELIA — Website Template for Shopify
+            </h1>
+            <p className="mt-3 text-cacao">A refined beauty store theme. Tre colori, checkout nativo.</p>
           </div>
-          <div className="flex flex-wrap gap-3">
-            <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="btn-ghost">
-              Apri preview
-            </a>
+          <div className="flex flex-wrap gap-2">
+            <Pill href={SITE_PREVIEW_URL}>Preview</Pill>
             {unlocked ? (
-              <Link to="/download" className="btn-primary">Download tema</Link>
+              <Link
+                to="/download"
+                className="inline-flex h-11 items-center rounded-full bg-burgundy px-6 text-[0.7rem] tracking-[0.16em] text-rosa uppercase"
+              >
+                Download
+              </Link>
             ) : (
-              <a href={STRIPE_PAY_URL} className="btn-primary">Get — € 200</a>
+              <Pill href={STRIPE_PAY_URL} filled>
+                Buy for € 200
+              </Pill>
             )}
           </div>
         </div>
 
-        <div id="preview" className="mt-12 grid items-start gap-8 lg:grid-cols-[1fr_220px]">
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          {shots.map((s) => (
+            <Shot key={s.t} {...s} />
+          ))}
+        </div>
+
+        <div className="mt-4 grid gap-4 md:grid-cols-[1.4fr_0.8fr]">
+          <a href={`${SITE_PREVIEW_URL}/products/burgundy-caelia`} target="_blank" rel="noreferrer" className="block overflow-hidden rounded-[22px]">
+            <img src="/setup/04-mappa.png" alt="Mappa prodotto" className="aspect-[16/9] w-full object-cover object-top" />
+          </a>
+          <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="block overflow-hidden rounded-[22px] bg-burgundy">
+            <img src="/setup/09-mobile.png" alt="Mobile" className="mx-auto h-full max-h-[420px] object-contain object-top" />
+          </a>
+        </div>
+
+        <p className="mt-6">
+          <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="text-sm text-berry">
+            🔗 See it live →
+          </a>
+        </p>
+
+        <div className="mt-16 grid gap-16 lg:grid-cols-[1fr_320px]">
           <div>
-            <BrowserChrome url={SITE_PREVIEW_URL} href={SITE_PREVIEW_URL}>
-              <iframe
-                title="Preview live CAELIA"
-                src="/"
-                className="h-[70vh] w-full bg-rosa"
-              />
-            </BrowserChrome>
-            <p className="mt-3 text-sm text-cacao">
-              Sito navigabile nel mockup. Oppure{" "}
-              <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="underline decoration-berry/40 underline-offset-4">
-                apri caelia-store-x1wb.vercel.app
-              </a>
+            <h2 className="font-serif text-3xl tracking-wide">About CAELIA</h2>
+            <p className="mt-5 max-w-xl text-[1.05rem] leading-relaxed text-cacao">
+              Tema editoriale per Shopify. Burgundy Berry, rosa nude, marrone. Tenor Sans,
+              motion da Framer, packshot 1/1. Ogni foto e testo si cambia da Customize.
             </p>
-          </div>
-          <div className="hidden lg:block lg:pt-8">
-            <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="block">
-              <Phone src="/setup/09-mobile.png" />
-            </a>
-          </div>
-        </div>
 
-        <div className="mt-16">
-          <p className="type-meta text-berry">Pagine</p>
-          <h2 className="mt-3 font-serif text-3xl tracking-wide">Clicca e apri.</h2>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            {gallery.map((g) => (
-              <a key={g.t} href={g.href} target="_blank" rel="noreferrer" className="block">
-                <BrowserChrome url={g.href} href={g.href}>
-                  <img src={g.src} alt={g.t} className="aspect-[16/10] w-full object-cover object-top" />
-                </BrowserChrome>
-                <p className="mt-3 type-meta text-cacao">{g.t} ↗</p>
-              </a>
-            ))}
-          </div>
-        </div>
-
-        <div id="install" className="mt-20">
-          <p className="type-meta text-berry">Installazione</p>
-          <h2 className="mt-3 font-serif text-3xl tracking-wide">Nove passi, con le immagini.</h2>
-          <p className="mt-4 max-w-xl text-sm leading-relaxed text-cacao">
-            Immagini subito. Tema dopo il pagamento. Poi Admin Shopify, in quest’ordine.
-          </p>
-          <ol className="mt-12 space-y-16">
-            {install.map((step) => {
-              const isPay = Boolean(step.pay) && !unlocked;
-              const href = step.pay && unlocked ? "/download" : step.href;
-              return (
-                <li key={step.n} className="grid items-start gap-8 md:grid-cols-2">
-                  <div className={step.n === "02" || step.n === "07" ? "md:order-2" : ""}>
-                    <p className="type-meta text-berry">{step.n}</p>
-                    <h3 className="mt-3 font-serif text-3xl">{step.t}</h3>
-                    <p className="mt-4 text-sm leading-relaxed text-cacao">{step.d}</p>
-                    {href ? (
-                      step.pay && unlocked ? (
-                        <Link to="/download" className="btn-primary mt-6">Download tema</Link>
-                      ) : (
-                        <a
-                          href={href}
-                          {...(step.download ? { download: true } : !isPay ? { target: "_blank", rel: "noreferrer" } : {})}
-                          className="btn-primary mt-6"
-                        >
-                          {step.pay && unlocked ? "Download tema" : step.label}
-                        </a>
-                      )
-                    ) : null}
-                  </div>
-                  <div className={step.n === "02" || step.n === "07" ? "md:order-1" : ""}>
-                    <img src={step.img} alt={step.t} className="w-full border border-crema bg-white object-cover" />
-                  </div>
+            <h3 className="mt-14 font-serif text-2xl">Pages included</h3>
+            <ul className="mt-6 divide-y divide-crema border-y border-crema">
+              {pages.map((p) => (
+                <li key={p.t} className="flex gap-6 py-4">
+                  <span className="w-28 font-serif text-lg">{p.t}</span>
+                  <span className="text-sm text-cacao">{p.d}</span>
                 </li>
-              );
-            })}
-          </ol>
-        </div>
+              ))}
+            </ul>
 
-        <div className="mt-20 overflow-hidden border border-crema bg-white">
-          <div className="grid sm:grid-cols-3">
-            {["/setup/06-pack-berry.jpg", "/setup/07-pack-rosa.jpg", "/setup/08-pack-cacao.jpg"].map((src, i) => (
-              <figure key={src}>
-                <img src={src} alt="" className="aspect-square w-full object-cover" />
-                <figcaption className="px-3 py-3 type-meta text-cacao">
-                  {["07 · pair-berry.jpg", "07 · pair-rosa.jpg", "07 · pair-cacao.jpg"][i]}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </div>
+            <h3 className="mt-14 font-serif text-2xl">After you buy</h3>
+            <ul className="mt-6 grid gap-6 sm:grid-cols-2">
+              {after.map((a) => (
+                <li key={a.t}>
+                  <p className="font-serif text-xl">{a.t}</p>
+                  <p className="mt-2 text-sm text-cacao">{a.d}</p>
+                </li>
+              ))}
+            </ul>
 
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 border border-crema bg-white px-6 py-8 md:flex-row md:items-center md:px-10">
-          <div>
-            <p className="type-meta text-berry">License</p>
-            <p className="mt-2 font-serif text-3xl">€ 200,00</p>
-            <p className="mt-2 text-sm text-cacao">Tema Shopify configurabile. Foto già nel pack immagini.</p>
+            <h3 className="mt-14 font-serif text-2xl">Live preview</h3>
+            <p className="mt-3 text-sm text-cacao">Naviga il sito nel mockup, o aprilo a schermo intero.</p>
+            <div className="mt-6 overflow-hidden rounded-[22px] border border-crema bg-white">
+              <div className="flex items-center justify-between border-b border-crema px-4 py-2.5">
+                <span className="text-[11px] tracking-[0.14em] text-cacao uppercase">
+                  {SITE_PREVIEW_URL.replace("https://", "")}
+                </span>
+                <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="text-[11px] tracking-[0.14em] text-berry uppercase">
+                  Open ↗
+                </a>
+              </div>
+              <iframe title="CAELIA live" src="/" className="h-[64vh] w-full" />
+            </div>
+
+            <div id="setup" className="mt-16">
+              <h3 className="font-serif text-2xl">Setup</h3>
+              <p className="mt-3 text-sm text-cacao">Nove passi, con le immagini. Immagini ora, tema dopo il buy.</p>
+              <ol className="mt-10 space-y-14">
+                {install.map((step) => (
+                  <li key={step.n} className="grid gap-6 md:grid-cols-2 md:items-center">
+                    <div>
+                      <p className="text-[0.65rem] tracking-[0.22em] text-berry uppercase">{step.n}</p>
+                      <p className="mt-2 font-serif text-2xl">{step.t}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-cacao">{step.d}</p>
+                      {step.href ? (
+                        step.pay && unlocked ? (
+                          <Link to="/download" className="mt-5 inline-block text-sm text-berry">
+                            Download theme →
+                          </Link>
+                        ) : (
+                          <a
+                            href={step.pay && unlocked ? undefined : step.href}
+                            download={step.download || undefined}
+                            target={step.download || step.pay ? undefined : "_blank"}
+                            rel="noreferrer"
+                            className="mt-5 inline-block text-sm text-berry"
+                          >
+                            {step.label}
+                          </a>
+                        )
+                      ) : null}
+                    </div>
+                    <img src={step.img} alt={step.t} className="w-full rounded-[18px] object-cover" />
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
-          {unlocked ? (
-            <Link to="/download" className="btn-primary">Download tema</Link>
-          ) : (
-            <a href={STRIPE_PAY_URL} className="btn-primary">Get CAELIA — € 200</a>
-          )}
+
+          <aside className="lg:sticky lg:top-24 lg:self-start">
+            <div className="rounded-[22px] border border-crema bg-white p-6">
+              <p className="text-[0.65rem] tracking-[0.2em] text-cacao uppercase">Shopify theme</p>
+              <p className="mt-3 font-serif text-4xl">€ 200</p>
+              <p className="mt-2 text-sm text-cacao">One-time. Anticipo 150 € già versato.</p>
+              {unlocked ? (
+                <Link
+                  to="/download"
+                  className="mt-6 flex h-12 items-center justify-center rounded-full bg-burgundy text-[0.7rem] tracking-[0.16em] text-rosa uppercase"
+                >
+                  Download theme
+                </Link>
+              ) : (
+                <a
+                  href={STRIPE_PAY_URL}
+                  className="mt-6 flex h-12 items-center justify-center rounded-full bg-burgundy text-[0.7rem] tracking-[0.16em] text-rosa uppercase"
+                >
+                  Buy for € 200
+                </a>
+              )}
+              <a
+                href={SITE_PREVIEW_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-3 flex h-12 items-center justify-center rounded-full border border-burgundy/15 text-[0.7rem] tracking-[0.16em] uppercase"
+              >
+                See it live
+              </a>
+              <a
+                href={IMAGES_ZIP_URL}
+                download
+                className="mt-3 block text-center text-sm text-cacao underline decoration-crema underline-offset-4"
+              >
+                Free image pack
+              </a>
+              <ul className="mt-8 space-y-2 text-sm text-cacao">
+                <li>OS 2.0 · Customize</li>
+                <li>Apple Pay checkout</li>
+                <li>3 products + CSV</li>
+                <li>Tenor Sans · Berry palette</li>
+              </ul>
+              <p className="mt-8 text-[0.65rem] tracking-[0.16em] text-cacao uppercase">Sergio Guttilla</p>
+            </div>
+          </aside>
         </div>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-berry/15 bg-[#f7eee9]/95 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-3 md:flex-row md:items-center md:px-8">
-          <div className="flex-1">
-            <p className="font-serif text-xl">CAELIA</p>
-            <p className="type-meta text-cacao">{unlocked ? "Tema sbloccato" : "Preview libera · tema € 200"}</p>
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-crema bg-[#f4ebe6]/90 backdrop-blur-md">
+        <div className="mx-auto flex max-w-[1180px] items-center gap-4 px-5 py-3 md:px-8">
+          <div className="min-w-0 flex-1">
+            <p className="truncate font-serif text-lg">CAELIA</p>
+            <p className="text-[0.65rem] tracking-[0.16em] text-cacao uppercase">
+              {unlocked ? "Unlocked" : "Website template · € 200"}
+            </p>
           </div>
-          <a href={SITE_PREVIEW_URL} className="type-meta py-2 text-cacao" target="_blank" rel="noreferrer">
+          <a href={SITE_PREVIEW_URL} target="_blank" rel="noreferrer" className="hidden text-sm text-cacao md:block">
             Preview
           </a>
-          <a href="#install" className="type-meta py-2 text-cacao">Install</a>
           {unlocked ? (
-            <Link to="/download" className="btn-primary">Download</Link>
+            <Link
+              to="/download"
+              className="inline-flex h-11 items-center rounded-full bg-burgundy px-6 text-[0.7rem] tracking-[0.16em] text-rosa uppercase"
+            >
+              Download
+            </Link>
           ) : (
             <>
               {apple ? (
-                <a
-                  href={STRIPE_PAY_URL}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 bg-black px-6 text-white text-[0.7rem] tracking-[0.18em] uppercase"
-                >
-                  <AppleMark />
+                <a href={STRIPE_PAY_URL} className="hidden h-11 items-center rounded-full bg-black px-5 text-[0.65rem] tracking-[0.16em] text-white uppercase md:inline-flex">
                   Apple Pay
                 </a>
               ) : null}
-              <a href={STRIPE_PAY_URL} className="btn-primary">Get — € 200</a>
+              <a
+                href={STRIPE_PAY_URL}
+                className="inline-flex h-11 items-center rounded-full bg-burgundy px-6 text-[0.7rem] tracking-[0.16em] text-rosa uppercase"
+              >
+                Buy for € 200
+              </a>
             </>
           )}
         </div>
