@@ -48,6 +48,39 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  const drip = document.querySelector("[data-drip]");
+  if (drip) {
+    const frames = [...drip.querySelectorAll("[data-drip-frame]")];
+    const stage = drip.querySelector("[data-drip-stage]");
+    const cap = drip.querySelector("[data-drip-cap]");
+    const onDrip = () => {
+      const r = drip.getBoundingClientRect();
+      const total = drip.offsetHeight - window.innerHeight;
+      const p = Math.min(1, Math.max(0, -r.top / (total || 1)));
+      const x = p * Math.max(1, frames.length - 1);
+      const a = Math.min(frames.length - 1, Math.floor(x));
+      const b = Math.min(frames.length - 1, a + 1);
+      const t = x - a;
+      frames.forEach((img, i) => {
+        img.style.opacity = i === a ? "1" : i === b ? String(t) : "0";
+      });
+      if (stage) {
+        stage.style.transform = `scale(${1.04 + p * 0.14})`;
+        stage.style.filter = `blur(${Math.max(0, 10 - p * 55)}px)`;
+      }
+      if (cap) {
+        const op = p < 0.1 ? p / 0.1 : p > 0.88 ? Math.max(0.45, 1 - (p - 0.88) / 0.12) : 1;
+        cap.style.opacity = String(op);
+        cap.style.transform = `translate3d(0, ${p < 0.16 ? (1 - p / 0.16) * 28 : p > 0.88 ? (p - 0.88) * -120 : 0}px, 0)`;
+      }
+    };
+    frames.forEach((img, i) => {
+      img.style.opacity = i === 0 ? "1" : "0";
+    });
+    onDrip();
+    window.addEventListener("scroll", onDrip, { passive: true });
+  }
+
   const map = document.querySelector("[data-map]");
   if (map) {
     const card = map.querySelector("[data-map-card]");

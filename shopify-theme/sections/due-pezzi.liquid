@@ -1,0 +1,48 @@
+{% assign f1 = section.settings.frame_1 %}
+{% assign f2 = section.settings.frame_2 %}
+{% assign f3 = section.settings.frame_3 %}
+
+<section class="c-drip" data-drip>
+  <div class="c-drip__sticky">
+    <div class="c-drip__stage" data-drip-stage>
+      {% if f1 != blank %}
+        <img data-drip-frame src="{{ f1 | image_url: width: 2400 }}" alt="" width="2400" height="1600">
+      {% else %}
+        <img data-drip-frame src="{{ 'due-01.jpg' | asset_url }}" alt="" width="2400" height="1600">
+      {% endif %}
+      {% if f2 != blank %}
+        <img data-drip-frame src="{{ f2 | image_url: width: 2400 }}" alt="" width="2400" height="1600">
+      {% else %}
+        <img data-drip-frame src="{{ 'due-02.jpg' | asset_url }}" alt="" width="2400" height="1600">
+      {% endif %}
+      {% if f3 != blank %}
+        <img data-drip-frame src="{{ f3 | image_url: width: 2400 }}" alt="" width="2400" height="1600">
+      {% else %}
+        <img data-drip-frame src="{{ 'due-03.jpg' | asset_url }}" alt="" width="2400" height="1600">
+      {% endif %}
+    </div>
+    <div class="c-drip__veil"></div>
+    <div class="c-drip__cap" data-drip-cap>
+      <p class="type-meta">{{ section.settings.kicker }}</p>
+      <h2 class="type-display-md">{{ section.settings.title }}</h2>
+      <p class="c-drip__body">{{ section.settings.body }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Due pezzi",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Numero", "default": "01" },
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Due pezzi." },
+    { "type": "textarea", "id": "body", "label": "Testo", "default": "Astuccio e specchio, in caduta. Poi il gloss li prende." },
+    { "type": "header", "content": "Sequenza scroll (3 frame). Vuoto = caduta Berry del tema." },
+    { "type": "image_picker", "id": "frame_1", "label": "Frame 1 — caduta" },
+    { "type": "image_picker", "id": "frame_2", "label": "Frame 2 — impatto" },
+    { "type": "image_picker", "id": "frame_3", "label": "Frame 3 — gloss" }
+  ],
+  "presets": [{ "name": "Due pezzi" }]
+}
+{% endschema %}

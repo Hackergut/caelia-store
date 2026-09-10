@@ -228,5 +228,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .c-loc { display: flex; gap: .5rem; }
 .c-loc select { min-height: 2.5rem; background: transparent; color: inherit; border: 1px solid color-mix(in srgb, var(--rosa) 35%, transparent); padding: 0 .5rem; }
 .c-pages { margin-top: 2rem; }
+.c-drip { height: 240vh; background: var(--berry); color: var(--rosa); }
+.c-drip__sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.c-drip__stage { position: absolute; inset: 0; will-change: transform, filter; }
+.c-drip__stage img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  opacity: 0; transition: none;
+}
+.c-drip__veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, color-mix(in srgb, var(--berry) 55%, transparent), transparent 45%);
+  pointer-events: none;
+}
+.c-drip__cap {
+  position: relative; z-index: 2; height: 100%;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 1.5rem 3.5rem; max-width: 28rem;
+}
+.c-drip__body { margin: 1rem 0 0; font-size: 1.15rem; line-height: 1.5; opacity: .85; }
+
 
 
