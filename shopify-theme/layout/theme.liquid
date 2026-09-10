@@ -25,6 +25,28 @@
     {% else %}
       <link rel="icon" href="{{ 'favicon.svg' | asset_url }}" type="image/svg+xml">
     {% endif %}
+    {% if settings.ab_cta %}
+    <script>
+      (function () {
+        try {
+          var k = "caelia_cta_ab";
+          var v = localStorage.getItem(k);
+          if (v !== "A" && v !== "B") {
+            v = Math.random() < 0.5 ? "A" : "B";
+            localStorage.setItem(k, v);
+          }
+          document.documentElement.setAttribute("data-cta", v);
+        } catch (e) {
+          document.documentElement.setAttribute("data-cta", "A");
+        }
+      })();
+    </script>
+    <style>
+      html[data-cta="B"] [data-cta-a] { display: none !important; }
+      html[data-cta="A"] [data-cta-b],
+      html:not([data-cta]) [data-cta-b] { display: none !important; }
+    </style>
+    {% endif %}
   </head>
   <body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
     <a class="skip-link" href="#MainContent">{{ 'general.skip' | t }}</a>

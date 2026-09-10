@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CTA, getCtaVariant, trackCta, type CtaVariant } from "@/lib/ab-cta";
 import { motion } from "motion/react";
 import { getProduct, products } from "@/lib/products";
 import { useCart } from "@/lib/cart";
@@ -18,6 +19,13 @@ function ProductPage() {
   const add = useCart((s) => s.add);
   const [active, setActive] = useState(0);
   const [added, setAdded] = useState(false);
+  const [cta, setCta] = useState<CtaVariant>("A");
+
+  useEffect(() => {
+    const v = getCtaVariant();
+    setCta(v);
+    trackCta("view", v);
+  }, []);
 
   if (!product) throw notFound();
 
@@ -66,12 +74,14 @@ function ProductPage() {
           <button
             type="button"
             className="btn-primary mt-8 w-full sm:w-auto"
+            data-cta={cta}
             onClick={() => {
+              trackCta("click", cta);
               add(product.handle);
               setAdded(true);
             }}
           >
-            {added ? "Aggiunto al carrello" : "Aggiungi al carrello"}
+            {added ? "Aggiunto al carrello" : CTA[cta]}
           </button>
           {added ? (
             <Link to="/cart" className="mt-4 block type-meta text-berry">

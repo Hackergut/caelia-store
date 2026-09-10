@@ -36,9 +36,14 @@
           {% endfor %}
         {% endunless %}
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
-        <button type="submit" class="btn-primary" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+        <button type="submit" class="btn-primary" data-cta-btn {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
           {% if product.selected_or_first_available_variant.available %}
-            {{ 'products.add' | t }}
+            {% if settings.ab_cta %}
+              <span data-cta-a>{{ settings.ab_cta_a | default: 'Aggiungi al carrello' }}</span>
+              <span data-cta-b>{{ settings.ab_cta_b | default: 'Acquista ora' }}</span>
+            {% else %}
+              {{ 'products.add' | t }}
+            {% endif %}
           {% else %}
             {{ 'products.sold_out' | t }}
           {% endif %}

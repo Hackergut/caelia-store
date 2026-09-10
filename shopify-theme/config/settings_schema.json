@@ -42,6 +42,20 @@
     ]
   },
   {
+    "name": "Test A/B — pulsante acquisto",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "ab_cta",
+        "label": "Attiva test A/B sul pulsante",
+        "default": true,
+        "info": "50/50. A = controllo, B = variante. Stesso visitatore resta nello stesso gruppo (localStorage). Eventi: cta_ab_view, cta_ab_click."
+      },
+      { "type": "text", "id": "ab_cta_a", "label": "Testo A (controllo)", "default": "Aggiungi al carrello" },
+      { "type": "text", "id": "ab_cta_b", "label": "Testo B (variante)", "default": "Acquista ora" }
+    ]
+  },
+  {
     "name": "SEO",
     "settings": [
       { "type": "text", "id": "seo_home_title", "label": "Title home", "default": "CAELIA" },

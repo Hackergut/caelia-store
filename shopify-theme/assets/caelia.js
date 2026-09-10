@@ -89,4 +89,19 @@
       selects.forEach((s) => s.addEventListener("change", sync));
     }
   }
+
+  const ctaBtn = document.querySelector("[data-cta-btn]");
+  if (ctaBtn && !ctaBtn.disabled) {
+    const variant = document.documentElement.getAttribute("data-cta") || "A";
+    const track = (action) => {
+      const payload = { event: `cta_ab_${action}`, variant, experiment: "buy_button" };
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push(payload);
+      if (window.Shopify && Shopify.analytics && typeof Shopify.analytics.publish === "function") {
+        Shopify.analytics.publish(payload.event, { variant, experiment: "buy_button" });
+      }
+    };
+    track("view");
+    ctaBtn.addEventListener("click", () => track("click"));
+  }
 })();

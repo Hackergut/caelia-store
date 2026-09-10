@@ -77,3 +77,26 @@ Checkout branding: Settings → Checkout → colore `#973851`.
 - Settings → Domains → dominio primario
 - Search Console → `https://TUO-NEGOZIO.myshopify.com/sitemap.xml`
 - Preferences → titolo e meta del negozio = CAELIA Beauty Mirror Case
+
+## 7. Test A/B pulsante acquisto
+
+Già nel tema. **Customize → Test A/B — pulsante acquisto**.
+
+| Variante | Testo | Ruolo |
+| -------- | ----- | ----- |
+| **A** | Aggiungi al carrello | controllo |
+| **B** | Acquista ora | variante |
+
+Split 50/50. Lo stesso browser resta nello stesso gruppo (`localStorage caelia_cta_ab`).
+
+Eventi: `cta_ab_view` e `cta_ab_click` con parametro `variant` = `A` o `B`.
+
+Come leggerli:
+
+1. Shopify Admin → Settings → Customer events → Add custom pixel  
+2. Oppure GA4: stessi nomi evento, parametro `variant`
+
+CTR = click / view per variante. Poi confronta anche gli ordini.
+
+Per spegnere: togli la spunta, resta il testo A.  
+Per riprovare: cancella `localStorage.caelia_cta_ab` in DevTools.
