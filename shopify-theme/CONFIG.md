@@ -68,9 +68,18 @@ footer: stesse voci.
 
 ## 5. Pagamenti
 
-Settings → Payments → **Shopify Payments** (carta, Apple Pay, Google Pay).
+Guida completa: **[PAYMENTS.md](./PAYMENTS.md)**
 
-Checkout branding: Settings → Checkout → colore `#973851`.
+In sintesi:
+
+1. **Settings → Payments → Completa Shopify Payments** (P.IVA, IBAN EUR SEPA, documento identità)
+2. Attiva Shop Pay, Apple Pay, Google Pay — cattura **automatica**
+3. **Settings → Checkout** → accent `#973851`
+4. **Settings → Shipping** → Italia, gratis da 60 €
+5. **Settings → Taxes** → IVA 22% inclusa
+6. Tema: Customize → Pagamenti e checkout → drawer + checkout dinamico on
+
+I pagamenti **non** si configurano nel codice del tema.
 
 ## 6. SEO / dominio
 
