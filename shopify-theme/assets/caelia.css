@@ -200,3 +200,18 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .c-split__copy { padding: 3rem 1.5rem; display: flex; flex-direction: column; justify-content: center; }
 .c-split__copy .btn-primary { margin-top: 1.5rem; align-self: flex-start; }
 .c-product--feature { background: var(--rosa); }
+.c-map__head { margin-bottom: 1.5rem; }
+.c-map__layout { display: grid; gap: 1.5rem; }
+@media (min-width: 960px) {
+  .c-map__layout { grid-template-columns: 1.4fr .7fr; align-items: start; }
+}
+.c-map__list { list-style: none; margin: 0; padding: 0 1.25rem 2rem; }
+.c-map__item {
+  width: 100%; text-align: left; background: none; border: 0;
+  border-top: 1px solid var(--crema); padding: .9rem 0;
+  display: flex; gap: 1rem; align-items: baseline; cursor: pointer;
+}
+.c-map__item.is-on { color: var(--berry); }
+.c-map__pin.is-on { outline: 2px solid var(--rosa); }
+.c-map { padding: 4rem 0 6rem; }
+

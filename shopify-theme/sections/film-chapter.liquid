@@ -9,6 +9,14 @@
   <div class="c-chapter__frame" data-parallax>
     {% if section.settings.image != blank %}
       {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'lazy', alt: section.settings.title }}
+    {% elsif section.settings.fallback != 'none' %}
+      <img
+        src="{{ section.settings.fallback | asset_url }}"
+        alt="{{ section.settings.title }}"
+        loading="lazy"
+        width="2400"
+        height="1600"
+      >
     {% endif %}
   </div>
 </section>
@@ -16,16 +24,57 @@
 {% schema %}
 {
   "name": "Capitolo film",
+  "tag": "section",
   "settings": [
     { "type": "text", "id": "kicker", "label": "Numero", "default": "03" },
     { "type": "text", "id": "title", "label": "Titolo", "default": "Il gesto." },
-    { "type": "textarea", "id": "body", "label": "Testo", "default": "Rosa nude in mano. Cinque matite, uno specchio." },
-    { "type": "image_picker", "id": "image", "label": "Immagine" },
-    { "type": "select", "id": "tone", "label": "Tono", "default": "berry", "options": [
-      { "value": "berry", "label": "Burgundy" },
-      { "value": "rosa", "label": "Rosa nude" }
-    ]}
+    { "type": "textarea", "id": "body", "label": "Testo", "default": "Specchio in mano, matite in tasca. Anche in volo." },
+    { "type": "image_picker", "id": "image", "label": "Immagine (Files Shopify)" },
+    {
+      "type": "select",
+      "id": "fallback",
+      "label": "Oppure asset del tema",
+      "default": "life-plane.jpg",
+      "options": [
+        { "value": "life-plane.jpg", "label": "In volo (Carla)" },
+        { "value": "lifestyle-trio.jpg", "label": "Tre colori / peonie" },
+        { "value": "life-apply.jpg", "label": "Il gesto, rosa" },
+        { "value": "pair-berry.jpg", "label": "Packshot Berry" },
+        { "value": "none", "label": "Nessuna" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "tone",
+      "label": "Tono",
+      "default": "berry",
+      "options": [
+        { "value": "berry", "label": "Burgundy" },
+        { "value": "rosa", "label": "Rosa nude" }
+      ]
+    }
   ],
-  "presets": [{ "name": "Capitolo film" }]
+  "presets": [
+    {
+      "name": "Il gesto",
+      "settings": {
+        "kicker": "03",
+        "title": "Il gesto.",
+        "body": "Specchio in mano, matite in tasca. Anche in volo.",
+        "fallback": "life-plane.jpg",
+        "tone": "berry"
+      }
+    },
+    {
+      "name": "Tutto intorno",
+      "settings": {
+        "kicker": "04",
+        "title": "Tutto intorno.",
+        "body": "I tre colori, insieme. Peonie, vanity, lo stesso gesto.",
+        "fallback": "lifestyle-trio.jpg",
+        "tone": "rosa"
+      }
+    }
+  ]
 }
 {% endschema %}

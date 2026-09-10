@@ -52,6 +52,17 @@
   if (map) {
     const card = map.querySelector("[data-map-card]");
     const pins = [...map.querySelectorAll("[data-pin]")];
+    pins.forEach((pin) => {
+      pin.addEventListener("pointerenter", () => show(pin));
+      pin.addEventListener("focus", () => show(pin));
+      pin.addEventListener("click", () => show(pin));
+    });
+    map.querySelectorAll("[data-map-item]").forEach((item) => {
+      item.addEventListener("click", () => {
+        const pin = pins.find((p) => p.dataset.id === item.dataset.id);
+        if (pin) show(pin);
+      });
+    });
     const show = (pin) => {
       if (!card || !pin) return;
       card.hidden = false;
@@ -59,11 +70,10 @@
       card.querySelector("[data-map-t]").textContent = pin.dataset.title || "";
       card.querySelector("[data-map-b]").textContent = pin.dataset.body || "";
       pins.forEach((p) => p.classList.toggle("is-on", p === pin));
+      map.querySelectorAll("[data-map-item]").forEach((el) => {
+        el.classList.toggle("is-on", el.dataset.id === pin.dataset.id);
+      });
     };
-    pins.forEach((pin) => {
-      pin.addEventListener("pointerenter", () => show(pin));
-      pin.addEventListener("focus", () => show(pin));
-    });
     if (pins[0]) show(pins[0]);
   }
 

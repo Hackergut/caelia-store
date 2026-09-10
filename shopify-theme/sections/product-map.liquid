@@ -1,41 +1,57 @@
 <section class="c-map">
-  <div class="shell">
+  <div class="shell c-map__head">
     <p class="eyebrow">{{ section.settings.kicker }}</p>
     <h2 class="type-display-md">{{ section.settings.title }}</h2>
   </div>
-  <div class="c-map__stage" data-map>
-    {% if section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'c-map__img', loading: 'lazy', alt: section.settings.title }}
-    {% else %}
-      <img class="c-map__img" src="{{ 'pair-berry.jpg' | asset_url }}" alt="">
-    {% endif %}
-    {% for block in section.blocks %}
-      <button
-        type="button"
-        class="c-map__pin"
-        style="left: {{ block.settings.x }}%; top: {{ block.settings.y }}%;"
-        data-pin
-        data-title="{{ block.settings.title | escape }}"
-        data-body="{{ block.settings.body | escape }}"
-        aria-label="{{ block.settings.n }} {{ block.settings.title }}"
-      >{{ block.settings.n }}</button>
-    {% endfor %}
-    <div class="c-map__card" data-map-card hidden>
-      <p class="type-meta" data-map-n></p>
-      <p class="c-map__card-t" data-map-t></p>
-      <p class="c-map__card-b" data-map-b></p>
+  <div class="c-map__layout">
+    <div class="c-map__stage" data-map>
+      {% if section.settings.image != blank %}
+        {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'c-map__img', loading: 'lazy', alt: section.settings.title }}
+      {% else %}
+        <img class="c-map__img" src="{{ 'pair-berry.jpg' | asset_url }}" alt="{{ section.settings.title }}" width="1600" height="1000">
+      {% endif %}
+      {% for block in section.blocks %}
+        <button
+          type="button"
+          class="c-map__pin{% if forloop.first %} is-on{% endif %}"
+          style="left: {{ block.settings.x }}%; top: {{ block.settings.y }}%;"
+          data-pin
+          data-id="{{ block.id }}"
+          data-title="{{ block.settings.title | escape }}"
+          data-body="{{ block.settings.body | escape }}"
+          aria-label="{{ block.settings.n }} {{ block.settings.title }}"
+          {{ block.shopify_attributes }}
+        >{{ block.settings.n }}</button>
+      {% endfor %}
+      <div class="c-map__card" data-map-card>
+        <p class="type-meta" data-map-n>{{ section.blocks.first.settings.n }}</p>
+        <p class="c-map__card-t" data-map-t>{{ section.blocks.first.settings.title }}</p>
+        <p class="c-map__card-b" data-map-b>{{ section.blocks.first.settings.body }}</p>
+      </div>
     </div>
+    <ol class="c-map__list">
+      {% for block in section.blocks %}
+        <li>
+          <button type="button" class="c-map__item{% if forloop.first %} is-on{% endif %}" data-map-item data-id="{{ block.id }}">
+            <span class="type-meta">{{ block.settings.n }}</span>
+            <span>{{ block.settings.title }}</span>
+          </button>
+        </li>
+      {% endfor %}
+    </ol>
   </div>
 </section>
 
 {% schema %}
 {
   "name": "Mappa prodotto",
+  "tag": "section",
   "settings": [
     { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Info prodotto" },
     { "type": "text", "id": "title", "label": "Titolo", "default": "Ogni parte ha un perché." },
-    { "type": "image_picker", "id": "image", "label": "Foto case" }
+    { "type": "image_picker", "id": "image", "label": "Foto case (vuoto = packshot Berry del tema)" }
   ],
+  "max_blocks": 8,
   "blocks": [
     {
       "type": "pin",
@@ -53,12 +69,12 @@
     {
       "name": "Mappa prodotto",
       "blocks": [
-        { "type": "pin", "settings": { "n": "01", "title": "Tasca frontale", "x": 36, "y": 23, "body": "Cinque matite in verticale." } },
-        { "type": "pin", "settings": { "n": "02", "title": "Corpo dell'astuccio", "x": 36, "y": 46, "body": "Pelle vegana su fodera in raso." } },
-        { "type": "pin", "settings": { "n": "03", "title": "Logo impresso", "x": 36, "y": 77, "body": "CAELIA inciso nella pelle." } },
-        { "type": "pin", "settings": { "n": "04", "title": "Cucitura perimetrale", "x": 25, "y": 52, "body": "Filo tono su tono." } },
-        { "type": "pin", "settings": { "n": "05", "title": "Specchio anti-riflesso", "x": 65, "y": 48, "body": "Superficie infrangibile." } },
-        { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "Nessun bordo di vetro esposto." } }
+        { "type": "pin", "settings": { "n": "01", "title": "Tasca frontale", "x": 36, "y": 23, "body": "Cinque matite in verticale. Si sfilano con un dito: niente bottoni, niente linguette." } },
+        { "type": "pin", "settings": { "n": "02", "title": "Corpo dell'astuccio", "x": 36, "y": 46, "body": "Pelle vegana morbida su fodera in raso. Protegge il lip combo da urti e tappi che si aprono in borsa." } },
+        { "type": "pin", "settings": { "n": "03", "title": "Logo impresso", "x": 36, "y": 77, "body": "Il wordmark CAELIA è inciso nella pelle, non stampato: non si scrosta e resta leggibile negli anni." } },
+        { "type": "pin", "settings": { "n": "04", "title": "Cucitura perimetrale", "x": 25, "y": 52, "body": "Filo tono su tono lungo tutto il bordo arrotondato: tiene la struttura piatta e protegge la pelle dagli urti." } },
+        { "type": "pin", "settings": { "n": "05", "title": "Specchio anti-riflesso", "x": 65, "y": 48, "body": "Superficie infrangibile montata a filo della cornice. Riflette senza distorcere, anche con luce laterale o in penombra." } },
+        { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "La pelle avvolge lo specchio su tutti e quattro i lati: nessun bordo di vetro esposto, nessuna scheggia." } }
       ]
     }
   ]

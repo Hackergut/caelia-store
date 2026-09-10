@@ -1,10 +1,9 @@
-{% assign col = section.settings.collection %}
-{% if col == blank %}
-  {% assign col = settings.featured_collection %}
-{% endif %}
-{% if col == blank %}
-  {% assign col = collections.caelia %}
-{% endif %}
+{% comment %} Tre colori — stesso ordine della home: Berry, Rosa, Marrone. {% endcomment %}
+{% assign p1 = section.settings.product_1 %}
+{% assign p2 = section.settings.product_2 %}
+{% assign p3 = section.settings.product_3 %}
+{% assign col = section.settings.collection | default: settings.featured_collection %}
+{% if col == blank %}{% assign col = collections.caelia %}{% endif %}
 
 <section class="c-row">
   <div class="shell">
@@ -19,7 +18,27 @@
       {% endif %}
     </div>
     <div class="c-row__grid">
-      {% if col != blank %}
+      {% if p1 != blank or p2 != blank or p3 != blank %}
+        {% for n in (1..3) %}
+          {% if n == 1 %}{% assign prod = p1 %}{% assign ph = 'pair-berry.jpg' %}{% assign lab = 'Burgundy Berry' %}{% endif %}
+          {% if n == 2 %}{% assign prod = p2 %}{% assign ph = 'pair-rosa.jpg' %}{% assign lab = 'Rosa nude' %}{% endif %}
+          {% if n == 3 %}{% assign prod = p3 %}{% assign ph = 'pair-cacao.jpg' %}{% assign lab = 'Marrone' %}{% endif %}
+          {% assign idx = n | prepend: '0' %}
+          <a class="c-card" href="{% if prod %}{{ prod.url }}{% else %}{{ col.url | default: routes.all_products_collection_url }}{% endif %}">
+            <div class="c-card__frame" data-parallax>
+              {% if prod and prod.featured_image %}
+                {{ prod.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: prod.title }}
+              {% else %}
+                <img src="{{ ph | asset_url }}" alt="{{ lab }}" loading="lazy" width="800" height="800">
+              {% endif %}
+            </div>
+            <div class="c-card__meta">
+              <p class="c-card__title">{% if prod %}{{ prod.title }}{% else %}{{ lab }}{% endif %}</p>
+              <p class="type-meta">{{ idx }}</p>
+            </div>
+          </a>
+        {% endfor %}
+      {% elsif col != blank and col.products.size > 0 %}
         {% for product in col.products limit: section.settings.limit %}
           <a class="c-card" href="{{ product.url }}">
             <div class="c-card__frame" data-parallax>
@@ -29,16 +48,23 @@
             </div>
             <div class="c-card__meta">
               <p class="c-card__title">{{ product.title }}</p>
-              <p class="type-meta">{{ product.price | money }}</p>
+              <p class="type-meta">{{ forloop.index | prepend: '0' }}</p>
             </div>
           </a>
         {% endfor %}
       {% else %}
-        {% for i in (1..3) %}
-          <div class="c-card">
-            <div class="c-card__frame c-card__frame--ph"></div>
-            <p class="c-card__title">{{ 'products.placeholder' | t }} {{ i }}</p>
-          </div>
+        {% assign fallbacks = 'pair-berry.jpg|Burgundy Berry,pair-rosa.jpg|Rosa nude,pair-cacao.jpg|Marrone' | split: ',' %}
+        {% for item in fallbacks %}
+          {% assign bits = item | split: '|' %}
+          <article class="c-card">
+            <div class="c-card__frame" data-parallax>
+              <img src="{{ bits[0] | asset_url }}" alt="{{ bits[1] }}" loading="lazy" width="800" height="800">
+            </div>
+            <div class="c-card__meta">
+              <p class="c-card__title">{{ bits[1] }}</p>
+              <p class="type-meta">{{ forloop.index | prepend: '0' }}</p>
+            </div>
+          </article>
         {% endfor %}
       {% endif %}
     </div>
@@ -48,12 +74,17 @@
 {% schema %}
 {
   "name": "Tre colori",
+  "tag": "section",
   "settings": [
     { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Collezione" },
     { "type": "text", "id": "title", "label": "Titolo", "default": "Tre colori." },
-    { "type": "text", "id": "body", "label": "Sottotitolo", "default": "Marrone, rosa nude, burgundy berry." },
-    { "type": "collection", "id": "collection", "label": "Collezione Shopify" },
-    { "type": "range", "id": "limit", "label": "Prodotti", "min": 3, "max": 9, "step": 1, "default": 3 }
+    { "type": "textarea", "id": "body", "label": "Sottotitolo", "default": "Marrone, rosa nude, burgundy berry." },
+    { "type": "header", "content": "Ordine fisso (come in home)" },
+    { "type": "product", "id": "product_1", "label": "01 Burgundy Berry" },
+    { "type": "product", "id": "product_2", "label": "02 Rosa nude" },
+    { "type": "product", "id": "product_3", "label": "03 Marrone" },
+    { "type": "collection", "id": "collection", "label": "Oppure collezione Shopify" },
+    { "type": "range", "id": "limit", "label": "Prodotti (se usi la collezione)", "min": 3, "max": 9, "step": 1, "default": 3 }
   ],
   "presets": [{ "name": "Tre colori" }]
 }

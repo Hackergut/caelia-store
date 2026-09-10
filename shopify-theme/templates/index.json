@@ -6,7 +6,8 @@
       "settings": {
         "kicker": "Collezione",
         "title": "Tre colori.",
-        "body": "Marrone, rosa nude, burgundy berry."
+        "body": "Marrone, rosa nude, burgundy berry.",
+        "limit": 3
       }
     },
     "gesto": {
@@ -14,7 +15,8 @@
       "settings": {
         "kicker": "03",
         "title": "Il gesto.",
-        "body": "Rosa nude in mano. Cinque matite, uno specchio.",
+        "body": "Specchio in mano, matite in tasca. Anche in volo.",
+        "fallback": "life-plane.jpg",
         "tone": "berry"
       }
     },
@@ -24,6 +26,7 @@
         "kicker": "04",
         "title": "Tutto intorno.",
         "body": "I tre colori, insieme. Peonie, vanity, lo stesso gesto.",
+        "fallback": "lifestyle-trio.jpg",
         "tone": "rosa"
       }
     },
@@ -34,12 +37,12 @@
         "title": "Ogni parte ha un perché."
       },
       "blocks": {
-        "p1": { "type": "pin", "settings": { "n": "01", "title": "Tasca frontale", "x": 36, "y": 23, "body": "Cinque matite in verticale." } },
-        "p2": { "type": "pin", "settings": { "n": "02", "title": "Corpo dell'astuccio", "x": 36, "y": 46, "body": "Pelle vegana su fodera in raso." } },
-        "p3": { "type": "pin", "settings": { "n": "03", "title": "Logo impresso", "x": 36, "y": 77, "body": "CAELIA inciso nella pelle." } },
-        "p4": { "type": "pin", "settings": { "n": "04", "title": "Cucitura perimetrale", "x": 25, "y": 52, "body": "Filo tono su tono." } },
-        "p5": { "type": "pin", "settings": { "n": "05", "title": "Specchio anti-riflesso", "x": 65, "y": 48, "body": "Superficie infrangibile." } },
-        "p6": { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "Nessun bordo di vetro esposto." } }
+        "p1": { "type": "pin", "settings": { "n": "01", "title": "Tasca frontale", "x": 36, "y": 23, "body": "Cinque matite in verticale. Si sfilano con un dito: niente bottoni, niente linguette." } },
+        "p2": { "type": "pin", "settings": { "n": "02", "title": "Corpo dell'astuccio", "x": 36, "y": 46, "body": "Pelle vegana morbida su fodera in raso. Protegge il lip combo da urti e tappi che si aprono in borsa." } },
+        "p3": { "type": "pin", "settings": { "n": "03", "title": "Logo impresso", "x": 36, "y": 77, "body": "Il wordmark CAELIA è inciso nella pelle, non stampato: non si scrosta e resta leggibile negli anni." } },
+        "p4": { "type": "pin", "settings": { "n": "04", "title": "Cucitura perimetrale", "x": 25, "y": 52, "body": "Filo tono su tono lungo tutto il bordo arrotondato: tiene la struttura piatta e protegge la pelle dagli urti." } },
+        "p5": { "type": "pin", "settings": { "n": "05", "title": "Specchio anti-riflesso", "x": 65, "y": 48, "body": "Superficie infrangibile montata a filo della cornice. Riflette senza distorcere, anche con luce laterale o in penombra." } },
+        "p6": { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "La pelle avvolge lo specchio su tutti e quattro i lati: nessun bordo di vetro esposto, nessuna scheggia." } }
       },
       "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
     },
