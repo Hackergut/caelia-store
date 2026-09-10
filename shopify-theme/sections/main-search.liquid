@@ -1,9 +1,10 @@
 <section class="c-row">
   <div class="shell">
     <h1 class="type-display-md">Cerca</h1>
-    <form action="{{ routes.search_url }}" class="c-search">
-      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="CAELIA">
-      <button class="btn-primary" type="submit">Cerca</button>
+    <form action="{{ routes.search_url }}" class="c-search" role="search">
+      <label class="visually-hidden" for="Search-Main">{{ 'general.search' | t }}</label>
+      <input id="Search-Main" type="search" name="q" value="{{ search.terms | escape }}" placeholder="CAELIA" autocomplete="off">
+      <button class="btn-primary" type="submit">{{ 'general.search' | t }}</button>
     </form>
     <div class="c-row__grid">
       {% for item in search.results %}

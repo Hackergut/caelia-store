@@ -22,7 +22,7 @@
     name="add"
     class="btn-primary"
     data-cta-btn
-    {% unless current.available %}disabled{% endunless %}
+    {% unless current.available %}disabled aria-disabled="true"{% endunless %}
   >
     {% if current.available %}
       {% if settings.ab_cta %}

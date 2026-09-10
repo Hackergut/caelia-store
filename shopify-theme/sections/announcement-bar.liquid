@@ -1,5 +1,5 @@
 {% if section.settings.text != blank %}
-  <div class="c-announce" style="background: {{ section.settings.bg }}; color: {{ section.settings.fg }};">
+  <div class="c-announce" role="region" aria-label="{{ 'accessibility.announcement' | t }}" style="background: {{ section.settings.bg }}; color: {{ section.settings.fg }};">
     <p>{{ section.settings.text }}</p>
     {% if section.settings.link != blank %}
       <a href="{{ section.settings.link }}">{{ section.settings.link_label | default: '→' }}</a>

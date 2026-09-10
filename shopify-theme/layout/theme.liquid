@@ -50,9 +50,10 @@
   </head>
   <body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
     <a class="skip-link" href="#MainContent">{{ 'general.skip' | t }}</a>
+    <p class="visually-hidden" role="status" aria-live="polite" aria-atomic="true" data-cart-status></p>
     {% sections 'header-group' %}
     {% section 'cart-drawer' %}
-    <main id="MainContent" role="main">
+    <main id="MainContent" role="main" tabindex="-1">
       {% render 'breadcrumb' %}
       {{ content_for_layout }}
     </main>
@@ -60,6 +61,7 @@
     <script>
       window.CAELIA = {
         drawer: {{ settings.enable_cart_drawer | json }},
+        added: {{ 'products.added' | t | json }},
         routes: {
           cartAdd: "{{ routes.cart_add_url }}.js",
           cart: "{{ routes.cart_url }}.js",

@@ -1,14 +1,14 @@
 <ul class="c-social">
   {% if settings.social_instagram != blank %}
-    <li><a href="{{ settings.social_instagram }}" rel="noopener" target="_blank">Instagram</a></li>
+    <li><a href="{{ settings.social_instagram }}" rel="noopener noreferrer" target="_blank" aria-label="Instagram — {{ 'accessibility.new_window' | t }}">Instagram</a></li>
   {% endif %}
   {% if settings.social_tiktok != blank %}
-    <li><a href="{{ settings.social_tiktok }}" rel="noopener" target="_blank">TikTok</a></li>
+    <li><a href="{{ settings.social_tiktok }}" rel="noopener noreferrer" target="_blank" aria-label="TikTok — {{ 'accessibility.new_window' | t }}">TikTok</a></li>
   {% endif %}
   {% if settings.social_twitter != blank %}
-    <li><a href="{{ settings.social_twitter }}" rel="noopener" target="_blank">X</a></li>
+    <li><a href="{{ settings.social_twitter }}" rel="noopener noreferrer" target="_blank" aria-label="X — {{ 'accessibility.new_window' | t }}">X</a></li>
   {% endif %}
   {% if settings.social_pinterest != blank %}
-    <li><a href="{{ settings.social_pinterest }}" rel="noopener" target="_blank">Pinterest</a></li>
+    <li><a href="{{ settings.social_pinterest }}" rel="noopener noreferrer" target="_blank" aria-label="Pinterest — {{ 'accessibility.new_window' | t }}">Pinterest</a></li>
   {% endif %}
 </ul>

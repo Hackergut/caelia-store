@@ -1,8 +1,8 @@
-<div class="c-drawer" data-cart-drawer {% if cart.item_count == 0 %}data-empty{% endif %}>
-  <div class="c-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}">
+<div class="c-drawer" data-cart-drawer aria-hidden="true" inert {% if cart.item_count == 0 %}data-empty{% endif %}>
+  <div id="CartDrawer" class="c-drawer__panel" role="dialog" aria-modal="true" aria-labelledby="CartDrawerTitle" tabindex="-1">
     <div class="c-drawer__head">
-      <p class="c-drawer__title">{{ 'cart.title' | t }}{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</p>
-      <button type="button" class="c-drawer__close" data-cart-close aria-label="{{ 'general.close' | t }}">×</button>
+      <h2 id="CartDrawerTitle" class="c-drawer__title">{{ 'cart.title' | t }}{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</h2>
+      <button type="button" class="c-drawer__close" data-cart-close aria-label="{{ 'general.close' | t }}">{{ 'general.close' | t }}</button>
     </div>
     {% if cart.item_count == 0 %}
       <p class="c-cart__empty">{{ 'cart.empty' | t }}</p>
@@ -14,14 +14,15 @@
         {% for item in cart.items %}
           <div class="c-cart__line">
             <a href="{{ item.url }}">
-              {{ item.image | image_url: width: 240 | image_tag: alt: item.title, loading: 'lazy' }}
+              {{ item.image | image_url: width: 240 | image_tag: alt: item.product.title, loading: 'lazy' }}
             </a>
             <div class="c-cart__info">
               <a href="{{ item.url }}">{{ item.product.title }}</a>
               <p class="type-meta">{{ item.final_line_price | money }}</p>
               <div class="c-qty">
-                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.quantity' | t }}">
-                <a class="type-meta" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
+                <label class="visually-hidden" for="Updates-{{ item.key }}">{{ 'cart.quantity_of' | t: title: item.product.title }}</label>
+                <input id="Updates-{{ item.key }}" type="number" name="updates[]" value="{{ item.quantity }}" min="0" inputmode="numeric">
+                <a class="type-meta" href="{{ item.url_to_remove }}">{{ 'cart.remove_item' | t: title: item.product.title }}</a>
               </div>
             </div>
           </div>
@@ -40,7 +41,7 @@
       </form>
     {% endif %}
   </div>
-  <button type="button" class="c-drawer__veil" data-cart-close aria-label="{{ 'general.close' | t }}"></button>
+  <div class="c-drawer__veil" data-cart-close aria-hidden="true"></div>
 </div>
 
 {% schema %}

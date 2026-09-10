@@ -1,7 +1,7 @@
 <footer class="c-footer" role="contentinfo">
   <div class="shell">
     <div class="c-footer__row">
-      <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
+      <a class="c-logo" href="{{ routes.root_url }}" aria-label="{{ 'accessibility.home' | t }}">{{ settings.brand_name | default: shop.name }}</a>
       <nav aria-label="Footer">
         <ul class="c-footer__nav">
           {% assign fmenu = linklists[settings.footer_menu] %}

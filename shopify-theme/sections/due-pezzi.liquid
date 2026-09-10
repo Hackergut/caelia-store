@@ -2,29 +2,29 @@
 {% assign f2 = section.settings.frame_2 %}
 {% assign f3 = section.settings.frame_3 %}
 
-<section class="c-drip" data-drip>
+<section class="c-drip" data-drip aria-labelledby="DripTitle-{{ section.id }}">
   <div class="c-drip__sticky">
     <div class="c-drip__stage" data-drip-stage>
       {% if f1 != blank %}
-        <img data-drip-frame src="{{ f1 | image_url: width: 2400 }}" alt="" width="2400" height="1600">
+        <img data-drip-frame src="{{ f1 | image_url: width: 2400 }}" alt="{{ section.settings.title }}" width="2400" height="1600">
       {% else %}
-        <img data-drip-frame src="{{ 'due-01.jpg' | asset_url }}" alt="" width="2400" height="1600">
+        <img data-drip-frame src="{{ 'due-01.jpg' | asset_url }}" alt="{{ section.settings.title }}" width="2400" height="1600">
       {% endif %}
       {% if f2 != blank %}
-        <img data-drip-frame src="{{ f2 | image_url: width: 2400 }}" alt="" width="2400" height="1600">
+        <img data-drip-frame src="{{ f2 | image_url: width: 2400 }}" alt="" width="2400" height="1600" aria-hidden="true">
       {% else %}
-        <img data-drip-frame src="{{ 'due-02.jpg' | asset_url }}" alt="" width="2400" height="1600">
+        <img data-drip-frame src="{{ 'due-02.jpg' | asset_url }}" alt="" width="2400" height="1600" aria-hidden="true">
       {% endif %}
       {% if f3 != blank %}
-        <img data-drip-frame src="{{ f3 | image_url: width: 2400 }}" alt="" width="2400" height="1600">
+        <img data-drip-frame src="{{ f3 | image_url: width: 2400 }}" alt="" width="2400" height="1600" aria-hidden="true">
       {% else %}
-        <img data-drip-frame src="{{ 'due-03.jpg' | asset_url }}" alt="" width="2400" height="1600">
+        <img data-drip-frame src="{{ 'due-03.jpg' | asset_url }}" alt="" width="2400" height="1600" aria-hidden="true">
       {% endif %}
     </div>
-    <div class="c-drip__veil"></div>
+    <div class="c-drip__veil" aria-hidden="true"></div>
     <div class="c-drip__cap" data-drip-cap>
       <p class="type-meta">{{ section.settings.kicker }}</p>
-      <h2 class="type-display-md">{{ section.settings.title }}</h2>
+      <h2 class="type-display-md" id="DripTitle-{{ section.id }}">{{ section.settings.title }}</h2>
       <p class="c-drip__body">{{ section.settings.body }}</p>
     </div>
   </div>

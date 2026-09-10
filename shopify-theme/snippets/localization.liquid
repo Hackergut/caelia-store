@@ -3,7 +3,7 @@
   {% if localization.available_countries.size > 1 or localization.available_languages.size > 1 %}
     {% form 'localization', class: 'c-loc' %}
       {% if localization.available_countries.size > 1 %}
-        <label class="visually-hidden" for="Country-{{ loc_id }}">Country</label>
+        <label class="visually-hidden" for="Country-{{ loc_id }}">{{ 'accessibility.country' | t }}</label>
         <select name="country_code" id="Country-{{ loc_id }}" onchange="this.form.submit()">
           {% for country in localization.available_countries %}
             <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
@@ -13,7 +13,7 @@
         </select>
       {% endif %}
       {% if localization.available_languages.size > 1 %}
-        <label class="visually-hidden" for="Locale-{{ loc_id }}">Language</label>
+        <label class="visually-hidden" for="Locale-{{ loc_id }}">{{ 'accessibility.language' | t }}</label>
         <select name="locale_code" id="Locale-{{ loc_id }}" onchange="this.form.submit()">
           {% for language in localization.available_languages %}
             <option value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}selected{% endif %}>

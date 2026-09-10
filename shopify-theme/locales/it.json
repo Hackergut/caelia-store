@@ -13,9 +13,17 @@
     "contact": "Contatti",
     "view_all": "Vedi tutto"
   },
+  "accessibility": {
+    "home": "CAELIA, vai alla home",
+    "announcement": "Annuncio",
+    "new_window": "si apre in una nuova finestra",
+    "show_image": "Mostra {{ title }}",
+    "country": "Paese",
+    "language": "Lingua"
+  },
   "products": {
     "add": "Aggiungi al carrello",
-    "added": "Aggiunto",
+    "added": "Aggiunto al carrello",
     "sold_out": "Esaurito",
     "from": "Da",
     "quantity": "Quantità",
@@ -30,6 +38,8 @@
     "collection": "La collezione",
     "checkout": "Checkout",
     "remove": "Rimuovi",
+    "remove_item": "Rimuovi {{ title }}",
+    "quantity_of": "Quantità di {{ title }}",
     "total": "Totale",
     "continue": "Continua",
     "update": "Aggiorna",

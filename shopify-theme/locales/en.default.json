@@ -13,9 +13,17 @@
     "contact": "Contact",
     "view_all": "View all"
   },
+  "accessibility": {
+    "home": "CAELIA, go to home",
+    "announcement": "Announcement",
+    "new_window": "opens in a new window",
+    "show_image": "Show {{ title }}",
+    "country": "Country",
+    "language": "Language"
+  },
   "products": {
     "add": "Add to cart",
-    "added": "Added",
+    "added": "Added to cart",
     "sold_out": "Sold out",
     "from": "From",
     "quantity": "Quantity",
@@ -30,6 +38,8 @@
     "collection": "The collection",
     "checkout": "Checkout",
     "remove": "Remove",
+    "remove_item": "Remove {{ title }}",
+    "quantity_of": "Quantity of {{ title }}",
     "total": "Total",
     "continue": "Continue",
     "update": "Update",

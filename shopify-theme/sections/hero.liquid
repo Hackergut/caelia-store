@@ -1,13 +1,13 @@
-<section class="c-hero" data-hero>
+<section class="c-hero" data-hero aria-label="{{ settings.brand_name | default: 'CAELIA' }}">
   <div class="c-hero__sticky">
     {% if section.settings.video != blank %}
-      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'c-hero__media' }}
+      {{ section.settings.video | video_tag: autoplay: true, loop: true, muted: true, playsinline: true, class: 'c-hero__media', aria_hidden: 'true' }}
     {% elsif section.settings.image != blank %}
-      {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'c-hero__media', loading: 'eager', alt: '' }}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: class: 'c-hero__media', loading: 'eager', alt: section.settings.caption }}
     {% else %}
-      <img class="c-hero__media" src="{{ 'logo-drip.jpg' | asset_url }}" alt="CAELIA Beauty Mirror Case — logo impresso, splash gloss">
+      <img class="c-hero__media" src="{{ 'logo-drip.jpg' | asset_url }}" alt="{{ section.settings.caption | default: 'CAELIA Beauty Mirror Case' }}" width="2400" height="1600">
     {% endif %}
-    <div class="c-hero__veil"></div>
+    <div class="c-hero__veil" aria-hidden="true"></div>
     <div class="c-hero__lockup">
       <h1 class="c-hero__word">{{ settings.brand_name | default: 'CAELIA' }}</h1>
       <p class="type-meta">{{ section.settings.caption }}</p>

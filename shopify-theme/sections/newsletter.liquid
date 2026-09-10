@@ -12,10 +12,11 @@
         required
         autocomplete="email"
         placeholder="{{ 'newsletter.email' | t }}"
+        aria-required="true"
       >
       <button type="submit" class="btn-primary">{{ 'newsletter.subscribe' | t }}</button>
       {% if form.posted_successfully %}
-        <p class="c-news__ok">{{ 'newsletter.success' | t }}</p>
+        <p class="c-news__ok" role="status">{{ 'newsletter.success' | t }}</p>
       {% endif %}
     {% endform %}
   </div>

@@ -11,7 +11,7 @@
         <div class="c-product__thumbs">
           {% for image in product.images %}
             {% assign thumb_alt = image.alt | default: product.title %}
-            <button type="button" class="c-product__thumb{% if image == feat %} is-on{% endif %}" data-thumb="{{ image | image_url: width: 1600 }}">
+            <button type="button" class="c-product__thumb{% if image == feat %} is-on{% endif %}" data-thumb="{{ image | image_url: width: 1600 }}" aria-label="{{ 'accessibility.show_image' | t: title: thumb_alt }}" aria-pressed="{% if image == feat %}true{% else %}false{% endif %}">
               {{ image | image_url: width: 240 | image_tag: alt: thumb_alt, loading: 'lazy' }}
             </button>
           {% endfor %}
@@ -32,9 +32,9 @@
       {% render 'buy-buttons', product: product %}
       {% if settings.show_share %}
         <p class="c-share">
-          <a href="https://www.facebook.com/sharer.php?u={{ canonical_url | url_encode }}" target="_blank" rel="noopener">Facebook</a>
-          <a href="https://pinterest.com/pin/create/button/?url={{ canonical_url | url_encode }}" target="_blank" rel="noopener">Pinterest</a>
-          <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ canonical_url | url_encode }}" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.facebook.com/sharer.php?u={{ canonical_url | url_encode }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook — {{ 'accessibility.new_window' | t }}">Facebook</a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ canonical_url | url_encode }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest — {{ 'accessibility.new_window' | t }}">Pinterest</a>
+          <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ canonical_url | url_encode }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp — {{ 'accessibility.new_window' | t }}">WhatsApp</a>
         </p>
       {% endif %}
       {% if product.metafields.custom.features %}

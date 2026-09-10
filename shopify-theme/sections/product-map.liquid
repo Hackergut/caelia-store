@@ -20,10 +20,11 @@
           data-title="{{ block.settings.title | escape }}"
           data-body="{{ block.settings.body | escape }}"
           aria-label="{{ block.settings.n }} {{ block.settings.title }}"
+          aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
           {{ block.shopify_attributes }}
         >{{ block.settings.n }}</button>
       {% endfor %}
-      <div class="c-map__card" data-map-card>
+      <div class="c-map__card" data-map-card role="status" aria-live="polite">
         <p class="type-meta" data-map-n>{{ section.blocks.first.settings.n }}</p>
         <p class="c-map__card-t" data-map-t>{{ section.blocks.first.settings.title }}</p>
         <p class="c-map__card-b" data-map-b>{{ section.blocks.first.settings.body }}</p>
@@ -32,7 +33,7 @@
     <ol class="c-map__list">
       {% for block in section.blocks %}
         <li>
-          <button type="button" class="c-map__item{% if forloop.first %} is-on{% endif %}" data-map-item data-id="{{ block.id }}">
+          <button type="button" class="c-map__item{% if forloop.first %} is-on{% endif %}" data-map-item data-id="{{ block.id }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">
             <span class="type-meta">{{ block.settings.n }}</span>
             <span>{{ block.settings.title }}</span>
           </button>

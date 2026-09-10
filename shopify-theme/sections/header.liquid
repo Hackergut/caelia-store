@@ -1,5 +1,5 @@
 <header class="c-header" data-header>
-  <a class="c-logo" href="{{ routes.root_url }}">
+  <a class="c-logo" href="{{ routes.root_url }}" aria-label="{{ 'accessibility.home' | t }}">
     {% if settings.logo %}
       {{ settings.logo | image_url: width: 240 | image_tag: alt: settings.brand_name, class: 'c-logo__img' }}
     {% else %}
@@ -8,29 +8,41 @@
   </a>
   <div class="c-header__end">
     {% if settings.show_search %}
-      <a class="type-meta" href="{{ routes.search_url }}">{{ 'general.search' | t }}</a>
+      <a class="type-meta c-header__link" href="{{ routes.search_url }}">{{ 'general.search' | t }}</a>
     {% endif %}
     {% if settings.show_account and shop.customer_accounts_enabled %}
-      <a class="type-meta" href="{{ routes.account_url }}">{{ 'general.account' | t }}</a>
+      <a class="type-meta c-header__link" href="{{ routes.account_url }}">{{ 'general.account' | t }}</a>
     {% endif %}
-    <a class="type-meta" href="{{ routes.cart_url }}" data-cart-toggle>
+    <a
+      class="type-meta c-header__link"
+      href="{{ routes.cart_url }}"
+      data-cart-toggle
+      data-cart-label="{{ 'general.cart' | t }}"
+      aria-haspopup="dialog"
+      aria-controls="CartDrawer"
+      aria-expanded="false"
+      aria-label="{{ 'general.cart' | t }}{% if cart.item_count > 0 %}, {{ cart.item_count }}{% endif %}"
+    >
       {{ 'general.cart' | t }}
-      <span data-cart-count>{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</span>
+      <span data-cart-count aria-hidden="true">{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</span>
     </a>
     <button type="button" class="c-burger" data-menu-toggle aria-expanded="false" aria-controls="MenuTenda" aria-label="{{ 'general.menu' | t }}">
       <span></span><span></span><span></span>
     </button>
   </div>
 </header>
-<nav id="MenuTenda" class="c-menu" data-menu hidden>
+<nav id="MenuTenda" class="c-menu" data-menu hidden aria-hidden="true" aria-label="{{ 'general.menu' | t }}">
+  <button type="button" class="c-menu__close" data-menu-close aria-label="{{ 'general.close' | t }}">{{ 'general.close' | t }}</button>
   <ul>
     {% assign menu = linklists[settings.menu] %}
     {% if menu and menu.links.size > 0 %}
       {% for link in menu.links %}
-        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        <li>
+          <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title }}</a>
+        </li>
       {% endfor %}
     {% else %}
-      <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+      <li><a href="{{ routes.root_url }}" {% if request.path == '/' %}aria-current="page"{% endif %}>{{ 'general.home' | t }}</a></li>
       <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">{{ 'general.collection' | t }}</a></li>
       <li><a href="{{ pages.storia.url | default: pages.about.url }}">{{ 'general.about' | t }}</a></li>
       <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">{{ 'general.contact' | t }}</a></li>
