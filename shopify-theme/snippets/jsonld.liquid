@@ -24,13 +24,7 @@
       "url": {{ shop.url | json }},
       "name": {{ shop.name | json }},
       "publisher": { "@id": {{ shop.url | append: '#organization' | json }} },
-      "inLanguage": {{ request.locale.iso_code | json }},
-      "potentialAction": {
-        "@type": "SearchAction",
-        {%- capture search_target -%}{{ shop.url }}/search?q={% raw %}{search_term_string}{% endraw %}{%- endcapture -%}
-        "target": {{ search_target | json }},
-        "query-input": "required name=search_term_string"
-      }
+      "inLanguage": {{ request.locale.iso_code | json }}
     }
     {%- if template.name == 'product' and product -%}
     ,{
