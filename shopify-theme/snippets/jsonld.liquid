@@ -27,7 +27,8 @@
       "inLanguage": {{ request.locale.iso_code | json }},
       "potentialAction": {
         "@type": "SearchAction",
-        "target": {{ shop.url | append: '/search?q={search_term_string}' | json }},
+        {%- capture search_target -%}{{ shop.url }}/search?q={% raw %}{search_term_string}{% endraw %}{%- endcapture -%}
+        "target": {{ search_target | json }},
         "query-input": "required name=search_term_string"
       }
     }
