@@ -1,6 +1,7 @@
-import { useRef, useState, type CSSProperties, type PointerEvent } from "react";
+import { useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
+import { usePressZoom } from "@/lib/use-press-zoom";
 
 type Part = {
   id: string;
@@ -78,95 +79,22 @@ function nearestPart(x: number, y: number) {
   return best;
 }
 
-function clamp(n: number, a: number, b: number) {
-  return Math.min(b, Math.max(a, n));
-}
-
 export function ProductInfoMap() {
   const stageRef = useRef<HTMLDivElement>(null);
+  const lensRef = useRef<HTMLDivElement>(null);
+  const activeRef = useRef("pocket");
   const [active, setActive] = useState("pocket");
-  const [lens, setLens] = useState({
-    x: 50,
-    y: 50,
-    on: false,
-    w: 1,
-    touch: false,
-    cx: 0,
-    cy: 0,
-  });
   const current = PARTS.find((p) => p.id === active) ?? PARTS[0];
 
-  const apply = (e: PointerEvent<HTMLElement>, on: boolean) => {
-    const el = stageRef.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const x = clamp(((e.clientX - r.left) / r.width) * 100, 0, 100);
-    const y = clamp(((e.clientY - r.top) / r.height) * 100, 0, 100);
-    setLens({
-      x,
-      y,
-      on,
-      w: r.width,
-      touch: e.pointerType !== "mouse",
-      cx: e.clientX,
-      cy: e.clientY,
-    });
-    const next = nearestPart(x, y);
-    setActive((id) => (next.id === id ? id : next.id));
-  };
-
-  const onDown = (e: PointerEvent<HTMLElement>) => {
-    e.preventDefault();
-    e.currentTarget.setPointerCapture(e.pointerId);
-    apply(e, true);
-  };
-
-  const onMove = (e: PointerEvent<HTMLElement>) => {
-    if (!e.currentTarget.hasPointerCapture(e.pointerId) && e.pointerType !== "mouse") return;
-    apply(e, true);
-  };
-
-  const onUp = (e: PointerEvent<HTMLElement>) => {
-    try {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    } catch {
-      /* already released */
-    }
-    if (e.pointerType !== "mouse") setLens((s) => ({ ...s, on: false }));
-  };
-
-  const touch = lens.touch;
-  const zoom = touch ? 2.5 : 3.2;
-  const L = touch ? 132 : Math.round(Math.min(260, Math.max(168, lens.w * 0.38)));
-  const bg = lens.w * zoom;
-  const bx = L / 2 - (lens.x / 100) * bg;
-  const by = L / 2 - (lens.y / 100) * bg;
-  const loupeStyle: CSSProperties = touch
-    ? {
-        position: "fixed",
-        width: L,
-        height: L,
-        left: lens.cx,
-        top: lens.cy,
-        transform: "translate(-50%, calc(-100% - 18px))",
-        backgroundImage: `url(${SRC})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: `${bg}px ${bg}px`,
-        backgroundPosition: `${bx}px ${by}px`,
-        zIndex: 80,
-      }
-    : {
-        position: "absolute",
-        width: L,
-        height: L,
-        left: `${lens.x}%`,
-        top: `${lens.y}%`,
-        transform: "translate(-50%, -50%)",
-        backgroundImage: `url(${SRC})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: `${bg}px ${bg}px`,
-        backgroundPosition: `${bx}px ${by}px`,
-      };
+  usePressZoom(stageRef, lensRef, {
+    src: SRC,
+    onPoint: (x, y) => {
+      const next = nearestPart(x, y);
+      if (next.id === activeRef.current) return;
+      activeRef.current = next.id;
+      setActive(next.id);
+    },
+  });
 
   return (
     <section id="info" className="border-t border-mist/40 bg-rosa">
@@ -186,14 +114,7 @@ export function ProductInfoMap() {
           <div
             ref={stageRef}
             className="relative mx-auto w-full max-w-[min(100%,48svh)] cursor-crosshair overflow-hidden bg-white select-none lg:max-w-none"
-            style={{ touchAction: "none", WebkitTouchCallout: "none" }}
-            onPointerDown={onDown}
-            onPointerMove={onMove}
-            onPointerUp={onUp}
-            onPointerCancel={onUp}
-            onPointerLeave={(e) => {
-              if (e.pointerType === "mouse") setLens((s) => ({ ...s, on: false }));
-            }}
+            style={{ touchAction: "none", WebkitTouchCallout: "none", WebkitUserSelect: "none" }}
           >
             <img
               src={SRC}
@@ -235,17 +156,16 @@ export function ProductInfoMap() {
               <p className="font-serif text-xl tracking-wide">{current.title}</p>
             </div>
 
-            {lens.on ? (
-              <div
-                aria-hidden
-                className="pointer-events-none z-30 overflow-hidden rounded-full border-2 border-rosa shadow-[0_16px_40px_rgba(74,14,22,0.35)]"
-                style={loupeStyle}
-              >
-                <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/35" />
-                <span className="absolute left-1/2 top-1/2 h-3 w-px -translate-x-1/2 -translate-y-1/2 bg-rosa/80" />
-                <span className="absolute left-1/2 top-1/2 h-px w-3 -translate-x-1/2 -translate-y-1/2 bg-rosa/80" />
-              </div>
-            ) : null}
+            <div
+              ref={lensRef}
+              aria-hidden
+              className="pointer-events-none z-30 overflow-hidden rounded-full border-2 border-rosa shadow-[0_16px_40px_rgba(74,14,22,0.35)]"
+              style={{ opacity: 0, position: "absolute", top: 0, left: 0 }}
+            >
+              <span className="absolute inset-0 rounded-full ring-1 ring-inset ring-white/35" />
+              <span className="absolute left-1/2 top-1/2 h-3 w-px -translate-x-1/2 -translate-y-1/2 bg-rosa/80" />
+              <span className="absolute left-1/2 top-1/2 h-px w-3 -translate-x-1/2 -translate-y-1/2 bg-rosa/80" />
+            </div>
           </div>
 
           <div>
@@ -256,7 +176,10 @@ export function ProductInfoMap() {
                   <li key={p.id}>
                     <button
                       type="button"
-                      onClick={() => setActive(p.id)}
+                      onClick={() => {
+                        activeRef.current = p.id;
+                        setActive(p.id);
+                      }}
                       aria-pressed={isActive}
                       aria-label={`${p.n} ${p.title}`}
                       className={cn(
@@ -294,9 +217,18 @@ export function ProductInfoMap() {
                     <li key={p.id} className="border-t border-mist/70 last:border-b">
                       <button
                         type="button"
-                        onMouseEnter={() => setActive(p.id)}
-                        onFocus={() => setActive(p.id)}
-                        onClick={() => setActive(p.id)}
+                        onMouseEnter={() => {
+                          activeRef.current = p.id;
+                          setActive(p.id);
+                        }}
+                        onFocus={() => {
+                          activeRef.current = p.id;
+                          setActive(p.id);
+                        }}
+                        onClick={() => {
+                          activeRef.current = p.id;
+                          setActive(p.id);
+                        }}
                         aria-expanded={isActive}
                         className="flex min-h-12 w-full items-center gap-4 py-3 text-left"
                       >

@@ -1,5 +1,6 @@
-import { useRef, useState, type PointerEvent } from "react";
+import { useRef, useState } from "react";
 import { motion } from "motion/react";
+import { usePressZoom } from "@/lib/use-press-zoom";
 
 const DETAILS = [
   {
@@ -31,76 +32,26 @@ const DETAILS = [
 
 const ease = [0.23, 1, 0.32, 1] as const;
 
-function clamp(n: number, a: number, b: number) {
-  return Math.min(b, Math.max(a, n));
-}
-
 export function ZoomStage({ src, alt }: { src: string; alt: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [origin, setOrigin] = useState({ x: 50, y: 50 });
-  const [on, setOn] = useState(false);
-
-  const move = (e: PointerEvent<HTMLDivElement>) => {
-    const r = (ref.current ?? e.currentTarget).getBoundingClientRect();
-    setOrigin({
-      x: clamp(((e.clientX - r.left) / r.width) * 100, 0, 100),
-      y: clamp(((e.clientY - r.top) / r.height) * 100, 0, 100),
-    });
-  };
-
-  const down = (e: PointerEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.currentTarget.setPointerCapture(e.pointerId);
-    setOn(true);
-    move(e);
-  };
-
-  const up = (e: PointerEvent<HTMLDivElement>) => {
-    try {
-      e.currentTarget.releasePointerCapture(e.pointerId);
-    } catch {
-      /* already released */
-    }
-    setOn(false);
-    setOrigin({ x: 50, y: 50 });
-  };
+  const imgRef = useRef<HTMLImageElement>(null);
+  usePressZoom(ref, imgRef, { src, mode: "scale" });
 
   return (
     <div
       ref={ref}
-      className="relative mx-auto aspect-square w-full max-w-[min(100%,48svh)] cursor-crosshair overflow-hidden bg-crema lg:max-w-none"
-      style={{ touchAction: "none" }}
-      onPointerDown={down}
-      onPointerMove={(e) => {
-        if (e.pointerType === "mouse") {
-          setOn(true);
-          move(e);
-          return;
-        }
-        if (e.currentTarget.hasPointerCapture(e.pointerId)) move(e);
-      }}
-      onPointerUp={up}
-      onPointerCancel={up}
-      onPointerLeave={(e) => {
-        if (e.pointerType === "mouse") {
-          setOn(false);
-          setOrigin({ x: 50, y: 50 });
-        }
-      }}
+      className="relative mx-auto aspect-square w-full max-w-[min(100%,48svh)] cursor-crosshair overflow-hidden bg-crema select-none lg:max-w-none"
+      style={{ touchAction: "none", WebkitTouchCallout: "none" }}
     >
       <img
+        ref={imgRef}
         src={src}
         alt={alt}
         className="h-full w-full object-cover will-change-transform"
-        style={{
-          transform: on ? "scale(2.2)" : "scale(1)",
-          transformOrigin: `${origin.x}% ${origin.y}%`,
-          transition: on ? "transform 80ms linear" : "transform 400ms cubic-bezier(0.23,1,0.32,1)",
-        }}
         draggable={false}
       />
       <p className="pointer-events-none absolute bottom-3 right-3 type-meta text-burgundy/40">
-        {on ? "Zoom" : "Tieni premuto"}
+        Tieni premuto
       </p>
     </div>
   );
