@@ -41,6 +41,7 @@ export function ZoomStage({ src, alt }: { src: string; alt: string }) {
     <div
       ref={ref}
       className="relative mx-auto aspect-square w-full max-w-[min(100%,48svh)] cursor-crosshair overflow-hidden bg-crema select-none lg:max-w-none"
+      data-zoom-stage
       style={{ touchAction: "none", WebkitTouchCallout: "none" }}
     >
       <img

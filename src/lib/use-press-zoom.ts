@@ -97,15 +97,21 @@ export function usePressZoom(
       if (latest) paint(latest);
     };
 
+    let ignoreLost = false;
+
     const down = (e: PointerEvent) => {
       if (e.pointerType === "mouse" && e.button !== 0) return;
       e.preventDefault();
       pid = e.pointerId;
+      ignoreLost = true;
       try {
         stage.setPointerCapture(e.pointerId);
       } catch {
         /* Safari */
       }
+      requestAnimationFrame(() => {
+        ignoreLost = false;
+      });
       latest = e;
       paint(e);
     };
@@ -124,6 +130,7 @@ export function usePressZoom(
 
     const up = (e: PointerEvent) => {
       if (e.pointerType === "mouse") return;
+      if (e.type === "lostpointercapture" && ignoreLost) return;
       if (pid !== null && e.pointerId !== pid) return;
       hide();
     };
@@ -137,7 +144,6 @@ export function usePressZoom(
     stage.addEventListener("pointermove", move, opts);
     stage.addEventListener("pointerup", up);
     stage.addEventListener("pointercancel", up);
-    stage.addEventListener("lostpointercapture", up);
     stage.addEventListener("pointerleave", leave);
     const block = (ev: Event) => ev.preventDefault();
     stage.addEventListener("contextmenu", block);
@@ -148,7 +154,6 @@ export function usePressZoom(
       stage.removeEventListener("pointermove", move, opts);
       stage.removeEventListener("pointerup", up);
       stage.removeEventListener("pointercancel", up);
-      stage.removeEventListener("lostpointercapture", up);
       stage.removeEventListener("pointerleave", leave);
       stage.removeEventListener("contextmenu", block);
     };

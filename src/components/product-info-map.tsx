@@ -114,6 +114,7 @@ export function ProductInfoMap() {
           <div
             ref={stageRef}
             className="relative mx-auto w-full max-w-[min(100%,48svh)] cursor-crosshair overflow-hidden bg-white select-none lg:max-w-none"
+            data-zoom-stage
             style={{ touchAction: "none", WebkitTouchCallout: "none", WebkitUserSelect: "none" }}
           >
             <img
