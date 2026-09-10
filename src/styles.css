@@ -32,6 +32,8 @@
     -moz-osx-font-smoothing: grayscale;
     background: var(--color-rosa);
     color: var(--color-burgundy);
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -44,6 +46,8 @@
     font-family: var(--font-sans);
     background: var(--color-rosa);
     color: var(--color-burgundy);
+    overflow-x: clip;
+    max-width: 100%;
   }
 
   h1,
@@ -134,9 +138,9 @@ html.has-cursor select {
 
 @utility type-display-md {
   font-family: var(--font-serif);
-  font-size: clamp(2.1rem, 5.4vw, 4.35rem);
-  line-height: 0.94;
-  letter-spacing: 0.03em;
+  font-size: clamp(1.85rem, 8vw, 4.35rem);
+  line-height: 0.96;
+  letter-spacing: 0.02em;
   font-weight: 400;
 }
 
@@ -148,9 +152,9 @@ html.has-cursor select {
 
 @utility type-logo {
   font-family: var(--font-logo);
-  font-size: clamp(3.4rem, 16vw, 12rem);
+  font-size: clamp(2.6rem, 14vw, 12rem);
   line-height: 0.82;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.1em;
   font-weight: 400;
 }
 
@@ -305,6 +309,12 @@ html.has-cursor select {
   100% {
     opacity: 0;
     transform: scale(1.5);
+  }
+}
+
+@media (min-width: 768px) {
+  .type-logo {
+    letter-spacing: 0.16em;
   }
 }
 

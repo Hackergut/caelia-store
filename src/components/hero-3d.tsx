@@ -62,9 +62,9 @@ export function Hero3DScroll() {
 
   return (
     <section ref={ref} className="relative h-[160vh] bg-berry text-rosa md:h-[240vh]">
-      <div className="sticky top-0 h-svh overflow-hidden">
+      <div className="sticky top-0 h-svh overflow-hidden isolate" style={{ transform: "translateZ(0)" }}>
         <motion.div
-          className="absolute inset-[-8%] will-change-transform"
+          className="absolute inset-[-8%] will-change-transform pointer-events-none"
           style={{ scale: farScale, filter: farFilter }}
         >
           <video

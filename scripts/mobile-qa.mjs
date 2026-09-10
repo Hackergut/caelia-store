@@ -80,7 +80,7 @@ for (const spec of [
   if (hasBurger) {
     const box = await burger.boundingBox();
     note(!!box && box.height >= 40 && box.width >= 40, `${spec.name} burger ${Math.round(box?.width || 0)}×${Math.round(box?.height || 0)}`);
-    await burger.click();
+    await burger.click({ force: true });
     await page.waitForTimeout(250);
     await page.screenshot({ path: `${DIR}/${spec.name}-menu.png` });
     const open = await page.locator("#menu-tenda").first().isVisible().catch(() => false);
