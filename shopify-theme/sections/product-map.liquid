@@ -5,25 +5,27 @@
   </div>
   <div class="c-map__layout">
     <div class="c-map__stage" data-map>
-      {% if section.settings.image != blank %}
-        {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'c-map__img', loading: 'lazy', alt: section.settings.title }}
-      {% else %}
-        <img class="c-map__img" src="{{ 'pair-berry.jpg' | asset_url }}" alt="{{ section.settings.title }}" width="1600" height="1000">
-      {% endif %}
-      {% for block in section.blocks %}
-        <button
-          type="button"
-          class="c-map__pin{% if forloop.first %} is-on{% endif %}"
-          style="left: {{ block.settings.x }}%; top: {{ block.settings.y }}%;"
-          data-pin
-          data-id="{{ block.id }}"
-          data-title="{{ block.settings.title | escape }}"
-          data-body="{{ block.settings.body | escape }}"
-          aria-label="{{ block.settings.n }} {{ block.settings.title }}"
-          aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
-          {{ block.shopify_attributes }}
-        >{{ block.settings.n }}</button>
-      {% endfor %}
+      <div class="c-map__photo">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'c-map__img', loading: 'lazy', alt: section.settings.title }}
+        {% else %}
+          <img class="c-map__img" src="{{ 'pair-berry.jpg' | asset_url }}" alt="{{ section.settings.title }}" width="1600" height="1600">
+        {% endif %}
+        {% for block in section.blocks %}
+          <button
+            type="button"
+            class="c-map__pin{% if forloop.first %} is-on{% endif %}"
+            style="left: {{ block.settings.x }}%; top: {{ block.settings.y }}%;"
+            data-pin
+            data-id="{{ block.id }}"
+            data-title="{{ block.settings.title | escape }}"
+            data-body="{{ block.settings.body | escape }}"
+            aria-label="{{ block.settings.n }} {{ block.settings.title }}"
+            aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+            {{ block.shopify_attributes }}
+          >{{ block.settings.n }}</button>
+        {% endfor %}
+      </div>
       <div class="c-map__card" data-map-card role="status" aria-live="polite">
         <p class="type-meta" data-map-n>{{ section.blocks.first.settings.n }}</p>
         <p class="c-map__card-t" data-map-t>{{ section.blocks.first.settings.title }}</p>
