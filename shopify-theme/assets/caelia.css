@@ -118,8 +118,11 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .c-product { padding: 5rem 0; }
 .c-product__grid { display: grid; gap: 2.5rem; }
 @media (min-width: 960px) { .c-product__grid { grid-template-columns: 1fr 1fr; } }
-.c-product__stage { overflow: hidden; background: var(--crema); aspect-ratio: 4/5; }
-.c-product__img { width: 100%; height: 100%; object-fit: cover; }
+.c-product__stage { overflow: hidden; background: var(--crema); aspect-ratio: 4/5; cursor: crosshair; touch-action: none; }
+@media (max-width: 959px) {
+  .c-product__stage { aspect-ratio: 1; max-height: 48svh; width: min(100%, 48svh); margin-inline: auto; }
+}
+.c-product__img { width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 50%; }
 .c-product__thumbs { display: grid; grid-template-columns: repeat(5, 1fr); gap: .5rem; margin-top: .75rem; }
 .c-product__thumb { border: 0; padding: 0; background: var(--crema); cursor: pointer; aspect-ratio: 1; overflow: hidden; }
 .c-product__thumb.is-on { outline: 1px solid var(--berry); }
@@ -219,7 +222,20 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .c-map__item.is-on { color: var(--berry); }
 .c-map__pin.is-on { outline: 2px solid var(--rosa); }
-.c-map { padding: 4rem 0 6rem; }
+@media (max-width: 959px) {
+  .c-map { padding: 2.5rem 0 3rem; }
+  .c-map__stage { width: min(100%, 48svh); margin-inline: auto; }
+  .c-map__list {
+    display: flex; gap: .5rem; overflow-x: auto;
+    padding: .5rem 1.25rem 1rem; -webkit-overflow-scrolling: touch;
+  }
+  .c-map__item {
+    border: 1px solid var(--crema); border-radius: 999px;
+    padding: .45rem .8rem; white-space: nowrap; flex: 0 0 auto;
+  }
+  .c-map__item span:last-child { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+  .c-map__card { position: static; max-width: none; margin: .75rem 1.25rem 0; }
+}
 .c-pay-icons { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 1.25rem 0 0; padding: 0; align-items: center; }
 .c-pay-icons__svg { height: 1.5rem; width: auto; }
 .c-trust { list-style: none; margin: 1.25rem 0 0; padding: 0; color: var(--cacao); font-size: .85rem; }

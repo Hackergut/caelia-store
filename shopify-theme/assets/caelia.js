@@ -305,6 +305,39 @@
     });
   });
 
+  document.querySelectorAll("[data-zoom]").forEach((stage) => {
+    const img = stage.querySelector("img");
+    if (!img) return;
+    const origin = (e) => {
+      const r = stage.getBoundingClientRect();
+      const x = Math.min(100, Math.max(0, ((e.clientX - r.left) / r.width) * 100));
+      const y = Math.min(100, Math.max(0, ((e.clientY - r.top) / r.height) * 100));
+      img.style.transformOrigin = `${x}% ${y}%`;
+    };
+    const on = (e) => {
+      e.preventDefault();
+      stage.setPointerCapture(e.pointerId);
+      origin(e);
+      img.style.transform = "scale(2.2)";
+      img.style.transition = "transform 80ms linear";
+    };
+    const move = (e) => {
+      if (e.pointerType !== "mouse" && !stage.hasPointerCapture(e.pointerId)) return;
+      origin(e);
+    };
+    const off = () => {
+      img.style.transform = "scale(1)";
+      img.style.transition = "transform 400ms cubic-bezier(0.23,1,0.32,1)";
+    };
+    stage.addEventListener("pointerdown", on);
+    stage.addEventListener("pointermove", move);
+    stage.addEventListener("pointerup", off);
+    stage.addEventListener("pointercancel", off);
+    stage.addEventListener("pointerleave", (e) => {
+      if (e.pointerType === "mouse") off();
+    });
+  });
+
   document.querySelectorAll("[data-product]").forEach((product) => {
     const script = product.querySelector("[data-variants]");
     const idInput = product.querySelector("[data-variant-id]");
