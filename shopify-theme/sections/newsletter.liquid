@@ -1,0 +1,33 @@
+<section class="c-news">
+  <div class="shell c-news__box">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    {% form 'customer', class: 'c-news__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <label class="visually-hidden" for="NewsletterEmail-{{ section.id }}">{{ 'newsletter.email' | t }}</label>
+      <input
+        id="NewsletterEmail-{{ section.id }}"
+        type="email"
+        name="contact[email]"
+        required
+        autocomplete="email"
+        placeholder="{{ 'newsletter.email' | t }}"
+      >
+      <button type="submit" class="btn-primary">{{ 'newsletter.subscribe' | t }}</button>
+      {% if form.posted_successfully %}
+        <p class="c-news__ok">{{ 'newsletter.success' | t }}</p>
+      {% endif %}
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Lettera" },
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Novità, in una riga." }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

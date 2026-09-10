@@ -1,0 +1,43 @@
+{% comment %} Pulsanti acquisto: ATC + checkout dinamico (Shop Pay / Apple Pay). {% endcomment %}
+{% assign current = product.selected_or_first_available_variant %}
+{% form 'product', product, class: 'c-product__form', data-product-form: '' %}
+  {% unless product.has_only_default_variant %}
+    {% for option in product.options_with_values %}
+      <label class="c-label">{{ option.name }}
+        <select name="options[{{ option.name }}]" data-option>
+          {% for value in option.values %}
+            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    {% endfor %}
+  {% endunless %}
+  <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
+  <label class="c-label c-label--qty">{{ 'products.quantity' | t }}
+    <input type="number" name="quantity" value="1" min="1" max="{{ current.inventory_quantity | default: 99 }}" inputmode="numeric">
+  </label>
+  <button
+    type="submit"
+    name="add"
+    class="btn-primary"
+    data-cta-btn
+    {% unless current.available %}disabled{% endunless %}
+  >
+    {% if current.available %}
+      {% if settings.ab_cta %}
+        <span data-cta-a>{{ settings.ab_cta_a | default: 'Aggiungi al carrello' }}</span>
+        <span data-cta-b>{{ settings.ab_cta_b | default: 'Acquista ora' }}</span>
+      {% else %}
+        {{ 'products.add' | t }}
+      {% endif %}
+    {% else %}
+      {{ 'products.sold_out' | t }}
+    {% endif %}
+  </button>
+  {% if settings.enable_dynamic_checkout and current.available %}
+    <div class="c-pay">{{ form | payment_button }}</div>
+  {% endif %}
+{% endform %}
+{% if product.variants.size > 1 %}
+  <script type="application/json" data-variants>{{ product.variants | json }}</script>
+{% endif %}

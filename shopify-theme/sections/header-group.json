@@ -2,10 +2,16 @@
   "type": "header",
   "name": "Header",
   "sections": {
+    "announcement": {
+      "type": "announcement-bar",
+      "settings": {
+        "text": "Spedizione gratuita in Italia oltre 60 €"
+      }
+    },
     "header": {
       "type": "header",
       "settings": {}
     }
   },
-  "order": ["header"]
+  "order": ["announcement", "header"]
 }

@@ -1,0 +1,26 @@
+<section class="c-rich" style="background: {{ section.settings.bg }}; color: {{ section.settings.fg }};">
+  <div class="shell c-rich__box">
+    {% if section.settings.kicker != blank %}<p class="eyebrow">{{ section.settings.kicker }}</p>{% endif %}
+    {% if section.settings.title != blank %}<h2 class="type-display-md">{{ section.settings.title }}</h2>{% endif %}
+    {% if section.settings.body != blank %}<div class="rte">{{ section.settings.body }}</div>{% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      <a class="btn-primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testo editoriale",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "CAELIA" },
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Specchio, matita, un solo gesto." },
+    { "type": "richtext", "id": "body", "label": "Testo" },
+    { "type": "text", "id": "button_label", "label": "Pulsante" },
+    { "type": "url", "id": "button_link", "label": "Link pulsante" },
+    { "type": "color", "id": "bg", "label": "Sfondo", "default": "#973851" },
+    { "type": "color", "id": "fg", "label": "Testo", "default": "#ffddde" }
+  ],
+  "presets": [{ "name": "Testo editoriale" }]
+}
+{% endschema %}

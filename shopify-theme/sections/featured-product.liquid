@@ -1,0 +1,37 @@
+<section class="c-product c-product--feature">
+  <div class="shell c-product__grid">
+    {% assign product = section.settings.product %}
+    {% if product == blank %}
+      {% assign product = collections.all.products.first %}
+    {% endif %}
+    {% if product != blank %}
+      <div>
+        {% assign feat = product.featured_image %}
+        <div class="c-product__stage">
+          {% if feat %}
+            {{ feat | image_url: width: 1600 | image_tag: class: 'c-product__img', loading: 'lazy', alt: product.title }}
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow">{{ section.settings.kicker }}</p>
+        <h2 class="type-display-md">{{ product.title }}</h2>
+        <p class="c-product__price">{{ product.price | money }}</p>
+        <div class="rte">{{ product.description | strip_html | truncate: 180 }}</div>
+        {% render 'buy-buttons', product: product %}
+        <a class="type-meta" href="{{ product.url }}" style="display:inline-block;margin-top:1.25rem">{{ 'products.details' | t }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Prodotto in evidenza",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Maison" },
+    { "type": "product", "id": "product", "label": "Prodotto" }
+  ],
+  "presets": [{ "name": "Prodotto in evidenza" }]
+}
+{% endschema %}

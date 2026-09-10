@@ -1,4 +1,6 @@
 (() => {
+  const cfg = window.CAELIA || { drawer: true, routes: {} };
+
   const menu = document.querySelector("[data-menu]");
   const toggle = document.querySelector("[data-menu-toggle]");
   if (toggle && menu) {
@@ -74,8 +76,7 @@
     });
   });
 
-  const product = document.querySelector("[data-product]");
-  if (product) {
+  document.querySelectorAll("[data-product]").forEach((product) => {
     const script = product.querySelector("[data-variants]");
     const idInput = product.querySelector("[data-variant-id]");
     const selects = [...product.querySelectorAll("[data-option]")];
@@ -88,7 +89,7 @@
       };
       selects.forEach((s) => s.addEventListener("change", sync));
     }
-  }
+  });
 
   const ctaBtn = document.querySelector("[data-cta-btn]");
   if (ctaBtn && !ctaBtn.disabled) {
@@ -104,4 +105,53 @@
     track("view");
     ctaBtn.addEventListener("click", () => track("click"));
   }
+
+  const setOpen = (open) => {
+    const drawer = document.querySelector("[data-cart-drawer]");
+    if (!drawer) return;
+    drawer.classList.toggle("is-open", open);
+    document.body.style.overflow = open ? "hidden" : "";
+  };
+
+  const refreshDrawer = async () => {
+    const root = cfg.routes.root || "/";
+    const res = await fetch(`${root}?section_id=cart-drawer`);
+    const html = await res.text();
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const next = doc.querySelector("[data-cart-drawer]");
+    const cur = document.querySelector("[data-cart-drawer]");
+    if (next && cur) cur.replaceWith(next);
+    const cart = await fetch(cfg.routes.cart || "/cart.js").then((r) => r.json()).catch(() => null);
+    document.querySelectorAll("[data-cart-count]").forEach((el) => {
+      el.textContent = cart && cart.item_count ? ` (${cart.item_count})` : "";
+    });
+  };
+
+  document.addEventListener("click", (e) => {
+    const openBtn = e.target.closest("[data-cart-toggle]");
+    if (openBtn && cfg.drawer) {
+      e.preventDefault();
+      setOpen(true);
+    }
+    if (e.target.closest("[data-cart-close]")) setOpen(false);
+  });
+
+  document.addEventListener("submit", async (e) => {
+    const form = e.target.closest("[data-product-form]");
+    if (!form || !cfg.drawer) return;
+    e.preventDefault();
+    const btn = form.querySelector("[data-cta-btn]");
+    if (btn) btn.disabled = true;
+    try {
+      await fetch(cfg.routes.cartAdd || "/cart/add.js", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
+      });
+      await refreshDrawer();
+      setOpen(true);
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  });
 })();

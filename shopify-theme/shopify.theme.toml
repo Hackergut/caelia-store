@@ -1,5 +1,6 @@
-# Shopify CLI — tema CAELIA
+# CAELIA — Shopify CLI
 # shopify theme dev --store tuo-negozio.myshopify.com
+# shopify theme push
 
 [environments.default]
 ignore = ["products.csv", "README.md", "CONFIG.md"]

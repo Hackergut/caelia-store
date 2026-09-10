@@ -100,3 +100,16 @@ CTR = click / view per variante. Poi confronta anche gli ordini.
 
 Per spegnere: togli la spunta, resta il testo A.  
 Per riprovare: cancella `localStorage.caelia_cta_ab` in DevTools.
+
+## 8. Come un tema premium
+
+Da **Customize** (niente codice):
+
+- **Add section** in home: Hero, Tre colori, Capitolo film, Mappa, Prodotto in evidenza, Immagine e testo, Testo editoriale, Newsletter
+- Barra annuncio in header (spedizione / promo)
+- Cart drawer: click su Carrello o dopo “Aggiungi”
+- Checkout dinamico sotto il CTA (Shop Pay / Apple Pay / Google Pay)
+- Menu, colori, logo, favicon, OG, social: ingranaggio tema
+
+Foto: clicca la sezione → Image picker. Non servono path di file.
+

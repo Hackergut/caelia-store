@@ -2,6 +2,13 @@
   "type": "footer",
   "name": "Footer",
   "sections": {
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "kicker": "Lettera",
+        "title": "Novità, in una riga."
+      }
+    },
     "footer": {
       "type": "footer",
       "settings": {
@@ -9,5 +16,5 @@
       }
     }
   },
-  "order": ["footer"]
+  "order": ["newsletter", "footer"]
 }

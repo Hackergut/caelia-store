@@ -51,11 +51,22 @@
   <body class="template-{{ template.name }}{% if template.suffix %} template-{{ template.name }}-{{ template.suffix }}{% endif %}">
     <a class="skip-link" href="#MainContent">{{ 'general.skip' | t }}</a>
     {% sections 'header-group' %}
+    {% section 'cart-drawer' %}
     <main id="MainContent" role="main">
       {% render 'breadcrumb' %}
       {{ content_for_layout }}
     </main>
     {% sections 'footer-group' %}
+    <script>
+      window.CAELIA = {
+        drawer: {{ settings.enable_cart_drawer | json }},
+        routes: {
+          cartAdd: "{{ routes.cart_add_url }}.js",
+          cart: "{{ routes.cart_url }}.js",
+          root: "{{ routes.root_url }}"
+        }
+      };
+    </script>
     <script src="{{ 'caelia.js' | asset_url }}" defer></script>
   </body>
 </html>

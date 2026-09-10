@@ -1,0 +1,51 @@
+<div class="c-drawer" data-cart-drawer {% if cart.item_count == 0 %}data-empty{% endif %}>
+  <div class="c-drawer__panel" role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}">
+    <div class="c-drawer__head">
+      <p class="c-drawer__title">{{ 'cart.title' | t }}{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</p>
+      <button type="button" class="c-drawer__close" data-cart-close aria-label="{{ 'general.close' | t }}">×</button>
+    </div>
+    {% if cart.item_count == 0 %}
+      <p class="c-cart__empty">{{ 'cart.empty' | t }}</p>
+      <a class="btn-primary" href="{{ settings.featured_collection.url | default: routes.all_products_collection_url }}" data-cart-close>
+        {{ 'cart.collection' | t }}
+      </a>
+    {% else %}
+      <form action="{{ routes.cart_url }}" method="post" class="c-drawer__body">
+        {% for item in cart.items %}
+          <div class="c-cart__line">
+            <a href="{{ item.url }}">
+              {{ item.image | image_url: width: 240 | image_tag: alt: item.title, loading: 'lazy' }}
+            </a>
+            <div class="c-cart__info">
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+              <p class="type-meta">{{ item.final_line_price | money }}</p>
+              <div class="c-qty">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.quantity' | t }}">
+                <a class="type-meta" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        <div class="c-cart__tot">
+          <span class="type-meta">{{ 'cart.total' | t }}</span>
+          <strong>{{ cart.total_price | money }}</strong>
+        </div>
+        {% if settings.cart_note != blank %}
+          <p class="c-cart__empty">{{ settings.cart_note }}</p>
+        {% endif %}
+        <div class="c-cart__actions">
+          <button type="submit" name="update" class="btn-ghost">{{ 'cart.update' | t }}</button>
+          <button type="submit" name="checkout" class="btn-primary">{{ 'cart.checkout' | t }}</button>
+        </div>
+      </form>
+    {% endif %}
+  </div>
+  <button type="button" class="c-drawer__veil" data-cart-close aria-label="{{ 'general.close' | t }}"></button>
+</div>
+
+{% schema %}
+{
+  "name": "Cart drawer",
+  "settings": []
+}
+{% endschema %}

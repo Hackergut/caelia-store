@@ -42,7 +42,11 @@
         "p6": { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "Nessun bordo di vetro esposto." } }
       },
       "block_order": ["p1", "p2", "p3", "p4", "p5", "p6"]
+    },
+    "featured": {
+      "type": "featured-product",
+      "settings": { "kicker": "Maison" }
     }
   },
-  "order": ["hero", "colors", "gesto", "intorno", "map"]
+  "order": ["hero", "colors", "gesto", "intorno", "map", "featured"]
 }

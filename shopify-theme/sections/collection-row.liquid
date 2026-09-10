@@ -1,3 +1,11 @@
+{% assign col = section.settings.collection %}
+{% if col == blank %}
+  {% assign col = settings.featured_collection %}
+{% endif %}
+{% if col == blank %}
+  {% assign col = collections.caelia %}
+{% endif %}
+
 <section class="c-row">
   <div class="shell">
     <div class="c-row__head">
@@ -7,19 +15,12 @@
         <p class="c-row__sub">{{ section.settings.body }}</p>
       </div>
       {% if col != blank %}
-        <a class="type-meta" href="{{ col.url }}">Vedi tutto</a>
+        <a class="type-meta" href="{{ col.url }}">{{ 'general.view_all' | t }}</a>
       {% endif %}
     </div>
     <div class="c-row__grid">
-      {% assign col = section.settings.collection %}
-      {% if col == blank %}
-        {% assign col = settings.featured_collection %}
-      {% endif %}
-      {% if col == blank %}
-        {% assign col = collections.caelia %}
-      {% endif %}
       {% if col != blank %}
-        {% for product in col.products limit: 3 %}
+        {% for product in col.products limit: section.settings.limit %}
           <a class="c-card" href="{{ product.url }}">
             <div class="c-card__frame" data-parallax>
               {% if product.featured_image %}
@@ -28,7 +29,7 @@
             </div>
             <div class="c-card__meta">
               <p class="c-card__title">{{ product.title }}</p>
-              <p class="type-meta">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</p>
+              <p class="type-meta">{{ product.price | money }}</p>
             </div>
           </a>
         {% endfor %}
@@ -36,7 +37,7 @@
         {% for i in (1..3) %}
           <div class="c-card">
             <div class="c-card__frame c-card__frame--ph"></div>
-            <p class="c-card__title">Colore {{ i }}</p>
+            <p class="c-card__title">{{ 'products.placeholder' | t }} {{ i }}</p>
           </div>
         {% endfor %}
       {% endif %}
@@ -51,7 +52,8 @@
     { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Collezione" },
     { "type": "text", "id": "title", "label": "Titolo", "default": "Tre colori." },
     { "type": "text", "id": "body", "label": "Sottotitolo", "default": "Marrone, rosa nude, burgundy berry." },
-    { "type": "collection", "id": "collection", "label": "Collezione Shopify" }
+    { "type": "collection", "id": "collection", "label": "Collezione Shopify" },
+    { "type": "range", "id": "limit", "label": "Prodotti", "min": 3, "max": 9, "step": 1, "default": 3 }
   ],
   "presets": [{ "name": "Tre colori" }]
 }

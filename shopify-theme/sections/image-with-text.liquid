@@ -1,0 +1,40 @@
+<section class="c-split c-split--{{ section.settings.layout }}">
+  <div class="c-split__media">
+    {% if section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 1800 | image_tag: loading: 'lazy', alt: section.settings.title }}
+    {% endif %}
+  </div>
+  <div class="c-split__copy">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <div class="rte">{{ section.settings.body }}</div>
+    {% if section.settings.button_label != blank %}
+      <a class="btn-primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Immagine e testo",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Immagine" },
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Storia" },
+    { "type": "text", "id": "title", "label": "Titolo", "default": "Carla & Giulia" },
+    { "type": "richtext", "id": "body", "label": "Testo" },
+    { "type": "text", "id": "button_label", "label": "Pulsante" },
+    { "type": "url", "id": "button_link", "label": "Link" },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "default": "image-left",
+      "options": [
+        { "value": "image-left", "label": "Immagine a sinistra" },
+        { "value": "image-right", "label": "Immagine a destra" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Immagine e testo" }]
+}
+{% endschema %}

@@ -5,13 +5,23 @@
     "cart": "Cart",
     "menu": "Menu",
     "close": "Close",
-    "home": "Home"
+    "home": "Home",
+    "search": "Search",
+    "account": "Account",
+    "collection": "Collection",
+    "about": "Story",
+    "contact": "Contact",
+    "view_all": "View all"
   },
   "products": {
     "add": "Add to cart",
     "added": "Added",
     "sold_out": "Sold out",
-    "from": "From"
+    "from": "From",
+    "quantity": "Quantity",
+    "details": "Product details",
+    "other_colors": "Other colours",
+    "placeholder": "Colour"
   },
   "cart": {
     "title": "Cart",
@@ -20,7 +30,13 @@
     "checkout": "Checkout",
     "remove": "Remove",
     "total": "Total",
-    "continue": "Continue"
+    "continue": "Continue",
+    "update": "Update"
+  },
+  "newsletter": {
+    "email": "Email",
+    "subscribe": "Subscribe",
+    "success": "You're in."
   },
   "contact": {
     "send": "Send",

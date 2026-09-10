@@ -5,22 +5,38 @@
     "cart": "Carrello",
     "menu": "Menu",
     "close": "Chiudi",
-    "home": "Home"
+    "home": "Home",
+    "search": "Cerca",
+    "account": "Account",
+    "collection": "Collezione",
+    "about": "Storia",
+    "contact": "Contatti",
+    "view_all": "Vedi tutto"
   },
   "products": {
     "add": "Aggiungi al carrello",
     "added": "Aggiunto",
     "sold_out": "Esaurito",
-    "from": "Da"
+    "from": "Da",
+    "quantity": "Quantità",
+    "details": "Dettagli prodotto",
+    "other_colors": "Altri colori",
+    "placeholder": "Colore"
   },
   "cart": {
     "title": "Carrello",
     "empty": "Il carrello è vuoto.",
     "collection": "La collezione",
-    "checkout": "Checkout Shopify",
+    "checkout": "Checkout",
     "remove": "Rimuovi",
     "total": "Totale",
-    "continue": "Continua"
+    "continue": "Continua",
+    "update": "Aggiorna"
+  },
+  "newsletter": {
+    "email": "Email",
+    "subscribe": "Iscriviti",
+    "success": "Iscritta. A presto."
   },
   "contact": {
     "send": "Invia",

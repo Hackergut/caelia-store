@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "CAELIA",
-    "theme_version": "1.1.0",
+    "theme_version": "1.2.0",
     "theme_author": "HACKGUT",
     "theme_documentation_url": "https://caelia-store-x1wb.vercel.app/shopify",
     "theme_support_url": "https://caelia-store-x1wb.vercel.app/contact"
@@ -38,6 +38,10 @@
       { "type": "link_list", "id": "menu", "label": "Menu header", "default": "main-menu" },
       { "type": "link_list", "id": "footer_menu", "label": "Menu footer", "default": "footer" },
       { "type": "checkbox", "id": "show_breadcrumbs", "label": "Mostra breadcrumb", "default": true },
+      { "type": "checkbox", "id": "show_search", "label": "Mostra ricerca in header", "default": true },
+      { "type": "checkbox", "id": "show_account", "label": "Mostra account in header", "default": true },
+      { "type": "checkbox", "id": "enable_cart_drawer", "label": "Cart drawer (scorre dal lato)", "default": true },
+      { "type": "checkbox", "id": "enable_dynamic_checkout", "label": "Checkout dinamico (Shop Pay, Apple Pay, Google Pay)", "default": true, "info": "Sotto Aggiungi al carrello. Richiede Shopify Payments." },
       { "type": "text", "id": "cart_note", "label": "Nota carrello", "default": "Spedizione gratuita oltre 60 €. Checkout Shopify." }
     ]
   },

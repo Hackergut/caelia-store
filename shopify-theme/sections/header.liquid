@@ -7,8 +7,15 @@
     {% endif %}
   </a>
   <div class="c-header__end">
-    <a class="type-meta" href="{{ routes.cart_url }}">
-      {{ 'general.cart' | t }}{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}
+    {% if settings.show_search %}
+      <a class="type-meta" href="{{ routes.search_url }}">{{ 'general.search' | t }}</a>
+    {% endif %}
+    {% if settings.show_account and shop.customer_accounts_enabled %}
+      <a class="type-meta" href="{{ routes.account_url }}">{{ 'general.account' | t }}</a>
+    {% endif %}
+    <a class="type-meta" href="{{ routes.cart_url }}" data-cart-toggle>
+      {{ 'general.cart' | t }}
+      <span data-cart-count>{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</span>
     </a>
     <button type="button" class="c-burger" data-menu-toggle aria-expanded="false" aria-controls="MenuTenda" aria-label="{{ 'general.menu' | t }}">
       <span></span><span></span><span></span>
@@ -23,10 +30,10 @@
         <li><a href="{{ link.url }}">{{ link.title }}</a></li>
       {% endfor %}
     {% else %}
-      <li><a href="{{ routes.root_url }}">Home</a></li>
-      <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
-      <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
-      <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
+      <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+      <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">{{ 'general.collection' | t }}</a></li>
+      <li><a href="{{ pages.storia.url | default: pages.about.url }}">{{ 'general.about' | t }}</a></li>
+      <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">{{ 'general.contact' | t }}</a></li>
     {% endif %}
   </ul>
   <p class="type-meta c-menu__meta">{{ settings.brand_tagline }}</p>
