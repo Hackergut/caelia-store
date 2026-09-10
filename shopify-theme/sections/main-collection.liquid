@@ -1,25 +1,42 @@
 <section class="c-row">
   <div class="shell">
-    <p class="eyebrow">Collezione</p>
-    <h1 class="type-display-md">{{ collection.title | default: 'Tre colori.' }}</h1>
-    <div class="c-row__grid" style="margin-top:3rem">
-      {% for product in collection.products %}
-        <a class="c-card" href="{{ product.url }}">
-          <div class="c-card__frame" data-parallax>
-            {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
-          </div>
-          <div class="c-card__meta">
-            <p class="c-card__title">{{ product.title }}</p>
-            <p class="type-meta">{{ product.price | money }}</p>
-          </div>
-        </a>
-      {% else %}
-        <p>Aggiungi i tre colori CAELIA a questa collezione in Shopify Admin.</p>
-      {% endfor %}
-    </div>
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h1 class="type-display-md">{{ collection.title | default: section.settings.title }}</h1>
+    {% if collection.description != blank %}
+      <div class="rte c-row__sub">{{ collection.description }}</div>
+    {% endif %}
+    {% paginate collection.products by section.settings.per_page %}
+      <div class="c-row__grid" style="margin-top:3rem">
+        {% for product in collection.products %}
+          <a class="c-card" href="{{ product.url }}">
+            <div class="c-card__frame" data-parallax>
+              {% if product.featured_image %}
+                {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
+              {% endif %}
+            </div>
+            <div class="c-card__meta">
+              <p class="c-card__title">{{ product.title }}</p>
+              <p class="type-meta">{{ product.price | money }}</p>
+            </div>
+          </a>
+        {% else %}
+          <p>{{ 'products.empty_collection' | t }}</p>
+        {% endfor %}
+      </div>
+      {% if paginate.pages > 1 %}
+        <nav class="c-pages" aria-label="Pagination">{{ paginate | default_pagination }}</nav>
+      {% endif %}
+    {% endpaginate %}
   </div>
 </section>
 
 {% schema %}
-{ "name": "Collezione" }
+{
+  "name": "Collezione",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Collezione" },
+    { "type": "text", "id": "title", "label": "Titolo se vuota", "default": "Tre colori." },
+    { "type": "range", "id": "per_page", "label": "Prodotti per pagina", "min": 3, "max": 24, "step": 3, "default": 12 }
+  ]
+}
 {% endschema %}

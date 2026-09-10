@@ -21,7 +21,8 @@
     "quantity": "Quantità",
     "details": "Dettagli prodotto",
     "other_colors": "Altri colori",
-    "placeholder": "Colore"
+    "placeholder": "Colore",
+    "empty_collection": "Aggiungi i tre colori CAELIA a questa collezione in Shopify Admin."
   },
   "cart": {
     "title": "Carrello",
@@ -31,7 +32,8 @@
     "remove": "Rimuovi",
     "total": "Totale",
     "continue": "Continua",
-    "update": "Aggiorna"
+    "update": "Aggiorna",
+    "payments": "Pagamenti"
   },
   "newsletter": {
     "email": "Email",

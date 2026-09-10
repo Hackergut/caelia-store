@@ -1,21 +1,36 @@
 <footer class="c-footer" role="contentinfo">
-  <div class="shell c-footer__row">
-    <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
-    <nav aria-label="Footer">
-      <ul class="c-footer__nav">
-        {% assign fmenu = linklists[settings.footer_menu] %}
-        {% if fmenu and fmenu.links.size > 0 %}
-          {% for link in fmenu.links %}
-            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-          {% endfor %}
-        {% else %}
-          <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">Collezione</a></li>
-          <li><a href="{{ pages.storia.url | default: pages.about.url }}">Storia</a></li>
-          <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">Contatti</a></li>
-        {% endif %}
+  <div class="shell">
+    <div class="c-footer__row">
+      <a class="c-logo" href="{{ routes.root_url }}">{{ settings.brand_name | default: shop.name }}</a>
+      <nav aria-label="Footer">
+        <ul class="c-footer__nav">
+          {% assign fmenu = linklists[settings.footer_menu] %}
+          {% if fmenu and fmenu.links.size > 0 %}
+            {% for link in fmenu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% else %}
+            <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">{{ 'general.collection' | t }}</a></li>
+            <li><a href="{{ pages.storia.url | default: pages.about.url }}">{{ 'general.about' | t }}</a></li>
+            <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">{{ 'general.contact' | t }}</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      {% render 'social-icons' %}
+    </div>
+    {% if section.settings.show_policies %}
+      <ul class="c-footer__policies">
+        {% if shop.shipping_policy != blank %}<li><a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title }}</a></li>{% endif %}
+        {% if shop.refund_policy != blank %}<li><a href="{{ shop.refund_policy.url }}">{{ shop.refund_policy.title }}</a></li>{% endif %}
+        {% if shop.privacy_policy != blank %}<li><a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a></li>{% endif %}
+        {% if shop.terms_of_service != blank %}<li><a href="{{ shop.terms_of_service.url }}">{{ shop.terms_of_service.title }}</a></li>{% endif %}
       </ul>
-    </nav>
-    <p class="type-meta">{{ section.settings.text }}</p>
+    {% endif %}
+    <div class="c-footer__pay">
+      {% render 'payment-icons' %}
+      {% render 'localization', unique: 'footer' %}
+    </div>
+    <p class="type-meta c-footer__copy">{{ section.settings.text }} · © {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
   </div>
 </footer>
 
@@ -23,7 +38,8 @@
 {
   "name": "Footer",
   "settings": [
-    { "type": "text", "id": "text", "label": "Didascalia", "default": "Milano · Beauty Essentials" }
+    { "type": "text", "id": "text", "label": "Didascalia", "default": "Milano · Beauty Essentials" },
+    { "type": "checkbox", "id": "show_policies", "label": "Link policy Shopify (spedizione, reso, privacy)", "default": true }
   ]
 }
 {% endschema %}

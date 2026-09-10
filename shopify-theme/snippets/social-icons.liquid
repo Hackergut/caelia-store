@@ -1,0 +1,14 @@
+<ul class="c-social">
+  {% if settings.social_instagram != blank %}
+    <li><a href="{{ settings.social_instagram }}" rel="noopener" target="_blank">Instagram</a></li>
+  {% endif %}
+  {% if settings.social_tiktok != blank %}
+    <li><a href="{{ settings.social_tiktok }}" rel="noopener" target="_blank">TikTok</a></li>
+  {% endif %}
+  {% if settings.social_twitter != blank %}
+    <li><a href="{{ settings.social_twitter }}" rel="noopener" target="_blank">X</a></li>
+  {% endif %}
+  {% if settings.social_pinterest != blank %}
+    <li><a href="{{ settings.social_pinterest }}" rel="noopener" target="_blank">Pinterest</a></li>
+  {% endif %}
+</ul>

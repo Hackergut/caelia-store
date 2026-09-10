@@ -1,0 +1,7 @@
+{% if settings.show_payment_icons %}
+  <ul class="c-pay-icons" aria-label="{{ 'cart.payments' | t }}">
+    {% for type in shop.enabled_payment_types %}
+      <li>{{ type | payment_type_svg_tag: class: 'c-pay-icons__svg' }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}

@@ -21,9 +21,22 @@
     <div>
       <p class="eyebrow">{{ product.type | default: 'Beauty Mirror Case' }}</p>
       <h1 class="type-display-md">{{ product.title }}</h1>
+      {% if settings.show_vendor and product.vendor != blank %}
+        <p class="type-meta">{{ product.vendor }}</p>
+      {% endif %}
       <p class="c-product__price">{{ product.selected_or_first_available_variant.price | money }}</p>
+      {% if settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
+        <p class="type-meta">SKU {{ product.selected_or_first_available_variant.sku }}</p>
+      {% endif %}
       <div class="rte c-product__desc">{{ product.description }}</div>
       {% render 'buy-buttons', product: product %}
+      {% if settings.show_share %}
+        <p class="c-share">
+          <a href="https://www.facebook.com/sharer.php?u={{ canonical_url | url_encode }}" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://pinterest.com/pin/create/button/?url={{ canonical_url | url_encode }}" target="_blank" rel="noopener">Pinterest</a>
+          <a href="https://wa.me/?text={{ product.title | url_encode }}%20{{ canonical_url | url_encode }}" target="_blank" rel="noopener">WhatsApp</a>
+        </p>
+      {% endif %}
       {% if product.metafields.custom.features %}
         <ul class="c-features">
           {% for f in product.metafields.custom.features.value %}
@@ -51,6 +64,8 @@
 {% schema %}
 {
   "name": "Prodotto",
-  "settings": []
+  "settings": [
+    { "type": "paragraph", "content": "CTA, quantità, Shop Pay, fiducia: Customize → ingranaggio → Pagamenti / Pagina prodotto." }
+  ]
 }
 {% endschema %}

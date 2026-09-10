@@ -1,0 +1,7 @@
+{% if settings.show_trust %}
+  <ul class="c-trust">
+    {% if settings.trust_1 != blank %}<li>{{ settings.trust_1 }}</li>{% endif %}
+    {% if settings.trust_2 != blank %}<li>{{ settings.trust_2 }}</li>{% endif %}
+    {% if settings.trust_3 != blank %}<li>{{ settings.trust_3 }}</li>{% endif %}
+  </ul>
+{% endif %}

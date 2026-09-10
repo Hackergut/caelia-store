@@ -1,4 +1,3 @@
-{% comment %} Pulsanti acquisto: ATC + checkout dinamico (Shop Pay / Apple Pay). {% endcomment %}
 {% assign current = product.selected_or_first_available_variant %}
 {% form 'product', product, class: 'c-product__form', data-product-form: '' %}
   {% unless product.has_only_default_variant %}
@@ -13,9 +12,11 @@
     {% endfor %}
   {% endunless %}
   <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
-  <label class="c-label c-label--qty">{{ 'products.quantity' | t }}
-    <input type="number" name="quantity" value="1" min="1" max="{{ current.inventory_quantity | default: 99 }}" inputmode="numeric">
-  </label>
+  {% if settings.show_quantity %}
+    <label class="c-label c-label--qty">{{ 'products.quantity' | t }}
+      <input type="number" name="quantity" value="1" min="1" inputmode="numeric">
+    </label>
+  {% endif %}
   <button
     type="submit"
     name="add"
@@ -38,6 +39,7 @@
     <div class="c-pay">{{ form | payment_button }}</div>
   {% endif %}
 {% endform %}
+{% render 'trust' %}
 {% if product.variants.size > 1 %}
   <script type="application/json" data-variants>{{ product.variants | json }}</script>
 {% endif %}

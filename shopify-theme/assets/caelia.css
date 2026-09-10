@@ -214,4 +214,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .c-map__item.is-on { color: var(--berry); }
 .c-map__pin.is-on { outline: 2px solid var(--rosa); }
 .c-map { padding: 4rem 0 6rem; }
+.c-pay-icons { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 1.25rem 0 0; padding: 0; align-items: center; }
+.c-pay-icons__svg { height: 1.5rem; width: auto; }
+.c-trust { list-style: none; margin: 1.25rem 0 0; padding: 0; color: var(--cacao); font-size: .85rem; }
+.c-trust li { padding: .35rem 0; border-top: 1px solid var(--crema); }
+.c-share { display: flex; gap: 1rem; margin-top: 1.5rem; font-size: .6875rem; letter-spacing: .2em; text-transform: uppercase; }
+.c-social { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.c-social a { font-size: .6875rem; letter-spacing: .2em; text-transform: uppercase; }
+.c-footer__policies { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; list-style: none; margin: 1.25rem 0 0; padding: 0; }
+.c-footer__policies a { font-size: .6875rem; letter-spacing: .16em; text-transform: uppercase; opacity: .75; }
+.c-footer__pay { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-top: 1.25rem; }
+.c-footer__copy { margin: 1.25rem 0 0; opacity: .55; }
+.c-loc { display: flex; gap: .5rem; }
+.c-loc select { min-height: 2.5rem; background: transparent; color: inherit; border: 1px solid color-mix(in srgb, var(--rosa) 35%, transparent); padding: 0 .5rem; }
+.c-pages { margin-top: 2rem; }
+
 

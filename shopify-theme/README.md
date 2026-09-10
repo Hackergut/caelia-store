@@ -1,44 +1,39 @@
-# CAELIA — tema Shopify 2.0
+# CAELIA — tema Shopify 2.0 (premium)
 
-Tema premium Online Store 2.0. Stesso design system del sito CAELIA: Tenor Sans, Burgundy Berry, cart drawer, checkout nativo (Shop Pay / Apple Pay / Google Pay).
+Tema Online Store 2.0 completo: Customize senza codice, cart drawer, Shop Pay / Apple Pay / Google Pay, icone pagamento, policy, mercati.
 
-## Installazione (10 minuti)
+## Installazione
 
-1. **Online Store → Themes → Add theme → Upload zip** → `caelia-shopify-theme.zip`
-2. **Publish**
-3. **Products → Import** `products.csv` (tre colori, 58 €)
-4. Crea collezione **CAELIA**, handle `caelia`, aggiungi i tre prodotti
-5. **Customize** → ingranaggio:
-   - Collezione home = `caelia`
-   - Menu header / footer
-   - Checkout dinamico = on
-   - Cart drawer = on
-6. **Settings → Payments** → Shopify Payments
-7. **Settings → Checkout** → accent `#973851`
+1. **Online Store → Themes → Upload zip** → Publish  
+2. **Products → Import** `products.csv`  
+3. Collezione **CAELIA** handle `caelia` (automated: tag = caelia)  
+4. **Settings → Payments** → Shopify Payments (carta, Shop Pay, Apple Pay, Google Pay)  
+5. **Settings → Checkout** → accent `#973851`  
+6. **Settings → Policies** → spedizione, reso, privacy  
+7. Customize → ingranaggio: collezione home, menu, pagamenti, fiducia
 
-Guida completa: [CONFIG.md](./CONFIG.md)
+## Customize (tutto editabile)
 
-## Cosa puoi fare da Customize (senza codice)
-
-| Sezione | Uso |
+| Gruppo | Cosa regola |
 | --- | --- |
-| Hero 3D | Immagine o video, didascalia |
-| Tre colori | Collezione Shopify, fino a 9 prodotti |
-| Capitolo film | Foto full-bleed + testo |
-| Mappa prodotto | Pin 01–06 sulla foto del case |
-| Prodotto in evidenza | Un prodotto + pulsanti acquisto |
-| Immagine e testo | Storia / lookbook |
-| Testo editoriale | Titolo grande + CTA |
-| Newsletter | Iscrizione customer |
-| Barra annuncio | Spedizione / promo |
+| Colori maison | Berry, rosa, avorio, marrone, ink |
+| Brand | Logo, favicon, nome, tagline |
+| Catalogo e menu | Collezione home, header, footer, search, account |
+| **Pagamenti e checkout** | Drawer, Shop Pay/Apple Pay, icone carte, nota spedizione, mercati |
+| Pagina prodotto | Quantità, SKU, vendor, share, 3 righe fiducia |
+| Test A/B | Copy pulsante acquisto |
+| SEO / Social | Title, OG, Instagram, TikTok, X, Pinterest |
 
-Home, prodotto, collezione, carrello, search, 404, account, contatti: tutti JSON OS 2.0. Aggiungi sezioni dal bottone **Add section**.
+**Add section** in home: Hero, Tre colori, Il gesto, Tutto intorno, Mappa prodotto, Prodotto in evidenza, Immagine e testo, Testo editoriale, Newsletter.
 
-## Checkout
+## Pagamenti
 
-- Pulsante **Aggiungi al carrello** (test A/B opzionale)
-- **Shop Pay / Apple Pay / Google Pay** sotto, se Shopify Payments è attivo
-- Cart drawer AJAX, poi checkout Shopify
+Non si “attivano” nel tema: si attivano in **Admin → Payments**. Il tema, se Shopify Payments è on, mostra:
+
+- Pulsante **Aggiungi al carrello**
+- **Shop Pay / Apple Pay / Google Pay** (`payment_button`)
+- Icone Visa / Mastercard / Amex / ecc. in footer e carrello (`shop.enabled_payment_types`)
+- Checkout Shopify dal drawer
 
 ## CLI
 
@@ -47,4 +42,4 @@ shopify theme dev --store tuo-negozio.myshopify.com
 shopify theme push
 ```
 
-v1.2.0 · HACKGUT
+v2.0.0 · HACKGUT

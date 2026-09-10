@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "CAELIA",
-    "theme_version": "1.2.0",
+    "theme_version": "2.0.0",
     "theme_author": "HACKGUT",
     "theme_documentation_url": "https://caelia-store-x1wb.vercel.app/shopify",
     "theme_support_url": "https://caelia-store-x1wb.vercel.app/contact"
@@ -10,18 +10,18 @@
   {
     "name": "Colori maison",
     "settings": [
-      { "type": "header", "content": "Palette esatta CAELIA" },
+      { "type": "header", "content": "Palette esatta CAELIA — modifica da qui, si aggiorna ovunque." },
       { "type": "color", "id": "color_berry", "label": "Burgundy Berry", "default": "#973851" },
       { "type": "color", "id": "color_rosa", "label": "Rosa nude", "default": "#ffddde" },
       { "type": "color", "id": "color_crema", "label": "Avorio caldo", "default": "#dfc0b4" },
       { "type": "color", "id": "color_cacao", "label": "Marrone", "default": "#5b3f33" },
-      { "type": "color", "id": "color_ink", "label": "Burgundy", "default": "#4a0e16" }
+      { "type": "color", "id": "color_ink", "label": "Burgundy (testi)", "default": "#4a0e16" }
     ]
   },
   {
     "name": "Brand",
     "settings": [
-      { "type": "image_picker", "id": "logo", "label": "Logo (opzionale)" },
+      { "type": "image_picker", "id": "logo", "label": "Logo header" },
       { "type": "image_picker", "id": "favicon", "label": "Favicon" },
       { "type": "text", "id": "brand_name", "label": "Nome", "default": "CAELIA" },
       { "type": "text", "id": "brand_tagline", "label": "Tagline", "default": "Beauty Mirror Case" }
@@ -30,52 +30,56 @@
   {
     "name": "Catalogo e menu",
     "settings": [
-      {
-        "type": "paragraph",
-        "content": "Crea la collezione con handle caelia (Burgundy Berry, Rosa nude, Marrone). Assegnala qui per la home."
-      },
+      { "type": "paragraph", "content": "Collezione handle caelia: Burgundy Berry, Rosa nude, Marrone." },
       { "type": "collection", "id": "featured_collection", "label": "Collezione home (tre colori)" },
       { "type": "link_list", "id": "menu", "label": "Menu header", "default": "main-menu" },
       { "type": "link_list", "id": "footer_menu", "label": "Menu footer", "default": "footer" },
-      { "type": "checkbox", "id": "show_breadcrumbs", "label": "Mostra breadcrumb", "default": true },
-      { "type": "checkbox", "id": "show_search", "label": "Mostra ricerca in header", "default": true },
-      { "type": "checkbox", "id": "show_account", "label": "Mostra account in header", "default": true },
-      { "type": "checkbox", "id": "enable_cart_drawer", "label": "Cart drawer (scorre dal lato)", "default": true },
-      { "type": "checkbox", "id": "enable_dynamic_checkout", "label": "Checkout dinamico (Shop Pay, Apple Pay, Google Pay)", "default": true, "info": "Sotto Aggiungi al carrello. Richiede Shopify Payments." },
-      { "type": "text", "id": "cart_note", "label": "Nota carrello", "default": "Spedizione gratuita oltre 60 €. Checkout Shopify." }
+      { "type": "checkbox", "id": "show_breadcrumbs", "label": "Breadcrumb", "default": true },
+      { "type": "checkbox", "id": "show_search", "label": "Ricerca in header", "default": true },
+      { "type": "checkbox", "id": "show_account", "label": "Account in header", "default": true }
+    ]
+  },
+  {
+    "name": "Pagamenti e checkout",
+    "settings": [
+      { "type": "paragraph", "content": "I pagamenti veri si attivano in Shopify Admin → Settings → Payments (Shopify Payments, Apple Pay, Google Pay, Shop Pay). Il tema mostra i pulsanti e le icone." },
+      { "type": "checkbox", "id": "enable_cart_drawer", "label": "Cart drawer", "default": true },
+      { "type": "checkbox", "id": "enable_dynamic_checkout", "label": "Checkout dinamico (Shop Pay / Apple Pay / Google Pay)", "default": true, "info": "Sotto Aggiungi al carrello. Serve Shopify Payments attivo." },
+      { "type": "checkbox", "id": "show_payment_icons", "label": "Icone metodi di pagamento in footer e carrello", "default": true },
+      { "type": "text", "id": "cart_checkout_label", "label": "Testo pulsante checkout", "default": "Checkout" },
+      { "type": "text", "id": "cart_note", "label": "Nota carrello / spedizione", "default": "Spedizione gratuita in Italia oltre 60 €." },
+      { "type": "text", "id": "free_shipping_threshold", "label": "Soglia spedizione gratuita (€)", "default": "60" },
+      { "type": "checkbox", "id": "show_localization", "label": "Selettore paese / valuta / lingua", "default": true, "info": "Compare se hai più mercati o lingue in Settings → Markets / Languages." }
+    ]
+  },
+  {
+    "name": "Pagina prodotto",
+    "settings": [
+      { "type": "checkbox", "id": "show_quantity", "label": "Quantità", "default": true },
+      { "type": "checkbox", "id": "show_sku", "label": "SKU", "default": false },
+      { "type": "checkbox", "id": "show_vendor", "label": "Vendor", "default": false },
+      { "type": "checkbox", "id": "show_share", "label": "Condividi", "default": true },
+      { "type": "checkbox", "id": "show_trust", "label": "Riga fiducia sotto il CTA", "default": true },
+      { "type": "text", "id": "trust_1", "label": "Fiducia 1", "default": "Spedizione 2–4 giorni" },
+      { "type": "text", "id": "trust_2", "label": "Fiducia 2", "default": "Reso 14 giorni" },
+      { "type": "text", "id": "trust_3", "label": "Fiducia 3", "default": "Pelle PU, specchio infrangibile" }
     ]
   },
   {
     "name": "Test A/B — pulsante acquisto",
     "settings": [
-      {
-        "type": "checkbox",
-        "id": "ab_cta",
-        "label": "Attiva test A/B sul pulsante",
-        "default": true,
-        "info": "50/50. A = controllo, B = variante. Stesso visitatore resta nello stesso gruppo (localStorage). Eventi: cta_ab_view, cta_ab_click."
-      },
-      { "type": "text", "id": "ab_cta_a", "label": "Testo A (controllo)", "default": "Aggiungi al carrello" },
-      { "type": "text", "id": "ab_cta_b", "label": "Testo B (variante)", "default": "Acquista ora" }
+      { "type": "checkbox", "id": "ab_cta", "label": "Attiva test A/B", "default": false, "info": "50/50 Aggiungi al carrello vs Acquista ora." },
+      { "type": "text", "id": "ab_cta_a", "label": "Testo A", "default": "Aggiungi al carrello" },
+      { "type": "text", "id": "ab_cta_b", "label": "Testo B", "default": "Acquista ora" }
     ]
   },
   {
     "name": "SEO",
     "settings": [
       { "type": "text", "id": "seo_home_title", "label": "Title home", "default": "CAELIA" },
-      {
-        "type": "textarea",
-        "id": "seo_home_description",
-        "label": "Meta description home",
-        "default": "CAELIA Beauty Mirror Case. Specchio, matita e gloss in un astuccio in pelle. Tre colori: Burgundy Berry, rosa nude, marrone. Fatto per la borsa."
-      },
-      {
-        "type": "textarea",
-        "id": "seo_description",
-        "label": "Meta description di default",
-        "default": "CAELIA — Beauty Mirror Case. Pelle, specchio integrato, tasca per cinque matite. Collezione maison."
-      },
-      { "type": "image_picker", "id": "seo_image", "label": "Immagine Open Graph (1200×630)" }
+      { "type": "textarea", "id": "seo_home_description", "label": "Meta home", "default": "CAELIA Beauty Mirror Case. Specchio, matita e gloss in un astuccio in pelle. Tre colori: Burgundy Berry, rosa nude, marrone. Fatto per la borsa." },
+      { "type": "textarea", "id": "seo_description", "label": "Meta default", "default": "CAELIA — Beauty Mirror Case. Pelle, specchio integrato, tasca per cinque matite. Collezione maison." },
+      { "type": "image_picker", "id": "seo_image", "label": "Open Graph 1200×630" }
     ]
   },
   {
@@ -83,7 +87,8 @@
     "settings": [
       { "type": "text", "id": "social_instagram", "label": "Instagram", "info": "URL completo" },
       { "type": "text", "id": "social_tiktok", "label": "TikTok" },
-      { "type": "text", "id": "social_twitter", "label": "X / Twitter", "info": "URL o @handle" }
+      { "type": "text", "id": "social_twitter", "label": "X / Twitter" },
+      { "type": "text", "id": "social_pinterest", "label": "Pinterest" }
     ]
   }
 ]

@@ -13,7 +13,7 @@
               <p class="c-card__title">{{ item.product.title }}</p>
               <p class="type-meta">{{ item.final_line_price | money }}</p>
               <div class="c-qty">
-                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Qty">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.quantity' | t }}">
                 <a class="type-meta" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
               </div>
             </div>
@@ -27,14 +27,20 @@
           <p class="c-cart__empty">{{ settings.cart_note }}</p>
         {% endif %}
         <div class="c-cart__actions">
-          <button type="submit" name="update" class="btn-ghost">Aggiorna</button>
-          <button type="submit" name="checkout" class="btn-primary">{{ 'cart.checkout' | t }}</button>
+          <button type="submit" name="update" class="btn-ghost">{{ 'cart.update' | t }}</button>
+          <button type="submit" name="checkout" class="btn-primary">{{ settings.cart_checkout_label | default: 'Checkout' }}</button>
         </div>
+        {% render 'payment-icons' %}
       </form>
     {% endif %}
   </div>
 </section>
 
 {% schema %}
-{ "name": "Carrello" }
+{
+  "name": "Carrello",
+  "settings": [
+    { "type": "paragraph", "content": "Nota spedizione, drawer e Shop Pay: Customize → Pagamenti e checkout." }
+  ]
+}
 {% endschema %}

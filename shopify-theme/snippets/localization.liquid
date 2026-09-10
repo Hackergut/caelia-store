@@ -1,0 +1,27 @@
+{% assign loc_id = unique | default: 'loc' %}
+{% if settings.show_localization %}
+  {% if localization.available_countries.size > 1 or localization.available_languages.size > 1 %}
+    {% form 'localization', class: 'c-loc' %}
+      {% if localization.available_countries.size > 1 %}
+        <label class="visually-hidden" for="Country-{{ loc_id }}">Country</label>
+        <select name="country_code" id="Country-{{ loc_id }}" onchange="this.form.submit()">
+          {% for country in localization.available_countries %}
+            <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
+              {{ country.name }} ({{ country.currency.iso_code }})
+            </option>
+          {% endfor %}
+        </select>
+      {% endif %}
+      {% if localization.available_languages.size > 1 %}
+        <label class="visually-hidden" for="Locale-{{ loc_id }}">Language</label>
+        <select name="locale_code" id="Locale-{{ loc_id }}" onchange="this.form.submit()">
+          {% for language in localization.available_languages %}
+            <option value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}selected{% endif %}>
+              {{ language.endonym_name }}
+            </option>
+          {% endfor %}
+        </select>
+      {% endif %}
+    {% endform %}
+  {% endif %}
+{% endif %}

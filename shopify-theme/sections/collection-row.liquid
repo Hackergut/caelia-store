@@ -2,8 +2,13 @@
 {% assign p1 = section.settings.product_1 %}
 {% assign p2 = section.settings.product_2 %}
 {% assign p3 = section.settings.product_3 %}
-{% assign col = section.settings.collection | default: settings.featured_collection %}
-{% if col == blank %}{% assign col = collections.caelia %}{% endif %}
+{% assign col = section.settings.collection %}
+{% if col == blank %}
+  {% assign col = settings.featured_collection %}
+{% endif %}
+{% if col == blank %}
+  {% assign col = collections.caelia %}
+{% endif %}
 
 <section class="c-row">
   <div class="shell">
