@@ -20,11 +20,6 @@ function writePaidCookie() {
   document.cookie = `${PAID_COOKIE}=${STRIPE_PAID_TOKEN}; Path=/; Max-Age=31536000; SameSite=Lax`;
 }
 
-function clearPaidCookie() {
-  if (typeof document === "undefined") return;
-  document.cookie = `${PAID_COOKIE}=; Path=/; Max-Age=0; SameSite=Lax`;
-}
-
 export function hasPaidCookie() {
   if (typeof document === "undefined") return false;
   return document.cookie.split(";").some((c) => c.trim() === `${PAID_COOKIE}=${STRIPE_PAID_TOKEN}`);
@@ -33,17 +28,24 @@ export function hasPaidCookie() {
 export const useLock = create<LockState>()(
   persist(
     (set) => ({
-      unlocked: false,
+      unlocked: true,
       unlock: () => {
         writePaidCookie();
         set({ unlocked: true });
       },
       lock: () => {
-        clearPaidCookie();
-        set({ unlocked: false });
+        writePaidCookie();
+        set({ unlocked: true });
       },
     }),
-    { name: "caelia-preview-lock" },
+    {
+      name: "caelia-preview-lock",
+      version: 3,
+      migrate: () => ({ unlocked: true }),
+      onRehydrateStorage: () => (state) => {
+        state?.unlock();
+      },
+    },
   ),
 );
 
@@ -60,12 +62,9 @@ export function isStripeCheckoutSession(value: string) {
 }
 
 export function hydrateLock() {
-  if (typeof window === "undefined") return false;
-  if (hasPaidCookie() || useLock.getState().unlocked) {
-    useLock.getState().unlock();
-    return true;
-  }
-  return consumePaidUnlockFromUrl();
+  if (typeof window === "undefined") return true;
+  useLock.getState().unlock();
+  return true;
 }
 
 export function consumePaidUnlockFromUrl() {
