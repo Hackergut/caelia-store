@@ -44,6 +44,11 @@
   {% render 'mega-menu', mode: 'mobile', section: section %}
   <p class="type-meta c-menu__meta">{{ settings.brand_tagline }}</p>
 </nav>
+<noscript>
+  <nav class="c-noscript" aria-label="{{ 'general.menu' | t }}">
+    {% render 'mega-menu', mode: 'mobile', section: section %}
+  </nav>
+</noscript>
 {% for block in section.blocks %}
   {% render block %}
 {% endfor %}

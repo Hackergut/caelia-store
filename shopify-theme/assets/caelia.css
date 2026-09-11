@@ -464,6 +464,8 @@ input, select, textarea { font-size: 16px; }
 .c-logos__item img { max-height: 2.5rem; width: auto; filter: grayscale(1); }
 .c-count__grid { display: flex; gap: 1.5rem; font-size: 1.5rem; margin: 1.5rem 0; }
 .c-product__ext, .c-product__ext iframe, model-viewer { width: 100%; min-height: 18rem; display: block; }
+.c-noscript { background: var(--berry); color: var(--rosa); padding: 1rem var(--gutter); }
+.c-noscript a { display: inline-flex; min-height: 44px; align-items: center; margin-right: 1rem; }
 
 @media (min-width: 990px) {
   .c-desk { display: block; flex: 1; }

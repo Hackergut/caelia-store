@@ -3,4 +3,4 @@
 # shopify theme push
 
 [environments.default]
-ignore = ["products.csv", "README.md", "CONFIG.md"]
+ignore = ["products.csv", "README.md", "CONFIG.md", "PAYMENTS.md", "demo"]

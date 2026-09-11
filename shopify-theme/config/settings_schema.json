@@ -2,10 +2,10 @@
   {
     "name": "theme_info",
     "theme_name": "CAELIA",
-    "theme_version": "5.0.0",
+    "theme_version": "5.1.0",
     "theme_author": "HACKGUT",
-    "theme_documentation_url": "https://caelia-store-x1wb.vercel.app/shopify",
-    "theme_support_url": "https://caelia-store-x1wb.vercel.app/contact"
+    "theme_documentation_url": "https://github.com/Hackergut/caelia-store",
+    "theme_support_url": "https://github.com/Hackergut/caelia-store/issues"
   },
   {
     "name": "t:settings_schema.colori_maison.name",
