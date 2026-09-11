@@ -466,6 +466,13 @@ input, select, textarea { font-size: 16px; }
 .c-product__ext, .c-product__ext iframe, model-viewer { width: 100%; min-height: 18rem; display: block; }
 .c-noscript { background: var(--berry); color: var(--rosa); padding: 1rem var(--gutter); }
 .c-noscript a { display: inline-flex; min-height: 44px; align-items: center; margin-right: 1rem; }
+.c-cookie { position: fixed; bottom: 0; left: 0; right: 0; z-index: 80; background: var(--berry); color: var(--rosa); padding: 1.25rem var(--gutter) calc(1.25rem + env(safe-area-inset-bottom)); border-top: 1px solid color-mix(in srgb, var(--rosa) 20%, transparent); }
+.c-cookie__row { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between; align-items: flex-end; }
+.c-cookie a { text-decoration: underline; }
+.c-legal { max-width: 40rem; }
+.c-legal__body { margin-top: 2rem; }
+.c-legal__body h2 { font-family: var(--font); font-size: 1.5rem; margin: 1.5rem 0 0.5rem; }
+.c-price__vat, .c-price__sku { display: block; margin-top: 0.25rem; }
 
 @media (min-width: 990px) {
   .c-desk { display: block; flex: 1; }

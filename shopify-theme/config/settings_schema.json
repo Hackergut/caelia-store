@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "CAELIA",
-    "theme_version": "5.1.0",
+    "theme_version": "5.2.0",
     "theme_author": "HACKGUT",
     "theme_documentation_url": "https://github.com/Hackergut/caelia-store",
     "theme_support_url": "https://github.com/Hackergut/caelia-store/issues"
@@ -207,7 +207,7 @@
         "type": "checkbox",
         "id": "show_sku",
         "label": "t:settings_schema.pagina_prodotto.show_sku.label",
-        "default": false
+        "default": true
       },
       {
         "type": "checkbox",
@@ -341,6 +341,69 @@
         "type": "text",
         "id": "social_pinterest",
         "label": "t:settings_schema.social.social_pinterest.label"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.legal.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "legal_name",
+        "label": "t:settings_schema.legal.legal_name.label",
+        "default": "CAELIA"
+      },
+      {
+        "type": "text",
+        "id": "legal_address",
+        "label": "t:settings_schema.legal.legal_address.label",
+        "default": "Milano, Italia"
+      },
+      {
+        "type": "text",
+        "id": "legal_piva",
+        "label": "t:settings_schema.legal.legal_piva.label"
+      },
+      {
+        "type": "text",
+        "id": "legal_rea",
+        "label": "t:settings_schema.legal.legal_rea.label"
+      },
+      {
+        "type": "text",
+        "id": "legal_sdi",
+        "label": "t:settings_schema.legal.legal_sdi.label"
+      },
+      {
+        "type": "text",
+        "id": "legal_email",
+        "label": "t:settings_schema.legal.legal_email.label",
+        "default": "info@caelia.store"
+      },
+      {
+        "type": "text",
+        "id": "legal_pec",
+        "label": "t:settings_schema.legal.legal_pec.label"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.analytics.name",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.analytics.paragraph.content"
+      },
+      {
+        "type": "text",
+        "id": "ga4_id",
+        "label": "t:settings_schema.analytics.ga4_id.label",
+        "info": "t:settings_schema.analytics.ga4_id.info"
+      },
+      {
+        "type": "text",
+        "id": "meta_pixel",
+        "label": "t:settings_schema.analytics.meta_pixel.label"
       }
     ]
   }

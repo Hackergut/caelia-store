@@ -16,5 +16,9 @@
         {{ t.unit_price | money }}/{{ t.unit_price_measurement.reference_unit }}
       </span>
     {%- endif -%}
+    <span class="c-price__vat type-meta">{{ 'products.vat_included' | t }}</span>
+    {%- if t.sku != blank and settings.show_sku -%}
+      <span class="c-price__sku type-meta">SKU {{ t.sku }}</span>
+    {%- endif -%}
   </div>
 {%- endif -%}

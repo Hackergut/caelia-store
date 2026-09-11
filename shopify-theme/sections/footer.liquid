@@ -56,7 +56,11 @@
         <div class="shopify-follow-on-shop">{{ shop | login_button: action: 'follow' }}</div>
       {% endif %}
     </div>
-    <p class="type-meta c-footer__copy">{{ section.settings.text }} · © {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+    <p class="type-meta c-footer__copy">
+      {{ section.settings.text }} · © {{ 'now' | date: '%Y' }} {{ shop.name }}
+      {% if settings.legal_piva != blank %} · {{ settings.legal_piva }}{% endif %}
+      {% if settings.legal_address != blank %} · {{ settings.legal_address }}{% endif %}
+    </p>
   </div>
 </footer>
 

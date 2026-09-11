@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<body style="margin:0;background:#ffddde;color:#4a0e16;font-family:'Tenor Sans',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#973851;color:#ffddde;">
+    <tr><td style="padding:28px 24px;letter-spacing:.4em;">CAELIA</td></tr>
+  </table>
+  <table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+      <td style="padding:32px 24px;max-width:560px;">
+        <p style="letter-spacing:.2em;font-size:11px;text-transform:uppercase;">Ordine {{ order.name }}</p>
+        <h1 style="font-weight:400;font-size:28px;">Grazie.</h1>
+        <p>Il Beauty Mirror Case è in preparazione. Spedizione Italia 2–4 giorni, tracking in una seconda email.</p>
+        <p>IVA inclusa. Reso 14 giorni da {{ shop.email }}.</p>
+        {{ order.line_items | map: 'title' }}
+        <p style="margin-top:32px;">CAELIA · Milano</p>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

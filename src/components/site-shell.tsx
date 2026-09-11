@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { cartCount, useCart } from "@/lib/cart";
 import { useChrome } from "@/lib/chrome";
 import { PreviewWatermark } from "@/components/preview-watermark";
+import { CookieBanner } from "@/components/cookie-banner";
+import { Analytics } from "@/components/analytics";
+import { legalNav } from "@/lib/legal";
 import { SITE_PREVIEW_URL, STRIPE_PAY_URL } from "@/lib/lock";
 
 const nav = [
@@ -42,6 +45,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-rosa text-burgundy">
       <PreviewWatermark />
+      <Analytics />
+      <CookieBanner />
       <motion.header
         initial={false}
         animate={{
@@ -178,14 +183,20 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
               </div>
             </div>
             <div className="text-sm text-rosa/80">
-              <p className="type-meta text-rosa/55">Cura</p>
-              <p className="mt-4">Italia · Pelle vegana · Resi 30 giorni</p>
+              <p className="type-meta text-rosa/55">Note</p>
+              <div className="mt-4 flex flex-col gap-2">
+                {legalNav.map((item) => (
+                  <Link key={item.to} to={item.to}>
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
           <div className="border-t border-rosa/15">
             <div className="shell flex flex-wrap justify-between gap-3 py-5 type-meta text-rosa/50">
-              <span>© 2026 CAELIA</span>
-              <span>Milano</span>
+              <span>© 2026 CAELIA · Milano · IVA 22%</span>
+              <span>Reso 14 giorni · info@caelia.store</span>
             </div>
           </div>
         </div>

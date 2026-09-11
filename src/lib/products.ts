@@ -4,6 +4,10 @@ export type Product = {
   handle: string;
   title: string;
   price: number;
+  sku: string;
+  stock: number;
+  vatRate: number;
+  weightGrams: number;
   swatch: string;
   tone: "berry" | "cacao" | "rosa";
   tagline: string;
@@ -31,6 +35,10 @@ export const products: Product[] = [
     handle: "burgundy-caelia",
     title: "Burgundy Berry",
     price: 58,
+    sku: "CAE-BERRY",
+    stock: 48,
+    vatRate: 22,
+    weightGrams: 180,
     swatch: "#973851",
     tone: "berry",
     tagline: "Il colore maison",
@@ -49,6 +57,10 @@ export const products: Product[] = [
     handle: "crema-caelia",
     title: "Rosa nude",
     price: 58,
+    sku: "CAE-ROSA",
+    stock: 36,
+    vatRate: 22,
+    weightGrams: 180,
     swatch: "#ffddde",
     tone: "rosa",
     tagline: "Polvere",
@@ -66,6 +78,10 @@ export const products: Product[] = [
     handle: "cacao-caelia",
     title: "Marrone",
     price: 58,
+    sku: "CAE-MARR",
+    stock: 40,
+    vatRate: 22,
+    weightGrams: 180,
     swatch: "#5b3f33",
     tone: "cacao",
     tagline: "Marrone",

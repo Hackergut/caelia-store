@@ -20,6 +20,11 @@ import { Route as PagaRouteImport } from './routes/paga'
 import { Route as PaidRouteImport } from './routes/paid'
 import { Route as ProductsRouteImport } from './routes/products'
 import { Route as ShopifyRouteImport } from './routes/shopify'
+import { Route as LegalCookiesRouteImport } from './routes/legal.cookies'
+import { Route as LegalPrivacyRouteImport } from './routes/legal.privacy'
+import { Route as LegalResoRouteImport } from './routes/legal.reso'
+import { Route as LegalSpedizioneRouteImport } from './routes/legal.spedizione'
+import { Route as LegalTerminiRouteImport } from './routes/legal.termini'
 import { Route as ProductsIndexRouteImport } from './routes/products.index'
 import { Route as ProductsHandleRouteImport } from './routes/products.$handle'
 
@@ -78,6 +83,31 @@ const ShopifyRoute = ShopifyRouteImport.update({
   path: '/shopify',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LegalCookiesRoute = LegalCookiesRouteImport.update({
+  id: '/legal/cookies',
+  path: '/legal/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalPrivacyRoute = LegalPrivacyRouteImport.update({
+  id: '/legal/privacy',
+  path: '/legal/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalResoRoute = LegalResoRouteImport.update({
+  id: '/legal/reso',
+  path: '/legal/reso',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalSpedizioneRoute = LegalSpedizioneRouteImport.update({
+  id: '/legal/spedizione',
+  path: '/legal/spedizione',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalTerminiRoute = LegalTerminiRouteImport.update({
+  id: '/legal/termini',
+  path: '/legal/termini',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsIndexRoute = ProductsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -101,6 +131,11 @@ export interface FileRoutesByFullPath {
   '/paid': typeof PaidRoute
   '/products': typeof ProductsRouteWithChildren
   '/shopify': typeof ShopifyRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/reso': typeof LegalResoRoute
+  '/legal/spedizione': typeof LegalSpedizioneRoute
+  '/legal/termini': typeof LegalTerminiRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -115,6 +150,11 @@ export interface FileRoutesByTo {
   '/paga': typeof PagaRoute
   '/paid': typeof PaidRoute
   '/shopify': typeof ShopifyRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/reso': typeof LegalResoRoute
+  '/legal/spedizione': typeof LegalSpedizioneRoute
+  '/legal/termini': typeof LegalTerminiRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/products': typeof ProductsIndexRoute
 }
@@ -131,6 +171,11 @@ export interface FileRoutesById {
   '/paid': typeof PaidRoute
   '/products': typeof ProductsRouteWithChildren
   '/shopify': typeof ShopifyRoute
+  '/legal/cookies': typeof LegalCookiesRoute
+  '/legal/privacy': typeof LegalPrivacyRoute
+  '/legal/reso': typeof LegalResoRoute
+  '/legal/spedizione': typeof LegalSpedizioneRoute
+  '/legal/termini': typeof LegalTerminiRoute
   '/products/$handle': typeof ProductsHandleRoute
   '/products/': typeof ProductsIndexRoute
 }
@@ -148,6 +193,11 @@ export interface FileRouteTypes {
     | '/paid'
     | '/products'
     | '/shopify'
+    | '/legal/cookies'
+    | '/legal/privacy'
+    | '/legal/reso'
+    | '/legal/spedizione'
+    | '/legal/termini'
     | '/products/$handle'
     | '/products/'
   fileRoutesByTo: FileRoutesByTo
@@ -162,6 +212,11 @@ export interface FileRouteTypes {
     | '/paga'
     | '/paid'
     | '/shopify'
+    | '/legal/cookies'
+    | '/legal/privacy'
+    | '/legal/reso'
+    | '/legal/spedizione'
+    | '/legal/termini'
     | '/products/$handle'
     | '/products'
   id:
@@ -177,6 +232,11 @@ export interface FileRouteTypes {
     | '/paid'
     | '/products'
     | '/shopify'
+    | '/legal/cookies'
+    | '/legal/privacy'
+    | '/legal/reso'
+    | '/legal/spedizione'
+    | '/legal/termini'
     | '/products/$handle'
     | '/products/'
   fileRoutesById: FileRoutesById
@@ -193,6 +253,11 @@ export interface RootRouteChildren {
   PaidRoute: typeof PaidRoute
   ProductsRoute: typeof ProductsRouteWithChildren
   ShopifyRoute: typeof ShopifyRoute
+  LegalCookiesRoute: typeof LegalCookiesRoute
+  LegalPrivacyRoute: typeof LegalPrivacyRoute
+  LegalResoRoute: typeof LegalResoRoute
+  LegalSpedizioneRoute: typeof LegalSpedizioneRoute
+  LegalTerminiRoute: typeof LegalTerminiRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -274,6 +339,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopifyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/legal/cookies': {
+      id: '/legal/cookies'
+      path: '/legal/cookies'
+      fullPath: '/legal/cookies'
+      preLoaderRoute: typeof LegalCookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/privacy': {
+      id: '/legal/privacy'
+      path: '/legal/privacy'
+      fullPath: '/legal/privacy'
+      preLoaderRoute: typeof LegalPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/reso': {
+      id: '/legal/reso'
+      path: '/legal/reso'
+      fullPath: '/legal/reso'
+      preLoaderRoute: typeof LegalResoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/spedizione': {
+      id: '/legal/spedizione'
+      path: '/legal/spedizione'
+      fullPath: '/legal/spedizione'
+      preLoaderRoute: typeof LegalSpedizioneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal/termini': {
+      id: '/legal/termini'
+      path: '/legal/termini'
+      fullPath: '/legal/termini'
+      preLoaderRoute: typeof LegalTerminiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/': {
       id: '/products/'
       path: '/'
@@ -317,6 +417,11 @@ const rootRouteChildren: RootRouteChildren = {
   PaidRoute: PaidRoute,
   ProductsRoute: ProductsRouteWithChildren,
   ShopifyRoute: ShopifyRoute,
+  LegalCookiesRoute: LegalCookiesRoute,
+  LegalPrivacyRoute: LegalPrivacyRoute,
+  LegalResoRoute: LegalResoRoute,
+  LegalSpedizioneRoute: LegalSpedizioneRoute,
+  LegalTerminiRoute: LegalTerminiRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -64,7 +64,7 @@ function CartPage() {
               <p className="tabular-nums text-xl">{formatEUR(total)}</p>
             </div>
             <p className="text-sm text-cacao">
-              Checkout demo: il carrello resta sul dispositivo. Spedizione gratuita oltre 60€.
+              IVA 22% inclusa. Spedizione Italia 2–4 giorni, gratuita da 60 €. Reso 14 giorni.
             </p>
             <div className="flex flex-wrap gap-3">
               <button type="button" className="btn-primary" onClick={() => clear()}>

@@ -63,6 +63,11 @@ function ProductPage() {
           <p className="eyebrow">{product.tagline}</p>
           <h1 className="type-display-md mt-3">{product.title}</h1>
           <p className="mt-4 tabular-nums text-lg">{formatEUR(product.price)}</p>
+          <p className="mt-1 type-meta text-cacao">
+            IVA {product.vatRate}% inclusa · SKU {product.sku}
+            {product.stock > 0 ? ` · ${product.stock} in stock` : " · Esaurito"}
+          </p>
+          <p className="mt-2 text-sm text-cacao">Spedizione Italia 2–4 giorni. Gratuita da 60 €.</p>
           <p className="mt-6 max-w-md leading-relaxed text-cacao">{product.description}</p>
           <ul className="mt-8 space-y-2 text-sm text-cacao">
             {product.features.map((f) => (

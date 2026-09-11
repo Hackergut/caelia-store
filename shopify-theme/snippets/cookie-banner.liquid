@@ -1,0 +1,12 @@
+<div class="c-cookie" data-cookie hidden>
+  <div class="shell c-cookie__row">
+    <p>
+      {{ 'cookie.message' | t }}
+      <a href="{{ pages.cookies.url | default: '/pages/cookies' }}">{{ 'cookie.policy' | t }}</a>
+    </p>
+    <div class="c-cookie__actions">
+      <button type="button" class="btn-ghost" data-cookie-reject>{{ 'cookie.reject' | t }}</button>
+      <button type="button" class="btn-primary" data-cookie-accept>{{ 'cookie.accept' | t }}</button>
+    </div>
+  </div>
+</div>

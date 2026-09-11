@@ -1,0 +1,8 @@
+{%- if settings.ga4_id != blank or settings.meta_pixel != blank -%}
+<script>
+  window.CAELIA_TRACK = {
+    ga: {{ settings.ga4_id | json }},
+    meta: {{ settings.meta_pixel | json }}
+  };
+</script>
+{%- endif -%}

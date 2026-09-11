@@ -182,6 +182,43 @@
         "label": "Body font",
         "info": "Used when Tenor Sans is off."
       }
+    },
+    "legal": {
+      "name": "Legal",
+      "legal_name": {
+        "label": "Legal name"
+      },
+      "legal_address": {
+        "label": "Registered address"
+      },
+      "legal_piva": {
+        "label": "VAT / P.IVA"
+      },
+      "legal_rea": {
+        "label": "REA"
+      },
+      "legal_sdi": {
+        "label": "SDI code"
+      },
+      "legal_email": {
+        "label": "Customer email"
+      },
+      "legal_pec": {
+        "label": "PEC"
+      }
+    },
+    "analytics": {
+      "name": "Analytics",
+      "paragraph": {
+        "content": "Scripts load only after cookie consent."
+      },
+      "ga4_id": {
+        "label": "GA4 measurement ID",
+        "info": "Example G-XXXXXXXX"
+      },
+      "meta_pixel": {
+        "label": "Meta Pixel ID"
+      }
     }
   },
   "sections": {
@@ -795,6 +832,9 @@
       "presets__0": {
         "name": "Video"
       }
+    },
+    "main_legal": {
+      "name_0": "Legal page"
     }
   }
 }

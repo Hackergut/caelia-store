@@ -38,6 +38,11 @@ function ContactPage() {
             </button>
           </form>
         )}
+        <p className="mt-10 text-sm text-cacao">
+          CAELIA · Milano · info@caelia.store · PEC pec@caelia.store
+          <br />
+          P.IVA e REA si compilano in Shopify Admin prima del go-live.
+        </p>
       </div>
     </section>
   );

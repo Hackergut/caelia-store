@@ -1,0 +1,41 @@
+{%- assign handle = page.handle | default: template.suffix | default: 'privacy' -%}
+{%- assign mail = settings.legal_email | default: 'info@caelia.store' -%}
+{%- assign piva = settings.legal_piva | default: 'P.IVA da inserire in Tema → Legal' -%}
+{%- assign pec = settings.legal_pec | default: 'pec@caelia.store' -%}
+{%- assign addr = settings.legal_address | default: 'Milano, Italia' -%}
+{%- assign name = settings.legal_name | default: settings.brand_name | default: shop.name -%}
+<article class="c-legal">
+  <p class="eyebrow">{{ shop.name }}</p>
+  <h1 class="type-display-md">{{ page.title | default: 'Note legali' }}</h1>
+  <p class="type-meta">{{ name }} · {{ addr }} · {{ piva }}</p>
+  <div class="rte c-legal__body">
+    {% if page.content != blank %}
+      {{ page.content }}
+    {% elsif handle == 'privacy' %}
+      <h2>Titolare</h2>
+      <p>{{ name }}, {{ addr }}. Email {{ mail }}. PEC {{ pec }}. {{ piva }}. Trattiamo i dati per evadere gli ordini, assistenza e — solo con consenso — analytics.</p>
+      <h2>Diritti</h2>
+      <p>Accesso, rettifica, cancellazione, portabilità, opposizione, reclamo al Garante. Scrivi a {{ mail }}. Conservazione ordini: 10 anni (fiscale).</p>
+    {% elsif handle == 'cookies' %}
+      <h2>Necessari</h2>
+      <p>Carrello, sessione, scelta cookie. Sempre attivi.</p>
+      <h2>Analytics e ads</h2>
+      <p>GA4 e Meta Pixel solo dopo Accetta. Puoi rifiutare dal banner. Nessun tracking prima del consenso.</p>
+    {% elsif handle == 'terms' or handle == 'termini' %}
+      <h2>Contratto</h2>
+      <p>Il contratto si conclude con la conferma d’ordine. Prezzi IVA inclusa. Legge italiana, Codice del Consumo. Foro del consumatore.</p>
+      <h2>Pagamento</h2>
+      <p>Shopify Payments, carte, Apple Pay, Google Pay, Shop Pay se attivati sul negozio.</p>
+    {% elsif handle == 'refund' or handle == 'reso' %}
+      <h2>Recesso 14 giorni</h2>
+      <p>Hai 14 giorni dalla consegna per recedere senza motivazione. Scrivi a {{ mail }} con numero ordine. Rimborso con lo stesso mezzo entro 14 giorni dal rientro merce.</p>
+    {% elsif handle == 'shipping' or handle == 'spedizione' %}
+      <h2>Italia</h2>
+      <p>Spedizione 2–4 giorni lavorativi. Gratuita da {{ settings.free_shipping_threshold | default: 60 }} €. Tracking via email.</p>
+      <h2>UE</h2>
+      <p>5–8 giorni lavorativi. Dazi extra-UE a carico del destinatario se previsti.</p>
+    {% else %}
+      {{ page.content }}
+    {% endif %}
+  </div>
+</article>

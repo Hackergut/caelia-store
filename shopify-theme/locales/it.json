@@ -48,7 +48,8 @@
     "pickup": "Ritiro in negozio",
     "unavailable": "Non disponibile",
     "sale": "Saldo",
-    "quick_view": "Vista rapida"
+    "quick_view": "Vista rapida",
+    "vat_included": "IVA inclusa"
   },
   "cart": {
     "title": "Carrello",
@@ -112,5 +113,11 @@
     "shipping": "Spedizione",
     "reset": "Reimposta password",
     "activate": "Attiva account"
+  },
+  "cookie": {
+    "message": "I cookie necessari tengono il carrello. Analytics solo se accetti.",
+    "policy": "Informativa cookie",
+    "accept": "Accetta",
+    "reject": "Rifiuta"
   }
 }

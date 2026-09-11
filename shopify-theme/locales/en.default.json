@@ -48,7 +48,8 @@
     "pickup": "Pickup",
     "unavailable": "Unavailable",
     "sale": "Sale",
-    "quick_view": "Quick view"
+    "quick_view": "Quick view",
+    "vat_included": "VAT included"
   },
   "cart": {
     "title": "Cart",
@@ -112,5 +113,11 @@
     "shipping": "Shipping",
     "reset": "Reset password",
     "activate": "Activate account"
+  },
+  "cookie": {
+    "message": "Necessary cookies keep the cart. Analytics only if you accept.",
+    "policy": "Cookie policy",
+    "accept": "Accept",
+    "reject": "Reject"
   }
 }
