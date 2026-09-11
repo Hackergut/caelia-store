@@ -74,6 +74,16 @@
   </div>
 </section>
 
+{% if settings.enable_sticky_atc %}
+  <div class="c-sticky" data-sticky-atc hidden>
+    <div class="shell c-sticky__row">
+      <p class="c-sticky__title">{{ product.title }}</p>
+      {% render 'price', product: product %}
+      <button type="button" class="btn-primary" data-sticky-submit>{{ 'products.add' | t }}</button>
+    </div>
+  </div>
+{% endif %}
+
 {% schema %}
 {
   "name": "Product",

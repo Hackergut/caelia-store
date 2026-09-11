@@ -1,22 +1,45 @@
 <footer class="c-footer" role="contentinfo">
   <div class="shell">
-    <div class="c-footer__row">
-      <a class="c-logo" href="{{ routes.root_url }}" aria-label="{{ 'accessibility.home' | t }}">{{ settings.brand_name | default: shop.name }}</a>
-      <nav aria-label="Footer">
-        <ul class="c-footer__nav">
-          {% assign fmenu = linklists[settings.footer_menu] %}
-          {% if fmenu and fmenu.links.size > 0 %}
-            {% for link in fmenu.links %}
-              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
-            {% endfor %}
-          {% else %}
-            <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">{{ 'general.collection' | t }}</a></li>
-            <li><a href="{{ pages.storia.url | default: pages.about.url }}">{{ 'general.about' | t }}</a></li>
-            <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">{{ 'general.contact' | t }}</a></li>
-          {% endif %}
-        </ul>
-      </nav>
-      {% render 'social-icons' %}
+    <div class="c-footer__grid">
+      <div>
+        <a class="c-logo" href="{{ routes.root_url }}" aria-label="{{ 'accessibility.home' | t }}">{{ settings.brand_name | default: shop.name }}</a>
+        <p class="c-footer__blurb">{{ section.settings.blurb }}</p>
+        {% render 'social-icons' %}
+      </div>
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          {% case block.type %}
+            {% when '@app' %}
+              {% render block %}
+            {% when 'menu' %}
+              <p class="type-meta">{{ block.settings.heading }}</p>
+              <ul class="c-footer__nav">
+                {% assign col_menu = linklists[block.settings.menu] %}
+                {% if col_menu and col_menu.links.size > 0 %}
+                  {% for link in col_menu.links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                {% else %}
+                  {% assign fmenu = linklists[settings.footer_menu] %}
+                  {% for link in fmenu.links %}
+                    <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                {% endif %}
+              </ul>
+            {% when 'text' %}
+              <p class="type-meta">{{ block.settings.heading }}</p>
+              <div class="rte">{{ block.settings.body }}</div>
+            {% when 'newsletter' %}
+              <p class="type-meta">{{ block.settings.heading }}</p>
+              {% form 'customer', class: 'c-news__form' %}
+                <input type="hidden" name="contact[tags]" value="newsletter">
+                <label class="visually-hidden" for="FooterEmail-{{ block.id }}">{{ 'newsletter.email' | t }}</label>
+                <input id="FooterEmail-{{ block.id }}" type="email" name="contact[email]" placeholder="{{ 'newsletter.email' | t }}" required>
+                <button class="btn-primary" type="submit">{{ 'newsletter.subscribe' | t }}</button>
+              {% endform %}
+          {% endcase %}
+        </div>
+      {% endfor %}
     </div>
     {% if section.settings.show_policies %}
       <ul class="c-footer__policies">
@@ -31,9 +54,6 @@
       {% render 'localization', unique: 'footer' %}
     </div>
     <p class="type-meta c-footer__copy">{{ section.settings.text }} · © {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
-    {% for block in section.blocks %}
-      {% render block %}
-    {% endfor %}
   </div>
 </footer>
 
@@ -42,8 +62,35 @@
   "name": "Footer",
   "settings": [
     { "type": "text", "id": "text", "label": "Caption", "default": "Milano · Beauty Essentials" },
+    { "type": "textarea", "id": "blurb", "label": "About", "default": "Beauty Mirror Case. Pelle, specchio, tasca." },
     { "type": "checkbox", "id": "show_policies", "label": "Shopify policy links", "default": true }
   ],
-  "blocks": [{ "type": "@app" }]
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "menu",
+      "name": "Menu",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Maison" },
+        { "type": "link_list", "id": "menu", "label": "Menu" }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Service" },
+        { "type": "richtext", "id": "body", "label": "Text", "default": "<p>Spedizione 2–4 giorni. Reso 14 giorni.</p>" }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "The list" }
+      ]
+    }
+  ]
 }
 {% endschema %}

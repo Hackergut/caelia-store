@@ -58,6 +58,10 @@
       {{ content_for_layout }}
     </main>
     {% sections 'footer-group' %}
+    <dialog class="c-qv" data-quick-dialog>
+      <button type="button" class="c-qv__close" data-qv-close aria-label="{{ 'general.close' | t }}">{{ 'general.close' | t }}</button>
+      <div class="c-qv__body" data-qv-body></div>
+    </dialog>
     <script>
       window.CAELIA = {
         drawer: {{ settings.enable_cart_drawer | json }},

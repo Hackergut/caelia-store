@@ -478,4 +478,74 @@
     track("view");
     ctaBtn.addEventListener("click", () => track("click"));
   }
+
+  document.querySelectorAll("[data-card-swatch]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const src = btn.getAttribute("data-card-swatch");
+      const img = btn.closest(".c-card")?.querySelector(".c-card__img, .c-card__frame img");
+      if (src && img) img.src = src;
+    });
+  });
+
+  const sticky = document.querySelector("[data-sticky-atc]");
+  const formEl = document.querySelector("[data-product-form]");
+  if (sticky && formEl && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      sticky.hidden = entries[0].isIntersecting;
+    });
+    io.observe(formEl);
+    sticky.querySelector("[data-sticky-submit]")?.addEventListener("click", () => {
+      formEl.requestSubmit();
+    });
+  }
+
+  const qv = document.querySelector("[data-quick-dialog]");
+  const qvBody = document.querySelector("[data-qv-body]");
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-quick-view]");
+    if (!btn || !qv || !qvBody) return;
+    e.preventDefault();
+    try {
+      const res = await fetch(btn.getAttribute("data-quick-view"));
+      const p = await res.json();
+      const img = (p.featured_image || (p.images && p.images[0]) || "").replace(".jpg", "_800x.jpg");
+      qvBody.innerHTML = `<img alt="${p.title}" src="${img}"><h2 class="type-display-md">${p.title}</h2><p>${(p.price / 100).toFixed(2)} €</p><a class="btn-primary" href="${p.url}">${p.title}</a>`;
+      if (typeof qv.showModal === "function") qv.showModal();
+    } catch (err) {
+      window.location.href = btn.getAttribute("data-quick-view").replace(/\.js$/, "");
+    }
+  });
+  document.querySelector("[data-qv-close]")?.addEventListener("click", () => qv?.close());
+
+  document.querySelectorAll("[data-slideshow]").forEach((root) => {
+    const items = [...root.querySelectorAll(".c-slide__item")];
+    if (items.length < 2) return;
+    let i = 0;
+    const go = (n) => {
+      items[i].classList.remove("is-on");
+      i = (n + items.length) % items.length;
+      items[i].classList.add("is-on");
+    };
+    root.querySelector("[data-slide-next]")?.addEventListener("click", () => go(i + 1));
+    root.querySelector("[data-slide-prev]")?.addEventListener("click", () => go(i - 1));
+  });
+
+  document.querySelectorAll("[data-countdown]").forEach((el) => {
+    const end = new Date(el.getAttribute("data-countdown")).getTime();
+    const tick = () => {
+      const d = Math.max(0, end - Date.now());
+      const days = Math.floor(d / 86400000);
+      const hours = Math.floor((d % 86400000) / 3600000);
+      const mins = Math.floor((d % 3600000) / 60000);
+      const set = (sel, v) => {
+        const n = el.querySelector(sel);
+        if (n) n.textContent = String(v);
+      };
+      set("[data-d]", days);
+      set("[data-h]", hours);
+      set("[data-m]", mins);
+    };
+    tick();
+    setInterval(tick, 30000);
+  });
 })();

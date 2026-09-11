@@ -14,7 +14,12 @@
     "view_all": "View all",
     "search_no_results": "No results",
     "view_all_results": "View all results",
-    "search_results_count": "{{ count }} results"
+    "search_results_count": "{{ count }} results",
+    "prev": "Previous",
+    "next": "Next",
+    "days": "Days",
+    "hours": "Hours",
+    "minutes": "Minutes"
   },
   "accessibility": {
     "home": "CAELIA, go to home",
@@ -41,7 +46,9 @@
     "purchase_options": "Purchase options",
     "one_time": "One-time purchase",
     "pickup": "Pickup",
-    "unavailable": "Unavailable"
+    "unavailable": "Unavailable",
+    "sale": "Sale",
+    "quick_view": "Quick view"
   },
   "cart": {
     "title": "Cart",

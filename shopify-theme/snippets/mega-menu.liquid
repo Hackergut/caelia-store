@@ -1,0 +1,83 @@
+{%- comment -%} mode: desktop | mobile. Uses settings.menu {%- endcomment -%}
+{%- assign menu = linklists[settings.menu] -%}
+{%- if mode == 'desktop' -%}
+  <nav class="c-desk" aria-label="{{ 'general.menu' | t }}">
+    <ul class="c-desk__list">
+      {%- if menu and menu.links.size > 0 -%}
+        {%- for link in menu.links -%}
+          <li class="c-desk__item{% if link.links.size > 0 %} has-mega{% endif %}">
+            <a href="{{ link.url }}" class="c-desk__link" {% if link.active %}aria-current="page"{% endif %}{% if link.links.size > 0 %} aria-haspopup="true"{% endif %}>{{ link.title }}</a>
+            {%- if link.links.size > 0 -%}
+              <div class="c-mega" role="group" aria-label="{{ link.title }}">
+                {%- for child in link.links -%}
+                  <div class="c-mega__col">
+                    <a class="c-mega__title" href="{{ child.url }}">{{ child.title }}</a>
+                    {%- if child.links.size > 0 -%}
+                      <ul>
+                        {%- for grand in child.links -%}
+                          <li><a href="{{ grand.url }}">{{ grand.title }}</a></li>
+                        {%- endfor -%}
+                      </ul>
+                    {%- endif -%}
+                  </div>
+                {%- endfor -%}
+                {%- if section.settings.mega_image != blank -%}
+                  <a class="c-mega__promo" href="{{ section.settings.mega_link | default: link.url }}">
+                    {{ section.settings.mega_image | image_url: width: 800 | image_tag: loading: 'lazy', alt: section.settings.mega_caption | default: link.title }}
+                    {%- if section.settings.mega_caption != blank -%}
+                      <span class="type-meta">{{ section.settings.mega_caption }}</span>
+                    {%- endif -%}
+                  </a>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      {%- else -%}
+        <li class="c-desk__item"><a class="c-desk__link" href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+        <li class="c-desk__item"><a class="c-desk__link" href="{{ settings.featured_collection.url | default: routes.all_products_collection_url }}">{{ 'general.collection' | t }}</a></li>
+      {%- endif -%}
+    </ul>
+  </nav>
+{%- else -%}
+  <ul class="c-mnav">
+    {%- if menu and menu.links.size > 0 -%}
+      {%- for link in menu.links -%}
+        <li>
+          {%- if link.links.size > 0 -%}
+            <details>
+              <summary>{{ link.title }}</summary>
+              <ul>
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                {%- for child in link.links -%}
+                  <li>
+                    {%- if child.links.size > 0 -%}
+                      <details>
+                        <summary>{{ child.title }}</summary>
+                        <ul>
+                          <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+                          {%- for grand in child.links -%}
+                            <li><a href="{{ grand.url }}">{{ grand.title }}</a></li>
+                          {%- endfor -%}
+                        </ul>
+                      </details>
+                    {%- else -%}
+                      <a href="{{ child.url }}">{{ child.title }}</a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- else -%}
+            <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title }}</a>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    {%- else -%}
+      <li><a href="{{ routes.root_url }}">{{ 'general.home' | t }}</a></li>
+      <li><a href="{{ settings.featured_collection.url | default: routes.all_products_collection_url }}">{{ 'general.collection' | t }}</a></li>
+      <li><a href="{{ pages.storia.url | default: pages.about.url }}">{{ 'general.about' | t }}</a></li>
+      <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">{{ 'general.contact' | t }}</a></li>
+    {%- endif -%}
+  </ul>
+{%- endif -%}

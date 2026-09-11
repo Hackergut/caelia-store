@@ -1,0 +1,33 @@
+<section class="c-row c-logos">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <div class="c-logos__row">
+      {% for block in section.blocks %}
+        <div class="c-logos__item" {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy', alt: block.settings.alt }}
+          {% else %}
+            <span class="type-meta">{{ block.settings.alt }}</span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Logo list",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "As seen in" }
+  ],
+  "blocks": [{
+    "type": "logo",
+    "name": "Logo",
+    "settings": [
+      { "type": "image_picker", "id": "image", "label": "Logo" },
+      { "type": "text", "id": "alt", "label": "Name", "default": "Press" }
+    ]
+  }],
+  "presets": [{ "name": "Logo list", "blocks": [{ "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }] }]
+}
+{% endschema %}

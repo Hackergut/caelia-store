@@ -1,0 +1,27 @@
+<section class="c-row c-count" data-countdown="{{ section.settings.end }}">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <p class="c-count__grid" data-count-out>
+      <span><b data-d>0</b> {{ 'general.days' | t }}</span>
+      <span><b data-h>0</b> {{ 'general.hours' | t }}</span>
+      <span><b data-m>0</b> {{ 'general.minutes' | t }}</span>
+    </p>
+    {% if section.settings.button_label != blank %}
+      <a class="btn-primary" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Countdown",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Drop" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Until the next colour." },
+    { "type": "text", "id": "end", "label": "End (YYYY-MM-DD)", "default": "2026-12-31" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Notify me" },
+    { "type": "url", "id": "button_link", "label": "Link" }
+  ],
+  "presets": [{ "name": "Countdown" }]
+}
+{% endschema %}

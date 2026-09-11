@@ -1,0 +1,39 @@
+<section class="c-row">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <div class="c-row__grid" style="margin-top:2rem">
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          {% if block.settings.image %}
+            {{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.heading }}
+          {% endif %}
+          <h3 class="c-card__title">{{ block.settings.heading }}</h3>
+          <div class="rte">{{ block.settings.body }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Multicolumn",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Why" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Made to carry." }
+  ],
+  "blocks": [{
+    "type": "column",
+    "name": "Column",
+    "settings": [
+      { "type": "image_picker", "id": "image", "label": "Image" },
+      { "type": "text", "id": "heading", "label": "Heading", "default": "Mirror" },
+      { "type": "richtext", "id": "body", "label": "Text", "default": "<p>Anti-shatter, leather-framed.</p>" }
+    ]
+  }],
+  "presets": [{
+    "name": "Multicolumn",
+    "blocks": [{ "type": "column" }, { "type": "column" }, { "type": "column" }]
+  }]
+}
+{% endschema %}

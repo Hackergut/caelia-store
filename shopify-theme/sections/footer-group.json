@@ -12,8 +12,15 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "text": "Milano · Beauty Essentials"
-      }
+        "text": "Milano · Beauty Essentials",
+        "blurb": "Beauty Mirror Case. Pelle, specchio, tasca."
+      },
+      "blocks": {
+        "menu": { "type": "menu", "settings": { "heading": "Maison" } },
+        "text": { "type": "text", "settings": { "heading": "Service", "body": "<p>Spedizione 2–4 giorni. Reso 14 giorni.</p>" } },
+        "news": { "type": "newsletter", "settings": { "heading": "The list" } }
+      },
+      "block_order": ["menu", "text", "news"]
     }
   },
   "order": ["newsletter", "footer"]

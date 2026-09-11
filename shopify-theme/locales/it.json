@@ -14,7 +14,12 @@
     "view_all": "Vedi tutto",
     "search_no_results": "Nessun risultato",
     "view_all_results": "Vedi tutti i risultati",
-    "search_results_count": "{{ count }} risultati"
+    "search_results_count": "{{ count }} risultati",
+    "prev": "Indietro",
+    "next": "Avanti",
+    "days": "Giorni",
+    "hours": "Ore",
+    "minutes": "Minuti"
   },
   "accessibility": {
     "home": "CAELIA, vai alla home",
@@ -41,7 +46,9 @@
     "purchase_options": "Opzioni di acquisto",
     "one_time": "Acquisto singolo",
     "pickup": "Ritiro in negozio",
-    "unavailable": "Non disponibile"
+    "unavailable": "Non disponibile",
+    "sale": "Saldo",
+    "quick_view": "Vista rapida"
   },
   "cart": {
     "title": "Carrello",

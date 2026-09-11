@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "CAELIA",
-    "theme_version": "3.0.0",
+    "theme_version": "4.0.0",
     "theme_author": "HACKGUT",
     "theme_documentation_url": "https://caelia-store-x1wb.vercel.app/shopify",
     "theme_support_url": "https://caelia-store-x1wb.vercel.app/contact"
@@ -36,7 +36,11 @@
       { "type": "link_list", "id": "footer_menu", "label": "Menu footer", "default": "footer" },
       { "type": "checkbox", "id": "show_breadcrumbs", "label": "Breadcrumb", "default": true },
       { "type": "checkbox", "id": "show_search", "label": "Ricerca in header", "default": true },
-      { "type": "checkbox", "id": "show_account", "label": "Account in header", "default": true }
+      { "type": "checkbox", "id": "show_account", "label": "Account in header", "default": true },
+      { "type": "checkbox", "id": "enable_quick_view", "label": "Quick view on product cards", "default": true },
+      { "type": "checkbox", "id": "enable_quick_add", "label": "Quick add on product cards", "default": true },
+      { "type": "checkbox", "id": "show_card_swatches", "label": "Colour swatches on cards", "default": true },
+      { "type": "checkbox", "id": "enable_sticky_atc", "label": "Sticky add to cart on product page", "default": true }
     ]
   },
   {

@@ -1,4 +1,4 @@
-<header class="c-header" data-header>
+<header class="c-header c-header--{{ section.settings.layout }}" data-header>
   <a class="c-logo" href="{{ routes.root_url }}" aria-label="{{ 'accessibility.home' | t }}">
     {% if settings.logo %}
       {{ settings.logo | image_url: width: 240 | image_tag: alt: settings.brand_name, class: 'c-logo__img' }}
@@ -6,6 +6,7 @@
       {{ settings.brand_name | default: shop.name }}
     {% endif %}
   </a>
+  {% render 'mega-menu', mode: 'desktop', section: section %}
   <div class="c-header__end">
     {% if settings.show_search %}
       <div class="c-header__search">
@@ -40,21 +41,7 @@
 </header>
 <nav id="MenuTenda" class="c-menu" data-menu hidden aria-hidden="true" aria-label="{{ 'general.menu' | t }}">
   <button type="button" class="c-menu__close" data-menu-close aria-label="{{ 'general.close' | t }}">{{ 'general.close' | t }}</button>
-  <ul>
-    {% assign menu = linklists[settings.menu] %}
-    {% if menu and menu.links.size > 0 %}
-      {% for link in menu.links %}
-        <li>
-          <a href="{{ link.url }}" {% if link.active %}aria-current="page"{% endif %}>{{ link.title }}</a>
-        </li>
-      {% endfor %}
-    {% else %}
-      <li><a href="{{ routes.root_url }}" {% if request.path == '/' %}aria-current="page"{% endif %}>{{ 'general.home' | t }}</a></li>
-      <li><a href="{{ settings.featured_collection.url | default: collections.caelia.url | default: routes.all_products_collection_url }}">{{ 'general.collection' | t }}</a></li>
-      <li><a href="{{ pages.storia.url | default: pages.about.url }}">{{ 'general.about' | t }}</a></li>
-      <li><a href="{{ pages.contatti.url | default: pages.contact.url }}">{{ 'general.contact' | t }}</a></li>
-    {% endif %}
-  </ul>
+  {% render 'mega-menu', mode: 'mobile', section: section %}
   <p class="type-meta c-menu__meta">{{ settings.brand_tagline }}</p>
 </nav>
 {% for block in section.blocks %}
@@ -64,7 +51,21 @@
 {% schema %}
 {
   "name": "Header",
-  "settings": [],
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Desktop layout",
+      "options": [
+        { "value": "left", "label": "Logo left" },
+        { "value": "center", "label": "Logo center" }
+      ],
+      "default": "left"
+    },
+    { "type": "image_picker", "id": "mega_image", "label": "Mega menu promo image" },
+    { "type": "url", "id": "mega_link", "label": "Mega menu promo link" },
+    { "type": "text", "id": "mega_caption", "label": "Mega menu promo caption", "default": "The collection" }
+  ],
   "blocks": [{ "type": "@app" }]
 }
 {% endschema %}

@@ -1,28 +1,31 @@
-# CAELIA — tema Shopify 2.0 premium
+# CAELIA — Shopify theme v4 (Impulse-level)
 
-Online Store 2.0: JSON templates, sections everywhere, app blocks, cart drawer, Shop Pay / Apple Pay / Google Pay.
+Online Store 2.0 premium: mega menu 3 livelli, 10 preset visivi, quick view, sticky ATC, filtri, app blocks.
 
-## Cosa include (v3)
+## v4 vs Impulse
 
-- Pagine: home, product, collection, collection list, cart, search, blog, article, 404, password, gift card
-- Account: login, register, account, orders, addresses, reset, activate
-- PDP: swatch colore, selling plans, pickup, unit price, compare-at, zoom, FAQ, related + complementary
-- Catalogo: sort + filtri nativi, product cards
-- Search predittiva in header
-- App blocks su header, footer, prodotto, sezione Apps
-- i18n EN + IT, Markets, policy, icone pagamento
+| Impulse | CAELIA v4 |
+| --- | --- |
+| Mega menu 3 livelli + promo | Sì — desktop hover, mobile accordion, immagine promo |
+| 10+ style presets | 10: Maison, Noir, Ivory, Blush, Atelier, Wine, Sand, Night, Gallery, Daylight |
+| Quick view / quick add | Sì |
+| Sticky add to cart | Sì |
+| Swatch su card | Sì |
+| Slideshow, FAQ, testimonials, logos, countdown | Sì |
+| Footer colonne | Menu / testo / newsletter |
+| App blocks | Header, footer, PDP, Apps |
+| Predictive search, filtri, selling plans, pickup | Sì |
+
+## Preset
+
+Customize → Theme settings → **Change theme style**.
+
+## Mega menu
+
+Navigation → Main menu: fino a **3 livelli** (Collezione → Colore → Prodotto). In Header settings: immagine promo.
 
 ## Installazione
 
-1. **Online Store → Themes → Upload zip** → Publish
-2. **Products → Import** `products.csv`
-3. Collezione **CAELIA** handle `caelia`
-4. **Settings → Payments** → Shopify Payments
-5. **Settings → Search & Discovery** → complementary products (opzionale)
-6. Customize → ingranaggio: collezione home, menu, pagamenti
+Upload zip → Publish → Import `products.csv` → Payments → Customize.
 
-## Add section
-
-Hero, Due pezzi, Tre colori, Film chapter, Mappa, Featured product, Image with text, Rich text, Newsletter, FAQ, Video, Blog posts, Apps.
-
-v3.0.0 · HACKGUT
+v4.0.0 · HACKGUT

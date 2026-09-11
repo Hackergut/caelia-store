@@ -1,0 +1,38 @@
+<section class="c-row">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <div class="c-quotes">
+      {% for block in section.blocks %}
+        <blockquote class="c-quote" {{ block.shopify_attributes }}>
+          <p>{{ block.settings.quote }}</p>
+          <cite class="type-meta">{{ block.settings.author }}</cite>
+        </blockquote>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Press" },
+    { "type": "text", "id": "title", "label": "Title", "default": "In their words." }
+  ],
+  "blocks": [{
+    "type": "quote",
+    "name": "Quote",
+    "settings": [
+      { "type": "textarea", "id": "quote", "label": "Quote", "default": "The case I actually carry." },
+      { "type": "text", "id": "author", "label": "Author", "default": "Vogue Italia" }
+    ]
+  }],
+  "presets": [{
+    "name": "Testimonials",
+    "blocks": [
+      { "type": "quote" },
+      { "type": "quote", "settings": { "quote": "Small, precise, beautiful.", "author": "Elle" } }
+    ]
+  }]
+}
+{% endschema %}

@@ -1,18 +1,53 @@
 {%- comment -%} Product card. Accepts: product {%- endcomment -%}
 {%- assign card_alt = product.featured_image.alt | default: product.title -%}
-<a class="c-card" href="{{ product.url }}">
-  <div class="c-card__frame">
-    {%- if product.featured_image -%}
-      {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: card_alt, widths: '400, 800, 1200', sizes: '(min-width: 960px) 30vw, 90vw' }}
-    {%- else -%}
-      <div class="c-card__frame--ph" aria-hidden="true"></div>
-    {%- endif -%}
-    {%- unless product.available -%}
-      <span class="c-card__badge type-meta">{{ 'products.sold_out' | t }}</span>
-    {%- endunless -%}
-  </div>
+{%- assign first = product.selected_or_first_available_variant -%}
+<article class="c-card">
+  <a class="c-card__media" href="{{ product.url }}">
+    <div class="c-card__frame">
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: card_alt, widths: '400, 800, 1200', sizes: '(min-width: 960px) 30vw, 90vw', class: 'c-card__img' }}
+      {%- else -%}
+        <div class="c-card__frame--ph" aria-hidden="true"></div>
+      {%- endif -%}
+      {%- unless product.available -%}
+        <span class="c-card__badge type-meta">{{ 'products.sold_out' | t }}</span>
+      {%- elsif product.compare_at_price > product.price -%}
+        <span class="c-card__badge type-meta">{{ 'products.sale' | t }}</span>
+      {%- endunless -%}
+    </div>
+  </a>
   <div class="c-card__meta">
-    <p class="c-card__title">{{ product.title }}</p>
+    <a href="{{ product.url }}" class="c-card__title">{{ product.title }}</a>
     {% render 'price', product: product %}
+    {%- if settings.show_card_swatches -%}
+      {%- for option in product.options_with_values -%}
+        {%- assign on = option.name | downcase -%}
+        {%- if on == 'color' or on == 'colour' or on == 'colore' -%}
+          <div class="c-card__swatches">
+            {%- for value in option.values -%}
+              {%- assign swatch_img = blank -%}
+              {%- for v in product.variants -%}
+                {%- if v.option1 == value or v.option2 == value or v.option3 == value -%}
+                  {%- if v.featured_image -%}{%- assign swatch_img = v.featured_image -%}{%- endif -%}
+                  {%- break -%}
+                {%- endif -%}
+              {%- endfor -%}
+              <button type="button" class="c-card__dot" data-card-swatch="{% if swatch_img %}{{ swatch_img | image_url: width: 900 }}{% endif %}" aria-label="{{ value }}">{{ value | truncate: 1, '' }}</button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+    <div class="c-card__act">
+      {%- if settings.enable_quick_view -%}
+        <button type="button" class="type-meta" data-quick-view="{{ product.url }}.js">{{ 'products.quick_view' | t }}</button>
+      {%- endif -%}
+      {%- if settings.enable_quick_add and product.available and product.has_only_default_variant -%}
+        <form method="post" action="{{ routes.cart_add_url }}" data-product-form class="c-card__add">
+          <input type="hidden" name="id" value="{{ first.id }}">
+          <button type="submit" class="type-meta" data-cta-btn>{{ 'products.add' | t }}</button>
+        </form>
+      {%- endif -%}
+    </div>
   </div>
-</a>
+</article>
