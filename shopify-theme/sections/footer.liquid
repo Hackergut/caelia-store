@@ -52,6 +52,9 @@
     <div class="c-footer__pay">
       {% render 'payment-icons' %}
       {% render 'localization', unique: 'footer' %}
+      {% if shop.features.follow_on_shop? %}
+        <div class="shopify-follow-on-shop">{{ shop | login_button: action: 'follow' }}</div>
+      {% endif %}
     </div>
     <p class="type-meta c-footer__copy">{{ section.settings.text }} · © {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
   </div>
@@ -59,36 +62,77 @@
 
 {% schema %}
 {
-  "name": "Footer",
+  "name": "t:sections.footer.name_0",
   "settings": [
-    { "type": "text", "id": "text", "label": "Caption", "default": "Milano · Beauty Essentials" },
-    { "type": "textarea", "id": "blurb", "label": "About", "default": "Beauty Mirror Case. Pelle, specchio, tasca." },
-    { "type": "checkbox", "id": "show_policies", "label": "Shopify policy links", "default": true }
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:sections.footer.text.label",
+      "default": "Milano · Beauty Essentials"
+    },
+    {
+      "type": "textarea",
+      "id": "blurb",
+      "label": "t:sections.footer.blurb.label",
+      "default": "Beauty Mirror Case. Pelle, specchio, tasca."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policies",
+      "label": "t:sections.footer.show_policies.label",
+      "default": true
+    }
   ],
   "blocks": [
-    { "type": "@app" },
+    {
+      "type": "@app"
+    },
     {
       "type": "menu",
-      "name": "Menu",
+      "name": "t:sections.footer.menu.name",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Maison" },
-        { "type": "link_list", "id": "menu", "label": "Menu" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.footer.heading.label",
+          "default": "Maison"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "t:sections.footer.menu.label"
+        }
       ]
     },
     {
       "type": "text",
-      "name": "Text",
+      "name": "t:sections.footer.text.name",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Service" },
-        { "type": "richtext", "id": "body", "label": "Text", "default": "<p>Spedizione 2–4 giorni. Reso 14 giorni.</p>" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.footer.heading.label",
+          "default": "Service"
+        },
+        {
+          "type": "richtext",
+          "id": "body",
+          "label": "t:sections.footer.body.label",
+          "default": "<p>Spedizione 2–4 giorni. Reso 14 giorni.</p>"
+        }
       ]
     },
     {
       "type": "newsletter",
-      "name": "Newsletter",
+      "name": "t:sections.footer.newsletter.name",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "The list" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.footer.heading.label",
+          "default": "The list"
+        }
       ]
     }
   ]

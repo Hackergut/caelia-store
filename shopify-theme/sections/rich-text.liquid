@@ -11,16 +11,52 @@
 
 {% schema %}
 {
-  "name": "Testo editoriale",
+  "name": "t:sections.rich_text.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "CAELIA" },
-    { "type": "text", "id": "title", "label": "Titolo", "default": "Specchio, matita, un solo gesto." },
-    { "type": "richtext", "id": "body", "label": "Testo" },
-    { "type": "text", "id": "button_label", "label": "Pulsante" },
-    { "type": "url", "id": "button_link", "label": "Link pulsante" },
-    { "type": "color", "id": "bg", "label": "Sfondo", "default": "#973851" },
-    { "type": "color", "id": "fg", "label": "Testo", "default": "#ffddde" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.rich_text.kicker.label",
+      "default": "CAELIA"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.rich_text.title.label",
+      "default": "Specchio, matita, un solo gesto."
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:sections.rich_text.body.label"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.rich_text.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.rich_text.button_link.label"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "t:sections.rich_text.bg.label",
+      "default": "#973851"
+    },
+    {
+      "type": "color",
+      "id": "fg",
+      "label": "t:sections.rich_text.fg.label",
+      "default": "#ffddde"
+    }
   ],
-  "presets": [{ "name": "Testo editoriale" }]
+  "presets": [
+    {
+      "name": "t:sections.rich_text.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

@@ -13,12 +13,33 @@
 </section>
 {% schema %}
 {
-  "name": "Complementary products",
+  "name": "t:sections.complementary_products.name_0",
   "settings": [
-    { "type": "paragraph", "content": "Uses Search & Discovery complementary products. Hidden until Shopify returns matches." },
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Pair with" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Complete the set" },
-    { "type": "range", "id": "limit", "min": 2, "max": 6, "step": 1, "default": 3, "label": "Products" }
+    {
+      "type": "paragraph",
+      "content": "t:sections.complementary_products.paragraph.content"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.complementary_products.kicker.label",
+      "default": "Pair with"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.complementary_products.title.label",
+      "default": "Complete the set"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.complementary_products.limit.label"
+    }
   ]
 }
 {% endschema %}

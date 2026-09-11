@@ -22,11 +22,29 @@
 </section>
 {% schema %}
 {
-  "name": "Related products",
+  "name": "t:sections.related_products.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Maison" },
-    { "type": "text", "id": "title", "label": "Title", "default": "You may also like" },
-    { "type": "range", "id": "limit", "min": 2, "max": 8, "step": 1, "default": 3, "label": "Products" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.related_products.kicker.label",
+      "default": "Maison"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.related_products.title.label",
+      "default": "You may also like"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.related_products.limit.label"
+    }
   ]
 }
 {% endschema %}

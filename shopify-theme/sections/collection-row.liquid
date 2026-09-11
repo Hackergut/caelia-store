@@ -78,19 +78,65 @@
 
 {% schema %}
 {
-  "name": "Tre colori",
+  "name": "t:sections.collection_row.name_0",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Collezione" },
-    { "type": "text", "id": "title", "label": "Titolo", "default": "Tre colori." },
-    { "type": "textarea", "id": "body", "label": "Sottotitolo", "default": "Marrone, rosa nude, burgundy berry." },
-    { "type": "header", "content": "Ordine fisso (come in home)" },
-    { "type": "product", "id": "product_1", "label": "01 Burgundy Berry" },
-    { "type": "product", "id": "product_2", "label": "02 Rosa nude" },
-    { "type": "product", "id": "product_3", "label": "03 Marrone" },
-    { "type": "collection", "id": "collection", "label": "Oppure collezione Shopify" },
-    { "type": "range", "id": "limit", "label": "Prodotti (se usi la collezione)", "min": 3, "max": 9, "step": 1, "default": 3 }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.collection_row.kicker.label",
+      "default": "Collezione"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.collection_row.title.label",
+      "default": "Tre colori."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.collection_row.body.label",
+      "default": "Marrone, rosa nude, burgundy berry."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.collection_row.header.content"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "t:sections.collection_row.product_1.label"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "t:sections.collection_row.product_2.label"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "t:sections.collection_row.product_3.label"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "t:sections.collection_row.collection.label"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "t:sections.collection_row.limit.label",
+      "min": 3,
+      "max": 9,
+      "step": 1,
+      "default": 3
+    }
   ],
-  "presets": [{ "name": "Tre colori" }]
+  "presets": [
+    {
+      "name": "t:sections.collection_row.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

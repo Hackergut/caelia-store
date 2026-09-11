@@ -50,22 +50,45 @@
 
 {% schema %}
 {
-  "name": "Header",
+  "name": "t:sections.header.name_0",
   "settings": [
     {
       "type": "select",
       "id": "layout",
-      "label": "Desktop layout",
+      "label": "t:sections.header.layout.label",
       "options": [
-        { "value": "left", "label": "Logo left" },
-        { "value": "center", "label": "Logo center" }
+        {
+          "value": "left",
+          "label": "t:sections.header.layout.options__left.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.header.layout.options__center.label"
+        }
       ],
       "default": "left"
     },
-    { "type": "image_picker", "id": "mega_image", "label": "Mega menu promo image" },
-    { "type": "url", "id": "mega_link", "label": "Mega menu promo link" },
-    { "type": "text", "id": "mega_caption", "label": "Mega menu promo caption", "default": "The collection" }
+    {
+      "type": "image_picker",
+      "id": "mega_image",
+      "label": "t:sections.header.mega_image.label"
+    },
+    {
+      "type": "url",
+      "id": "mega_link",
+      "label": "t:sections.header.mega_link.label"
+    },
+    {
+      "type": "text",
+      "id": "mega_caption",
+      "label": "t:sections.header.mega_caption.label",
+      "default": "The collection"
+    }
   ],
-  "blocks": [{ "type": "@app" }]
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
 }
 {% endschema %}

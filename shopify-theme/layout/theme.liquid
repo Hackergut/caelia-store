@@ -5,12 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     {% render 'meta-tags' %}
     {{ content_for_header }}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.shopify.com">
-    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
     {{ 'caelia.css' | asset_url | stylesheet_tag }}
     <style>
+      @font-face {
+        font-family: "Tenor Sans";
+        src: url("{{ 'TenorSans.ttf' | asset_url }}") format("truetype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+      {% if settings.type_font != blank and settings.use_tenor == false %}
+        {{ settings.type_font | font_face: font_display: 'swap' }}
+        :root { --font: {{ settings.type_font.family }}, sans-serif; }
+      {% endif %}
       :root {
         --c-berry: {{ settings.color_berry }};
         --c-rosa: {{ settings.color_rosa }};

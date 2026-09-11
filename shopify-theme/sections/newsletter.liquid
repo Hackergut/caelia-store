@@ -24,11 +24,25 @@
 
 {% schema %}
 {
-  "name": "Newsletter",
+  "name": "t:sections.newsletter.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Lettera" },
-    { "type": "text", "id": "title", "label": "Titolo", "default": "Novità, in una riga." }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.newsletter.kicker.label",
+      "default": "Lettera"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.newsletter.title.label",
+      "default": "Novità, in una riga."
+    }
   ],
-  "presets": [{ "name": "Newsletter" }]
+  "presets": [
+    {
+      "name": "t:sections.newsletter.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

@@ -1,22 +1,7 @@
 <section class="c-product" data-product>
   <div class="shell c-product__grid">
     <div>
-      {% assign feat = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
-      <div class="c-product__stage" data-zoom>
-        {% if feat %}
-          {{ feat | image_url: width: 2000 | image_tag: class: 'c-product__img', id: 'ProductImage', alt: product.title, loading: 'eager', fetchpriority: 'high' }}
-        {% endif %}
-      </div>
-      {% if product.images.size > 1 %}
-        <div class="c-product__thumbs">
-          {% for image in product.images %}
-            {% assign thumb_alt = image.alt | default: product.title %}
-            <button type="button" class="c-product__thumb{% if image == feat %} is-on{% endif %}" data-thumb="{{ image | image_url: width: 1600 }}" aria-label="{{ 'accessibility.show_image' | t: title: thumb_alt }}" aria-pressed="{% if image == feat %}true{% else %}false{% endif %}">
-              {{ image | image_url: width: 240 | image_tag: alt: thumb_alt, loading: 'lazy' }}
-            </button>
-          {% endfor %}
-        </div>
-      {% endif %}
+      {% render 'product-media', product: product %}
     </div>
     <div>
       <p class="eyebrow">{{ product.type | default: 'Beauty Mirror Case' }}</p>
@@ -86,19 +71,34 @@
 
 {% schema %}
 {
-  "name": "Product",
+  "name": "t:sections.main_product.name_0",
   "tag": "section",
   "settings": [
-    { "type": "paragraph", "content": "Gallery, variants, Shop Pay, pickup and selling plans. Extra rows below are blocks — including app blocks." }
+    {
+      "type": "paragraph",
+      "content": "t:sections.main_product.paragraph.content"
+    }
   ],
   "blocks": [
-    { "type": "@app" },
+    {
+      "type": "@app"
+    },
     {
       "type": "collapsible",
-      "name": "Collapsible row",
+      "name": "t:sections.main_product.collapsible.name",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Shipping & returns" },
-        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Free shipping in Italy over 60 €. 14-day returns.</p>" }
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.main_product.heading.label",
+          "default": "Shipping & returns"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "t:sections.main_product.content.label",
+          "default": "<p>Free shipping in Italy over 60 €. 14-day returns.</p>"
+        }
       ]
     }
   ]

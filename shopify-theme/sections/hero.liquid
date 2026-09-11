@@ -17,13 +17,30 @@
 
 {% schema %}
 {
-  "name": "Hero 3D",
+  "name": "t:sections.hero.name_0",
   "tag": "section",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Immagine hero" },
-    { "type": "video", "id": "video", "label": "Video hero (Shopify Files)" },
-    { "type": "text", "id": "caption", "label": "Didascalia", "default": "Beauty Mirror Case" }
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.hero.image.label"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:sections.hero.video.label"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "t:sections.hero.caption.label",
+      "default": "Beauty Mirror Case"
+    }
   ],
-  "presets": [{ "name": "Hero 3D" }]
+  "presets": [
+    {
+      "name": "t:sections.hero.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

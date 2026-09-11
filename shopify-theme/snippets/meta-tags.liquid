@@ -88,6 +88,6 @@
 {%- endif -%}
 
 {%- for language in localization.available_languages -%}
-  <link rel="alternate" hreflang="{{ language.iso_code }}" href="{{ canonical_url }}">
+  <link rel="alternate" hreflang="{{ language.iso_code }}" href="{{ request.origin }}{{ language.root_url }}">
 {%- endfor -%}
 <link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">

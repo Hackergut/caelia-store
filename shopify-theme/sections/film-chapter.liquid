@@ -23,40 +23,80 @@
 
 {% schema %}
 {
-  "name": "Capitolo film",
+  "name": "t:sections.film_chapter.name_0",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Numero", "default": "03" },
-    { "type": "text", "id": "title", "label": "Titolo", "default": "Il gesto." },
-    { "type": "textarea", "id": "body", "label": "Testo", "default": "Specchio in mano, matite in tasca. Anche in volo." },
-    { "type": "image_picker", "id": "image", "label": "Immagine (Files Shopify)" },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.film_chapter.kicker.label",
+      "default": "03"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.film_chapter.title.label",
+      "default": "Il gesto."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.film_chapter.body.label",
+      "default": "Specchio in mano, matite in tasca. Anche in volo."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.film_chapter.image.label"
+    },
     {
       "type": "select",
       "id": "fallback",
-      "label": "Oppure asset del tema",
+      "label": "t:sections.film_chapter.fallback.label",
       "default": "life-plane.jpg",
       "options": [
-        { "value": "life-plane.jpg", "label": "In volo (Carla)" },
-        { "value": "lifestyle-trio.jpg", "label": "Tre colori / peonie" },
-        { "value": "life-apply.jpg", "label": "Il gesto, rosa" },
-        { "value": "pair-berry.jpg", "label": "Packshot Berry" },
-        { "value": "none", "label": "Nessuna" }
+        {
+          "value": "life-plane.jpg",
+          "label": "t:sections.film_chapter.fallback.options__life-plane.jpg.label"
+        },
+        {
+          "value": "lifestyle-trio.jpg",
+          "label": "t:sections.film_chapter.fallback.options__lifestyle-trio.jpg.label"
+        },
+        {
+          "value": "life-apply.jpg",
+          "label": "t:sections.film_chapter.fallback.options__life-apply.jpg.label"
+        },
+        {
+          "value": "pair-berry.jpg",
+          "label": "t:sections.film_chapter.fallback.options__pair-berry.jpg.label"
+        },
+        {
+          "value": "none",
+          "label": "t:sections.film_chapter.fallback.options__none.label"
+        }
       ]
     },
     {
       "type": "select",
       "id": "tone",
-      "label": "Tono",
+      "label": "t:sections.film_chapter.tone.label",
       "default": "berry",
       "options": [
-        { "value": "berry", "label": "Burgundy" },
-        { "value": "rosa", "label": "Rosa nude" }
+        {
+          "value": "berry",
+          "label": "t:sections.film_chapter.tone.options__berry.label"
+        },
+        {
+          "value": "rosa",
+          "label": "t:sections.film_chapter.tone.options__rosa.label"
+        }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Il gesto",
+      "name": "t:sections.film_chapter.presets__0.name",
       "settings": {
         "kicker": "03",
         "title": "Il gesto.",
@@ -66,7 +106,7 @@
       }
     },
     {
-      "name": "Tutto intorno",
+      "name": "t:sections.film_chapter.presets__1.name",
       "settings": {
         "kicker": "04",
         "title": "Tutto intorno.",

@@ -32,17 +32,51 @@
 
 {% schema %}
 {
-  "name": "Due pezzi",
+  "name": "t:sections.due_pezzi.name_0",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Numero", "default": "01" },
-    { "type": "text", "id": "title", "label": "Titolo", "default": "Due pezzi." },
-    { "type": "textarea", "id": "body", "label": "Testo", "default": "Astuccio e specchio, in caduta. Poi il gloss li prende." },
-    { "type": "header", "content": "Sequenza scroll (3 frame). Vuoto = caduta Berry del tema." },
-    { "type": "image_picker", "id": "frame_1", "label": "Frame 1 — caduta" },
-    { "type": "image_picker", "id": "frame_2", "label": "Frame 2 — impatto" },
-    { "type": "image_picker", "id": "frame_3", "label": "Frame 3 — gloss" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.due_pezzi.kicker.label",
+      "default": "01"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.due_pezzi.title.label",
+      "default": "Due pezzi."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.due_pezzi.body.label",
+      "default": "Astuccio e specchio, in caduta. Poi il gloss li prende."
+    },
+    {
+      "type": "header",
+      "content": "t:sections.due_pezzi.header.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "frame_1",
+      "label": "t:sections.due_pezzi.frame_1.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "frame_2",
+      "label": "t:sections.due_pezzi.frame_2.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "frame_3",
+      "label": "t:sections.due_pezzi.frame_3.label"
+    }
   ],
-  "presets": [{ "name": "Due pezzi" }]
+  "presets": [
+    {
+      "name": "t:sections.due_pezzi.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

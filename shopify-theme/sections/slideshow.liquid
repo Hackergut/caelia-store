@@ -26,19 +26,56 @@
 </section>
 {% schema %}
 {
-  "name": "Slideshow",
+  "name": "t:sections.slideshow.name_0",
   "settings": [],
-  "blocks": [{
-    "type": "slide",
-    "name": "Slide",
-    "settings": [
-      { "type": "image_picker", "id": "image", "label": "Image" },
-      { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "CAELIA" },
-      { "type": "text", "id": "heading", "label": "Heading", "default": "Beauty Mirror Case" },
-      { "type": "text", "id": "button_label", "label": "Button", "default": "Shop" },
-      { "type": "url", "id": "button_link", "label": "Link" }
-    ]
-  }],
-  "presets": [{ "name": "Slideshow", "blocks": [{ "type": "slide" }, { "type": "slide" }] }]
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "t:sections.slideshow.slide.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.slideshow.image.label"
+        },
+        {
+          "type": "text",
+          "id": "kicker",
+          "label": "t:sections.slideshow.kicker.label",
+          "default": "CAELIA"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "t:sections.slideshow.heading.label",
+          "default": "Beauty Mirror Case"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "t:sections.slideshow.button_label.label",
+          "default": "Shop"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "t:sections.slideshow.button_link.label"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.slideshow.presets__0.name",
+      "blocks": [
+        {
+          "type": "slide"
+        },
+        {
+          "type": "slide"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

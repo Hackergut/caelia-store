@@ -87,7 +87,10 @@
     {% endif %}
   </button>
   {% if settings.enable_dynamic_checkout and current.available %}
-    <div class="c-pay">{{ form | payment_button }}</div>
+    <div class="c-pay">
+      {{ form | payment_terms }}
+      {{ form | payment_button }}
+    </div>
   {% endif %}
 {% endform %}
 {% render 'trust' %}

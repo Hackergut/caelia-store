@@ -21,11 +21,29 @@
 
 {% schema %}
 {
-  "name": "Collection",
+  "name": "t:sections.main_collection.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Collection" },
-    { "type": "text", "id": "title", "label": "Fallback title", "default": "Three colours." },
-    { "type": "range", "id": "per_page", "label": "Products per page", "min": 3, "max": 24, "step": 3, "default": 12 }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.main_collection.kicker.label",
+      "default": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.main_collection.title.label",
+      "default": "Three colours."
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "t:sections.main_collection.per_page.label",
+      "min": 3,
+      "max": 24,
+      "step": 3,
+      "default": 12
+    }
   ]
 }
 {% endschema %}

@@ -27,11 +27,24 @@
 
 {% schema %}
 {
-  "name": "Prodotto in evidenza",
+  "name": "t:sections.featured_product.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Maison" },
-    { "type": "product", "id": "product", "label": "Prodotto" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.featured_product.kicker.label",
+      "default": "Maison"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:sections.featured_product.product.label"
+    }
   ],
-  "presets": [{ "name": "Prodotto in evidenza" }]
+  "presets": [
+    {
+      "name": "t:sections.featured_product.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

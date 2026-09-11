@@ -26,13 +26,39 @@
 </section>
 {% schema %}
 {
-  "name": "Blog posts",
+  "name": "t:sections.featured_blog.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Journal" },
-    { "type": "text", "id": "title", "label": "Title", "default": "From the maison" },
-    { "type": "blog", "id": "blog", "label": "Blog" },
-    { "type": "range", "id": "limit", "min": 2, "max": 6, "step": 1, "default": 3, "label": "Posts" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.featured_blog.kicker.label",
+      "default": "Journal"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.featured_blog.title.label",
+      "default": "From the maison"
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "t:sections.featured_blog.blog.label"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 3,
+      "label": "t:sections.featured_blog.limit.label"
+    }
   ],
-  "presets": [{ "name": "Blog posts" }]
+  "presets": [
+    {
+      "name": "t:sections.featured_blog.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

@@ -2,97 +2,346 @@
   {
     "name": "theme_info",
     "theme_name": "CAELIA",
-    "theme_version": "4.0.0",
+    "theme_version": "5.0.0",
     "theme_author": "HACKGUT",
     "theme_documentation_url": "https://caelia-store-x1wb.vercel.app/shopify",
     "theme_support_url": "https://caelia-store-x1wb.vercel.app/contact"
   },
   {
-    "name": "Colori maison",
+    "name": "t:settings_schema.colori_maison.name",
     "settings": [
-      { "type": "header", "content": "Palette esatta CAELIA — modifica da qui, si aggiorna ovunque." },
-      { "type": "color", "id": "color_berry", "label": "Burgundy Berry", "default": "#973851" },
-      { "type": "color", "id": "color_rosa", "label": "Rosa nude", "default": "#ffddde" },
-      { "type": "color", "id": "color_crema", "label": "Avorio caldo", "default": "#dfc0b4" },
-      { "type": "color", "id": "color_cacao", "label": "Marrone", "default": "#5b3f33" },
-      { "type": "color", "id": "color_ink", "label": "Burgundy (testi)", "default": "#4a0e16" }
+      {
+        "type": "header",
+        "content": "t:settings_schema.colori_maison.header.content"
+      },
+      {
+        "type": "color",
+        "id": "color_berry",
+        "label": "t:settings_schema.colori_maison.color_berry.label",
+        "default": "#973851"
+      },
+      {
+        "type": "color",
+        "id": "color_rosa",
+        "label": "t:settings_schema.colori_maison.color_rosa.label",
+        "default": "#ffddde"
+      },
+      {
+        "type": "color",
+        "id": "color_crema",
+        "label": "t:settings_schema.colori_maison.color_crema.label",
+        "default": "#dfc0b4"
+      },
+      {
+        "type": "color",
+        "id": "color_cacao",
+        "label": "t:settings_schema.colori_maison.color_cacao.label",
+        "default": "#5b3f33"
+      },
+      {
+        "type": "color",
+        "id": "color_ink",
+        "label": "t:settings_schema.colori_maison.color_ink.label",
+        "default": "#4a0e16"
+      }
     ]
   },
   {
-    "name": "Brand",
+    "name": "t:settings_schema.brand.name",
     "settings": [
-      { "type": "image_picker", "id": "logo", "label": "Logo header" },
-      { "type": "image_picker", "id": "favicon", "label": "Favicon" },
-      { "type": "text", "id": "brand_name", "label": "Nome", "default": "CAELIA" },
-      { "type": "text", "id": "brand_tagline", "label": "Tagline", "default": "Beauty Mirror Case" }
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "t:settings_schema.brand.logo.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "t:settings_schema.brand.favicon.label"
+      },
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "t:settings_schema.brand.brand_name.label",
+        "default": "CAELIA"
+      },
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "t:settings_schema.brand.brand_tagline.label",
+        "default": "Beauty Mirror Case"
+      }
     ]
   },
   {
-    "name": "Catalogo e menu",
+    "name": "t:settings_schema.catalogo_e_menu.name",
     "settings": [
-      { "type": "paragraph", "content": "Collezione handle caelia: Burgundy Berry, Rosa nude, Marrone." },
-      { "type": "collection", "id": "featured_collection", "label": "Collezione home (tre colori)" },
-      { "type": "link_list", "id": "menu", "label": "Menu header", "default": "main-menu" },
-      { "type": "link_list", "id": "footer_menu", "label": "Menu footer", "default": "footer" },
-      { "type": "checkbox", "id": "show_breadcrumbs", "label": "Breadcrumb", "default": true },
-      { "type": "checkbox", "id": "show_search", "label": "Ricerca in header", "default": true },
-      { "type": "checkbox", "id": "show_account", "label": "Account in header", "default": true },
-      { "type": "checkbox", "id": "enable_quick_view", "label": "Quick view on product cards", "default": true },
-      { "type": "checkbox", "id": "enable_quick_add", "label": "Quick add on product cards", "default": true },
-      { "type": "checkbox", "id": "show_card_swatches", "label": "Colour swatches on cards", "default": true },
-      { "type": "checkbox", "id": "enable_sticky_atc", "label": "Sticky add to cart on product page", "default": true }
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.catalogo_e_menu.paragraph.content"
+      },
+      {
+        "type": "collection",
+        "id": "featured_collection",
+        "label": "t:settings_schema.catalogo_e_menu.featured_collection.label"
+      },
+      {
+        "type": "link_list",
+        "id": "menu",
+        "label": "t:settings_schema.catalogo_e_menu.menu.label",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "footer_menu",
+        "label": "t:settings_schema.catalogo_e_menu.footer_menu.label",
+        "default": "footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_breadcrumbs",
+        "label": "t:settings_schema.catalogo_e_menu.show_breadcrumbs.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_search",
+        "label": "t:settings_schema.catalogo_e_menu.show_search.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_account",
+        "label": "t:settings_schema.catalogo_e_menu.show_account.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_quick_view",
+        "label": "t:settings_schema.catalogo_e_menu.enable_quick_view.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_quick_add",
+        "label": "t:settings_schema.catalogo_e_menu.enable_quick_add.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_card_swatches",
+        "label": "t:settings_schema.catalogo_e_menu.show_card_swatches.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_sticky_atc",
+        "label": "t:settings_schema.catalogo_e_menu.enable_sticky_atc.label",
+        "default": true
+      }
     ]
   },
   {
-    "name": "Pagamenti e checkout",
+    "name": "t:settings_schema.pagamenti_e_checkout.name",
     "settings": [
-      { "type": "paragraph", "content": "I pagamenti veri si attivano in Shopify Admin → Settings → Payments (Shopify Payments, Apple Pay, Google Pay, Shop Pay). Il tema mostra i pulsanti e le icone." },
-      { "type": "checkbox", "id": "enable_cart_drawer", "label": "Cart drawer", "default": true },
-      { "type": "checkbox", "id": "enable_dynamic_checkout", "label": "Checkout dinamico (Shop Pay / Apple Pay / Google Pay)", "default": true, "info": "Sotto Aggiungi al carrello. Serve Shopify Payments attivo." },
-      { "type": "checkbox", "id": "show_payment_icons", "label": "Icone metodi di pagamento in footer e carrello", "default": true },
-      { "type": "text", "id": "cart_checkout_label", "label": "Testo pulsante checkout", "default": "Checkout" },
-      { "type": "text", "id": "cart_note", "label": "Nota carrello / spedizione", "default": "Spedizione gratuita in Italia oltre 60 €." },
-      { "type": "text", "id": "free_shipping_threshold", "label": "Soglia spedizione gratuita (€)", "default": "60" },
-      { "type": "checkbox", "id": "show_localization", "label": "Selettore paese / valuta / lingua", "default": true, "info": "Compare se hai più mercati o lingue in Settings → Markets / Languages." }
+      {
+        "type": "paragraph",
+        "content": "t:settings_schema.pagamenti_e_checkout.paragraph.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_cart_drawer",
+        "label": "t:settings_schema.pagamenti_e_checkout.enable_cart_drawer.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_dynamic_checkout",
+        "label": "t:settings_schema.pagamenti_e_checkout.enable_dynamic_checkout.label",
+        "default": true,
+        "info": "t:settings_schema.pagamenti_e_checkout.enable_dynamic_checkout.info"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "t:settings_schema.pagamenti_e_checkout.show_payment_icons.label",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_checkout_label",
+        "label": "t:settings_schema.pagamenti_e_checkout.cart_checkout_label.label",
+        "default": "Checkout"
+      },
+      {
+        "type": "text",
+        "id": "cart_note",
+        "label": "t:settings_schema.pagamenti_e_checkout.cart_note.label",
+        "default": "Spedizione gratuita in Italia oltre 60 €."
+      },
+      {
+        "type": "text",
+        "id": "free_shipping_threshold",
+        "label": "t:settings_schema.pagamenti_e_checkout.free_shipping_threshold.label",
+        "default": "60"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_localization",
+        "label": "t:settings_schema.pagamenti_e_checkout.show_localization.label",
+        "default": true,
+        "info": "t:settings_schema.pagamenti_e_checkout.show_localization.info"
+      }
     ]
   },
   {
-    "name": "Pagina prodotto",
+    "name": "t:settings_schema.pagina_prodotto.name",
     "settings": [
-      { "type": "checkbox", "id": "show_quantity", "label": "Quantità", "default": true },
-      { "type": "checkbox", "id": "show_sku", "label": "SKU", "default": false },
-      { "type": "checkbox", "id": "show_vendor", "label": "Vendor", "default": false },
-      { "type": "checkbox", "id": "show_share", "label": "Condividi", "default": true },
-      { "type": "checkbox", "id": "show_trust", "label": "Riga fiducia sotto il CTA", "default": true },
-      { "type": "text", "id": "trust_1", "label": "Fiducia 1", "default": "Spedizione 2–4 giorni" },
-      { "type": "text", "id": "trust_2", "label": "Fiducia 2", "default": "Reso 14 giorni" },
-      { "type": "text", "id": "trust_3", "label": "Fiducia 3", "default": "Pelle PU, specchio infrangibile" }
+      {
+        "type": "checkbox",
+        "id": "show_quantity",
+        "label": "t:settings_schema.pagina_prodotto.show_quantity.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sku",
+        "label": "t:settings_schema.pagina_prodotto.show_sku.label",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "t:settings_schema.pagina_prodotto.show_vendor.label",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_share",
+        "label": "t:settings_schema.pagina_prodotto.show_share.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_trust",
+        "label": "t:settings_schema.pagina_prodotto.show_trust.label",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "trust_1",
+        "label": "t:settings_schema.pagina_prodotto.trust_1.label",
+        "default": "Spedizione 2–4 giorni"
+      },
+      {
+        "type": "text",
+        "id": "trust_2",
+        "label": "t:settings_schema.pagina_prodotto.trust_2.label",
+        "default": "Reso 14 giorni"
+      },
+      {
+        "type": "text",
+        "id": "trust_3",
+        "label": "t:settings_schema.pagina_prodotto.trust_3.label",
+        "default": "Pelle PU, specchio infrangibile"
+      }
     ]
   },
   {
-    "name": "Test A/B — pulsante acquisto",
+    "name": "t:settings_schema.test_a_b_pulsante_acquisto.name",
     "settings": [
-      { "type": "checkbox", "id": "ab_cta", "label": "Attiva test A/B", "default": false, "info": "50/50 Aggiungi al carrello vs Acquista ora." },
-      { "type": "text", "id": "ab_cta_a", "label": "Testo A", "default": "Aggiungi al carrello" },
-      { "type": "text", "id": "ab_cta_b", "label": "Testo B", "default": "Acquista ora" }
+      {
+        "type": "checkbox",
+        "id": "ab_cta",
+        "label": "t:settings_schema.test_a_b_pulsante_acquisto.ab_cta.label",
+        "default": false,
+        "info": "t:settings_schema.test_a_b_pulsante_acquisto.ab_cta.info"
+      },
+      {
+        "type": "text",
+        "id": "ab_cta_a",
+        "label": "t:settings_schema.test_a_b_pulsante_acquisto.ab_cta_a.label",
+        "default": "Aggiungi al carrello"
+      },
+      {
+        "type": "text",
+        "id": "ab_cta_b",
+        "label": "t:settings_schema.test_a_b_pulsante_acquisto.ab_cta_b.label",
+        "default": "Acquista ora"
+      }
     ]
   },
   {
-    "name": "SEO",
+    "name": "t:settings_schema.seo.name",
     "settings": [
-      { "type": "text", "id": "seo_home_title", "label": "Title home", "default": "CAELIA" },
-      { "type": "textarea", "id": "seo_home_description", "label": "Meta home", "default": "CAELIA Beauty Mirror Case. Specchio, matita e gloss in un astuccio in pelle. Tre colori: Burgundy Berry, rosa nude, marrone. Fatto per la borsa." },
-      { "type": "textarea", "id": "seo_description", "label": "Meta default", "default": "CAELIA — Beauty Mirror Case. Pelle, specchio integrato, tasca per cinque matite. Collezione maison." },
-      { "type": "image_picker", "id": "seo_image", "label": "Open Graph 1200×630" }
+      {
+        "type": "text",
+        "id": "seo_home_title",
+        "label": "t:settings_schema.seo.seo_home_title.label",
+        "default": "CAELIA"
+      },
+      {
+        "type": "textarea",
+        "id": "seo_home_description",
+        "label": "t:settings_schema.seo.seo_home_description.label",
+        "default": "CAELIA Beauty Mirror Case. Specchio, matita e gloss in un astuccio in pelle. Tre colori: Burgundy Berry, rosa nude, marrone. Fatto per la borsa."
+      },
+      {
+        "type": "textarea",
+        "id": "seo_description",
+        "label": "t:settings_schema.seo.seo_description.label",
+        "default": "CAELIA — Beauty Mirror Case. Pelle, specchio integrato, tasca per cinque matite. Collezione maison."
+      },
+      {
+        "type": "image_picker",
+        "id": "seo_image",
+        "label": "t:settings_schema.seo.seo_image.label"
+      }
     ]
   },
   {
-    "name": "Social",
+    "name": "t:settings_schema.typography.name",
     "settings": [
-      { "type": "text", "id": "social_instagram", "label": "Instagram", "info": "URL completo" },
-      { "type": "text", "id": "social_tiktok", "label": "TikTok" },
-      { "type": "text", "id": "social_twitter", "label": "X / Twitter" },
-      { "type": "text", "id": "social_pinterest", "label": "Pinterest" }
+      {
+        "type": "checkbox",
+        "id": "use_tenor",
+        "label": "t:settings_schema.typography.use_tenor.label",
+        "default": true,
+        "info": "t:settings_schema.typography.use_tenor.info"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_font",
+        "label": "t:settings_schema.typography.type_font.label",
+        "default": "assistant_n4",
+        "info": "t:settings_schema.typography.type_font.info"
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.social.name",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "t:settings_schema.social.social_instagram.label",
+        "info": "t:settings_schema.social.social_instagram.info"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok",
+        "label": "t:settings_schema.social.social_tiktok.label"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter",
+        "label": "t:settings_schema.social.social_twitter.label"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest",
+        "label": "t:settings_schema.social.social_pinterest.label"
+      }
     ]
   }
 ]

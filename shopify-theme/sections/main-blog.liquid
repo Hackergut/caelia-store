@@ -27,10 +27,23 @@
 </section>
 {% schema %}
 {
-  "name": "Blog",
+  "name": "t:sections.main_blog.name_0",
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "Journal" },
-    { "type": "range", "id": "per_page", "min": 3, "max": 12, "step": 3, "default": 6, "label": "Posts per page" }
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.main_blog.title.label",
+      "default": "Journal"
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "min": 3,
+      "max": 12,
+      "step": 3,
+      "default": 6,
+      "label": "t:sections.main_blog.per_page.label"
+    }
   ]
 }
 {% endschema %}

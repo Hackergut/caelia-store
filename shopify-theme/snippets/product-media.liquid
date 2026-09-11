@@ -1,0 +1,36 @@
+{%- comment -%} Rich media: image, video, YouTube/Vimeo, 3D. {%- endcomment -%}
+{%- assign featured = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+{%- assign media_alt = featured.alt | default: product.title -%}
+<div class="c-product__stage" data-zoom data-media-stage>
+  {%- if featured -%}
+    {%- case featured.media_type -%}
+      {%- when 'image' -%}
+        {{ featured | image_url: width: 2000 | image_tag: class: 'c-product__img', id: 'ProductImage', alt: media_alt, loading: 'eager', fetchpriority: 'high', widths: '600, 900, 1200, 1600, 2000', sizes: '(min-width: 960px) 45vw, 100vw' }}
+      {%- when 'video' -%}
+        {{ featured | video_tag: image_size: '1600x', controls: true, class: 'c-product__img' }}
+      {%- when 'external_video' -%}
+        <div class="c-product__ext">{{ featured | external_video_tag }}</div>
+      {%- when 'model' -%}
+        {{ featured | model_viewer_tag }}
+    {%- endcase -%}
+  {%- endif -%}
+</div>
+{%- if product.media.size > 1 -%}
+  <div class="c-product__thumbs">
+    {%- for media in product.media -%}
+      {%- assign thumb_alt = media.alt | default: product.title -%}
+      <button
+        type="button"
+        class="c-product__thumb{% if media == featured %} is-on{% endif %}"
+        data-media-type="{{ media.media_type }}"
+        {% if media.media_type == 'image' %}data-thumb="{{ media | image_url: width: 1600 }}"{% endif %}
+        aria-label="{{ thumb_alt | escape }}"
+        aria-pressed="{% if media == featured %}true{% else %}false{% endif %}"
+      >
+        {%- if media.preview_image -%}
+          {{ media.preview_image | image_url: width: 240 | image_tag: alt: thumb_alt, loading: 'lazy' }}
+        {%- endif -%}
+      </button>
+    {%- endfor -%}
+  </div>
+{%- endif -%}

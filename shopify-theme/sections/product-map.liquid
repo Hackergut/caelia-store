@@ -47,37 +47,135 @@
 
 {% schema %}
 {
-  "name": "Mappa prodotto",
+  "name": "t:sections.product_map.name_0",
   "tag": "section",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Info prodotto" },
-    { "type": "text", "id": "title", "label": "Titolo", "default": "Ogni parte ha un perché." },
-    { "type": "image_picker", "id": "image", "label": "Foto case (vuoto = packshot Berry del tema)" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.product_map.kicker.label",
+      "default": "Info prodotto"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.product_map.title.label",
+      "default": "Ogni parte ha un perché."
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.product_map.image.label"
+    }
   ],
   "max_blocks": 8,
   "blocks": [
     {
       "type": "pin",
-      "name": "Punto",
+      "name": "t:sections.product_map.pin.name",
       "settings": [
-        { "type": "text", "id": "n", "label": "Numero", "default": "01" },
-        { "type": "text", "id": "title", "label": "Titolo", "default": "Tasca frontale" },
-        { "type": "textarea", "id": "body", "label": "Testo" },
-        { "type": "range", "id": "x", "label": "X %", "min": 0, "max": 100, "step": 1, "default": 36 },
-        { "type": "range", "id": "y", "label": "Y %", "min": 0, "max": 100, "step": 1, "default": 23 }
+        {
+          "type": "text",
+          "id": "n",
+          "label": "t:sections.product_map.n.label",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:sections.product_map.title.label",
+          "default": "Tasca frontale"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "t:sections.product_map.body.label"
+        },
+        {
+          "type": "range",
+          "id": "x",
+          "label": "t:sections.product_map.x.label",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 36
+        },
+        {
+          "type": "range",
+          "id": "y",
+          "label": "t:sections.product_map.y.label",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "default": 23
+        }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Mappa prodotto",
+      "name": "t:sections.product_map.presets__0.name",
       "blocks": [
-        { "type": "pin", "settings": { "n": "01", "title": "Tasca frontale", "x": 36, "y": 23, "body": "Cinque matite in verticale. Si sfilano con un dito: niente bottoni, niente linguette." } },
-        { "type": "pin", "settings": { "n": "02", "title": "Corpo dell'astuccio", "x": 36, "y": 46, "body": "Pelle vegana morbida su fodera in raso. Protegge il lip combo da urti e tappi che si aprono in borsa." } },
-        { "type": "pin", "settings": { "n": "03", "title": "Logo impresso", "x": 36, "y": 77, "body": "Il wordmark CAELIA è inciso nella pelle, non stampato: non si scrosta e resta leggibile negli anni." } },
-        { "type": "pin", "settings": { "n": "04", "title": "Cucitura perimetrale", "x": 25, "y": 52, "body": "Filo tono su tono lungo tutto il bordo arrotondato: tiene la struttura piatta e protegge la pelle dagli urti." } },
-        { "type": "pin", "settings": { "n": "05", "title": "Specchio anti-riflesso", "x": 65, "y": 48, "body": "Superficie infrangibile montata a filo della cornice. Riflette senza distorcere, anche con luce laterale o in penombra." } },
-        { "type": "pin", "settings": { "n": "06", "title": "Cornice in pelle", "x": 65, "y": 18, "body": "La pelle avvolge lo specchio su tutti e quattro i lati: nessun bordo di vetro esposto, nessuna scheggia." } }
+        {
+          "type": "pin",
+          "settings": {
+            "n": "01",
+            "title": "Tasca frontale",
+            "x": 36,
+            "y": 23,
+            "body": "Cinque matite in verticale. Si sfilano con un dito: niente bottoni, niente linguette."
+          }
+        },
+        {
+          "type": "pin",
+          "settings": {
+            "n": "02",
+            "title": "Corpo dell'astuccio",
+            "x": 36,
+            "y": 46,
+            "body": "Pelle vegana morbida su fodera in raso. Protegge il lip combo da urti e tappi che si aprono in borsa."
+          }
+        },
+        {
+          "type": "pin",
+          "settings": {
+            "n": "03",
+            "title": "Logo impresso",
+            "x": 36,
+            "y": 77,
+            "body": "Il wordmark CAELIA è inciso nella pelle, non stampato: non si scrosta e resta leggibile negli anni."
+          }
+        },
+        {
+          "type": "pin",
+          "settings": {
+            "n": "04",
+            "title": "Cucitura perimetrale",
+            "x": 25,
+            "y": 52,
+            "body": "Filo tono su tono lungo tutto il bordo arrotondato: tiene la struttura piatta e protegge la pelle dagli urti."
+          }
+        },
+        {
+          "type": "pin",
+          "settings": {
+            "n": "05",
+            "title": "Specchio anti-riflesso",
+            "x": 65,
+            "y": 48,
+            "body": "Superficie infrangibile montata a filo della cornice. Riflette senza distorcere, anche con luce laterale o in penombra."
+          }
+        },
+        {
+          "type": "pin",
+          "settings": {
+            "n": "06",
+            "title": "Cornice in pelle",
+            "x": 65,
+            "y": 18,
+            "body": "La pelle avvolge lo specchio su tutti e quattro i lati: nessun bordo di vetro esposto, nessuna scheggia."
+          }
+        }
       ]
     }
   ]

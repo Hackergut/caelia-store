@@ -14,14 +14,42 @@
 </section>
 {% schema %}
 {
-  "name": "Countdown",
+  "name": "t:sections.countdown.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Drop" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Until the next colour." },
-    { "type": "text", "id": "end", "label": "End (YYYY-MM-DD)", "default": "2026-12-31" },
-    { "type": "text", "id": "button_label", "label": "Button", "default": "Notify me" },
-    { "type": "url", "id": "button_link", "label": "Link" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.countdown.kicker.label",
+      "default": "Drop"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.countdown.title.label",
+      "default": "Until the next colour."
+    },
+    {
+      "type": "text",
+      "id": "end",
+      "label": "t:sections.countdown.end.label",
+      "default": "2026-12-31"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.countdown.button_label.label",
+      "default": "Notify me"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.countdown.button_link.label"
+    }
   ],
-  "presets": [{ "name": "Countdown" }]
+  "presets": [
+    {
+      "name": "t:sections.countdown.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

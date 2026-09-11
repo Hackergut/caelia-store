@@ -15,12 +15,21 @@
                 <p class="type-meta">{{ item.selling_plan_allocation.selling_plan.name }}</p>
               {% endif %}
               <p class="type-meta">{{ item.final_line_price | money }}</p>
+              {% if item.unit_price_measurement %}
+                <p class="c-price__unit type-meta">{{ item.unit_price | money }}/{{ item.unit_price_measurement.reference_unit }}</p>
+              {% endif %}
+              {% for discount in item.line_level_discount_allocations %}
+                <p class="type-meta">{{ discount.discount_application.title }} (−{{ discount.amount | money }})</p>
+              {% endfor %}
               <div class="c-qty">
-                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.quantity' | t }}">
+                <input type="number" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.quantity' | t }}">
                 <a class="type-meta" href="{{ item.url_to_remove }}">{{ 'cart.remove' | t }}</a>
               </div>
             </div>
           </div>
+        {% endfor %}
+        {% for discount in cart.cart_level_discount_applications %}
+          <p class="type-meta">{{ discount.title }} (−{{ discount.total_allocated_amount | money }})</p>
         {% endfor %}
         <div class="c-cart__tot">
           <span class="type-meta">{{ 'cart.total' | t }}</span>
@@ -42,9 +51,12 @@
 
 {% schema %}
 {
-  "name": "Carrello",
+  "name": "t:sections.main_cart.name_0",
   "settings": [
-    { "type": "paragraph", "content": "Nota spedizione, drawer e Shop Pay: Customize → Pagamenti e checkout." }
+    {
+      "type": "paragraph",
+      "content": "t:sections.main_cart.paragraph.content"
+    }
   ]
 }
 {% endschema %}

@@ -9,13 +9,37 @@
 
 {% schema %}
 {
-  "name": "Barra annuncio",
+  "name": "t:sections.announcement_bar.name_0",
   "settings": [
-    { "type": "text", "id": "text", "label": "Testo", "default": "Spedizione gratuita in Italia oltre 60 €" },
-    { "type": "url", "id": "link", "label": "Link" },
-    { "type": "text", "id": "link_label", "label": "Etichetta link", "default": "Collezione" },
-    { "type": "color", "id": "bg", "label": "Sfondo", "default": "#4a0e16" },
-    { "type": "color", "id": "fg", "label": "Testo", "default": "#ffddde" }
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:sections.announcement_bar.text.label",
+      "default": "Spedizione gratuita in Italia oltre 60 €"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "t:sections.announcement_bar.link.label"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "t:sections.announcement_bar.link_label.label",
+      "default": "Collezione"
+    },
+    {
+      "type": "color",
+      "id": "bg",
+      "label": "t:sections.announcement_bar.bg.label",
+      "default": "#4a0e16"
+    },
+    {
+      "type": "color",
+      "id": "fg",
+      "label": "t:sections.announcement_bar.fg.label",
+      "default": "#ffddde"
+    }
   ]
 }
 {% endschema %}

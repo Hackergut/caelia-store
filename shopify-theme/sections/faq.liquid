@@ -18,28 +18,64 @@
 </section>
 {% schema %}
 {
-  "name": "FAQ",
+  "name": "t:sections.faq.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "FAQ" },
-    { "type": "text", "id": "title", "label": "Title", "default": "Questions." }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.faq.kicker.label",
+      "default": "FAQ"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.faq.title.label",
+      "default": "Questions."
+    }
   ],
   "blocks": [
-    { "type": "@app" },
+    {
+      "type": "@app"
+    },
     {
       "type": "item",
-      "name": "Question",
+      "name": "t:sections.faq.item.name",
       "settings": [
-        { "type": "text", "id": "q", "label": "Question", "default": "How long is shipping?" },
-        { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>2–4 days in Italy.</p>" }
+        {
+          "type": "text",
+          "id": "q",
+          "label": "t:sections.faq.q.label",
+          "default": "How long is shipping?"
+        },
+        {
+          "type": "richtext",
+          "id": "a",
+          "label": "t:sections.faq.a.label",
+          "default": "<p>2–4 days in Italy.</p>"
+        }
       ]
     }
   ],
-  "presets": [{
-    "name": "FAQ",
-    "blocks": [
-      { "type": "item", "settings": { "q": "Is the mirror glass?", "a": "<p>Anti-shatter surface, leather-framed on all four sides.</p>" } },
-      { "type": "item", "settings": { "q": "How many pencils?", "a": "<p>The front pocket holds up to five.</p>" } }
-    ]
-  }]
+  "presets": [
+    {
+      "name": "t:sections.faq.presets__0.name",
+      "blocks": [
+        {
+          "type": "item",
+          "settings": {
+            "q": "Is the mirror glass?",
+            "a": "<p>Anti-shatter surface, leather-framed on all four sides.</p>"
+          }
+        },
+        {
+          "type": "item",
+          "settings": {
+            "q": "How many pencils?",
+            "a": "<p>The front pocket holds up to five.</p>"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

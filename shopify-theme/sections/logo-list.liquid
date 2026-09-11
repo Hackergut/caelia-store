@@ -16,18 +16,52 @@
 </section>
 {% schema %}
 {
-  "name": "Logo list",
+  "name": "t:sections.logo_list.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "As seen in" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.logo_list.kicker.label",
+      "default": "As seen in"
+    }
   ],
-  "blocks": [{
-    "type": "logo",
-    "name": "Logo",
-    "settings": [
-      { "type": "image_picker", "id": "image", "label": "Logo" },
-      { "type": "text", "id": "alt", "label": "Name", "default": "Press" }
-    ]
-  }],
-  "presets": [{ "name": "Logo list", "blocks": [{ "type": "logo" }, { "type": "logo" }, { "type": "logo" }, { "type": "logo" }] }]
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "t:sections.logo_list.logo.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.logo_list.image.label"
+        },
+        {
+          "type": "text",
+          "id": "alt",
+          "label": "t:sections.logo_list.alt.label",
+          "default": "Press"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.logo_list.presets__0.name",
+      "blocks": [
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        },
+        {
+          "type": "logo"
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

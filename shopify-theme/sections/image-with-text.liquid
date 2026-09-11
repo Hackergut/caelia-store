@@ -16,25 +16,61 @@
 
 {% schema %}
 {
-  "name": "Immagine e testo",
+  "name": "t:sections.image_with_text.name_0",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Immagine" },
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Storia" },
-    { "type": "text", "id": "title", "label": "Titolo", "default": "Carla & Giulia" },
-    { "type": "richtext", "id": "body", "label": "Testo" },
-    { "type": "text", "id": "button_label", "label": "Pulsante" },
-    { "type": "url", "id": "button_link", "label": "Link" },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.image_with_text.image.label"
+    },
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.image_with_text.kicker.label",
+      "default": "Storia"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.image_with_text.title.label",
+      "default": "Carla & Giulia"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "t:sections.image_with_text.body.label"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "t:sections.image_with_text.button_label.label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:sections.image_with_text.button_link.label"
+    },
     {
       "type": "select",
       "id": "layout",
-      "label": "Layout",
+      "label": "t:sections.image_with_text.layout.label",
       "default": "image-left",
       "options": [
-        { "value": "image-left", "label": "Immagine a sinistra" },
-        { "value": "image-right", "label": "Immagine a destra" }
+        {
+          "value": "image-left",
+          "label": "t:sections.image_with_text.layout.options__image-left.label"
+        },
+        {
+          "value": "image-right",
+          "label": "t:sections.image_with_text.layout.options__image-right.label"
+        }
       ]
     }
   ],
-  "presets": [{ "name": "Immagine e testo" }]
+  "presets": [
+    {
+      "name": "t:sections.image_with_text.presets__0.name"
+    }
+  ]
 }
 {% endschema %}

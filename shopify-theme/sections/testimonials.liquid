@@ -14,25 +14,57 @@
 </section>
 {% schema %}
 {
-  "name": "Testimonials",
+  "name": "t:sections.testimonials.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Press" },
-    { "type": "text", "id": "title", "label": "Title", "default": "In their words." }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.testimonials.kicker.label",
+      "default": "Press"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.testimonials.title.label",
+      "default": "In their words."
+    }
   ],
-  "blocks": [{
-    "type": "quote",
-    "name": "Quote",
-    "settings": [
-      { "type": "textarea", "id": "quote", "label": "Quote", "default": "The case I actually carry." },
-      { "type": "text", "id": "author", "label": "Author", "default": "Vogue Italia" }
-    ]
-  }],
-  "presets": [{
-    "name": "Testimonials",
-    "blocks": [
-      { "type": "quote" },
-      { "type": "quote", "settings": { "quote": "Small, precise, beautiful.", "author": "Elle" } }
-    ]
-  }]
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "t:sections.testimonials.quote.name",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "t:sections.testimonials.quote.label",
+          "default": "The case I actually carry."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "t:sections.testimonials.author.label",
+          "default": "Vogue Italia"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.testimonials.presets__0.name",
+      "blocks": [
+        {
+          "type": "quote"
+        },
+        {
+          "type": "quote",
+          "settings": {
+            "quote": "Small, precise, beautiful.",
+            "author": "Elle"
+          }
+        }
+      ]
+    }
+  ]
 }
 {% endschema %}

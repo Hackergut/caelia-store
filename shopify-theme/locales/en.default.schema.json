@@ -1,0 +1,800 @@
+{
+  "settings_schema": {
+    "colori_maison": {
+      "name": "Colori maison",
+      "header": {
+        "content": "Palette esatta CAELIA — modifica da qui, si aggiorna ovunque."
+      },
+      "color_berry": {
+        "label": "Burgundy Berry"
+      },
+      "color_rosa": {
+        "label": "Rosa nude"
+      },
+      "color_crema": {
+        "label": "Avorio caldo"
+      },
+      "color_cacao": {
+        "label": "Marrone"
+      },
+      "color_ink": {
+        "label": "Burgundy (testi)"
+      }
+    },
+    "brand": {
+      "name": "Brand",
+      "logo": {
+        "label": "Logo header"
+      },
+      "favicon": {
+        "label": "Favicon"
+      },
+      "brand_name": {
+        "label": "Nome"
+      },
+      "brand_tagline": {
+        "label": "Tagline"
+      }
+    },
+    "catalogo_e_menu": {
+      "name": "Catalogo e menu",
+      "paragraph": {
+        "content": "Collezione handle caelia: Burgundy Berry, Rosa nude, Marrone."
+      },
+      "featured_collection": {
+        "label": "Collezione home (tre colori)"
+      },
+      "menu": {
+        "label": "Menu header"
+      },
+      "footer_menu": {
+        "label": "Menu footer"
+      },
+      "show_breadcrumbs": {
+        "label": "Breadcrumb"
+      },
+      "show_search": {
+        "label": "Ricerca in header"
+      },
+      "show_account": {
+        "label": "Account in header"
+      },
+      "enable_quick_view": {
+        "label": "Quick view on product cards"
+      },
+      "enable_quick_add": {
+        "label": "Quick add on product cards"
+      },
+      "show_card_swatches": {
+        "label": "Colour swatches on cards"
+      },
+      "enable_sticky_atc": {
+        "label": "Sticky add to cart on product page"
+      }
+    },
+    "pagamenti_e_checkout": {
+      "name": "Pagamenti e checkout",
+      "paragraph": {
+        "content": "I pagamenti veri si attivano in Shopify Admin → Settings → Payments (Shopify Payments, Apple Pay, Google Pay, Shop Pay). Il tema mostra i pulsanti e le icone."
+      },
+      "enable_cart_drawer": {
+        "label": "Cart drawer"
+      },
+      "enable_dynamic_checkout": {
+        "label": "Checkout dinamico (Shop Pay / Apple Pay / Google Pay)",
+        "info": "Sotto Aggiungi al carrello. Serve Shopify Payments attivo."
+      },
+      "show_payment_icons": {
+        "label": "Icone metodi di pagamento in footer e carrello"
+      },
+      "cart_checkout_label": {
+        "label": "Testo pulsante checkout"
+      },
+      "cart_note": {
+        "label": "Nota carrello / spedizione"
+      },
+      "free_shipping_threshold": {
+        "label": "Soglia spedizione gratuita (€)"
+      },
+      "show_localization": {
+        "label": "Selettore paese / valuta / lingua",
+        "info": "Compare se hai più mercati o lingue in Settings → Markets / Languages."
+      }
+    },
+    "pagina_prodotto": {
+      "name": "Pagina prodotto",
+      "show_quantity": {
+        "label": "Quantità"
+      },
+      "show_sku": {
+        "label": "SKU"
+      },
+      "show_vendor": {
+        "label": "Vendor"
+      },
+      "show_share": {
+        "label": "Condividi"
+      },
+      "show_trust": {
+        "label": "Riga fiducia sotto il CTA"
+      },
+      "trust_1": {
+        "label": "Fiducia 1"
+      },
+      "trust_2": {
+        "label": "Fiducia 2"
+      },
+      "trust_3": {
+        "label": "Fiducia 3"
+      }
+    },
+    "test_a_b_pulsante_acquisto": {
+      "name": "Test A/B — pulsante acquisto",
+      "ab_cta": {
+        "label": "Attiva test A/B",
+        "info": "50/50 Aggiungi al carrello vs Acquista ora."
+      },
+      "ab_cta_a": {
+        "label": "Testo A"
+      },
+      "ab_cta_b": {
+        "label": "Testo B"
+      }
+    },
+    "seo": {
+      "name": "SEO",
+      "seo_home_title": {
+        "label": "Title home"
+      },
+      "seo_home_description": {
+        "label": "Meta home"
+      },
+      "seo_description": {
+        "label": "Meta default"
+      },
+      "seo_image": {
+        "label": "Open Graph 1200×630"
+      }
+    },
+    "social": {
+      "name": "Social",
+      "social_instagram": {
+        "label": "Instagram",
+        "info": "URL completo"
+      },
+      "social_tiktok": {
+        "label": "TikTok"
+      },
+      "social_twitter": {
+        "label": "X / Twitter"
+      },
+      "social_pinterest": {
+        "label": "Pinterest"
+      }
+    },
+    "typography": {
+      "name": "Typography",
+      "use_tenor": {
+        "label": "Use Tenor Sans (brand font)",
+        "info": "Hosted in the theme. Turn off to use the Shopify font picker."
+      },
+      "type_font": {
+        "label": "Body font",
+        "info": "Used when Tenor Sans is off."
+      }
+    }
+  },
+  "sections": {
+    "announcement_bar": {
+      "name_0": "Barra annuncio",
+      "text": {
+        "label": "Testo"
+      },
+      "link": {
+        "label": "Link"
+      },
+      "link_label": {
+        "label": "Etichetta link"
+      },
+      "bg": {
+        "label": "Sfondo"
+      },
+      "fg": {
+        "label": "Testo"
+      }
+    },
+    "apps": {
+      "name_0": "Apps",
+      "presets__0": {
+        "name": "Apps"
+      }
+    },
+    "cart_drawer": {
+      "name_0": "Cart drawer"
+    },
+    "collection_row": {
+      "name_0": "Tre colori",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Titolo"
+      },
+      "body": {
+        "label": "Sottotitolo"
+      },
+      "header": {
+        "content": "Ordine fisso (come in home)"
+      },
+      "product_1": {
+        "label": "01 Burgundy Berry"
+      },
+      "product_2": {
+        "label": "02 Rosa nude"
+      },
+      "product_3": {
+        "label": "03 Marrone"
+      },
+      "collection": {
+        "label": "Oppure collezione Shopify"
+      },
+      "limit": {
+        "label": "Prodotti (se usi la collezione)"
+      },
+      "presets__0": {
+        "name": "Tre colori"
+      }
+    },
+    "complementary_products": {
+      "name_0": "Complementary products",
+      "paragraph": {
+        "content": "Uses Search & Discovery complementary products. Hidden until Shopify returns matches."
+      },
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "limit": {
+        "label": "Products"
+      }
+    },
+    "contact_form": {
+      "name_0": "Contatti",
+      "presets__0": {
+        "name": "Contatti"
+      }
+    },
+    "countdown": {
+      "name_0": "Countdown",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "end": {
+        "label": "End (YYYY-MM-DD)"
+      },
+      "button_label": {
+        "label": "Button"
+      },
+      "button_link": {
+        "label": "Link"
+      },
+      "presets__0": {
+        "name": "Countdown"
+      }
+    },
+    "due_pezzi": {
+      "name_0": "Due pezzi",
+      "kicker": {
+        "label": "Numero"
+      },
+      "title": {
+        "label": "Titolo"
+      },
+      "body": {
+        "label": "Testo"
+      },
+      "header": {
+        "content": "Sequenza scroll (3 frame). Vuoto = caduta Berry del tema."
+      },
+      "frame_1": {
+        "label": "Frame 1 — caduta"
+      },
+      "frame_2": {
+        "label": "Frame 2 — impatto"
+      },
+      "frame_3": {
+        "label": "Frame 3 — gloss"
+      },
+      "presets__0": {
+        "name": "Due pezzi"
+      }
+    },
+    "faq": {
+      "name_0": "FAQ",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "item": {
+        "name": "Question"
+      },
+      "q": {
+        "label": "Question"
+      },
+      "a": {
+        "label": "Answer"
+      },
+      "presets__0": {
+        "name": "FAQ"
+      }
+    },
+    "featured_blog": {
+      "name_0": "Blog posts",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "blog": {
+        "label": "Blog"
+      },
+      "limit": {
+        "label": "Posts"
+      },
+      "presets__0": {
+        "name": "Blog posts"
+      }
+    },
+    "featured_product": {
+      "name_0": "Prodotto in evidenza",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "product": {
+        "label": "Prodotto"
+      },
+      "presets__0": {
+        "name": "Prodotto in evidenza"
+      }
+    },
+    "film_chapter": {
+      "name_0": "Capitolo film",
+      "kicker": {
+        "label": "Numero"
+      },
+      "title": {
+        "label": "Titolo"
+      },
+      "body": {
+        "label": "Testo"
+      },
+      "image": {
+        "label": "Immagine (Files Shopify)"
+      },
+      "fallback": {
+        "label": "Oppure asset del tema",
+        "options__life-plane": {
+          "jpg": {
+            "label": "In volo (Carla)"
+          }
+        },
+        "options__lifestyle-trio": {
+          "jpg": {
+            "label": "Tre colori / peonie"
+          }
+        },
+        "options__life-apply": {
+          "jpg": {
+            "label": "Il gesto, rosa"
+          }
+        },
+        "options__pair-berry": {
+          "jpg": {
+            "label": "Packshot Berry"
+          }
+        },
+        "options__none": {
+          "label": "Nessuna"
+        }
+      },
+      "tone": {
+        "label": "Tono",
+        "options__berry": {
+          "label": "Burgundy"
+        },
+        "options__rosa": {
+          "label": "Rosa nude"
+        }
+      },
+      "presets__0": {
+        "name": "Il gesto"
+      },
+      "presets__1": {
+        "name": "Tutto intorno"
+      }
+    },
+    "footer": {
+      "name_0": "Footer",
+      "text": {
+        "label": "Caption",
+        "name": "Text"
+      },
+      "blurb": {
+        "label": "About"
+      },
+      "show_policies": {
+        "label": "Shopify policy links"
+      },
+      "menu": {
+        "name": "Menu",
+        "label": "Menu"
+      },
+      "heading": {
+        "label": "Heading"
+      },
+      "body": {
+        "label": "Text"
+      },
+      "newsletter": {
+        "name": "Newsletter"
+      }
+    },
+    "header": {
+      "name_0": "Header",
+      "layout": {
+        "label": "Desktop layout",
+        "options__left": {
+          "label": "Logo left"
+        },
+        "options__center": {
+          "label": "Logo center"
+        }
+      },
+      "mega_image": {
+        "label": "Mega menu promo image"
+      },
+      "mega_link": {
+        "label": "Mega menu promo link"
+      },
+      "mega_caption": {
+        "label": "Mega menu promo caption"
+      }
+    },
+    "hero": {
+      "name_0": "Hero 3D",
+      "image": {
+        "label": "Immagine hero"
+      },
+      "video": {
+        "label": "Video hero (Shopify Files)"
+      },
+      "caption": {
+        "label": "Didascalia"
+      },
+      "presets__0": {
+        "name": "Hero 3D"
+      }
+    },
+    "image_with_text": {
+      "name_0": "Immagine e testo",
+      "image": {
+        "label": "Immagine"
+      },
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Titolo"
+      },
+      "body": {
+        "label": "Testo"
+      },
+      "button_label": {
+        "label": "Pulsante"
+      },
+      "button_link": {
+        "label": "Link"
+      },
+      "layout": {
+        "label": "Layout",
+        "options__image-left": {
+          "label": "Immagine a sinistra"
+        },
+        "options__image-right": {
+          "label": "Immagine a destra"
+        }
+      },
+      "presets__0": {
+        "name": "Immagine e testo"
+      }
+    },
+    "logo_list": {
+      "name_0": "Logo list",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "logo": {
+        "name": "Logo"
+      },
+      "image": {
+        "label": "Logo"
+      },
+      "alt": {
+        "label": "Name"
+      },
+      "presets__0": {
+        "name": "Logo list"
+      }
+    },
+    "main_404": {
+      "name_0": "404"
+    },
+    "main_account": {
+      "name_0": "Account"
+    },
+    "main_activate_account": {
+      "name_0": "Activate account"
+    },
+    "main_addresses": {
+      "name_0": "Addresses"
+    },
+    "main_article": {
+      "name_0": "Article"
+    },
+    "main_blog": {
+      "name_0": "Blog",
+      "title": {
+        "label": "Title"
+      },
+      "per_page": {
+        "label": "Posts per page"
+      }
+    },
+    "main_cart": {
+      "name_0": "Carrello",
+      "paragraph": {
+        "content": "Nota spedizione, drawer e Shop Pay: Customize → Pagamenti e checkout."
+      }
+    },
+    "main_collection": {
+      "name_0": "Collection",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Fallback title"
+      },
+      "per_page": {
+        "label": "Products per page"
+      }
+    },
+    "main_list_collections": {
+      "name_0": "Collection list",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      }
+    },
+    "main_login": {
+      "name_0": "Login"
+    },
+    "main_order": {
+      "name_0": "Order"
+    },
+    "main_page": {
+      "name_0": "Pagina"
+    },
+    "main_password": {
+      "name_0": "Password",
+      "title": {
+        "label": "Title"
+      }
+    },
+    "main_product": {
+      "name_0": "Product",
+      "paragraph": {
+        "content": "Gallery, variants, Shop Pay, pickup and selling plans. Extra rows below are blocks — including app blocks."
+      },
+      "collapsible": {
+        "name": "Collapsible row"
+      },
+      "heading": {
+        "label": "Heading"
+      },
+      "content": {
+        "label": "Content"
+      }
+    },
+    "main_register": {
+      "name_0": "Register"
+    },
+    "main_reset_password": {
+      "name_0": "Reset password"
+    },
+    "main_search": {
+      "name_0": "Search"
+    },
+    "multicolumn": {
+      "name_0": "Multicolumn",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "column": {
+        "name": "Column"
+      },
+      "image": {
+        "label": "Image"
+      },
+      "heading": {
+        "label": "Heading"
+      },
+      "body": {
+        "label": "Text"
+      },
+      "presets__0": {
+        "name": "Multicolumn"
+      }
+    },
+    "newsletter": {
+      "name_0": "Newsletter",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Titolo"
+      },
+      "presets__0": {
+        "name": "Newsletter"
+      }
+    },
+    "product_map": {
+      "name_0": "Mappa prodotto",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Titolo"
+      },
+      "image": {
+        "label": "Foto case (vuoto = packshot Berry del tema)"
+      },
+      "pin": {
+        "name": "Punto"
+      },
+      "n": {
+        "label": "Numero"
+      },
+      "body": {
+        "label": "Testo"
+      },
+      "x": {
+        "label": "X %"
+      },
+      "y": {
+        "label": "Y %"
+      },
+      "presets__0": {
+        "name": "Mappa prodotto"
+      }
+    },
+    "related_products": {
+      "name_0": "Related products",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "limit": {
+        "label": "Products"
+      }
+    },
+    "rich_text": {
+      "name_0": "Testo editoriale",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Titolo"
+      },
+      "body": {
+        "label": "Testo"
+      },
+      "button_label": {
+        "label": "Pulsante"
+      },
+      "button_link": {
+        "label": "Link pulsante"
+      },
+      "bg": {
+        "label": "Sfondo"
+      },
+      "fg": {
+        "label": "Testo"
+      },
+      "presets__0": {
+        "name": "Testo editoriale"
+      }
+    },
+    "slideshow": {
+      "name_0": "Slideshow",
+      "slide": {
+        "name": "Slide"
+      },
+      "image": {
+        "label": "Image"
+      },
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "heading": {
+        "label": "Heading"
+      },
+      "button_label": {
+        "label": "Button"
+      },
+      "button_link": {
+        "label": "Link"
+      },
+      "presets__0": {
+        "name": "Slideshow"
+      }
+    },
+    "testimonials": {
+      "name_0": "Testimonials",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "quote": {
+        "name": "Quote",
+        "label": "Quote"
+      },
+      "author": {
+        "label": "Author"
+      },
+      "presets__0": {
+        "name": "Testimonials"
+      }
+    },
+    "video": {
+      "name_0": "Video",
+      "kicker": {
+        "label": "Eyebrow"
+      },
+      "title": {
+        "label": "Title"
+      },
+      "body": {
+        "label": "Body"
+      },
+      "video": {
+        "label": "Shopify video"
+      },
+      "external": {
+        "label": "YouTube or Vimeo"
+      },
+      "image": {
+        "label": "Poster / fallback"
+      },
+      "presets__0": {
+        "name": "Video"
+      }
+    }
+  }
+}

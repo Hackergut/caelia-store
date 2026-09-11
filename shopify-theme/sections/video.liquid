@@ -24,15 +24,49 @@
 </section>
 {% schema %}
 {
-  "name": "Video",
+  "name": "t:sections.video.name_0",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Film" },
-    { "type": "text", "id": "title", "label": "Title", "default": "The drop." },
-    { "type": "textarea", "id": "body", "label": "Body" },
-    { "type": "video", "id": "video", "label": "Shopify video" },
-    { "type": "video_url", "id": "external", "label": "YouTube or Vimeo", "accept": ["youtube", "vimeo"] },
-    { "type": "image_picker", "id": "image", "label": "Poster / fallback" }
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "t:sections.video.kicker.label",
+      "default": "Film"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.video.title.label",
+      "default": "The drop."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "t:sections.video.body.label"
+    },
+    {
+      "type": "video",
+      "id": "video",
+      "label": "t:sections.video.video.label"
+    },
+    {
+      "type": "video_url",
+      "id": "external",
+      "label": "t:sections.video.external.label",
+      "accept": [
+        "youtube",
+        "vimeo"
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:sections.video.image.label"
+    }
   ],
-  "presets": [{ "name": "Video" }]
+  "presets": [
+    {
+      "name": "t:sections.video.presets__0.name"
+    }
+  ]
 }
 {% endschema %}
