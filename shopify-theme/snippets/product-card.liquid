@@ -1,0 +1,18 @@
+{%- comment -%} Product card. Accepts: product {%- endcomment -%}
+{%- assign card_alt = product.featured_image.alt | default: product.title -%}
+<a class="c-card" href="{{ product.url }}">
+  <div class="c-card__frame">
+    {%- if product.featured_image -%}
+      {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: card_alt, widths: '400, 800, 1200', sizes: '(min-width: 960px) 30vw, 90vw' }}
+    {%- else -%}
+      <div class="c-card__frame--ph" aria-hidden="true"></div>
+    {%- endif -%}
+    {%- unless product.available -%}
+      <span class="c-card__badge type-meta">{{ 'products.sold_out' | t }}</span>
+    {%- endunless -%}
+  </div>
+  <div class="c-card__meta">
+    <p class="c-card__title">{{ product.title }}</p>
+    {% render 'price', product: product %}
+  </div>
+</a>

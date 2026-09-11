@@ -374,3 +374,49 @@ input, select, textarea { font-size: 16px; }
     scroll-behavior: auto !important;
   }
 }
+
+.c-price { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; font-size: 1.15rem; margin: 1rem 0; }
+.c-price__sale { color: var(--berry); }
+.c-price__compare { opacity: .55; }
+.c-price__unit { font-size: .6875rem; }
+.c-card__frame { position: relative; }
+.c-card__badge {
+  position: absolute; left: .75rem; bottom: .75rem;
+  background: var(--berry); color: var(--rosa); padding: .35rem .6rem;
+}
+.c-swatch { border: 0; margin: 0 0 1rem; padding: 0; }
+.c-swatch__row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.c-swatch__chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 .9rem; border: 1px solid var(--crema); cursor: pointer;
+}
+.c-swatch__chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.c-swatch__chip.is-on { border-color: var(--berry); }
+.c-plans { border: 0; margin: 0 0 1rem; padding: 0; display: grid; gap: .5rem; }
+.c-plans__opt { display: flex; gap: .5rem; align-items: center; min-height: 44px; }
+.c-fold { border-top: 1px solid var(--crema); padding: .9rem 0; }
+.c-fold summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+.c-faq { max-width: 40rem; }
+.c-faq__list { margin-top: 1.5rem; }
+.c-facets { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; margin-top: 1.5rem; }
+.c-facets__sort { display: grid; gap: .35rem; }
+.c-facets__sort select, .c-facets__price input { min-height: 44px; background: var(--rosa); border: 1px solid var(--crema); padding: 0 .6rem; font-size: 16px; }
+.c-facets__group { min-width: 10rem; }
+.c-facets__group ul { list-style: none; margin: .5rem 0 0; padding: 0; }
+.c-pickup { margin-top: 1.25rem; color: var(--cacao); }
+.c-pickup ul { list-style: none; margin: .5rem 0 0; padding: 0; }
+.c-header__search { position: relative; }
+.c-header__form { display: none; }
+.c-header__input {
+  width: 11rem; min-height: 2.5rem; border: 0; border-bottom: 1px solid color-mix(in srgb, var(--rosa) 40%, transparent);
+  background: transparent; color: var(--rosa); font-size: 16px;
+}
+.c-pred {
+  position: absolute; top: 100%; right: 0; z-index: 70; min-width: 16rem;
+  background: var(--rosa); color: var(--ink); padding: 1rem;
+}
+.c-pred__list { list-style: none; margin: .5rem 0; padding: 0; }
+.c-pred__list a { display: flex; align-items: center; min-height: 40px; }
+@media (min-width: 750px) {
+  .c-header__form { display: block; }
+}

@@ -1,0 +1,33 @@
+<section class="c-row">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h1 class="type-display-md">{{ section.settings.title }}</h1>
+    <div class="c-row__grid" style="margin-top:2rem">
+      {% for col in collections %}
+        {% unless col.handle == 'all' %}
+        <a class="c-card" href="{{ col.url }}">
+          <div class="c-card__frame">
+            {% if col.featured_image %}
+              {{ col.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: col.title }}
+            {% elsif col.products.first.featured_image %}
+              {{ col.products.first.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: col.title }}
+            {% else %}
+              <div class="c-card__frame--ph" aria-hidden="true"></div>
+            {% endif %}
+          </div>
+          <p class="c-card__title">{{ col.title }}</p>
+        </a>
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Collection list",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Maison" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Collections" }
+  ]
+}
+{% endschema %}

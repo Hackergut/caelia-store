@@ -57,7 +57,18 @@
     "featured": {
       "type": "featured-product",
       "settings": { "kicker": "Maison" }
-    }
+    },
+    "faq": {
+      "type": "faq",
+      "settings": {},
+      "blocks": {
+        "q1": { "type": "item", "settings": { "q": "Is the mirror glass?", "a": "<p>Anti-shatter surface, leather-framed on all four sides.</p>" } },
+        "q2": { "type": "item", "settings": { "q": "How many pencils?", "a": "<p>The front pocket holds up to five.</p>" } }
+      },
+      "block_order": ["q1", "q2"]
+    },
+    "news": { "type": "newsletter", "settings": {} },
+    "journal": { "type": "featured-blog", "settings": {} }
   },
-  "order": ["hero", "drip", "colors", "gesto", "intorno", "map", "featured"]
+  "order": ["hero", "drip", "colors", "gesto", "intorno", "map", "featured", "faq", "news", "journal"]
 }

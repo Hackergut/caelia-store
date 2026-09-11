@@ -1,0 +1,16 @@
+<section class="c-page">
+  <div class="shell c-page__box">
+    <h1 class="type-display-md">{{ 'customers.login' | t }}</h1>
+    {% form 'customer_login' %}
+      {{ form.errors | default_errors }}
+      <label class="c-label">{{ 'newsletter.email' | t }}<input type="email" name="customer[email]" autocomplete="email" required></label>
+      <label class="c-label">{{ 'customers.password' | t }}<input type="password" name="customer[password]" autocomplete="current-password" required></label>
+      <button class="btn-primary" type="submit">{{ 'customers.sign_in' | t }}</button>
+    {% endform %}
+    <p style="margin-top:1.5rem"><a class="type-meta" href="{{ routes.account_register_url }}">{{ 'customers.register' | t }}</a></p>
+    <p><a class="type-meta" href="{{ routes.account_recover_url }}">{{ 'customers.forgot' | t }}</a></p>
+  </div>
+</section>
+{% schema %}
+{ "name": "Login" }
+{% endschema %}

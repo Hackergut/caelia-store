@@ -1,0 +1,32 @@
+<section class="c-row" data-recs data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}&intent=related">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <div class="c-row__grid" style="margin-top:2rem">
+      {% if recommendations.performed and recommendations.products_count > 0 %}
+        {% for product in recommendations.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        {% assign fallback = collections[settings.featured_collection] | default: collections.caelia %}
+        {% if fallback %}
+          {% for item in fallback.products limit: section.settings.limit %}
+            {% unless item.id == product.id %}
+              {% render 'product-card', product: item %}
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Related products",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Maison" },
+    { "type": "text", "id": "title", "label": "Title", "default": "You may also like" },
+    { "type": "range", "id": "limit", "min": 2, "max": 8, "step": 1, "default": 3, "label": "Products" }
+  ]
+}
+{% endschema %}

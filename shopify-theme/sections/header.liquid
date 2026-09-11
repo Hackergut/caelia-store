@@ -8,6 +8,13 @@
   </a>
   <div class="c-header__end">
     {% if settings.show_search %}
+      <div class="c-header__search">
+        <form action="{{ routes.search_url }}" role="search" data-pred-form class="c-header__form">
+          <label class="visually-hidden" for="HeaderSearch">{{ 'general.search' | t }}</label>
+          <input id="HeaderSearch" class="c-header__input" type="search" name="q" placeholder="{{ 'general.search' | t }}" autocomplete="off" data-pred-input>
+        </form>
+        {% render 'predictive-search' %}
+      </div>
       <a class="type-meta c-header__link" href="{{ routes.search_url }}">{{ 'general.search' | t }}</a>
     {% endif %}
     {% if settings.show_account and shop.customer_accounts_enabled %}
@@ -50,10 +57,14 @@
   </ul>
   <p class="type-meta c-menu__meta">{{ settings.brand_tagline }}</p>
 </nav>
+{% for block in section.blocks %}
+  {% render block %}
+{% endfor %}
 
 {% schema %}
 {
   "name": "Header",
-  "settings": []
+  "settings": [],
+  "blocks": [{ "type": "@app" }]
 }
 {% endschema %}

@@ -362,16 +362,106 @@
   document.querySelectorAll("[data-product]").forEach((product) => {
     const script = product.querySelector("[data-variants]");
     const idInput = product.querySelector("[data-variant-id]");
-    const selects = [...product.querySelectorAll("[data-option]")];
-    if (script && idInput && selects.length) {
+    const fields = [...product.querySelectorAll("[data-option]")];
+    if (script && idInput && fields.length) {
       const variants = JSON.parse(script.textContent);
+      const names = [...new Set(fields.map((f) => f.name))];
       const sync = () => {
-        const key = selects.map((s) => s.value).join(" / ");
+        const key = names
+          .map((n) => {
+            const checked = product.querySelector(`[name="${n}"]:checked`);
+            const el = checked || product.querySelector(`[name="${n}"]`);
+            return el ? el.value : "";
+          })
+          .join(" / ");
         const v = variants.find((x) => x.title === key || (x.options || []).join(" / ") === key);
-        if (v) idInput.value = v.id;
+        if (!v) return;
+        idInput.value = v.id;
+        const img = document.getElementById("ProductImage");
+        if (img && v.featured_image) img.src = v.featured_image.src;
+        const btn = product.querySelector("[data-cta-btn]");
+        if (btn) {
+          btn.disabled = !v.available;
+          btn.setAttribute("aria-disabled", String(!v.available));
+        }
+        product.querySelectorAll("[data-option-label]").forEach((lab, i) => {
+          const part = key.split(" / ")[i];
+          if (part) lab.textContent = part;
+        });
+        product.querySelectorAll(".c-swatch__chip").forEach((chip) => {
+          const input = chip.querySelector("input");
+          chip.classList.toggle("is-on", !!(input && input.checked));
+        });
       };
-      selects.forEach((s) => s.addEventListener("change", sync));
+      fields.forEach((s) => s.addEventListener("change", sync));
     }
+  });
+
+  const predForm = document.querySelector("[data-pred-form]");
+  const predInput = document.querySelector("[data-pred-input]");
+  const predBox = document.querySelector("[data-predictive-search]");
+  if (predForm && predInput && predBox && cfg.routes.predictive) {
+    const list = predBox.querySelector("[data-pred-list]");
+    const empty = predBox.querySelector("[data-pred-empty]");
+    const all = predBox.querySelector("[data-pred-all]");
+    let timer = 0;
+    const render = (items, q) => {
+      list.innerHTML = "";
+      if (!items.length) {
+        empty.hidden = false;
+        predBox.hidden = false;
+        return;
+      }
+      empty.hidden = true;
+      items.forEach((p) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = p.url;
+        a.textContent = p.title;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+      if (all) all.href = `${cfg.routes.search}?q=${encodeURIComponent(q)}`;
+      predBox.hidden = false;
+    };
+    predInput.addEventListener("input", () => {
+      const q = predInput.value.trim();
+      clearTimeout(timer);
+      if (q.length < 2) {
+        predBox.hidden = true;
+        return;
+      }
+      timer = setTimeout(async () => {
+        try {
+          const url = `${cfg.routes.predictive}?q=${encodeURIComponent(q)}&resources[type]=product&resources[limit]=4&resources[options][unavailable_products]=last`;
+          const res = await fetch(url);
+          const json = await res.json();
+          const items = (json.resources && json.resources.results && json.resources.results.products) || [];
+          render(items, q);
+        } catch (e) {
+          predBox.hidden = true;
+        }
+      }, 180);
+    });
+    document.addEventListener("click", (e) => {
+      if (!predBox.contains(e.target) && e.target !== predInput) predBox.hidden = true;
+    });
+  }
+
+  document.querySelectorAll("[data-recs]").forEach((el) => {
+    const url = el.getAttribute("data-url");
+    if (!url || !url.includes("product_id=")) return;
+    fetch(url)
+      .then((r) => r.text())
+      .then((html) => {
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const next = doc.querySelector("[data-recs]");
+        if (next && next.querySelector(".c-card")) el.replaceWith(next);
+        else if (!el.querySelector(".c-card")) el.style.display = "none";
+      })
+      .catch(() => {
+        if (!el.querySelector(".c-card")) el.style.display = "none";
+      });
   });
 
   const ctaBtn = document.querySelector("[data-cta-btn]");

@@ -1,0 +1,35 @@
+<article class="c-page">
+  <div class="shell c-page__box" style="max-width:42rem">
+    <p class="type-meta"><a href="{{ blog.url }}">{{ blog.title }}</a> · {{ article.published_at | date: '%d %b %Y' }}</p>
+    <h1 class="type-display-md">{{ article.title }}</h1>
+    {% if article.author %}<p class="type-meta">{{ article.author }}</p>{% endif %}
+    {% if article.image %}
+      <div style="margin:1.5rem 0">{{ article.image | image_url: width: 1600 | image_tag: alt: article.title }}</div>
+    {% endif %}
+    <div class="rte">{{ article.content }}</div>
+    {% if blog.comments_enabled? %}
+      <section style="margin-top:3rem">
+        <h2 class="type-display-md">{{ 'blog.comments' | t }}</h2>
+        {% paginate article.comments by 10 %}
+          {% for comment in article.comments %}
+            <div class="c-fold" style="padding:1rem 0;border-top:1px solid var(--crema)">
+              <p class="type-meta">{{ comment.author }} · {{ comment.created_at | date: '%d %b %Y' }}</p>
+              <div class="rte">{{ comment.content }}</div>
+            </div>
+          {% endfor %}
+          {% render 'pagination', paginate: paginate %}
+        {% endpaginate %}
+        {% form 'new_comment', article %}
+          {{ form.errors | default_errors }}
+          <label class="c-label">{{ 'blog.name' | t }}<input type="text" name="comment[author]" required></label>
+          <label class="c-label">{{ 'newsletter.email' | t }}<input type="email" name="comment[email]" required></label>
+          <label class="c-label">{{ 'blog.comment' | t }}<textarea name="comment[body]" required></textarea></label>
+          <button class="btn-primary" type="submit">{{ 'blog.post_comment' | t }}</button>
+        {% endform %}
+      </section>
+    {% endif %}
+  </div>
+</article>
+{% schema %}
+{ "name": "Article" }
+{% endschema %}

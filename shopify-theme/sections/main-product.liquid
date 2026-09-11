@@ -24,12 +24,25 @@
       {% if settings.show_vendor and product.vendor != blank %}
         <p class="type-meta">{{ product.vendor }}</p>
       {% endif %}
-      <p class="c-product__price">{{ product.selected_or_first_available_variant.price | money }}</p>
       {% if settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
         <p class="type-meta">SKU {{ product.selected_or_first_available_variant.sku }}</p>
       {% endif %}
+      {% render 'price', product: product, variant: product.selected_or_first_available_variant %}
       <div class="rte c-product__desc">{{ product.description }}</div>
       {% render 'buy-buttons', product: product %}
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when '@app' %}
+            {% render block %}
+          {% when 'collapsible' %}
+            <details class="c-fold" {{ block.shopify_attributes }}>
+              <summary>{{ block.settings.heading }}</summary>
+              <div class="rte">{{ block.settings.content }}</div>
+            </details>
+        {% endcase %}
+      {% endfor %}
+
       {% if settings.show_share %}
         <p class="c-share">
           <a href="https://www.facebook.com/sharer.php?u={{ canonical_url | url_encode }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook — {{ 'accessibility.new_window' | t }}">Facebook</a>
@@ -63,9 +76,21 @@
 
 {% schema %}
 {
-  "name": "Prodotto",
+  "name": "Product",
+  "tag": "section",
   "settings": [
-    { "type": "paragraph", "content": "CTA, quantità, Shop Pay, fiducia: Customize → ingranaggio → Pagamenti / Pagina prodotto." }
+    { "type": "paragraph", "content": "Gallery, variants, Shop Pay, pickup and selling plans. Extra rows below are blocks — including app blocks." }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "collapsible",
+      "name": "Collapsible row",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shipping & returns" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Free shipping in Italy over 60 €. 14-day returns.</p>" }
+      ]
+    }
   ]
 }
 {% endschema %}

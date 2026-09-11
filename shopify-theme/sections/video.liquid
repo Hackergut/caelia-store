@@ -1,0 +1,38 @@
+<section class="c-chapter">
+  <div class="shell c-chapter__cap">
+    <div>
+      <p class="eyebrow">{{ section.settings.kicker }}</p>
+      <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    </div>
+    {% if section.settings.body != blank %}
+      <p class="c-chapter__body">{{ section.settings.body }}</p>
+    {% endif %}
+  </div>
+  <div class="c-chapter__frame">
+    {% if section.settings.video != blank %}
+      {{ section.settings.video | video_tag: autoplay: false, loop: true, muted: true, controls: true, class: 'c-hero__media' }}
+    {% elsif section.settings.external != blank %}
+      {% if section.settings.external.type == 'youtube' %}
+        <iframe src="https://www.youtube.com/embed/{{ section.settings.external.id }}" title="{{ section.settings.title }}" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0"></iframe>
+      {% else %}
+        <iframe src="https://player.vimeo.com/video/{{ section.settings.external.id }}" title="{{ section.settings.title }}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="width:100%;height:100%;border:0"></iframe>
+      {% endif %}
+    {% elsif section.settings.image != blank %}
+      {{ section.settings.image | image_url: width: 2000 | image_tag: alt: section.settings.title }}
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Video",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Film" },
+    { "type": "text", "id": "title", "label": "Title", "default": "The drop." },
+    { "type": "textarea", "id": "body", "label": "Body" },
+    { "type": "video", "id": "video", "label": "Shopify video" },
+    { "type": "video_url", "id": "external", "label": "YouTube or Vimeo", "accept": ["youtube", "vimeo"] },
+    { "type": "image_picker", "id": "image", "label": "Poster / fallback" }
+  ],
+  "presets": [{ "name": "Video" }]
+}
+{% endschema %}

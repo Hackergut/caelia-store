@@ -1,0 +1,27 @@
+<section class="c-page">
+  <div class="shell">
+    <p class="type-meta"><a href="{{ routes.account_url }}">{{ 'customers.account' | t }}</a></p>
+    <h1 class="type-display-md">{{ order.name }}</h1>
+    <p class="type-meta">{{ order.created_at | date: '%d %b %Y' }} · {{ order.financial_status_label }} · {{ order.fulfillment_status_label }}</p>
+    {% for line_item in order.line_items %}
+      <div class="c-cart__line">
+        {{ line_item.image | image_url: width: 240 | image_tag: alt: line_item.title }}
+        <div>
+          <p class="c-card__title">{{ line_item.title }}</p>
+          <p class="type-meta">{{ line_item.quantity }} × {{ line_item.final_line_price | money }}</p>
+        </div>
+      </div>
+    {% endfor %}
+    <div class="c-cart__tot">
+      <span class="type-meta">{{ 'cart.total' | t }}</span>
+      <strong>{{ order.total_price | money }}</strong>
+    </div>
+    <div class="rte" style="margin-top:2rem">
+      <p class="type-meta">{{ 'customers.shipping' | t }}</p>
+      {{ order.shipping_address | format_address }}
+    </div>
+  </div>
+</section>
+{% schema %}
+{ "name": "Order" }
+{% endschema %}

@@ -11,7 +11,10 @@
     "collection": "Collezione",
     "about": "Storia",
     "contact": "Contatti",
-    "view_all": "Vedi tutto"
+    "view_all": "Vedi tutto",
+    "search_no_results": "Nessun risultato",
+    "view_all_results": "Vedi tutti i risultati",
+    "search_results_count": "{{ count }} risultati"
   },
   "accessibility": {
     "home": "CAELIA, vai alla home",
@@ -26,11 +29,19 @@
     "added": "Aggiunto al carrello",
     "sold_out": "Esaurito",
     "from": "Da",
+    "to": "A",
     "quantity": "Quantità",
     "details": "Dettagli prodotto",
     "other_colors": "Altri colori",
     "placeholder": "Colore",
-    "empty_collection": "Aggiungi i tre colori CAELIA a questa collezione in Shopify Admin."
+    "empty_collection": "Aggiungi i prodotti a questa collezione in Shopify Admin.",
+    "sort": "Ordina",
+    "filter": "Filtra",
+    "clear_filters": "Azzera filtri",
+    "purchase_options": "Opzioni di acquisto",
+    "one_time": "Acquisto singolo",
+    "pickup": "Ritiro in negozio",
+    "unavailable": "Non disponibile"
   },
   "cart": {
     "title": "Carrello",
@@ -53,5 +64,46 @@
   "contact": {
     "send": "Invia",
     "posted": "Messaggio ricevuto. Ti rispondiamo a breve."
+  },
+  "blog": {
+    "empty": "Nessun articolo.",
+    "comments": "Commenti",
+    "name": "Nome",
+    "comment": "Commento",
+    "post_comment": "Pubblica"
+  },
+  "password": {
+    "label": "Password",
+    "submit": "Entra"
+  },
+  "gift_card": {
+    "issued": "Gift card",
+    "add_to_apple_wallet": "Aggiungi ad Apple Wallet"
+  },
+  "customers": {
+    "login": "Accedi",
+    "sign_in": "Accedi",
+    "register": "Crea account",
+    "create": "Crea account",
+    "password": "Password",
+    "password_confirm": "Conferma password",
+    "forgot": "Password dimenticata?",
+    "account": "Account",
+    "logout": "Esci",
+    "orders": "Ordini",
+    "no_orders": "Nessun ordine.",
+    "addresses": "Indirizzi",
+    "add_address": "Aggiungi indirizzo",
+    "default": "Predefinito",
+    "save": "Salva",
+    "first_name": "Nome",
+    "last_name": "Cognome",
+    "address1": "Indirizzo",
+    "city": "Città",
+    "zip": "CAP",
+    "country": "Paese",
+    "shipping": "Spedizione",
+    "reset": "Reimposta password",
+    "activate": "Attiva account"
   }
 }

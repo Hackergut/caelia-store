@@ -1,0 +1,18 @@
+{%- assign current = variant | default: product.selected_or_first_available_variant -%}
+{%- if current and current.available and current.store_availabilities.size > 0 -%}
+  <div class="c-pickup" data-pickup>
+    <p class="type-meta">{{ 'products.pickup' | t }}</p>
+    <ul>
+      {%- for availability in current.store_availabilities -%}
+        <li>
+          <strong>{{ availability.location.name }}</strong>
+          {%- if availability.pick_up_enabled -%}
+            — {{ availability.pick_up_time }}
+          {%- else -%}
+            — {{ 'products.unavailable' | t }}
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+{%- endif -%}

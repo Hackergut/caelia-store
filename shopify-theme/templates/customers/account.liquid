@@ -1,9 +1,0 @@
-<section class="c-page">
-  <div class="shell c-page__box">
-    <h1 class="type-display-md">{{ customer.name }}</h1>
-    <p><a href="{{ routes.account_logout_url }}">Esci</a></p>
-    {% for order in customer.orders %}
-      <p>{{ order.name }} · {{ order.total_price | money }}</p>
-    {% endfor %}
-  </div>
-</section>

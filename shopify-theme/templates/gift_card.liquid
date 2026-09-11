@@ -1,14 +1,23 @@
 {% layout none %}
 <!doctype html>
-<html lang="it">
+<html lang="{{ request.locale.iso_code }}">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ gift_card.balance | money }} – {{ shop.name }}</title>
     {{ content_for_header }}
+    {{ 'caelia.css' | asset_url | stylesheet_tag }}
   </head>
-  <body style="font-family:Tenor Sans,sans-serif;background:#ffddde;color:#4a0e16;padding:3rem">
-    <p>{{ shop.name }}</p>
-    <h1>{{ gift_card.balance | money }}</h1>
-    <p>{{ gift_card.code | format_code }}</p>
+  <body class="c-page" style="min-height:100svh;display:flex;align-items:center">
+    <div class="shell c-page__box">
+      <p class="c-logo">{{ shop.name }}</p>
+      <p class="type-meta">{{ 'gift_card.issued' | t }}</p>
+      <h1 class="type-display-md">{{ gift_card.balance | money }}</h1>
+      <p class="type-meta" style="font-size:1.1rem;letter-spacing:.2em">{{ gift_card.code | format_code }}</p>
+      {% if gift_card.pass_url %}
+        <p style="margin-top:1.5rem"><a class="btn-primary" href="{{ gift_card.pass_url }}">{{ 'gift_card.add_to_apple_wallet' | t }}</a></p>
+      {% endif %}
+      <p class="type-meta" style="margin-top:2rem"><a href="{{ shop.url }}">{{ shop.name }}</a></p>
+    </div>
   </body>
 </html>

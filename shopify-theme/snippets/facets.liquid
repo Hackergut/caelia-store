@@ -1,0 +1,46 @@
+{%- comment -%} Storefront filtering + sort. {%- endcomment -%}
+{%- if collection.filters.size > 0 or collection.sort_options.size > 0 -%}
+  <form class="c-facets" method="get" action="{{ collection.url }}">
+    {%- if collection.sort_options.size > 0 -%}
+      <label class="c-facets__sort">
+        <span class="type-meta">{{ 'products.sort' | t }}</span>
+        <select name="sort_by" onchange="this.form.submit()">
+          {%- for option in collection.sort_options -%}
+            <option value="{{ option.value }}" {% if option.value == collection.sort_by %}selected{% endif %}>{{ option.name }}</option>
+          {%- endfor -%}
+        </select>
+      </label>
+    {%- endif -%}
+    {%- for filter in collection.filters -%}
+      <details class="c-facets__group" {% if filter.active_values.size > 0 %}open{% endif %}>
+        <summary class="type-meta">{{ filter.label }}</summary>
+        {%- case filter.type -%}
+          {%- when 'boolean' or 'list' -%}
+            <ul>
+              {%- for value in filter.values -%}
+                <li>
+                  <label>
+                    <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" {% if value.active %}checked{% endif %} onchange="this.form.submit()">
+                    {{ value.label }} ({{ value.count }})
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- when 'price_range' -%}
+            <div class="c-facets__price">
+              <label>{{ 'products.from' | t }}
+                <input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | divided_by: 100.0 }}" min="0" step="1">
+              </label>
+              <label>{{ 'products.to' | t }}
+                <input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | divided_by: 100.0 }}" min="0" step="1">
+              </label>
+              <button type="submit" class="btn-ghost">{{ 'products.filter' | t }}</button>
+            </div>
+        {%- endcase -%}
+      </details>
+    {%- endfor -%}
+    {%- if collection.filters.size > 0 -%}
+      <a class="type-meta" href="{{ collection.url }}">{{ 'products.clear_filters' | t }}</a>
+    {%- endif -%}
+  </form>
+{%- endif -%}

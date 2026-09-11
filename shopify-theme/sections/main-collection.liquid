@@ -6,37 +6,26 @@
       <div class="rte c-row__sub">{{ collection.description }}</div>
     {% endif %}
     {% paginate collection.products by section.settings.per_page %}
-      <div class="c-row__grid" style="margin-top:3rem">
+      {% render 'facets', collection: collection %}
+      <div class="c-row__grid" style="margin-top:2rem">
         {% for product in collection.products %}
-          <a class="c-card" href="{{ product.url }}">
-            <div class="c-card__frame" data-parallax>
-              {% if product.featured_image %}
-                {{ product.featured_image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: product.title }}
-              {% endif %}
-            </div>
-            <div class="c-card__meta">
-              <p class="c-card__title">{{ product.title }}</p>
-              <p class="type-meta">{{ product.price | money }}</p>
-            </div>
-          </a>
+          {% render 'product-card', product: product %}
         {% else %}
           <p>{{ 'products.empty_collection' | t }}</p>
         {% endfor %}
       </div>
-      {% if paginate.pages > 1 %}
-        <nav class="c-pages" aria-label="Pagination">{{ paginate | default_pagination }}</nav>
-      {% endif %}
+      {% render 'pagination', paginate: paginate %}
     {% endpaginate %}
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Collezione",
+  "name": "Collection",
   "settings": [
-    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Collezione" },
-    { "type": "text", "id": "title", "label": "Titolo se vuota", "default": "Tre colori." },
-    { "type": "range", "id": "per_page", "label": "Prodotti per pagina", "min": 3, "max": 24, "step": 3, "default": 12 }
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Collection" },
+    { "type": "text", "id": "title", "label": "Fallback title", "default": "Three colours." },
+    { "type": "range", "id": "per_page", "label": "Products per page", "min": 3, "max": 24, "step": 3, "default": 12 }
   ]
 }
 {% endschema %}

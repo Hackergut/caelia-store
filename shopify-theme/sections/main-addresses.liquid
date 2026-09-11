@@ -1,0 +1,25 @@
+<section class="c-page">
+  <div class="shell">
+    <h1 class="type-display-md">{{ 'customers.addresses' | t }}</h1>
+    <p><a class="type-meta" href="{{ routes.account_url }}">{{ 'customers.account' | t }}</a></p>
+    {% for address in customer.addresses %}
+      <div class="rte" style="margin:1.5rem 0;padding:1rem 0;border-top:1px solid var(--crema)">
+        {{ address | format_address }}
+        {% if address == customer.default_address %}<p class="type-meta">{{ 'customers.default' | t }}</p>{% endif %}
+      </div>
+    {% endfor %}
+    <h2 class="type-display-md">{{ 'customers.add_address' | t }}</h2>
+    {% form 'customer_address', customer.new_address %}
+      <label class="c-label">{{ 'customers.first_name' | t }}<input type="text" name="address[first_name]"></label>
+      <label class="c-label">{{ 'customers.last_name' | t }}<input type="text" name="address[last_name]"></label>
+      <label class="c-label">{{ 'customers.address1' | t }}<input type="text" name="address[address1]"></label>
+      <label class="c-label">{{ 'customers.city' | t }}<input type="text" name="address[city]"></label>
+      <label class="c-label">{{ 'customers.zip' | t }}<input type="text" name="address[zip]"></label>
+      <label class="c-label">{{ 'customers.country' | t }}<input type="text" name="address[country]"></label>
+      <button class="btn-primary" type="submit">{{ 'customers.save' | t }}</button>
+    {% endform %}
+  </div>
+</section>
+{% schema %}
+{ "name": "Addresses" }
+{% endschema %}

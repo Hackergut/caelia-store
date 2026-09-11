@@ -1,23 +1,34 @@
 <section class="c-row">
   <div class="shell">
-    <h1 class="type-display-md">Cerca</h1>
+    <h1 class="type-display-md">{{ 'general.search' | t }}</h1>
     <form action="{{ routes.search_url }}" class="c-search" role="search">
       <label class="visually-hidden" for="Search-Main">{{ 'general.search' | t }}</label>
-      <input id="Search-Main" type="search" name="q" value="{{ search.terms | escape }}" placeholder="CAELIA" autocomplete="off">
+      <input id="Search-Main" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search' | t }}" autocomplete="off">
+      <input type="hidden" name="type" value="product,article,page">
       <button class="btn-primary" type="submit">{{ 'general.search' | t }}</button>
     </form>
-    <div class="c-row__grid">
-      {% for item in search.results %}
-        {% if item.object_type == 'product' %}
-          <a class="c-card" href="{{ item.url }}">
-            <div class="c-card__frame">{{ item.featured_image | image_url: width: 800 | image_tag: alt: item.title }}</div>
-            <p class="c-card__title">{{ item.title }}</p>
-          </a>
-        {% endif %}
-      {% endfor %}
-    </div>
+    {% if search.performed %}
+      <p class="type-meta">{{ 'general.search_results_count' | t: count: search.results_count }}</p>
+    {% endif %}
+    {% paginate search.results by 12 %}
+      <div class="c-row__grid">
+        {% for item in search.results %}
+          {% if item.object_type == 'product' %}
+            {% render 'product-card', product: item %}
+          {% else %}
+            <a class="c-card" href="{{ item.url }}">
+              <p class="type-meta">{{ item.object_type }}</p>
+              <p class="c-card__title">{{ item.title }}</p>
+            </a>
+          {% endif %}
+        {% else %}
+          {% if search.performed %}<p>{{ 'general.search_no_results' | t }}</p>{% endif %}
+        {% endfor %}
+      </div>
+      {% render 'pagination', paginate: paginate %}
+    {% endpaginate %}
   </div>
 </section>
 {% schema %}
-{ "name": "Cerca" }
+{ "name": "Search" }
 {% endschema %}

@@ -2,19 +2,70 @@
 {% form 'product', product, class: 'c-product__form', data-product-form: '' %}
   {% unless product.has_only_default_variant %}
     {% for option in product.options_with_values %}
-      <label class="c-label">{{ option.name }}
-        <select name="options[{{ option.name }}]" data-option>
-          {% for value in option.values %}
-            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
-          {% endfor %}
-        </select>
-      </label>
+      {% assign opt_name = option.name | downcase %}
+      {% assign is_color = false %}
+      {% if opt_name == 'color' or opt_name == 'colour' or opt_name == 'colore' %}
+        {% assign is_color = true %}
+      {% endif %}
+      <fieldset class="c-swatch" data-option-index="{{ forloop.index0 }}">
+        <legend class="type-meta">{{ option.name }} · <span data-option-label>{{ option.selected_value }}</span></legend>
+        {% if is_color %}
+          <div class="c-swatch__row">
+            {% for value in option.values %}
+              <label class="c-swatch__chip{% if option.selected_value == value %} is-on{% endif %}">
+                <input
+                  type="radio"
+                  name="options[{{ option.name | escape }}]"
+                  value="{{ value | escape }}"
+                  data-option
+                  {% if option.selected_value == value %}checked{% endif %}
+                >
+                <span>{{ value }}</span>
+              </label>
+            {% endfor %}
+          </div>
+        {% else %}
+          <select name="options[{{ option.name | escape }}]" data-option aria-label="{{ option.name }}">
+            {% for value in option.values %}
+              <option value="{{ value | escape }}" {% if option.selected_value == value %}selected{% endif %}>{{ value }}</option>
+            {% endfor %}
+          </select>
+        {% endif %}
+      </fieldset>
     {% endfor %}
   {% endunless %}
+
+  {% if product.selling_plan_groups.size > 0 %}
+    <fieldset class="c-plans">
+      <legend class="type-meta">{{ 'products.purchase_options' | t }}</legend>
+      <label class="c-plans__opt">
+        <input type="radio" name="selling_plan" value="" checked>
+        {{ 'products.one_time' | t }}
+      </label>
+      {% for group in product.selling_plan_groups %}
+        {% for plan in group.selling_plans %}
+          <label class="c-plans__opt">
+            <input type="radio" name="selling_plan" value="{{ plan.id }}">
+            {{ plan.name }}
+          </label>
+        {% endfor %}
+      {% endfor %}
+    </fieldset>
+  {% endif %}
+
   <input type="hidden" name="id" value="{{ current.id }}" data-variant-id>
   {% if settings.show_quantity %}
     <label class="c-label c-label--qty">{{ 'products.quantity' | t }}
-      <input type="number" name="quantity" value="1" min="1" inputmode="numeric">
+      <input
+        type="number"
+        name="quantity"
+        value="1"
+        min="1"
+        {% if current.inventory_management == 'shopify' and current.inventory_policy == 'deny' and current.inventory_quantity > 0 %}
+          max="{{ current.inventory_quantity }}"
+        {% endif %}
+        inputmode="numeric"
+      >
     </label>
   {% endif %}
   <button
@@ -40,6 +91,7 @@
   {% endif %}
 {% endform %}
 {% render 'trust' %}
+{% render 'pickup-availability', product: product, variant: current %}
 {% if product.variants.size > 1 %}
   <script type="application/json" data-variants>{{ product.variants | json }}</script>
 {% endif %}

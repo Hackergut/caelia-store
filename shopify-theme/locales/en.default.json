@@ -11,7 +11,10 @@
     "collection": "Collection",
     "about": "Story",
     "contact": "Contact",
-    "view_all": "View all"
+    "view_all": "View all",
+    "search_no_results": "No results",
+    "view_all_results": "View all results",
+    "search_results_count": "{{ count }} results"
   },
   "accessibility": {
     "home": "CAELIA, go to home",
@@ -26,11 +29,19 @@
     "added": "Added to cart",
     "sold_out": "Sold out",
     "from": "From",
+    "to": "To",
     "quantity": "Quantity",
     "details": "Product details",
     "other_colors": "Other colours",
     "placeholder": "Colour",
-    "empty_collection": "Add the three CAELIA colours to this collection in Shopify Admin."
+    "empty_collection": "Add products to this collection in Shopify Admin.",
+    "sort": "Sort",
+    "filter": "Filter",
+    "clear_filters": "Clear filters",
+    "purchase_options": "Purchase options",
+    "one_time": "One-time purchase",
+    "pickup": "Pickup",
+    "unavailable": "Unavailable"
   },
   "cart": {
     "title": "Cart",
@@ -53,5 +64,46 @@
   "contact": {
     "send": "Send",
     "posted": "Message received."
+  },
+  "blog": {
+    "empty": "No posts yet.",
+    "comments": "Comments",
+    "name": "Name",
+    "comment": "Comment",
+    "post_comment": "Post comment"
+  },
+  "password": {
+    "label": "Password",
+    "submit": "Enter"
+  },
+  "gift_card": {
+    "issued": "Gift card",
+    "add_to_apple_wallet": "Add to Apple Wallet"
+  },
+  "customers": {
+    "login": "Sign in",
+    "sign_in": "Sign in",
+    "register": "Create account",
+    "create": "Create account",
+    "password": "Password",
+    "password_confirm": "Confirm password",
+    "forgot": "Forgot password?",
+    "account": "Account",
+    "logout": "Log out",
+    "orders": "Orders",
+    "no_orders": "No orders yet.",
+    "addresses": "Addresses",
+    "add_address": "Add address",
+    "default": "Default",
+    "save": "Save",
+    "first_name": "First name",
+    "last_name": "Last name",
+    "address1": "Address",
+    "city": "City",
+    "zip": "Postal code",
+    "country": "Country",
+    "shipping": "Shipping",
+    "reset": "Reset password",
+    "activate": "Activate account"
   }
 }

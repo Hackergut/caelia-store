@@ -1,8 +1,0 @@
-<section class="c-page">
-  <div class="shell c-page__box">
-    <h1 class="type-display-md">Indirizzi</h1>
-    {% for address in customer.addresses %}
-      <p>{{ address | format_address }}</p>
-    {% endfor %}
-  </div>
-</section>

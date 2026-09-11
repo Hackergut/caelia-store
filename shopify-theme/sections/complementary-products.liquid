@@ -1,0 +1,24 @@
+<section class="c-row" data-recs data-url="{{ routes.product_recommendations_url }}?section_id={{ section.id }}&product_id={{ product.id }}&limit={{ section.settings.limit }}&intent=complementary">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <div class="c-row__grid" style="margin-top:2rem">
+      {% if recommendations.performed and recommendations.products_count > 0 %}
+        {% for product in recommendations.products %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Complementary products",
+  "settings": [
+    { "type": "paragraph", "content": "Uses Search & Discovery complementary products. Hidden until Shopify returns matches." },
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Pair with" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Complete the set" },
+    { "type": "range", "id": "limit", "min": 2, "max": 6, "step": 1, "default": 3, "label": "Products" }
+  ]
+}
+{% endschema %}

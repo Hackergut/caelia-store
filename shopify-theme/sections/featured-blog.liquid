@@ -1,0 +1,38 @@
+<section class="c-row">
+  <div class="shell">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <div class="c-row__grid" style="margin-top:2rem">
+      {% for article in blogs[section.settings.blog].articles limit: section.settings.limit %}
+        <a class="c-card" href="{{ article.url }}">
+          <div class="c-card__frame">
+            {% if article.image %}
+              {{ article.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: article.title }}
+            {% else %}
+              <div class="c-card__frame--ph" aria-hidden="true"></div>
+            {% endif %}
+          </div>
+          <p class="type-meta">{{ article.published_at | date: '%d %b %Y' }}</p>
+          <p class="c-card__title">{{ article.title }}</p>
+        </a>
+      {% else %}
+        <p class="c-row__sub">{{ 'blog.empty' | t }}</p>
+      {% endfor %}
+    </div>
+    {% if blogs[section.settings.blog] %}
+      <p style="margin-top:1.5rem"><a class="type-meta" href="{{ blogs[section.settings.blog].url }}">{{ 'general.view_all' | t }}</a></p>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Blog posts",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "Journal" },
+    { "type": "text", "id": "title", "label": "Title", "default": "From the maison" },
+    { "type": "blog", "id": "blog", "label": "Blog" },
+    { "type": "range", "id": "limit", "min": 2, "max": 6, "step": 1, "default": 3, "label": "Posts" }
+  ],
+  "presets": [{ "name": "Blog posts" }]
+}
+{% endschema %}

@@ -1,0 +1,15 @@
+<section class="c-row">
+  <div class="shell">
+    {% for block in section.blocks %}
+      {% render block %}
+    {% endfor %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "Apps",
+  "settings": [],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "Apps" }]
+}
+{% endschema %}

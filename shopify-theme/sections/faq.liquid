@@ -1,0 +1,45 @@
+<section class="c-row">
+  <div class="shell c-faq">
+    <p class="eyebrow">{{ section.settings.kicker }}</p>
+    <h2 class="type-display-md">{{ section.settings.title }}</h2>
+    <div class="c-faq__list">
+      {% for block in section.blocks %}
+        {% if block.type == '@app' %}
+          {% render block %}
+        {% else %}
+          <details class="c-fold" {{ block.shopify_attributes }}>
+            <summary>{{ block.settings.q }}</summary>
+            <div class="rte">{{ block.settings.a }}</div>
+          </details>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "FAQ",
+  "settings": [
+    { "type": "text", "id": "kicker", "label": "Eyebrow", "default": "FAQ" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Questions." }
+  ],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "item",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "q", "label": "Question", "default": "How long is shipping?" },
+        { "type": "richtext", "id": "a", "label": "Answer", "default": "<p>2–4 days in Italy.</p>" }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "FAQ",
+    "blocks": [
+      { "type": "item", "settings": { "q": "Is the mirror glass?", "a": "<p>Anti-shatter surface, leather-framed on all four sides.</p>" } },
+      { "type": "item", "settings": { "q": "How many pencils?", "a": "<p>The front pocket holds up to five.</p>" } }
+    ]
+  }]
+}
+{% endschema %}

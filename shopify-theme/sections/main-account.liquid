@@ -1,0 +1,29 @@
+<section class="c-page">
+  <div class="shell">
+    <h1 class="type-display-md">{{ 'customers.account' | t }}</h1>
+    <p class="c-row__sub">{{ customer.name }} · {{ customer.email }}</p>
+    <p><a class="type-meta" href="{{ routes.account_addresses_url }}">{{ 'customers.addresses' | t }}</a>
+      · <a class="type-meta" href="{{ routes.account_logout_url }}">{{ 'customers.logout' | t }}</a></p>
+    <h2 class="type-display-md" style="margin-top:2.5rem">{{ 'customers.orders' | t }}</h2>
+    {% paginate customer.orders by 10 %}
+      {% if customer.orders.size > 0 %}
+        <ul class="c-features">
+          {% for order in customer.orders %}
+            <li>
+              <a href="{{ order.customer_url }}">{{ order.name }}</a>
+              · {{ order.created_at | date: '%d %b %Y' }}
+              · {{ order.financial_status_label }}
+              · {{ order.total_price | money }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>{{ 'customers.no_orders' | t }}</p>
+      {% endif %}
+      {% render 'pagination', paginate: paginate %}
+    {% endpaginate %}
+  </div>
+</section>
+{% schema %}
+{ "name": "Account" }
+{% endschema %}

@@ -11,6 +11,9 @@
             {{ item.image | image_url: width: 240 | image_tag: alt: item.title }}
             <div class="c-cart__info">
               <p class="c-card__title">{{ item.product.title }}</p>
+              {% if item.selling_plan_allocation %}
+                <p class="type-meta">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+              {% endif %}
               <p class="type-meta">{{ item.final_line_price | money }}</p>
               <div class="c-qty">
                 <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.quantity' | t }}">
@@ -30,6 +33,7 @@
           <button type="submit" name="update" class="btn-ghost">{{ 'cart.update' | t }}</button>
           <button type="submit" name="checkout" class="btn-primary">{{ settings.cart_checkout_label | default: 'Checkout' }}</button>
         </div>
+        {{ content_for_additional_checkout_buttons }}
         {% render 'payment-icons' %}
       </form>
     {% endif %}

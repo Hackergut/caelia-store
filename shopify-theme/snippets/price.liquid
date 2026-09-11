@@ -1,0 +1,20 @@
+{%- comment -%}
+  Renders price + compare-at + unit price.
+  Accepts: product, variant (optional)
+{%- endcomment -%}
+{%- assign t = variant | default: product.selected_or_first_available_variant | default: product.variants.first -%}
+{%- if t -%}
+  <div class="c-price">
+    {%- if t.compare_at_price > t.price -%}
+      <span class="c-price__sale">{{ t.price | money }}</span>
+      <s class="c-price__compare">{{ t.compare_at_price | money }}</s>
+    {%- else -%}
+      <span>{{ t.price | money }}</span>
+    {%- endif -%}
+    {%- if t.unit_price_measurement -%}
+      <span class="c-price__unit type-meta">
+        {{ t.unit_price | money }}/{{ t.unit_price_measurement.reference_unit }}
+      </span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

@@ -1,0 +1,5 @@
+{%- if paginate.pages > 1 -%}
+  <nav class="c-pages" aria-label="{{ 'general.page' | t: page: paginate.current_page }}">
+    {{ paginate | default_pagination }}
+  </nav>
+{%- endif -%}

@@ -1,6 +1,36 @@
 {
   "sections": {
-    "main": { "type": "main-product", "settings": {} }
+    "main": {
+      "type": "main-product",
+      "settings": {},
+      "blocks": {
+        "ship": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Shipping & returns",
+            "content": "<p>Free shipping in Italy over 60 €. 14-day returns.</p>"
+          }
+        }
+      },
+      "block_order": ["ship"]
+    },
+    "complementary": {
+      "type": "complementary-products",
+      "settings": {}
+    },
+    "related": {
+      "type": "related-products",
+      "settings": {}
+    },
+    "faq": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "item", "settings": { "q": "Is the mirror glass?", "a": "<p>Anti-shatter surface, leather-framed on all four sides.</p>" } },
+        "q2": { "type": "item", "settings": { "q": "How many pencils?", "a": "<p>The front pocket holds up to five.</p>" } }
+      },
+      "block_order": ["q1", "q2"]
+    },
+    "apps": { "type": "apps", "settings": {} }
   },
-  "order": ["main"]
+  "order": ["main", "complementary", "related", "faq", "apps"]
 }

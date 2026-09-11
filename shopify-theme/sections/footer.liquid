@@ -31,6 +31,9 @@
       {% render 'localization', unique: 'footer' %}
     </div>
     <p class="type-meta c-footer__copy">{{ section.settings.text }} · © {{ 'now' | date: '%Y' }} {{ shop.name }}</p>
+    {% for block in section.blocks %}
+      {% render block %}
+    {% endfor %}
   </div>
 </footer>
 
@@ -38,8 +41,9 @@
 {
   "name": "Footer",
   "settings": [
-    { "type": "text", "id": "text", "label": "Didascalia", "default": "Milano · Beauty Essentials" },
-    { "type": "checkbox", "id": "show_policies", "label": "Link policy Shopify (spedizione, reso, privacy)", "default": true }
-  ]
+    { "type": "text", "id": "text", "label": "Caption", "default": "Milano · Beauty Essentials" },
+    { "type": "checkbox", "id": "show_policies", "label": "Shopify policy links", "default": true }
+  ],
+  "blocks": [{ "type": "@app" }]
 }
 {% endschema %}
