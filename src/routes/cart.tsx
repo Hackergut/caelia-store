@@ -6,7 +6,7 @@ import { formatEUR } from "@/lib/utils";
 export const Route = createFileRoute("/cart")({ component: CartPage });
 
 function CartPage() {
-  const { lines, setQty, remove, clear } = useCart();
+  const { lines, setQty, remove } = useCart();
   const total = cartTotal(lines);
 
   return (
@@ -60,16 +60,17 @@ function CartPage() {
               );
             })}
             <div className="flex items-center justify-between pt-2">
-              <p className="type-meta text-cacao">Totale</p>
+              <p className="type-meta text-cacao">Subtotale IVA inclusa</p>
               <p className="tabular-nums text-xl">{formatEUR(total)}</p>
             </div>
             <p className="text-sm text-cacao">
-              IVA 22% inclusa. Spedizione Italia 2–4 giorni, gratuita da 60 €. Reso 14 giorni.
+              Spedizione Italia {total >= 60 ? "gratuita" : "4,90 €"} · UE 8,90 € · gratuita da 60 €.
+              Reso 14 giorni. Apple Pay e carte su Stripe.
             </p>
             <div className="flex flex-wrap gap-3">
-              <button type="button" className="btn-primary" onClick={() => clear()}>
-                Completa (demo)
-              </button>
+              <a href="https://buy.stripe.com/8x2bJ20CBbKE0jk0ecfMA02" className="btn-primary">
+                Checkout
+              </a>
               <Link to="/products" className="inline-flex min-h-12 items-center type-meta">
                 Continua
               </Link>

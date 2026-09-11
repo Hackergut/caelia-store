@@ -20,7 +20,7 @@
     "free_shipping_threshold": "60",
     "show_localization": true,
     "show_quantity": true,
-    "show_sku": false,
+    "show_sku": true,
     "show_vendor": false,
     "show_share": true,
     "show_trust": true,
@@ -36,7 +36,11 @@
     "enable_quick_view": true,
     "enable_quick_add": true,
     "show_card_swatches": true,
-    "enable_sticky_atc": true
+    "enable_sticky_atc": true,
+    "legal_name": "CAELIA",
+    "legal_address": "Milano, Italia",
+    "legal_email": "info@caelia.store",
+    "legal_pec": "pec@caelia.store"
   },
   "presets": {
     "CAELIA Maison": {
@@ -60,7 +64,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -76,7 +80,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "CAELIA Noir": {
       "color_berry": "#973851",
@@ -99,7 +107,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -115,7 +123,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "CAELIA Ivory": {
       "color_berry": "#4a0e16",
@@ -138,7 +150,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -154,7 +166,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "CAELIA Blush": {
       "color_berry": "#c45c6a",
@@ -177,7 +193,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -193,7 +209,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "Atelier": {
       "color_berry": "#111111",
@@ -216,7 +236,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -232,7 +252,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "Wine": {
       "color_berry": "#6b1c32",
@@ -255,7 +279,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -271,7 +295,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "Sand": {
       "color_berry": "#5b3f33",
@@ -294,7 +322,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -310,7 +338,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "Night": {
       "color_berry": "#973851",
@@ -333,7 +365,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -349,7 +381,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "Gallery": {
       "color_berry": "#4a0e16",
@@ -372,7 +408,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -388,7 +424,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     },
     "Daylight": {
       "color_berry": "#973851",
@@ -411,7 +451,7 @@
       "free_shipping_threshold": "60",
       "show_localization": true,
       "show_quantity": true,
-      "show_sku": false,
+      "show_sku": true,
       "show_vendor": false,
       "show_share": true,
       "show_trust": true,
@@ -427,7 +467,11 @@
       "enable_quick_view": true,
       "enable_quick_add": true,
       "show_card_swatches": true,
-      "enable_sticky_atc": true
+      "enable_sticky_atc": true,
+      "legal_name": "CAELIA",
+      "legal_address": "Milano, Italia",
+      "legal_email": "info@caelia.store",
+      "legal_pec": "pec@caelia.store"
     }
   }
 }

@@ -8,6 +8,7 @@ import {
 } from "@/lib/lock";
 
 export const Route = createFileRoute("/paga")({
+  head: () => ({ meta: [{ name: "robots", content: "noindex, nofollow" }] }),
   validateSearch: (s: Record<string, unknown>) => ({
     da: typeof s.da === "string" ? s.da : "",
   }),

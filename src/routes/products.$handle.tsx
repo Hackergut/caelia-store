@@ -76,9 +76,10 @@ function ProductPage() {
               </li>
             ))}
           </ul>
+          <div className="mt-8 flex flex-wrap gap-3">
           <button
             type="button"
-            className="btn-primary mt-8 w-full sm:w-auto"
+            className="btn-primary w-full sm:w-auto"
             data-cta={cta}
             onClick={() => {
               trackCta("click", cta);
@@ -88,6 +89,10 @@ function ProductPage() {
           >
             {added ? "Aggiunto al carrello" : CTA[cta]}
           </button>
+          <a href="https://buy.stripe.com/8x2bJ20CBbKE0jk0ecfMA02" className="inline-flex min-h-12 items-center px-6 type-meta text-berry">
+            Acquista
+          </a>
+          </div>
           {added ? (
             <Link to="/cart" className="mt-4 block type-meta text-berry">
               Vai al carrello

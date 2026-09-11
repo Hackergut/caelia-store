@@ -2,7 +2,12 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { IMAGES_ZIP_URL, SITE_PREVIEW_URL, useLock } from "@/lib/lock";
 
 export const Route = createFileRoute("/shopify")({
-  head: () => ({ meta: [{ title: "CAELIA · Tema Shopify" }] }),
+  head: () => ({
+    meta: [
+      { title: "CAELIA · Tema Shopify" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
+  }),
   component: ShopifyPage,
 });
 

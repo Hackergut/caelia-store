@@ -2,7 +2,10 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { checkPassword, useLock } from "@/lib/lock";
 
-export const Route = createFileRoute("/lock")({ component: LockPage });
+export const Route = createFileRoute("/lock")({
+  component: LockPage,
+  head: () => ({ meta: [{ name: "robots", content: "noindex, nofollow" }] }),
+});
 
 function LockPage() {
   const unlocked = useLock((s) => s.unlocked);
